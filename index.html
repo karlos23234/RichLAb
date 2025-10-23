@@ -1,0 +1,1177 @@
+<!DOCTYPE html>
+<html lang="hy">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>RichLab - Բացեք եկամտի հնարավորություններ</title>
+    <script src="https://telegram.org/js/telegram-web-app.js"></script>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        body {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+            background: var(--tg-theme-bg-color, #f8fafc);
+            color: var(--tg-theme-text-color, #1f2937);
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+        }
+        .gradient-bg {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+        }
+        .card-hover {
+            transition: transform 0.2s ease, box-shadow 0.2s ease;
+            cursor: pointer;
+        }
+        .card-hover:active {
+            transform: scale(0.98);
+        }
+        .earnings-card {
+            background: linear-gradient(135deg, #4facfe 0%, #00f2fe 100%);
+        }
+        .task-card {
+            background: linear-gradient(135deg, #43e97b 0%, #38f9d7 100%);
+        }
+        .referral-card {
+            background: linear-gradient(135deg, #fa709a 0%, #fee140 100%);
+        }
+        .video-card {
+            background: linear-gradient(135deg, #a8edea 0%, #fed6e3 100%);
+        }
+        .telegram-button {
+            background: var(--tg-theme-button-color, #3b82f6);
+            color: var(--tg-theme-button-text-color, white);
+            border: none;
+            border-radius: 12px;
+            padding: 12px 24px;
+            font-weight: 600;
+            font-size: 16px;
+            cursor: pointer;
+            transition: all 0.2s ease;
+            width: 100%;
+            touch-action: manipulation;
+        }
+        .telegram-button:active {
+            transform: scale(0.98);
+            opacity: 0.8;
+        }
+        .mini-app-container {
+            max-width: 100%;
+            padding: 0 16px;
+            margin: 0 auto;
+        }
+        .section-card {
+            background: var(--tg-theme-secondary-bg-color, white);
+            border-radius: 16px;
+            padding: 20px;
+            margin-bottom: 16px;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+        }
+    </style>
+</head>
+<body class="bg-gray-50 min-h-full">
+    <!-- Mobile Header -->
+    <header class="gradient-bg text-white py-4 sticky top-0 z-50">
+        <div class="mini-app-container">
+            <div class="flex items-center justify-between">
+                <h1 class="text-2xl font-bold">RichLab</h1>
+                <button onclick="autoRegister()" class="bg-white/20 text-white px-3 py-1 rounded-lg text-sm font-medium">
+                    Ավտո գրանցում
+                </button>
+            </div>
+        </div>
+    </header>
+
+    <!-- Main Content -->
+    <main class="mini-app-container py-6">
+        <!-- Home Section -->
+        <div id="home-section" class="section-content">
+            <!-- Balance Card -->
+            <div class="section-card text-center mb-6">
+                <h2 class="text-2xl font-bold mb-2">Ընդհանուր եկամուտ</h2>
+                <div class="text-4xl font-bold text-green-600 mb-4">$0</div>
+                <p class="text-gray-600">Վաստակեք գումար առաջադրանքներ կատարելով</p>
+            </div>
+
+            <!-- Earnings Stats -->
+            <div class="grid grid-cols-3 gap-3 mb-6">
+                <div class="task-card text-white p-4 rounded-xl text-center">
+                    <div class="text-xl font-bold">$5</div>
+                    <div class="text-sm opacity-90">Առաջադրանք</div>
+                    <div class="text-xs opacity-75">0 կատարված</div>
+                </div>
+                <div class="referral-card text-white p-4 rounded-xl text-center">
+                    <div class="text-xl font-bold">$10</div>
+                    <div class="text-sm opacity-90">Հրավեր</div>
+                    <div class="text-xs opacity-75">0 հրավիրված</div>
+                </div>
+                <div class="video-card text-gray-800 p-4 rounded-xl text-center">
+                    <div class="text-xl font-bold">$6</div>
+                    <div class="text-sm opacity-90">Տեսանյութ</div>
+                    <div class="text-xs opacity-75">0 դիտված</div>
+                </div>
+            </div>
+
+            <!-- Activities Section -->
+            <div class="mb-6">
+                <h3 class="text-xl font-bold mb-4">Վաստակելու եղանակներ</h3>
+                
+                <div class="space-y-3">
+                    <div class="section-card card-hover" onclick="showCenter()">
+                        <div class="flex items-center space-x-4">
+                            <div class="w-12 h-12 bg-purple-100 rounded-lg flex items-center justify-center">
+                                <span class="text-2xl">📱</span>
+                            </div>
+                            <div class="flex-1">
+                                <h4 class="font-semibold text-gray-800">Առաջադրանքներ</h4>
+                                <p class="text-gray-600 text-sm">Փորձարկեք հավելվածներ և խաղեր</p>
+                                <p class="text-purple-600 font-bold text-sm">+$5 յուրաքանչյուրի համար</p>
+                            </div>
+                            <div class="text-gray-400">→</div>
+                        </div>
+                    </div>
+
+                    <div class="section-card card-hover" onclick="showInvite()">
+                        <div class="flex items-center space-x-4">
+                            <div class="w-12 h-12 bg-green-100 rounded-lg flex items-center justify-center">
+                                <span class="text-2xl">👥</span>
+                            </div>
+                            <div class="flex-1">
+                                <h4 class="font-semibold text-gray-800">Հրավիրեք ընկերներ</h4>
+                                <p class="text-gray-600 text-sm">Ստացեք պարգև յուրաքանչյուր հրավերի համար</p>
+                                <p class="text-green-600 font-bold text-sm">+$10 + 10% եկամուտ</p>
+                            </div>
+                            <div class="text-gray-400">→</div>
+                        </div>
+                    </div>
+
+                    <div class="section-card card-hover" onclick="showVideo()">
+                        <div class="flex items-center space-x-4">
+                            <div class="w-12 h-12 bg-red-100 rounded-lg flex items-center justify-center">
+                                <span class="text-2xl">📺</span>
+                            </div>
+                            <div class="flex-1">
+                                <h4 class="font-semibold text-gray-800">Դիտեք տեսանյութեր</h4>
+                                <p class="text-gray-600 text-sm">Դիտեք և վաստակեք գումար</p>
+                                <p class="text-red-600 font-bold text-sm">+$6 յուրաքանչյուրի համար</p>
+                            </div>
+                            <div class="text-gray-400">→</div>
+                        </div>
+                    </div>
+
+                    <div class="section-card card-hover" onclick="showCash()">
+                        <div class="flex items-center space-x-4">
+                            <div class="w-12 h-12 bg-yellow-100 rounded-lg flex items-center justify-center">
+                                <span class="text-2xl">💰</span>
+                            </div>
+                            <div class="flex-1">
+                                <h4 class="font-semibold text-gray-800">Կանխիկ ելքագրում</h4>
+                                <p class="text-gray-600 text-sm">Ելքագրեք Ձեր վաստակած գումարը</p>
+                                <p class="text-yellow-600 font-bold text-sm">Նվազագույնը $10</p>
+                            </div>
+                            <div class="text-gray-400">→</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Invite Section -->
+        <div id="invite-section" class="section-content" style="display: none;">
+            <div class="section-card mb-6">
+                <h3 class="text-xl font-bold mb-3">Հաշվետվությունների վիճակագրություն</h3>
+                
+                <!-- Stats Cards -->
+                <div class="grid grid-cols-2 gap-3 mb-4">
+                    <div class="bg-gradient-to-r from-green-400 to-green-600 text-white p-4 rounded-lg text-center">
+                        <div class="text-lg font-bold">$0</div>
+                        <div class="text-sm opacity-90">Հաշվետվության բոնուս</div>
+                    </div>
+                    <div class="bg-gradient-to-r from-blue-400 to-blue-600 text-white p-4 rounded-lg text-center">
+                        <div class="text-lg font-bold">0</div>
+                        <div class="text-sm opacity-90">Ընդհանուր հաշվետվություններ</div>
+                    </div>
+                </div>
+
+                <!-- Help Guide -->
+                <div class="bg-blue-50 p-4 rounded-lg mb-4">
+                    <div class="flex items-center justify-between mb-2">
+                        <span class="text-sm font-medium text-blue-800">Օգնության ուղեցույց է պե՞տք:</span>
+                        <button onclick="toggleHelp()" class="text-blue-600 text-sm">Փակել</button>
+                    </div>
+                    <p class="text-sm text-blue-700">
+                        RichRise-ը առաջարկում է $10 նայրա առատաձեռն բոնուս յուրաքանչյուր օգտատիրոջ համար, ով գրանցվում է Ձեր հաշվետվության հղումով, և Դուք ստանում եք հաշվետվություն կատարած օգտատիրոջ եկամտի 10%-ը որպես հաշվարկ:
+                    </p>
+                </div>
+
+                <!-- Referral Link -->
+                <div class="bg-gray-50 p-3 rounded-lg mb-4">
+                    <label for="referral-link" class="block text-sm font-medium text-gray-700 mb-2">
+                        Ձեր հաշվետվության հղումը
+                    </label>
+                    <div class="flex">
+                        <input 
+                            type="text" 
+                            id="referral-link"
+                            value="https://t.me/richrisebot/app?startapp=r_" 
+                            readonly 
+                            class="flex-1 px-3 py-2 border border-gray-300 rounded-l-lg bg-white text-sm"
+                        >
+                        <button 
+                            onclick="shareReferralLink()"
+                            class="telegram-button rounded-l-none px-4 py-2 text-sm"
+                        >
+                            Կիսվել
+                        </button>
+                    </div>
+                </div>
+
+                <!-- Earning Potential -->
+                <div class="bg-gradient-to-r from-purple-500 to-pink-500 text-white p-4 rounded-lg mb-4">
+                    <h4 class="font-bold mb-2">Բացեք հսկայական եկամտի ներուժը հաշվետվություններով:</h4>
+                    <p class="text-sm opacity-90 mb-3">
+                        Ընդլայնեք Ձեր եկամտի հորիզոնները RichRise-ով՝ հաշվետվություն կատարելով Ձեր ընկերներին, ընտանիքին կամ հետևորդներին մեր հարթակ: Ահա, թե ինչ եք ստանում:
+                    </p>
+                    <div class="space-y-2">
+                        <div class="flex items-center space-x-2">
+                            <span class="text-yellow-300">💰</span>
+                            <span class="text-sm">Վաստակեք լրացուցիչ $10 յուրաքանչյուր հաջող գրանցման համար:</span>
+                        </div>
+                        <div class="flex items-center space-x-2">
+                            <span class="text-yellow-300">📈</span>
+                            <span class="text-sm">Եթե Ձեր հրավիրած օգտատերը գումար է վաստակում, Դուք նույնպես ստանում եք այդ գումարի 10%-ը որպես պարգև:</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Referrals List -->
+                <div class="bg-white border border-gray-200 rounded-lg p-4">
+                    <h4 class="font-semibold mb-3">Ձեր հաշվետվություններ</h4>
+                    <div class="text-center py-8 text-gray-500">
+                        <div class="text-4xl mb-2">👥</div>
+                        <div class="font-medium">Հաշվետվություններ չկան</div>
+                        <div class="text-sm">Այս պահին ոչ ոք չի գրանցվել Ձեր հղումով:</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Center Section -->
+        <div id="center-section" class="section-content" style="display: none;">
+            <div class="section-card mb-6">
+                <h3 class="text-xl font-bold mb-4">Առաջադրանքների կենտրոն</h3>
+                
+                <div class="space-y-4">
+                    <div class="bg-gradient-to-r from-purple-500 to-pink-500 text-white p-4 rounded-lg">
+                        <h4 class="font-bold mb-2">Ամենօրյա առաջադրանքներ</h4>
+                        <p class="text-sm opacity-90 mb-3">Կատարեք ամենօրյա առաջադրանքները և վաստակեք բոնուսներ</p>
+                        <div class="bg-white/20 p-3 rounded-lg">
+                            <div class="text-sm">Այսօրվա առաջընթաց: 0/5</div>
+                            <div class="w-full bg-white/30 rounded-full h-2 mt-2">
+                                <div class="bg-white h-2 rounded-full" style="width: 0%"></div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="space-y-3">
+                        <div class="bg-white border border-gray-200 rounded-lg p-4">
+                            <div class="flex items-center justify-between">
+                                <div class="flex items-center space-x-3">
+                                    <div class="w-10 h-10 bg-blue-100 rounded-lg flex items-center justify-center">
+                                        <span class="text-lg">📱</span>
+                                    </div>
+                                    <div>
+                                        <h5 class="font-semibold">Փորձարկեք նոր հավելված</h5>
+                                        <p class="text-sm text-gray-600">Ներբեռնեք և օգտագործեք 5 րոպե</p>
+                                    </div>
+                                </div>
+                                <div class="text-right">
+                                    <div class="text-green-600 font-bold">+$5</div>
+                                    <button class="bg-blue-500 text-white px-3 py-1 rounded text-sm mt-1">Սկսել</button>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="bg-white border border-gray-200 rounded-lg p-4">
+                            <div class="flex items-center justify-between">
+                                <div class="flex items-center space-x-3">
+                                    <div class="w-10 h-10 bg-green-100 rounded-lg flex items-center justify-center">
+                                        <span class="text-lg">🎮</span>
+                                    </div>
+                                    <div>
+                                        <h5 class="font-semibold">Խաղեք մինի խաղ</h5>
+                                        <p class="text-sm text-gray-600">Հասեք 10-րդ մակարդակին</p>
+                                    </div>
+                                </div>
+                                <div class="text-right">
+                                    <div class="text-green-600 font-bold">+$3</div>
+                                    <button class="bg-blue-500 text-white px-3 py-1 rounded text-sm mt-1">Սկսել</button>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="bg-white border border-gray-200 rounded-lg p-4">
+                            <div class="flex items-center justify-between">
+                                <div class="flex items-center space-x-3">
+                                    <div class="w-10 h-10 bg-yellow-100 rounded-lg flex items-center justify-center">
+                                        <span class="text-lg">📋</span>
+                                    </div>
+                                    <div>
+                                        <h5 class="font-semibold">Լրացրեք հարցաշար</h5>
+                                        <p class="text-sm text-gray-600">5 րոպե տևողությամբ</p>
+                                    </div>
+                                </div>
+                                <div class="text-right">
+                                    <div class="text-green-600 font-bold">+$2</div>
+                                    <button class="bg-blue-500 text-white px-3 py-1 rounded text-sm mt-1">Սկսել</button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Video Section -->
+        <div id="video-section" class="section-content" style="display: none;">
+            <div class="section-card mb-6">
+                <h3 class="text-xl font-bold mb-4">Տեսանյութեր</h3>
+                
+                <div class="bg-gradient-to-r from-red-500 to-pink-500 text-white p-4 rounded-lg mb-4">
+                    <h4 class="font-bold mb-2">Դիտեք և վաստակեք</h4>
+                    <p class="text-sm opacity-90">Դիտեք տեսանյութեր և ստացեք գումար յուրաքանչյուր դիտման համար</p>
+                </div>
+
+                <div class="space-y-3">
+                    <div class="bg-white border border-gray-200 rounded-lg p-4">
+                        <div class="flex items-center space-x-3 mb-3">
+                            <div class="w-16 h-12 bg-red-100 rounded-lg flex items-center justify-center">
+                                <span class="text-lg">▶️</span>
+                            </div>
+                            <div class="flex-1">
+                                <h5 class="font-semibold">Ինչպես վաստակել առցանց</h5>
+                                <p class="text-sm text-gray-600">Դիտեք և վաստակեք • +$6</p>
+                            </div>
+                        </div>
+                        <button onclick="watchVideo('https://www.youtube.com/watch?v=iHwGlm0BSGc')" class="w-full bg-red-500 text-white py-2 rounded-lg">Դիտել և վաստակել</button>
+                    </div>
+
+                    <div class="bg-white border border-gray-200 rounded-lg p-4">
+                        <div class="flex items-center space-x-3 mb-3">
+                            <div class="w-16 h-12 bg-blue-100 rounded-lg flex items-center justify-center">
+                                <span class="text-lg">▶️</span>
+                            </div>
+                            <div class="flex-1">
+                                <h5 class="font-semibold">Ֆինանսական հմտություններ</h5>
+                                <p class="text-sm text-gray-600">Դիտեք և վաստակեք • +$8</p>
+                            </div>
+                        </div>
+                        <button onclick="watchVideo('https://www.youtube.com/watch?v=DoAzzbBSmUo&list=PLk4nzq9lMqGT_d1KJwLstjbcTiXuFnp79')" class="w-full bg-red-500 text-white py-2 rounded-lg">Դիտել և վաստակել</button>
+                    </div>
+
+                    <div class="bg-white border border-gray-200 rounded-lg p-4">
+                        <div class="flex items-center space-x-3 mb-3">
+                            <div class="w-16 h-12 bg-green-100 rounded-lg flex items-center justify-center">
+                                <span class="text-lg">▶️</span>
+                            </div>
+                            <div class="flex-1">
+                                <h5 class="font-semibold">Կրիպտո ներդրումներ</h5>
+                                <p class="text-sm text-gray-600">Դիտեք և վաստակեք • +$12</p>
+                            </div>
+                        </div>
+                        <button onclick="watchVideo('https://www.youtube.com/watch?v=54KMFcKIVhs')" class="w-full bg-red-500 text-white py-2 rounded-lg">Դիտել և վաստակել</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Cash Section -->
+        <div id="cash-section" class="section-content" style="display: none;">
+            <div class="section-card mb-6">
+                <h3 class="text-xl font-bold mb-4">Կանխիկ</h3>
+                
+                <!-- Current Balance -->
+                <div class="bg-gradient-to-r from-green-400 to-green-600 text-white p-6 rounded-lg text-center mb-6">
+                    <h4 class="text-lg font-semibold mb-2">Ընթացիկ մնացորդ</h4>
+                    <div class="text-3xl font-bold">֏8,000</div>
+                    <button onclick="editPaymentMethod()" class="mt-3 bg-white/20 text-white px-4 py-2 rounded-lg text-sm">
+                        Խմբագրել վճարման եղանակը
+                    </button>
+                </div>
+
+                <!-- First Withdrawal Requirements -->
+                <div class="bg-orange-50 border border-orange-200 rounded-lg p-4 mb-6">
+                    <h4 class="font-semibold text-orange-800 mb-3">Առաջին հաշվարկի ճանապարհ</h4>
+                    <p class="text-sm text-orange-700 mb-4">
+                        Հարթակի ամբողջականությունը պահպանելու և խարդախ գործողությունները կանխելու համար առաջին հաշվարկի համար պետք է կատարվեն որոշակի պահանջներ:
+                    </p>
+                    
+                    <!-- Balance Progress -->
+                    <div class="mb-4">
+                        <div class="flex items-center justify-between mb-2">
+                            <span class="text-sm font-medium text-orange-800">💰 Balance</span>
+                            <span class="text-sm text-orange-700">8000/80000</span>
+                        </div>
+                        <div class="w-full bg-orange-200 rounded-full h-3">
+                            <div class="bg-orange-500 h-3 rounded-full" style="width: 10%"></div>
+                        </div>
+                        <p class="text-xs text-orange-600 mt-2">
+                            Անհրաժեշտ է, որ Ձեր եկամտում լինի նվազագույն ֏80,000 մնացորդ:
+                        </p>
+                    </div>
+                </div>
+
+                <!-- Payment Journal -->
+                <div class="bg-white border border-gray-200 rounded-lg p-4">
+                    <h4 class="font-semibold mb-3 flex items-center">
+                        <span class="text-lg mr-2">📋</span>
+                        Վճարումների մատյան
+                    </h4>
+                    <div class="text-center py-8 text-gray-500">
+                        <div class="text-4xl mb-2">📄</div>
+                        <div class="font-medium">Ձեր հաշվարկների մասին գրառումներ չկան:</div>
+                        <div class="text-sm">Ձեր բոլոր գործարքների գրառումները կցուցադրվեն այստեղ:</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <!-- Bottom Navigation -->
+    <nav class="fixed bottom-0 left-0 right-0 bg-white border-t border-gray-200 z-50">
+        <div class="flex justify-around items-center py-2">
+            <button onclick="showHome()" class="flex flex-col items-center p-2 text-blue-600">
+                <span class="text-xl mb-1">🏠</span>
+                <span class="text-xs font-medium">Գլխավոր</span>
+            </button>
+            <button onclick="showInvite()" class="flex flex-col items-center p-2 text-gray-500">
+                <span class="text-xl mb-1">👥</span>
+                <span class="text-xs font-medium">Հրավեր</span>
+            </button>
+            <button onclick="showCenter()" class="flex flex-col items-center p-2 text-gray-500">
+                <span class="text-xl mb-1">🎯</span>
+                <span class="text-xs font-medium">Կենտրոն</span>
+            </button>
+            <button onclick="showVideo()" class="flex flex-col items-center p-2 text-gray-500">
+                <span class="text-xl mb-1">📺</span>
+                <span class="text-xs font-medium">Տեսանյութ</span>
+            </button>
+            <button onclick="showCash()" class="flex flex-col items-center p-2 text-gray-500">
+                <span class="text-xl mb-1">💰</span>
+                <span class="text-xs font-medium">Կանխիկ</span>
+            </button>
+        </div>
+    </nav>
+
+    <!-- Welcome Bonus Popup -->
+    <div id="welcome-popup" class="fixed inset-0 bg-black/50 flex items-center justify-center z-50 p-4" style="display: none;">
+        <div class="bg-white rounded-2xl p-6 max-w-sm w-full text-center transform scale-95 transition-transform duration-300">
+            <div class="text-6xl mb-4">🎉</div>
+            <h3 class="text-2xl font-bold text-gray-800 mb-2">Բարի գալուստ RichLab!</h3>
+            <p class="text-lg text-gray-600 mb-4">Շնորհավորում ենք <span class="text-2xl font-bold text-green-600">֏8,000</span> բոնուս!</p>
+            <p class="text-gray-600 mb-6">Սկսեք վաստակել գումար հիմա՝ կատարելով պարզ առաջադրանքներ</p>
+            <button onclick="closeWelcomePopup()" class="w-full bg-gradient-to-r from-blue-500 to-purple-600 text-white py-3 px-6 rounded-xl font-bold text-lg">
+                Սկսենք! 🚀
+            </button>
+        </div>
+    </div>
+
+    <!-- Payment Method Popup -->
+    <div id="payment-popup" class="fixed inset-0 bg-black/50 flex items-center justify-center z-50 p-4" style="display: none;">
+        <div class="bg-white rounded-2xl max-w-md w-full max-h-[90%] overflow-y-auto transform scale-95 transition-transform duration-300">
+            <!-- Header -->
+            <div class="flex items-center justify-between p-4 border-b border-gray-200">
+                <h3 class="text-lg font-bold text-gray-800">Սահմանել վճարման եղանակներ</h3>
+                <button onclick="closePaymentPopup()" class="text-gray-500 hover:text-gray-700">
+                    <span class="text-xl">✕</span>
+                </button>
+            </div>
+            
+            <!-- Content -->
+            <div class="p-4">
+                <!-- Payment Methods Section -->
+                <div class="mb-6">
+                    <h4 class="font-semibold text-gray-800 mb-3">Վճարման եղանակներ</h4>
+                    
+                    <div class="space-y-3">
+                        <!-- EasyPay -->
+                        <div class="bg-gray-50 border border-gray-200 rounded-lg p-4">
+                            <div class="flex items-center space-x-3">
+                                <div class="w-10 h-10 bg-orange-100 rounded-lg flex items-center justify-center">
+                                    <span class="text-lg">📱</span>
+                                </div>
+                                <div class="flex-1">
+                                    <h5 class="font-semibold">EasyPay</h5>
+                                    <p class="text-sm text-gray-600">Հեշտ և արագ վճարում</p>
+                                </div>
+                                <button onclick="selectPaymentMethod('easypay')" class="text-blue-600 text-sm font-medium">Ընտրել</button>
+                            </div>
+                        </div>
+
+                        <!-- idram -->
+                        <div class="bg-gray-50 border border-gray-200 rounded-lg p-4">
+                            <div class="flex items-center space-x-3">
+                                <div class="w-10 h-10 bg-purple-100 rounded-lg flex items-center justify-center">
+                                    <span class="text-lg">💜</span>
+                                </div>
+                                <div class="flex-1">
+                                    <h5 class="font-semibold">idram</h5>
+                                    <p class="text-sm text-gray-600">Էլեկտրոնային դրամապանակ</p>
+                                </div>
+                                <button onclick="selectPaymentMethod('idram')" class="text-blue-600 text-sm font-medium">Ընտրել</button>
+                            </div>
+                        </div>
+
+                        <!-- ArCa -->
+                        <div class="bg-gray-50 border border-gray-200 rounded-lg p-4">
+                            <div class="flex items-center space-x-3">
+                                <div class="w-10 h-10 bg-red-100 rounded-lg flex items-center justify-center">
+                                    <span class="text-lg">🏛️</span>
+                                </div>
+                                <div class="flex-1">
+                                    <h5 class="font-semibold">ArCa</h5>
+                                    <p class="text-sm text-gray-600">Հայկական վճարային համակարգ</p>
+                                </div>
+                                <button onclick="selectPaymentMethod('arca')" class="text-blue-600 text-sm font-medium">Ընտրել</button>
+                            </div>
+                        </div>
+
+                        <!-- ԱմերիաԲանկ -->
+                        <div class="bg-gray-50 border border-gray-200 rounded-lg p-4">
+                            <div class="flex items-center space-x-3">
+                                <div class="w-10 h-10 bg-blue-100 rounded-lg flex items-center justify-center">
+                                    <span class="text-lg">🏦</span>
+                                </div>
+                                <div class="flex-1">
+                                    <h5 class="font-semibold">ԱմերիաԲանկ</h5>
+                                    <p class="text-sm text-gray-600">Բանկային փոխանցում</p>
+                                </div>
+                                <button onclick="selectPaymentMethod('ameriabank')" class="text-blue-600 text-sm font-medium">Ընտրել</button>
+                            </div>
+                        </div>
+
+                        <!-- ԱրդշինԲանկ -->
+                        <div class="bg-gray-50 border border-gray-200 rounded-lg p-4">
+                            <div class="flex items-center space-x-3">
+                                <div class="w-10 h-10 bg-green-100 rounded-lg flex items-center justify-center">
+                                    <span class="text-lg">🏦</span>
+                                </div>
+                                <div class="flex-1">
+                                    <h5 class="font-semibold">ԱրդշինԲանկ</h5>
+                                    <p class="text-sm text-gray-600">Բանկային փոխանցում</p>
+                                </div>
+                                <button onclick="selectPaymentMethod('ardshinbank')" class="text-blue-600 text-sm font-medium">Ընտրել</button>
+                            </div>
+                        </div>
+
+                        <!-- ԱԿԲԱ Բանկ -->
+                        <div class="bg-gray-50 border border-gray-200 rounded-lg p-4">
+                            <div class="flex items-center space-x-3">
+                                <div class="w-10 h-10 bg-yellow-100 rounded-lg flex items-center justify-center">
+                                    <span class="text-lg">🏦</span>
+                                </div>
+                                <div class="flex-1">
+                                    <h5 class="font-semibold">ԱԿԲԱ Բանկ</h5>
+                                    <p class="text-sm text-gray-600">Բանկային փոխանցում</p>
+                                </div>
+                                <button onclick="selectPaymentMethod('acba')" class="text-blue-600 text-sm font-medium">Ընտրել</button>
+                            </div>
+                        </div>
+
+                        <!-- Կոնվերս Բանկ -->
+                        <div class="bg-gray-50 border border-gray-200 rounded-lg p-4">
+                            <div class="flex items-center space-x-3">
+                                <div class="w-10 h-10 bg-indigo-100 rounded-lg flex items-center justify-center">
+                                    <span class="text-lg">🏦</span>
+                                </div>
+                                <div class="flex-1">
+                                    <h5 class="font-semibold">Կոնվերս Բանկ</h5>
+                                    <p class="text-sm text-gray-600">Բանկային փոխանցում</p>
+                                </div>
+                                <button onclick="selectPaymentMethod('converse')" class="text-blue-600 text-sm font-medium">Ընտրել</button>
+                            </div>
+                        </div>
+
+                        <!-- linen -->
+                        <div class="bg-gray-50 border border-gray-200 rounded-lg p-4">
+                            <div class="flex items-center space-x-3">
+                                <div class="w-10 h-10 bg-teal-100 rounded-lg flex items-center justify-center">
+                                    <span class="text-lg">💳</span>
+                                </div>
+                                <div class="flex-1">
+                                    <h5 class="font-semibold">linen</h5>
+                                    <p class="text-sm text-gray-600">Վճարային համակարգ</p>
+                                </div>
+                                <button onclick="selectPaymentMethod('linen')" class="text-blue-600 text-sm font-medium">Ընտրել</button>
+                            </div>
+                        </div>
+
+                        <!-- Կրիպտո -->
+                        <div class="bg-gray-50 border border-gray-200 rounded-lg p-4">
+                            <div class="flex items-center space-x-3">
+                                <div class="w-10 h-10 bg-yellow-100 rounded-lg flex items-center justify-center">
+                                    <span class="text-lg">₿</span>
+                                </div>
+                                <div class="flex-1">
+                                    <h5 class="font-semibold">Կրիպտո</h5>
+                                    <p class="text-sm text-gray-600">Bitcoin, Ethereum</p>
+                                </div>
+                                <button onclick="selectPaymentMethod('crypto')" class="text-blue-600 text-sm font-medium">Ընտրել</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Payment Details Section -->
+                <div class="mb-6">
+                    <h4 class="font-semibold text-gray-800 mb-3">Վճարման մանրամասներ</h4>
+                    
+                    <div class="bg-gray-50 border border-gray-200 rounded-lg p-4">
+                        <div class="text-center py-6 text-gray-500">
+                            <div class="text-3xl mb-2">💳</div>
+                            <div class="font-medium">Վճարման եղանակ չի ընտրված</div>
+                            <div class="text-sm">Ընտրեք վճարման եղանակ վերևից</div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Account Section -->
+                <div class="mb-6">
+                    <h4 class="font-semibold text-gray-800 mb-3">Հաշվետվություն</h4>
+                    
+                    <div class="bg-blue-50 border border-blue-200 rounded-lg p-4">
+                        <div class="flex items-center space-x-3">
+                            <div class="w-10 h-10 bg-blue-100 rounded-lg flex items-center justify-center">
+                                <span class="text-lg">👤</span>
+                            </div>
+                            <div class="flex-1">
+                                <h5 class="font-semibold text-blue-800">Ձեր հաշիվ</h5>
+                                <p class="text-sm text-blue-600">Ընթացիկ մնացորդ: ֏8,000</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Footer -->
+            <div class="p-4 border-t border-gray-200">
+                <button onclick="closePaymentPopup()" class="w-full bg-gray-500 text-white py-3 px-6 rounded-xl font-bold">
+                    Փակել
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Mobile Footer -->
+    <footer class="bg-gray-800 text-white py-6 mt-8 mb-16">
+        <div class="mini-app-container text-center">
+            <h4 class="font-semibold mb-2">RichLab</h4>
+            <p class="text-gray-400 text-sm mb-3">Բացեք եկամտի հնարավորություններ</p>
+            <p class="text-gray-400 text-xs">support@richlab.com</p>
+        </div>
+    </footer>
+
+    <script>
+        // Initialize Telegram Web App
+        let tg = window.Telegram?.WebApp;
+        
+        document.addEventListener('DOMContentLoaded', function() {
+            if (tg) {
+                tg.ready();
+                tg.expand();
+                
+                // Set theme colors
+                document.documentElement.style.setProperty('--tg-theme-bg-color', tg.themeParams.bg_color || '#f8fafc');
+                document.documentElement.style.setProperty('--tg-theme-text-color', tg.themeParams.text_color || '#1f2937');
+                document.documentElement.style.setProperty('--tg-theme-button-color', tg.themeParams.button_color || '#3b82f6');
+                document.documentElement.style.setProperty('--tg-theme-button-text-color', tg.themeParams.button_text_color || 'white');
+                document.documentElement.style.setProperty('--tg-theme-secondary-bg-color', tg.themeParams.secondary_bg_color || 'white');
+            }
+            
+            // Show welcome popup for new users after a short delay
+            setTimeout(() => {
+                showWelcomePopup();
+            }, 1000);
+        });
+
+        function shareReferralLink() {
+            const referralLink = document.getElementById('referral-link').value;
+            const shareText = `🚀 Միացեք RichLab-ին և վաստակեք գումար!\n\n💰 Ստացեք $10 գրանցվելիս\n📱 Կատարեք առաջադրանքներ և վաստակեք\n👥 Հրավիրեք ընկերներ և ստացեք բոնուս\n\n${referralLink}`;
+            
+            if (tg) {
+                tg.openTelegramLink(`https://t.me/share/url?url=${encodeURIComponent(referralLink)}&text=${encodeURIComponent(shareText)}`);
+            } else {
+                // Fallback for web
+                if (navigator.share) {
+                    navigator.share({
+                        title: 'RichLab - Վաստակեք գումար',
+                        text: shareText,
+                        url: referralLink
+                    });
+                } else {
+                    copyToClipboard(referralLink);
+                    showNotification('Հղումը պատճենվել է!');
+                }
+            }
+        }
+
+        function copyToClipboard(text) {
+            if (navigator.clipboard) {
+                navigator.clipboard.writeText(text);
+            } else {
+                const textArea = document.createElement('textarea');
+                textArea.value = text;
+                document.body.appendChild(textArea);
+                textArea.select();
+                document.execCommand('copy');
+                document.body.removeChild(textArea);
+            }
+        }
+
+        function showNotification(message) {
+            if (tg) {
+                tg.showAlert(message);
+            } else {
+                const notification = document.createElement('div');
+                notification.className = 'fixed top-4 left-1/2 transform -translate-x-1/2 bg-green-500 text-white px-6 py-3 rounded-lg shadow-lg z-50';
+                notification.textContent = message;
+                document.body.appendChild(notification);
+                
+                setTimeout(() => {
+                    notification.remove();
+                }, 3000);
+            }
+        }
+
+        function startTasks() {
+            if (tg) {
+                tg.showAlert('Առաջադրանքների բաժինը շուտով կբացվի!');
+            } else {
+                showNotification('Առաջադրանքների բաժինը շուտով կբացվի!');
+            }
+        }
+
+        function inviteFriends() {
+            shareReferralLink();
+        }
+
+        function watchVideo(videoUrl) {
+            if (tg) {
+                // Open video in new tab/window
+                tg.openLink(videoUrl);
+                // Show earning notification
+                setTimeout(() => {
+                    tg.showAlert('Շնորհավորում ենք! Դուք վաստակել եք բոնուս տեսանյութը դիտելու համար:');
+                }, 1000);
+            } else {
+                // Fallback for web
+                window.open(videoUrl, '_blank', 'noopener,noreferrer');
+                showNotification('Տեսանյութը բացվել է նոր պատուհանում: Դիտելուց հետո կստանաք բոնուս:');
+            }
+        }
+
+        function watchVideos() {
+            showVideo();
+        }
+
+        function dailyGoals() {
+            if (tg) {
+                tg.showAlert('Ամենօրյա նպատակների բաժինը շուտով կբացվի!');
+            } else {
+                showNotification('Ամենօրյա նպատակների բաժինը շուտով կբացվի!');
+            }
+        }
+
+        function withdraw() {
+            if (tg) {
+                tg.showAlert('Ելքագրման համար անհրաժեշտ է նվազագույնը ֏80,000 մնացորդ:');
+            } else {
+                showNotification('Ելքագրման համար անհրաժեշտ է նվազագույնը ֏80,000 մնացորդ:');
+            }
+        }
+
+        function editPaymentMethod() {
+            const popup = document.getElementById('payment-popup');
+            if (popup) {
+                popup.style.display = 'flex';
+                setTimeout(() => {
+                    const content = popup.querySelector('.bg-white');
+                    if (content) {
+                        content.style.transform = 'scale(1)';
+                    }
+                }, 100);
+            }
+        }
+
+        function closePaymentPopup() {
+            const popup = document.getElementById('payment-popup');
+            if (popup) {
+                const content = popup.querySelector('.bg-white');
+                if (content) {
+                    content.style.transform = 'scale(0.95)';
+                }
+                setTimeout(() => {
+                    popup.style.display = 'none';
+                }, 200);
+            }
+        }
+
+        function selectPaymentMethod(method) {
+            const detailsSection = document.querySelector('#payment-popup .bg-gray-50.border.border-gray-200.rounded-lg.p-4');
+            let content = '';
+            
+            switch(method) {
+                case 'easypay':
+                    content = `
+                        <div class="space-y-4">
+                            <div class="flex items-center space-x-3 mb-4">
+                                <div class="w-10 h-10 bg-orange-100 rounded-lg flex items-center justify-center">
+                                    <span class="text-lg">📱</span>
+                                </div>
+                                <div>
+                                    <h5 class="font-semibold">EasyPay</h5>
+                                    <p class="text-sm text-gray-600">Հեշտ և արագ վճարում</p>
+                                </div>
+                            </div>
+                            <div>
+                                <label class="block text-sm font-medium text-gray-700 mb-2">Հեռախոսահամար</label>
+                                <input type="text" placeholder="+374 XX XXX XXX" class="w-full px-3 py-2 border border-gray-300 rounded-lg">
+                            </div>
+                        </div>
+                    `;
+                    break;
+                case 'idram':
+                    content = `
+                        <div class="space-y-4">
+                            <div class="flex items-center space-x-3 mb-4">
+                                <div class="w-10 h-10 bg-purple-100 rounded-lg flex items-center justify-center">
+                                    <span class="text-lg">💜</span>
+                                </div>
+                                <div>
+                                    <h5 class="font-semibold">idram</h5>
+                                    <p class="text-sm text-gray-600">Էլեկտրոնային դրամապանակ</p>
+                                </div>
+                            </div>
+                            <div>
+                                <label class="block text-sm font-medium text-gray-700 mb-2">idram հեռախոսահամար</label>
+                                <input type="text" placeholder="+374 XX XXX XXX" class="w-full px-3 py-2 border border-gray-300 rounded-lg">
+                            </div>
+                        </div>
+                    `;
+                    break;
+                case 'arca':
+                    content = `
+                        <div class="space-y-4">
+                            <div class="flex items-center space-x-3 mb-4">
+                                <div class="w-10 h-10 bg-red-100 rounded-lg flex items-center justify-center">
+                                    <span class="text-lg">🏛️</span>
+                                </div>
+                                <div>
+                                    <h5 class="font-semibold">ArCa</h5>
+                                    <p class="text-sm text-gray-600">Հայկական վճարային համակարգ</p>
+                                </div>
+                            </div>
+                            <div>
+                                <label class="block text-sm font-medium text-gray-700 mb-2">ArCa քարտի համար</label>
+                                <input type="text" placeholder="1234 5678 9012 3456" class="w-full px-3 py-2 border border-gray-300 rounded-lg">
+                            </div>
+                            <div class="grid grid-cols-2 gap-3">
+                                <div>
+                                    <label class="block text-sm font-medium text-gray-700 mb-2">Ամսաթիվ</label>
+                                    <input type="text" placeholder="MM/YY" class="w-full px-3 py-2 border border-gray-300 rounded-lg">
+                                </div>
+                                <div>
+                                    <label class="block text-sm font-medium text-gray-700 mb-2">CVV</label>
+                                    <input type="text" placeholder="123" class="w-full px-3 py-2 border border-gray-300 rounded-lg">
+                                </div>
+                            </div>
+                        </div>
+                    `;
+                    break;
+                case 'ameriabank':
+                    content = `
+                        <div class="space-y-4">
+                            <div class="flex items-center space-x-3 mb-4">
+                                <div class="w-10 h-10 bg-blue-100 rounded-lg flex items-center justify-center">
+                                    <span class="text-lg">🏦</span>
+                                </div>
+                                <div>
+                                    <h5 class="font-semibold">ԱմերիաԲանկ</h5>
+                                    <p class="text-sm text-gray-600">Բանկային փոխանցում</p>
+                                </div>
+                            </div>
+                            <div>
+                                <label class="block text-sm font-medium text-gray-700 mb-2">Հաշվեհամար</label>
+                                <input type="text" placeholder="220000000000000000" class="w-full px-3 py-2 border border-gray-300 rounded-lg">
+                            </div>
+                            <div>
+                                <label class="block text-sm font-medium text-gray-700 mb-2">Անուն Ազգանուն</label>
+                                <input type="text" placeholder="Ձեր անունը" class="w-full px-3 py-2 border border-gray-300 rounded-lg">
+                            </div>
+                        </div>
+                    `;
+                    break;
+                case 'ardshinbank':
+                    content = `
+                        <div class="space-y-4">
+                            <div class="flex items-center space-x-3 mb-4">
+                                <div class="w-10 h-10 bg-green-100 rounded-lg flex items-center justify-center">
+                                    <span class="text-lg">🏦</span>
+                                </div>
+                                <div>
+                                    <h5 class="font-semibold">ԱրդշինԲանկ</h5>
+                                    <p class="text-sm text-gray-600">Բանկային փոխանցում</p>
+                                </div>
+                            </div>
+                            <div>
+                                <label class="block text-sm font-medium text-gray-700 mb-2">Հաշվեհամար</label>
+                                <input type="text" placeholder="220000000000000000" class="w-full px-3 py-2 border border-gray-300 rounded-lg">
+                            </div>
+                            <div>
+                                <label class="block text-sm font-medium text-gray-700 mb-2">Անուն Ազգանուն</label>
+                                <input type="text" placeholder="Ձեր անունը" class="w-full px-3 py-2 border border-gray-300 rounded-lg">
+                            </div>
+                        </div>
+                    `;
+                    break;
+                case 'acba':
+                    content = `
+                        <div class="space-y-4">
+                            <div class="flex items-center space-x-3 mb-4">
+                                <div class="w-10 h-10 bg-yellow-100 rounded-lg flex items-center justify-center">
+                                    <span class="text-lg">🏦</span>
+                                </div>
+                                <div>
+                                    <h5 class="font-semibold">ԱԿԲԱ Բանկ</h5>
+                                    <p class="text-sm text-gray-600">Բանկային փոխանցում</p>
+                                </div>
+                            </div>
+                            <div>
+                                <label class="block text-sm font-medium text-gray-700 mb-2">Հաշվեհամար</label>
+                                <input type="text" placeholder="220000000000000000" class="w-full px-3 py-2 border border-gray-300 rounded-lg">
+                            </div>
+                            <div>
+                                <label class="block text-sm font-medium text-gray-700 mb-2">Անուն Ազգանուն</label>
+                                <input type="text" placeholder="Ձեր անունը" class="w-full px-3 py-2 border border-gray-300 rounded-lg">
+                            </div>
+                        </div>
+                    `;
+                    break;
+                case 'converse':
+                    content = `
+                        <div class="space-y-4">
+                            <div class="flex items-center space-x-3 mb-4">
+                                <div class="w-10 h-10 bg-indigo-100 rounded-lg flex items-center justify-center">
+                                    <span class="text-lg">🏦</span>
+                                </div>
+                                <div>
+                                    <h5 class="font-semibold">Կոնվերս Բանկ</h5>
+                                    <p class="text-sm text-gray-600">Բանկային փոխանցում</p>
+                                </div>
+                            </div>
+                            <div>
+                                <label class="block text-sm font-medium text-gray-700 mb-2">Հաշվեհամար</label>
+                                <input type="text" placeholder="220000000000000000" class="w-full px-3 py-2 border border-gray-300 rounded-lg">
+                            </div>
+                            <div>
+                                <label class="block text-sm font-medium text-gray-700 mb-2">Անուն Ազգանուն</label>
+                                <input type="text" placeholder="Ձեր անունը" class="w-full px-3 py-2 border border-gray-300 rounded-lg">
+                            </div>
+                        </div>
+                    `;
+                    break;
+                case 'linen':
+                    content = `
+                        <div class="space-y-4">
+                            <div class="flex items-center space-x-3 mb-4">
+                                <div class="w-10 h-10 bg-teal-100 rounded-lg flex items-center justify-center">
+                                    <span class="text-lg">💳</span>
+                                </div>
+                                <div>
+                                    <h5 class="font-semibold">linen</h5>
+                                    <p class="text-sm text-gray-600">Վճարային համակարգ</p>
+                                </div>
+                            </div>
+                            <div>
+                                <label class="block text-sm font-medium text-gray-700 mb-2">Հաշվեհամար</label>
+                                <input type="text" placeholder="Ձեր linen հաշվեհամարը" class="w-full px-3 py-2 border border-gray-300 rounded-lg">
+                            </div>
+                            <div>
+                                <label class="block text-sm font-medium text-gray-700 mb-2">Անուն Ազգանուն</label>
+                                <input type="text" placeholder="Ձեր անունը" class="w-full px-3 py-2 border border-gray-300 rounded-lg">
+                            </div>
+                        </div>
+                    `;
+                    break;
+                case 'crypto':
+                    content = `
+                        <div class="space-y-4">
+                            <div class="flex items-center space-x-3 mb-4">
+                                <div class="w-10 h-10 bg-yellow-100 rounded-lg flex items-center justify-center">
+                                    <span class="text-lg">₿</span>
+                                </div>
+                                <div>
+                                    <h5 class="font-semibold">Կրիպտո</h5>
+                                    <p class="text-sm text-gray-600">Bitcoin, Ethereum</p>
+                                </div>
+                            </div>
+                            <div>
+                                <label class="block text-sm font-medium text-gray-700 mb-2">Կրիպտո տեսակ</label>
+                                <select class="w-full px-3 py-2 border border-gray-300 rounded-lg">
+                                    <option>Bitcoin (BTC)</option>
+                                    <option>Ethereum (ETH)</option>
+                                    <option>USDT</option>
+                                </select>
+                            </div>
+                            <div>
+                                <label class="block text-sm font-medium text-gray-700 mb-2">Wallet հասցե</label>
+                                <input type="text" placeholder="Ձեր wallet հասցեն" class="w-full px-3 py-2 border border-gray-300 rounded-lg">
+                            </div>
+                        </div>
+                    `;
+                    break;
+            }
+            
+            detailsSection.innerHTML = content;
+        }
+
+        function showFAQ() {
+            if (tg) {
+                tg.showAlert('FAQ բաժինը շուտով կբացվի!');
+            } else {
+                showNotification('FAQ բաժինը շուտով կբացվի!');
+            }
+        }
+
+        // Navigation functions
+        function showHome() {
+            setActiveTab('home');
+            showSection('home-section');
+        }
+
+        function showInvite() {
+            setActiveTab('invite');
+            showSection('invite-section');
+        }
+
+        function showCenter() {
+            setActiveTab('center');
+            showSection('center-section');
+        }
+
+        function showVideo() {
+            setActiveTab('video');
+            showSection('video-section');
+        }
+
+        function showCash() {
+            setActiveTab('cash');
+            showSection('cash-section');
+        }
+
+        function showSection(sectionId) {
+            // Hide all sections
+            const sections = document.querySelectorAll('.section-content');
+            sections.forEach(section => {
+                section.style.display = 'none';
+            });
+            
+            // Show selected section
+            const targetSection = document.getElementById(sectionId);
+            if (targetSection) {
+                targetSection.style.display = 'block';
+            }
+        }
+
+        function setActiveTab(activeTab) {
+            const tabs = ['home', 'invite', 'center', 'video', 'cash'];
+            const buttons = document.querySelectorAll('nav button');
+            
+            buttons.forEach((button, index) => {
+                if (tabs[index] === activeTab) {
+                    button.className = button.className.replace('text-gray-500', 'text-blue-600');
+                } else {
+                    button.className = button.className.replace('text-blue-600', 'text-gray-500');
+                }
+            });
+        }
+
+        // Toggle help guide
+        function toggleHelp() {
+            const helpGuide = document.querySelector('.bg-blue-50');
+            if (helpGuide.style.display === 'none') {
+                helpGuide.style.display = 'block';
+            } else {
+                helpGuide.style.display = 'none';
+            }
+        }
+
+        // Welcome popup functions
+        function showWelcomePopup() {
+            const popup = document.getElementById('welcome-popup');
+            if (popup) {
+                popup.style.display = 'flex';
+                setTimeout(() => {
+                    const content = popup.querySelector('.bg-white');
+                    if (content) {
+                        content.style.transform = 'scale(1)';
+                    }
+                }, 100);
+            }
+        }
+
+        function closeWelcomePopup() {
+            const popup = document.getElementById('welcome-popup');
+            if (popup) {
+                const content = popup.querySelector('.bg-white');
+                if (content) {
+                    content.style.transform = 'scale(0.95)';
+                }
+                setTimeout(() => {
+                    popup.style.display = 'none';
+                    // Update balance after closing popup
+                    updateBalanceDisplay('֏8,000');
+                }, 200);
+            }
+        }
+
+        function updateBalanceDisplay(amount) {
+            const balanceElements = document.querySelectorAll('.text-4xl.font-bold.text-green-600, .text-3xl.font-bold');
+            balanceElements.forEach(element => {
+                if (element.textContent.includes('$') || element.textContent.includes('֏')) {
+                    element.textContent = amount;
+                }
+            });
+        }
+
+        // Auto registration function
+        function autoRegister() {
+            if (tg && tg.initDataUnsafe && tg.initDataUnsafe.user) {
+                const user = tg.initDataUnsafe.user;
+                const userData = {
+                    id: user.id,
+                    first_name: user.first_name,
+                    last_name: user.last_name || '',
+                    username: user.username || '',
+                    language_code: user.language_code || 'hy'
+                };
+                
+                // Show welcome popup instead of alert
+                showWelcomePopup();
+                
+            } else {
+                // Show welcome popup for new users
+                showWelcomePopup();
+            }
+        }
+
+        // Add haptic feedback for buttons
+        document.addEventListener('click', function(e) {
+            if (e.target.tagName === 'BUTTON' || e.target.closest('.card-hover')) {
+                if (tg && tg.HapticFeedback) {
+                    tg.HapticFeedback.impactOccurred('light');
+                }
+            }
+        });
+    </script>
+<script>(function(){function c(){var b=a.contentDocument||a.contentWindow.document;if(b){var d=b.createElement('script');d.innerHTML="window.__CF$cv$params={r:'9934b22ad7adfb7e',t:'MTc2MTI1ODgwNS4wMDAwMDA='};var a=document.createElement('script');a.nonce='';a.src='/cdn-cgi/challenge-platform/scripts/jsd/main.js';document.getElementsByTagName('head')[0].appendChild(a);";b.getElementsByTagName('head')[0].appendChild(d)}}if(document.body){var a=document.createElement('iframe');a.height=1;a.width=1;a.style.position='absolute';a.style.top=0;a.style.left=0;a.style.border='none';a.style.visibility='hidden';document.body.appendChild(a);if('loading'!==document.readyState)c();else if(window.addEventListener)document.addEventListener('DOMContentLoaded',c);else{var e=document.onreadystatechange||function(){};document.onreadystatechange=function(b){e(b);'loading'!==document.readyState&&(document.onreadystatechange=e,c())}}}})();</script></body>
+</html>
