@@ -943,27 +943,109 @@
                     </div>
                 </div>
 
-                <!-- Referral Link -->
-                <div class="bg-gray-50 p-3 rounded-lg mb-4">
-                    <label for="referral-link" class="block text-sm font-medium text-gray-700 mb-2">
-                        Ձեր հաշվետվության հղումը
-                    </label>
-                    <div class="flex">
-                        <input 
-                            type="text" 
-                            id="referral-link"
-                            value="https://t.me/richrisegold_bot?start=r_12345" 
-                            readonly 
-                            class="flex-1 px-3 py-2 border border-gray-300 rounded-l-lg bg-white text-sm"
-                        >
-                        <button 
-                            onclick="shareReferralLink()"
-                            class="telegram-button rounded-l-none px-4 py-2 text-sm"
-                        >
-                            Կիսվել
-                        </button>
-                    </div>
-                </div>
+               <!DOCTYPE html>
+<html lang="hy">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>BirdsGolden Referral</title>
+    <script src="https://telegram.org/js/telegram-web-app.js"></script>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        body {
+            background: linear-gradient(135deg, #4facfe 0%, #00f2fe 100%);
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            color: #fff;
+            padding: 20px;
+        }
+        .ref-box {
+            background: white;
+            border-radius: 15px;
+            box-shadow: 0 10px 25px rgba(0,0,0,0.15);
+            width: 100%;
+            max-width: 420px;
+            padding: 25px;
+            text-align: center;
+            color: #333;
+        }
+        input {
+            width: 100%;
+            border: 1px solid #ddd;
+            padding: 12px;
+            border-radius: 10px;
+            margin-bottom: 10px;
+            font-size: 14px;
+            text-align: center;
+        }
+        button {
+            background: #111;
+            color: #fff;
+            padding: 12px 25px;
+            border-radius: 10px;
+            font-weight: bold;
+            cursor: pointer;
+            transition: 0.2s;
+        }
+        button:hover { background: #333; }
+        #copy-toast {
+            margin-top: 10px;
+            font-size: 14px;
+            color: #00c853;
+            opacity: 0;
+            transition: opacity 0.4s;
+        }
+    </style>
+</head>
+<body>
+    <div class="ref-box">
+        <h2 class="text-lg font-semibold mb-2">Կիսվիր քո հղումով 🪶</h2>
+        <p id="user-info" class="text-sm text-gray-700 mb-3">Սպասում ենք Telegram տվյալներին...</p>
+
+        <input id="referral-link" type="text" readonly>
+        <button id="copy-btn">Պատճենել հղումը</button>
+        <div id="copy-toast">Հղումը պատճենվեց ✅</div>
+    </div>
+
+    <script>
+        const tg = window.Telegram.WebApp;
+        tg.ready();
+
+        const botUsername = "BirdsGolden_bot"; // առանց @
+        const user = tg.initDataUnsafe?.user || null;
+
+        let userId = 0;
+        let firstName = "Demo";
+
+        if (user) {
+            userId = user.id;
+            firstName = user.first_name || "User";
+        }
+
+        const referralLink = userId
+            ? `https://t.me/${botUsername}?start=r_${userId}`
+            : `https://t.me/${botUsername}?start=demo`;
+
+        document.getElementById("referral-link").value = referralLink;
+        document.getElementById("user-info").textContent = user
+            ? `Բարև ${firstName} 👋 — քո Telegram ID-ն է ${userId}`
+            : "Դու բացել ես Demo ձևաչափով (Telegram-ից դուրս)";
+
+        document.getElementById("copy-btn").addEventListener("click", () => {
+            navigator.clipboard.writeText(referralLink).then(() => {
+                const toast = document.getElementById("copy-toast");
+                toast.style.opacity = "1";
+                setTimeout(() => toast.style.opacity = "0", 2000);
+            });
+        });
+    </script>
+</body>
+</html>
+
 
                 <!-- Benefits Section -->
                 <div class="bg-gradient-to-r from-purple-500 to-pink-500 text-white p-4 rounded-lg mb-4">
