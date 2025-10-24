@@ -203,56 +203,125 @@
                     </div>
                 </div>
 
-<script src="https://telegram.org/js/telegram-web-app.js"></script>
+<!DOCTYPE html>
+<html lang="hy">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Referral Link - BirdsGolden</title>
+    <script src="https://telegram.org/js/telegram-web-app.js"></script>
+    <style>
+        body {
+            background: #f8f8f8;
+            font-family: Arial, sans-serif;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            height: 100vh;
+            margin: 0;
+            padding: 20px;
+        }
+        h2 {
+            color: #222;
+            margin-bottom: 15px;
+        }
+        .referral-box {
+            display: flex;
+            align-items: center;
+            background: white;
+            border: 1px solid #ddd;
+            border-radius: 10px;
+            overflow: hidden;
+            width: 100%;
+            max-width: 420px;
+            box-shadow: 0 3px 10px rgba(0,0,0,0.1);
+        }
+        input {
+            flex: 1;
+            padding: 12px;
+            border: none;
+            outline: none;
+            font-size: 14px;
+        }
+        button {
+            background: black;
+            color: white;
+            border: none;
+            padding: 12px 20px;
+            font-weight: bold;
+            cursor: pointer;
+            transition: 0.2s;
+        }
+        button:hover {
+            background: #333;
+        }
+        #copy-toast {
+            margin-top: 10px;
+            font-size: 14px;
+            color: green;
+            opacity: 0;
+            transition: opacity 0.4s;
+        }
+        .user-info {
+            margin-bottom: 20px;
+            font-size: 16px;
+            color: #444;
+            text-align: center;
+        }
+    </style>
+</head>
+<body>
+    <h2>Կիսվիր քո հղումով 🪶</h2>
+    <div class="user-info" id="user-info">Սպասում ենք Telegram տվյալներին...</div>
 
-<div class="flex items-center">
-    <input 
-        id="referral-link"
-        type="text"
-        readonly
-        class="flex-1 p-3 border border-gray-300 rounded-l-lg text-sm transition-colors focus:outline-none"
-    >
-    <button id="copy-btn" class="px-4 py-3 border-none bg-black text-white font-semibold rounded-r-lg cursor-pointer transition-all hover:bg-gray-800 active:scale-95">
-        Պատճենել
-    </button>
-</div>
+    <div class="referral-box">
+        <input id="referral-link" type="text" readonly>
+        <button id="copy-btn">Պատճենել</button>
+    </div>
 
-<div id="copy-toast" class="mt-2 text-sm text-green-600 opacity-0 transition-opacity duration-400">
-    Հղումը պատճենվեց clipboard-ին։
-</div>
+    <div id="copy-toast">Հղումը պատճենվեց ✅</div>
 
-<script>
-    // ✅ Telegram user ID-ի ստացում
-    const tg = window.Telegram.WebApp;
-    tg.ready();
+    <script>
+        const tg = window.Telegram.WebApp;
+        tg.ready();
 
-    // user id-ի ստացում
-    const userId = tg.initDataUnsafe?.user?.id || 0;
+        const user = tg.initDataUnsafe?.user || null;
+        const botUsername = "BirdsGolden_bot"; // Քո բոտի անունը առանց @
 
-    // ✅ Referral հղման ձևավորում քո բոտի համար
-    const referralLink = `https://t.me/BirdsGolden_bot/app?startapp=r_${userId}`;
+        let userId = 0;
+        let firstName = "Demo";
 
-    // ✅ Տեղադրում ենք input դաշտի մեջ
-    document.getElementById("referral-link").value = referralLink;
+        if (user) {
+            userId = user.id;
+            firstName = user.first_name || "User";
+        }
 
-    // ✅ Պատճենման կոճակի ֆունկցիա
-    document.getElementById("copy-btn").addEventListener("click", function() {
-        const input = document.getElementById("referral-link");
-        navigator.clipboard.writeText(input.value)
-            .then(() => {
-                const toast = document.getElementById("copy-toast");
-                toast.style.opacity = "1";
-                toast.textContent = "Հղումը պատճենվեց clipboard-ին ✅";
-                setTimeout(() => toast.style.opacity = "0", 2000);
-            })
-            .catch(() => {
-                alert("Չհաջողվեց պատճենել հղումը։ Փորձիր ձեռքով։");
-            });
-    });
-</script>
+        // Ստեղծում ենք referral հղումը
+        const referralLink = userId
+            ? `https://t.me/${botUsername}/app?startapp=r_${userId}`
+            : `https://t.me/${botUsername}/app?startapp=demo`;
 
-</script>
+        // Տեղադրում ենք տվյալները էջում
+        document.getElementById("referral-link").value = referralLink;
+        document.getElementById("user-info").textContent = userId
+            ? `Բարև ${firstName} 👋 — քո ID-ն է ${userId}`
+            : "Դու այս պահին Telegram-ից դուրս ես (demo mode)";
 
+        // Պատճենման կոճակի ֆունկցիա
+        document.getElementById("copy-btn").addEventListener("click", function() {
+            const input = document.getElementById("referral-link");
+            navigator.clipboard.writeText(input.value)
+                .then(() => {
+                    const toast = document.getElementById("copy-toast");
+                    toast.style.opacity = "1";
+                    setTimeout(() => toast.style.opacity = "0", 2000);
+                })
+                .catch(() => alert("Չհաջողվեց պատճենել հղումը։"));
+        });
+    </script>
+</body>
+</html>
 
                 <!-- Earning Potential -->
                 <div class="invite-card rounded-xl p-4 text-white mb-4">
