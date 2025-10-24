@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>BirdsGolden - Բացեք եկամտի հնարավորություններ</title>
+    <title>RichLab - Բացեք եկամտի հնարավորություններ</title>
     <script src="https://telegram.org/js/telegram-web-app.js"></script>
     <script src="https://cdn.tailwindcss.com"></script>
     <style>
@@ -16,7 +16,7 @@
             font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
         }
         .gradient-bg {
-            background: linear-gradient(135deg, #4a5568 0%, #2d3748 100%);
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
         }
         .card-hover {
             transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
@@ -46,27 +46,27 @@
             transition: all 0.1s ease;
         }
         .earnings-card {
-            background: linear-gradient(135deg, #3182ce 0%, #2c5282 100%);
+            background: linear-gradient(135deg, #4facfe 0%, #00f2fe 100%);
         }
         .task-card {
-            background: linear-gradient(135deg, #38a169 0%, #2f855a 100%);
+            background: linear-gradient(135deg, #43e97b 0%, #38f9d7 100%);
         }
         .referral-card {
-            background: linear-gradient(135deg, #805ad5 0%, #6b46c1 100%);
+            background: linear-gradient(135deg, #fa709a 0%, #fee140 100%);
         }
         .video-card {
-            background: linear-gradient(135deg, #e53e3e 0%, #c53030 100%);
+            background: linear-gradient(135deg, #a8edea 0%, #fed6e3 100%);
         }
         .telegram-button {
-            background: var(--tg-theme-button-color, #4a5568);
+            background: var(--tg-theme-button-color, #3b82f6);
             color: var(--tg-theme-button-text-color, white);
             border: none;
-            border-radius: 8px;
+            border-radius: 12px;
             padding: 12px 24px;
             font-weight: 600;
             font-size: 16px;
             cursor: pointer;
-            transition: all 0.3s ease;
+            transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
             width: 100%;
             touch-action: manipulation;
             position: relative;
@@ -103,12 +103,11 @@
         }
         .section-card {
             background: var(--tg-theme-secondary-bg-color, white);
-            border-radius: 12px;
+            border-radius: 16px;
             padding: 20px;
             margin-bottom: 16px;
-            box-shadow: 0 1px 3px rgba(0,0,0,0.1);
-            border: 1px solid rgba(0,0,0,0.05);
-            transition: all 0.3s ease;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+            transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
             position: relative;
             overflow: hidden;
         }
@@ -118,19 +117,19 @@
             top: 0;
             left: 0;
             right: 0;
-            height: 2px;
-            background: linear-gradient(90deg, #4a5568, #2d3748, #4a5568);
+            height: 3px;
+            background: linear-gradient(90deg, #667eea, #764ba2, #667eea);
             background-size: 200% 100%;
-            animation: gradientShift 4s ease-in-out infinite;
+            animation: gradientShift 3s ease-in-out infinite;
             opacity: 0;
             transition: opacity 0.3s ease;
         }
         .section-card:hover {
-            transform: translateY(-2px);
-            box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+            transform: translateY(-5px);
+            box-shadow: 0 15px 35px rgba(0,0,0,0.15);
         }
         .section-card:hover::before {
-            opacity: 0.6;
+            opacity: 1;
         }
         
         @keyframes gradientShift {
@@ -696,14 +695,14 @@
 </head>
 <body class="bg-gray-50 min-h-full">
     <!-- Login Screen -->
-    <div id="login-screen" class="fixed inset-0 bg-gradient-to-br from-gray-700 to-gray-900 flex items-center justify-center z-50">
+    <div id="login-screen" class="fixed inset-0 bg-gradient-to-br from-blue-600 to-purple-700 flex items-center justify-center z-50">
         <div class="text-center text-white p-8">
-            <div class="text-6xl mb-6">💼</div>
-            <h1 class="text-3xl font-bold mb-4">BirdsGolden</h1>
-            <p class="text-xl mb-8 opacity-90">Պրոֆեսիոնալ եկամտի հարթակ</p>
+            <div class="text-6xl mb-6">🚀</div>
+            <h1 class="text-3xl font-bold mb-4">RichLab</h1>
+            <p class="text-xl mb-8 opacity-90">Բացեք եկամտի հնարավորություններ</p>
             
             <div id="login-content">
-                <button onclick="loginWithTelegram()" class="bg-white text-gray-800 px-8 py-4 rounded-lg font-semibold text-lg mb-4 w-full max-w-sm hover:bg-gray-100 transition-colors">
+                <button onclick="loginWithTelegram()" class="bg-white text-blue-600 px-8 py-4 rounded-xl font-bold text-lg mb-4 w-full max-w-sm">
                     <span class="mr-2">📱</span>
                     Մուտք Telegram-ով
                 </button>
@@ -718,13 +717,13 @@
     </div>
 
     <!-- Mobile Header -->
-    <header class="gradient-bg text-white py-4 sticky top-0 z-40 border-b border-gray-600">
+    <header class="gradient-bg text-white py-4 sticky top-0 z-40">
         <div class="mini-app-container">
             <div class="flex items-center justify-between">
-                <h1 class="text-xl font-semibold">BirdsGolden</h1>
+                <h1 class="text-2xl font-bold">RichLab</h1>
                 <div class="flex items-center space-x-3">
                     <div id="user-info" class="text-sm opacity-90"></div>
-                    <button onclick="showDepositModal()" class="bg-white/10 text-white px-3 py-1 rounded-md text-sm font-medium border border-white/20 hover:bg-white/20 transition-colors">
+                    <button onclick="showDepositModal()" class="bg-white/20 text-white px-3 py-1 rounded-lg text-sm font-medium">
                         + Ավելացնել
                     </button>
                 </div>
@@ -738,28 +737,28 @@
         <div id="home-section" class="section-content">
             <!-- Balance Card -->
             <div class="section-card text-center mb-6" id="balance-card">
-                <h2 class="text-xl font-semibold mb-3 text-gray-800">Ընդհանուր մնացորդ</h2>
-                <div class="text-3xl font-bold text-gray-900 mb-4" id="main-balance">֏0</div>
-                <p class="text-gray-600 mb-4">Ավելացրեք գումար և սկսեք վաստակել</p>
-                <button onclick="showDepositModal()" class="bg-gray-800 text-white px-6 py-2 rounded-md font-medium hover:bg-gray-700 transition-colors">
+                <h2 class="text-2xl font-bold mb-2">Ընդհանուր մնացորդ</h2>
+                <div class="text-4xl font-bold text-green-600 mb-4" id="main-balance">֏0</div>
+                <p class="text-gray-600">Ավելացրեք գումար և սկսեք վաստակել</p>
+                <button onclick="showDepositModal()" class="mt-4 bg-blue-500 text-white px-6 py-2 rounded-lg font-medium">
                     Ավելացնել գումար
                 </button>
             </div>
 
             <!-- Earnings Stats -->
             <div class="grid grid-cols-3 gap-3 mb-6">
-                <div class="task-card text-white p-4 rounded-lg text-center">
-                    <div class="text-lg font-semibold">֏2,000</div>
+                <div class="task-card text-white p-4 rounded-xl text-center">
+                    <div class="text-xl font-bold">$5</div>
                     <div class="text-sm opacity-90">Առաջադրանք</div>
                     <div class="text-xs opacity-75">0 կատարված</div>
                 </div>
-                <div class="referral-card text-white p-4 rounded-lg text-center">
-                    <div class="text-lg font-semibold">֏4,000</div>
+                <div class="referral-card text-white p-4 rounded-xl text-center">
+                    <div class="text-xl font-bold">$10</div>
                     <div class="text-sm opacity-90">Հրավեր</div>
                     <div class="text-xs opacity-75">0 հրավիրված</div>
                 </div>
-                <div class="video-card text-white p-4 rounded-lg text-center">
-                    <div class="text-lg font-semibold">֏2,300</div>
+                <div class="video-card text-gray-800 p-4 rounded-xl text-center">
+                    <div class="text-xl font-bold">$6</div>
                     <div class="text-sm opacity-90">Տեսանյութ</div>
                     <div class="text-xs opacity-75">0 դիտված</div>
                 </div>
@@ -772,13 +771,13 @@
                 <div class="space-y-3">
                     <div class="section-card card-hover" onclick="showCenter()">
                         <div class="flex items-center space-x-4">
-                            <div class="w-12 h-12 bg-gray-100 rounded-lg flex items-center justify-center">
+                            <div class="w-12 h-12 bg-purple-100 rounded-lg flex items-center justify-center">
                                 <span class="text-2xl">📱</span>
                             </div>
                             <div class="flex-1">
                                 <h4 class="font-semibold text-gray-800">Առաջադրանքներ</h4>
                                 <p class="text-gray-600 text-sm">Փորձարկեք հավելվածներ և խաղեր</p>
-                                <p class="text-gray-800 font-semibold text-sm">+֏2,000 յուրաքանչյուրի համար</p>
+                                <p class="text-purple-600 font-bold text-sm">+$5 յուրաքանչյուրի համար</p>
                             </div>
                             <div class="text-gray-400">→</div>
                         </div>
@@ -786,13 +785,13 @@
 
                     <div class="section-card card-hover" onclick="showInvite()">
                         <div class="flex items-center space-x-4">
-                            <div class="w-12 h-12 bg-gray-100 rounded-lg flex items-center justify-center">
+                            <div class="w-12 h-12 bg-green-100 rounded-lg flex items-center justify-center">
                                 <span class="text-2xl">👥</span>
                             </div>
                             <div class="flex-1">
                                 <h4 class="font-semibold text-gray-800">Հրավիրեք ընկերներ</h4>
                                 <p class="text-gray-600 text-sm">Ստացեք պարգև յուրաքանչյուր հրավերի համար</p>
-                                <p class="text-gray-800 font-semibold text-sm">+֏4,000 + 10% եկամուտ</p>
+                                <p class="text-green-600 font-bold text-sm">+$10 + 10% եկամուտ</p>
                             </div>
                             <div class="text-gray-400">→</div>
                         </div>
@@ -800,13 +799,13 @@
 
                     <div class="section-card card-hover" onclick="showVideo()">
                         <div class="flex items-center space-x-4">
-                            <div class="w-12 h-12 bg-gray-100 rounded-lg flex items-center justify-center">
+                            <div class="w-12 h-12 bg-red-100 rounded-lg flex items-center justify-center">
                                 <span class="text-2xl">📺</span>
                             </div>
                             <div class="flex-1">
                                 <h4 class="font-semibold text-gray-800">Դիտեք տեսանյութեր</h4>
                                 <p class="text-gray-600 text-sm">Դիտեք և վաստակեք գումար</p>
-                                <p class="text-gray-800 font-semibold text-sm">+֏2,300 յուրաքանչյուրի համար</p>
+                                <p class="text-red-600 font-bold text-sm">+$6 յուրաքանչյուրի համար</p>
                             </div>
                             <div class="text-gray-400">→</div>
                         </div>
@@ -814,14 +813,14 @@
 
                     <div class="section-card card-hover" onclick="handleWithdrawClick()">
                         <div class="flex items-center space-x-4">
-                            <div class="w-12 h-12 bg-gray-100 rounded-lg flex items-center justify-center">
+                            <div class="w-12 h-12 bg-yellow-100 rounded-lg flex items-center justify-center">
                                 <span class="text-2xl">💰</span>
                             </div>
                             <div class="flex-1">
                                 <h4 class="font-semibold text-gray-800">Կանխիկ ելքագրում</h4>
                                 <p class="text-gray-600 text-sm">Ելքագրեք Ձեր վաստակած գումարը</p>
-                                <p class="text-gray-800 font-semibold text-sm">Նվազագույն ֏125,000</p>
-                                <p class="text-gray-500 text-xs mt-1">⚠️ 15 աշխատանքային օր պահանջվում է</p>
+                                <p class="text-yellow-600 font-bold text-sm">֏125,000 + 15 աշխատանքային օր</p>
+                                <p class="text-orange-600 text-xs mt-1">⚠️ Գումարը կնստի Ձեր հաշվին 15 աշխատանքային օրերի ընթացքում</p>
                             </div>
                             <div class="text-gray-400">→</div>
                         </div>
@@ -848,72 +847,23 @@
                             <!-- Left: User Info -->
                             <div class="flex items-center space-x-4">
                                 <!-- Profile Avatar -->
-                                <div class="w-16 h-16 bg-white/20 rounded-full flex items-center justify-center cursor-pointer hover:bg-white/30 hover:scale-110 transition-all duration-300 overflow-hidden border-2 border-white/30" onclick="showProfileModal()">
-                                    <img id="profile-avatar" src="https://avatars.mds.yandex.net/get-mpic/15530825/2a.e5f36d46c69e974c29077/orig" alt="Profile" class="w-full h-full object-cover rounded-full" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';">
-                                    <span class="text-2xl hidden">👤</span>
+                                <div class="w-16 h-16 bg-white/20 rounded-full flex items-center justify-center cursor-pointer hover:bg-white/30 hover:scale-110 transition-all duration-300" onclick="showProfileModal()">
+                                    <span class="text-2xl">👤</span>
                                 </div>
-                               <!-- User Details -->
-<div style="padding:12px; font-family:sans-serif;">
-  <!-- Name + PRO -->
-  <div style="display:flex; align-items:center; gap:6px; margin-bottom:6px;">
-    <h3 
-      id="tg-user-name"
-      onclick="showProfileModal()" 
-      style="font-size:18px; font-weight:bold; cursor:pointer; transition: transform 0.2s, color 0.3s;"
-      onmouseover="this.style.transform='scale(1.05)'; this.style.color='#FFD700';"
-      onmouseout="this.style.transform='scale(1)'; this.style.color='';"
-    >
-      Դեմո
-    </h3>
-    <div style="background:#FFD700; color:#333; font-size:10px; font-weight:bold; padding:2px 6px; border-radius:999px; animation: pulse 1.5s infinite;">
-      PRO
-    </div>
-  </div>
-
-  <!-- Actions -->
-  <div style="display:flex; align-items:center; gap:6px; font-size:12px; opacity:0.9;">
-    <span 
-      onclick="showDepositModal()" 
-      style="cursor:pointer; background:rgba(255,255,255,0.1); padding:4px 8px; border-radius:8px; transition: transform 0.2s, background 0.3s;"
-      onmouseover="this.style.transform='scale(1.05)'; this.style.background='rgba(255,255,0,0.2)';"
-      onmouseout="this.style.transform='scale(1)'; this.style.background='rgba(255,255,255,0.1)';"
-    >
-      + Ավելացնել
-    </span>
-    <span>•</span>
-    <span 
-      id="tg-user-id"
-      onclick="showUserIdModal()" 
-      style="cursor:pointer; background:rgba(255,255,255,0.1); padding:4px 8px; border-radius:8px; transition: transform 0.2s, background 0.3s;"
-      onmouseover="this.style.transform='scale(1.05)'; this.style.background='rgba(255,255,0,0.2)';"
-      onmouseout="this.style.transform='scale(1)'; this.style.background='rgba(255,255,255,0.1)';"
-    >
-      ID: ...
-    </span>
-  </div>
-</div>
-
-<script>
-document.addEventListener('DOMContentLoaded', () => {
-  // Ստուգել, որ WebApp օբյեկտը կա
-  if (window.Telegram && window.Telegram.WebApp && window.Telegram.WebApp.initDataUnsafe) {
-    const userId = window.Telegram.WebApp.initDataUnsafe.user?.id || 'Unknown';
-    document.getElementById('tg-user-id').textContent = `ID: ${userId}`;
-
-    // Կարող ենք նաև անունը ավտո ավելացնել
-    const firstName = window.Telegram.WebApp.initDataUnsafe.user?.first_name;
-    if(firstName) document.getElementById('tg-user-name').textContent = firstName;
-  }
-});
-</script>
-
-<style>
-@keyframes pulse {
-  0%, 100% { transform: scale(1); opacity:1; }
-  50% { transform: scale(1.1); opacity:0.8; }
-}
-</style>
-
+                                
+                                <!-- User Details -->
+                                <div>
+                                    <div class="flex items-center space-x-2 mb-1">
+                                        <h3 class="text-xl font-bold cursor-pointer hover:text-yellow-200 hover:scale-105 transition-all duration-300" onclick="showProfileModal()">Դեմո</h3>
+                                        <div class="bg-yellow-400 text-yellow-900 text-xs font-bold px-2 py-1 rounded-full animate-pulse">PRO</div>
+                                    </div>
+                                    <div class="flex items-center space-x-3 text-sm opacity-90">
+                                        <span class="cursor-pointer hover:text-yellow-200 hover:scale-105 transition-all duration-300 bg-white/10 px-2 py-1 rounded-full" onclick="showDepositModal()">+ Ավելացնել</span>
+                                        <span class="text-xs opacity-75">•</span>
+                                        <span class="cursor-pointer hover:text-yellow-200 hover:scale-105 transition-all duration-300 bg-white/10 px-2 py-1 rounded-full" onclick="showUserIdModal()">...001</span>
+                                    </div>
+                                </div>
+                            </div>
                             
                             <!-- Right: Status & Language -->
                             <div class="text-right">
@@ -993,80 +943,27 @@ document.addEventListener('DOMContentLoaded', () => {
                     </div>
                 </div>
 
-    <!-- Stylish Referral Link -->
-<div style="max-width:720px; margin:20px auto; padding:16px; border-radius:12px; background:#f9f9f9; box-shadow:0 4px 12px rgba(0,0,0,0.05); font-family:sans-serif;">
-  <label for="referral-link" style="display:block; margin-bottom:8px; font-weight:600; font-size:14px; color:#333;">
-    Ձեր referral հղումը
-  </label>
-
-  <div style="display:flex; align-items:center; gap:0;">
-    <input 
-      id="referral-link"
-      type="text"
-      value="https://t.me/BirdsGolden_bot/app?startapp=r_8187899888"
-      readonly
-      style="flex:1; padding:12px; border:1px solid #ccc; border-radius:8px 0 0 8px; font-size:14px; transition:border-color 0.3s;"
-    >
-    <button id="copy-btn" style="padding:12px 18px; border:none; background:#111; color:white; font-weight:600; border-radius:0 8px 8px 0; cursor:pointer; transition: background 0.3s, transform 0.2s;">
-      Պատճենել
-    </button>
-  </div>
-
-  <div id="copy-toast" style="margin-top:10px; font-size:13px; color:green; opacity:0; transition:opacity 0.4s;">
-    Հղումը պատճենվեց clipboard-ին։
-  </div>
-</div>
-
-<script>
-const copyBtn = document.getElementById('copy-btn');
-const linkInput = document.getElementById('referral-link');
-const toast = document.getElementById('copy-toast');
-
-// Անիմացիոն էֆեկտ կոճակի վրա սեղմելիս
-copyBtn.addEventListener('mousedown', () => {
-  copyBtn.style.transform = 'scale(0.95)';
-});
-copyBtn.addEventListener('mouseup', () => {
-  copyBtn.style.transform = 'scale(1)';
-});
-copyBtn.addEventListener('mouseleave', () => {
-  copyBtn.style.transform = 'scale(1)';
-});
-
-copyBtn.addEventListener('click', async () => {
-  const text = linkInput.value.trim();
-  if (!text) return;
-
-  try {
-    // Clipboard copy
-    if (navigator.clipboard && navigator.clipboard.writeText) {
-      await navigator.clipboard.writeText(text);
-    } else {
-      const ta = document.createElement('textarea');
-      ta.value = text;
-      ta.style.position = 'fixed';
-      ta.style.left = '-9999px';
-      document.body.appendChild(ta);
-      ta.select();
-      document.execCommand('copy');
-      document.body.removeChild(ta);
-    }
-
-    // Toast animation
-    toast.style.opacity = '1';
-    setTimeout(() => { toast.style.opacity = '0'; }, 2500);
-
-    // Input border color animation
-    linkInput.style.borderColor = '#4caf50';
-    setTimeout(() => { linkInput.style.borderColor = '#ccc'; }, 800);
-
-  } catch(e) {
-    alert('Պատճենելը ձախողվեց։ Խնդրում ենք ձեռքով պատճենել։');
-  }
-});
-</script>
-
-
+                <!-- Referral Link -->
+                <div class="bg-gray-50 p-3 rounded-lg mb-4">
+                    <label for="referral-link" class="block text-sm font-medium text-gray-700 mb-2">
+                        Ձեր հաշվետվության հղումը
+                    </label>
+                    <div class="flex">
+                        <input 
+                            type="text" 
+                            id="referral-link"
+                            value="https://t.me/BirdsGolden_bot/app?startapp=r_8187899888" 
+                            readonly 
+                            class="flex-1 px-3 py-2 border border-gray-300 rounded-l-lg bg-white text-sm"
+                        >
+                        <button 
+                            onclick="shareReferralLink()"
+                            class="telegram-button rounded-l-none px-4 py-2 text-sm"
+                        >
+                            Կիսվել
+                        </button>
+                    </div>
+                </div>
 
                 <!-- Benefits Section -->
                 <div class="bg-gradient-to-r from-purple-500 to-pink-500 text-white p-4 rounded-lg mb-4">
@@ -1403,18 +1300,18 @@ copyBtn.addEventListener('click', async () => {
                     <div class="bg-white border border-gray-200 rounded-lg p-4 video-card-item" data-video-id="1">
                         <div class="flex items-center space-x-3 mb-3">
                             <div class="w-16 h-12 bg-red-100 rounded-lg flex items-center justify-center">
-                                <span class="text-lg">🎬</span>
+                                <span class="text-lg">▶️</span>
                             </div>
                             <div class="flex-1">
-                                <h5 class="font-semibold">5 Minute Crafts - DIY</h5>
-                                <p class="text-sm text-gray-600">Հետաքրքիր DIY գաղափարներ</p>
+                                <h5 class="font-semibold">Ինչպես վաստակել առցանց</h5>
+                                <p class="text-sm text-gray-600">Դիտեք և վաստակեք</p>
                                 <div class="flex items-center space-x-2 mt-1">
                                     <span class="text-green-600 font-bold text-sm">+֏2,300</span>
-                                    <span class="text-xs text-gray-500">• 5:12 րոպե</span>
+                                    <span class="text-xs text-gray-500">• 5 րոպե</span>
                                 </div>
                             </div>
                         </div>
-                        <button onclick="watchVideoEarn('https://vimeo.com/76979871', 1, 2300)" class="w-full bg-red-500 text-white py-2 rounded-lg font-medium hover:bg-red-600 transition-colors">
+                        <button onclick="watchVideoEarn('https://www.youtube.com/watch?v=iHwGlm0BSGc', 1, 2300)" class="w-full bg-red-500 text-white py-2 rounded-lg font-medium hover:bg-red-600 transition-colors">
                             Վաստակել ֏2,300
                         </button>
                     </div>
@@ -1422,18 +1319,18 @@ copyBtn.addEventListener('click', async () => {
                     <div class="bg-white border border-gray-200 rounded-lg p-4 video-card-item" data-video-id="2">
                         <div class="flex items-center space-x-3 mb-3">
                             <div class="w-16 h-12 bg-green-100 rounded-lg flex items-center justify-center">
-                                <span class="text-lg">🍳</span>
+                                <span class="text-lg">📱</span>
                             </div>
                             <div class="flex-1">
-                                <h5 class="font-semibold">Quick Cooking Tips</h5>
-                                <p class="text-sm text-gray-600">Արագ և համեղ բաղադրատոմսեր</p>
+                                <h5 class="font-semibold">Մոբայլ հավելվածներ</h5>
+                                <p class="text-sm text-gray-600">Լավագույն հավելվածները</p>
                                 <div class="flex items-center space-x-2 mt-1">
                                     <span class="text-green-600 font-bold text-sm">+֏2,300</span>
-                                    <span class="text-xs text-gray-500">• 4:45 րոպե</span>
+                                    <span class="text-xs text-gray-500">• 4 րոպե</span>
                                 </div>
                             </div>
                         </div>
-                        <button onclick="watchVideoEarn('https://vimeo.com/148751763', 2, 2300)" class="w-full bg-green-500 text-white py-2 rounded-lg font-medium hover:bg-green-600 transition-colors">
+                        <button onclick="watchVideoEarn('https://www.youtube.com/watch?v=dQw4w9WgXcQ', 2, 2300)" class="w-full bg-green-500 text-white py-2 rounded-lg font-medium hover:bg-green-600 transition-colors">
                             Վաստակել ֏2,300
                         </button>
                     </div>
@@ -1441,151 +1338,18 @@ copyBtn.addEventListener('click', async () => {
                     <div class="bg-white border border-gray-200 rounded-lg p-4 video-card-item" data-video-id="3">
                         <div class="flex items-center space-x-3 mb-3">
                             <div class="w-16 h-12 bg-purple-100 rounded-lg flex items-center justify-center">
-                                <span class="text-lg">🧠</span>
+                                <span class="text-lg">💰</span>
                             </div>
                             <div class="flex-1">
-                                <h5 class="font-semibold">Brain Training</h5>
-                                <p class="text-sm text-gray-600">Ուղեղի մարզման վարժություններ</p>
+                                <h5 class="font-semibold">Ֆինանսական խորհուրդներ</h5>
+                                <p class="text-sm text-gray-600">Գումար խնայելու եղանակներ</p>
                                 <div class="flex items-center space-x-2 mt-1">
                                     <span class="text-green-600 font-bold text-sm">+֏2,300</span>
-                                    <span class="text-xs text-gray-500">• 5:30 րոպե</span>
+                                    <span class="text-xs text-gray-500">• 6 րոպե</span>
                                 </div>
                             </div>
                         </div>
-                        <button onclick="watchVideoEarn('https://vimeo.com/90312869', 3, 2300)" class="w-full bg-purple-500 text-white py-2 rounded-lg font-medium hover:bg-purple-600 transition-colors">
-                            Վաստակել ֏2,300
-                        </button>
-                    </div>
-
-                    <div class="bg-white border border-gray-200 rounded-lg p-4 video-card-item" data-video-id="4">
-                        <div class="flex items-center space-x-3 mb-3">
-                            <div class="w-16 h-12 bg-blue-100 rounded-lg flex items-center justify-center">
-                                <span class="text-lg">🎵</span>
-                            </div>
-                            <div class="flex-1">
-                                <h5 class="font-semibold">Relaxing Music</h5>
-                                <p class="text-sm text-gray-600">Հանգստացնող երաժշտություն</p>
-                                <div class="flex items-center space-x-2 mt-1">
-                                    <span class="text-green-600 font-bold text-sm">+֏2,300</span>
-                                    <span class="text-xs text-gray-500">• 5:00 րոպե</span>
-                                </div>
-                            </div>
-                        </div>
-                        <button onclick="watchVideoEarn('https://vimeo.com/125095515', 4, 2300)" class="w-full bg-blue-500 text-white py-2 rounded-lg font-medium hover:bg-blue-600 transition-colors">
-                            Վաստակել ֏2,300
-                        </button>
-                    </div>
-
-                    <div class="bg-white border border-gray-200 rounded-lg p-4 video-card-item" data-video-id="5">
-                        <div class="flex items-center space-x-3 mb-3">
-                            <div class="w-16 h-12 bg-orange-100 rounded-lg flex items-center justify-center">
-                                <span class="text-lg">🏃‍♂️</span>
-                            </div>
-                            <div class="flex-1">
-                                <h5 class="font-semibold">Quick Workout</h5>
-                                <p class="text-sm text-gray-600">5 րոպեանոց մարզում</p>
-                                <div class="flex items-center space-x-2 mt-1">
-                                    <span class="text-green-600 font-bold text-sm">+֏2,300</span>
-                                    <span class="text-xs text-gray-500">• 5:15 րոպե</span>
-                                </div>
-                            </div>
-                        </div>
-                        <button onclick="watchVideoEarn('https://vimeo.com/108018156', 5, 2300)" class="w-full bg-orange-500 text-white py-2 rounded-lg font-medium hover:bg-orange-600 transition-colors">
-                            Վաստակել ֏2,300
-                        </button>
-                    </div>
-
-                    <div class="bg-white border border-gray-200 rounded-lg p-4 video-card-item" data-video-id="6">
-                        <div class="flex items-center space-x-3 mb-3">
-                            <div class="w-16 h-12 bg-teal-100 rounded-lg flex items-center justify-center">
-                                <span class="text-lg">🌱</span>
-                            </div>
-                            <div class="flex-1">
-                                <h5 class="font-semibold">Plant Care Tips</h5>
-                                <p class="text-sm text-gray-600">Բույսերի խնամքի գաղտնիքներ</p>
-                                <div class="flex items-center space-x-2 mt-1">
-                                    <span class="text-green-600 font-bold text-sm">+֏2,300</span>
-                                    <span class="text-xs text-gray-500">• 4:50 րոպե</span>
-                                </div>
-                            </div>
-                        </div>
-                        <button onclick="watchVideoEarn('https://vimeo.com/169599296', 6, 2300)" class="w-full bg-teal-500 text-white py-2 rounded-lg font-medium hover:bg-teal-600 transition-colors">
-                            Վաստակել ֏2,300
-                        </button>
-                    </div>
-
-                    <div class="bg-white border border-gray-200 rounded-lg p-4 video-card-item" data-video-id="7">
-                        <div class="flex items-center space-x-3 mb-3">
-                            <div class="w-16 h-12 bg-pink-100 rounded-lg flex items-center justify-center">
-                                <span class="text-lg">🎨</span>
-                            </div>
-                            <div class="flex-1">
-                                <h5 class="font-semibold">Art Tutorial</h5>
-                                <p class="text-sm text-gray-600">Արագ նկարչական դաս</p>
-                                <div class="flex items-center space-x-2 mt-1">
-                                    <span class="text-green-600 font-bold text-sm">+֏2,300</span>
-                                    <span class="text-xs text-gray-500">• 5:25 րոպե</span>
-                                </div>
-                            </div>
-                        </div>
-                        <button onclick="watchVideoEarn('https://vimeo.com/143418951', 7, 2300)" class="w-full bg-pink-500 text-white py-2 rounded-lg font-medium hover:bg-pink-600 transition-colors">
-                            Վաստակել ֏2,300
-                        </button>
-                    </div>
-
-                    <div class="bg-white border border-gray-200 rounded-lg p-4 video-card-item" data-video-id="8">
-                        <div class="flex items-center space-x-3 mb-3">
-                            <div class="w-16 h-12 bg-indigo-100 rounded-lg flex items-center justify-center">
-                                <span class="text-lg">📚</span>
-                            </div>
-                            <div class="flex-1">
-                                <h5 class="font-semibold">Study Tips</h5>
-                                <p class="text-sm text-gray-600">Արդյունավետ ուսուցման մեթոդներ</p>
-                                <div class="flex items-center space-x-2 mt-1">
-                                    <span class="text-green-600 font-bold text-sm">+֏2,300</span>
-                                    <span class="text-xs text-gray-500">• 4:35 րոպե</span>
-                                </div>
-                            </div>
-                        </div>
-                        <button onclick="watchVideoEarn('https://vimeo.com/116582567', 8, 2300)" class="w-full bg-indigo-500 text-white py-2 rounded-lg font-medium hover:bg-indigo-600 transition-colors">
-                            Վաստակել ֏2,300
-                        </button>
-                    </div>
-
-                    <div class="bg-white border border-gray-200 rounded-lg p-4 video-card-item" data-video-id="9">
-                        <div class="flex items-center space-x-3 mb-3">
-                            <div class="w-16 h-12 bg-yellow-100 rounded-lg flex items-center justify-center">
-                                <span class="text-lg">🐱</span>
-                            </div>
-                            <div class="flex-1">
-                                <h5 class="font-semibold">Funny Animals</h5>
-                                <p class="text-sm text-gray-600">Զվարճալի կենդանիներ</p>
-                                <div class="flex items-center space-x-2 mt-1">
-                                    <span class="text-green-600 font-bold text-sm">+֏2,300</span>
-                                    <span class="text-xs text-gray-500">• 5:08 րոպե</span>
-                                </div>
-                            </div>
-                        </div>
-                        <button onclick="watchVideoEarn('https://vimeo.com/112681885', 9, 2300)" class="w-full bg-yellow-500 text-white py-2 rounded-lg font-medium hover:bg-yellow-600 transition-colors">
-                            Վաստակել ֏2,300
-                        </button>
-                    </div>
-
-                    <div class="bg-white border border-gray-200 rounded-lg p-4 video-card-item" data-video-id="10">
-                        <div class="flex items-center space-x-3 mb-3">
-                            <div class="w-16 h-12 bg-cyan-100 rounded-lg flex items-center justify-center">
-                                <span class="text-lg">🌊</span>
-                            </div>
-                            <div class="flex-1">
-                                <h5 class="font-semibold">Ocean Sounds</h5>
-                                <p class="text-sm text-gray-600">Ծովի հանգստացնող ձայներ</p>
-                                <div class="flex items-center space-x-2 mt-1">
-                                    <span class="text-green-600 font-bold text-sm">+֏2,300</span>
-                                    <span class="text-xs text-gray-500">• 5:00 րոպե</span>
-                                </div>
-                            </div>
-                        </div>
-                        <button onclick="watchVideoEarn('https://vimeo.com/158148793', 10, 2300)" class="w-full bg-cyan-500 text-white py-2 rounded-lg font-medium hover:bg-cyan-600 transition-colors">
+                        <button onclick="watchVideoEarn('https://www.youtube.com/watch?v=oHg5SJYRHA0', 3, 2300)" class="w-full bg-purple-500 text-white py-2 rounded-lg font-medium hover:bg-purple-600 transition-colors">
                             Վաստակել ֏2,300
                         </button>
                     </div>
@@ -1703,132 +1467,134 @@ copyBtn.addEventListener('click', async () => {
         </div>
     </main>
 
-   <!-- Deposit Modal -->
-<div id="deposit-modal" class="fixed inset-0 bg-black/50 flex items-center justify-center z-50 p-4" style="display: none;">
-    <div class="bg-white rounded-2xl max-w-md w-full max-h-[90%] overflow-y-auto">
-        <!-- Header -->
-        <div class="flex items-center justify-between p-4 border-b border-gray-200">
-            <h3 class="text-lg font-bold text-gray-800">Ավելացնել գումար</h3>
-            <button onclick="closeDepositModal()" class="text-gray-500 hover:text-gray-700">
-                <span class="text-xl">✕</span>
-            </button>
-        </div>
+    <!-- Deposit Modal -->
+    <div id="deposit-modal" class="fixed inset-0 bg-black/50 popup-overlay flex items-center justify-center z-50 p-4" style="display: none;">
+        <div class="bg-white rounded-2xl max-w-md w-full max-h-[90%] overflow-y-auto popup-content">
+            <!-- Header -->
+            <div class="flex items-center justify-between p-4 border-b border-gray-200">
+                <h3 class="text-lg font-bold text-gray-800">Ավելացնել գումար</h3>
+                <button onclick="closeDepositModal()" class="text-gray-500 hover:text-gray-700">
+                    <span class="text-xl">✕</span>
+                </button>
+            </div>
+            
+            <!-- Content -->
+            <div class="p-4">
+                <!-- Payment Methods -->
+                <div class="mb-6">
+                    <h4 class="font-semibold text-gray-800 mb-3">Ընտրեք վճարման եղանակը</h4>
+                    
+                    <div class="space-y-3">
+                        <!-- Linen -->
+                        <div class="deposit-method linen-card linen-ripple bg-gradient-to-br from-slate-50 via-blue-50 to-indigo-50 border-2 border-slate-200 rounded-2xl p-5 cursor-pointer linen-border-dance shadow-lg hover:shadow-2xl transition-all duration-500" onclick="selectDepositMethod('linen')">
+                            <div class="linen-particles"></div>
+                            <div class="absolute inset-0 bg-gradient-to-br from-blue-600/5 via-indigo-600/5 to-purple-600/5 rounded-2xl"></div>
+                            <div class="flex items-center space-x-4 relative z-10">
+                                <div class="w-16 h-16 bg-gradient-to-br from-blue-600 via-indigo-600 to-purple-700 rounded-2xl flex items-center justify-center shadow-2xl linen-icon-bounce relative overflow-hidden">
+                                    <div class="absolute inset-0 bg-gradient-to-br from-white/20 to-transparent"></div>
+                                    <div class="text-2xl font-bold text-white relative z-10">L</div>
+                                    <div class="absolute -top-1 -right-1 w-6 h-6 bg-gradient-to-br from-yellow-400 to-orange-500 rounded-full flex items-center justify-center">
+                                        <span class="text-xs text-white font-bold">✓</span>
+                                    </div>
+                                </div>
+                                <div class="flex-1">
+                                    <div class="flex items-center space-x-2 mb-1">
+                                        <h5 class="font-black text-xl text-slate-800 linen-text-wave">Linen</h5>
+                                        <div class="bg-gradient-to-r from-blue-600 to-purple-600 text-white text-xs font-bold px-2 py-1 rounded-full">PRO</div>
+                                    </div>
+                                    <p class="text-sm text-slate-600 font-semibold mb-2">Պրոֆեսիոնալ վճարային համակարգ</p>
+                                    <div class="flex items-center space-x-3">
+                                        <div class="flex items-center space-x-1">
+                                            <div class="w-2 h-2 bg-green-500 rounded-full animate-pulse"></div>
+                                            <span class="text-xs text-green-700 font-bold">Ակնթարթային</span>
+                                        </div>
+                                        <div class="flex items-center space-x-1">
+                                            <div class="w-2 h-2 bg-blue-500 rounded-full animate-pulse"></div>
+                                            <span class="text-xs text-blue-700 font-bold">Անվտանգ</span>
+                                        </div>
+                                        <div class="flex items-center space-x-1">
+                                            <div class="w-2 h-2 bg-purple-500 rounded-full animate-pulse"></div>
+                                            <span class="text-xs text-purple-700 font-bold">Պրեմիում</span>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="text-center">
+                                    <div class="bg-gradient-to-r from-emerald-500 to-green-600 text-white text-sm font-bold px-3 py-2 rounded-xl shadow-lg mb-2">
+                                        <div class="flex items-center space-x-1">
+                                            <span>🚀</span>
+                                            <span>Ակտիվ</span>
+                                        </div>
+                                    </div>
+                                    <div class="bg-gradient-to-r from-yellow-400 to-orange-500 text-white text-xs font-bold px-2 py-1 rounded-lg">
+                                        0% Հարկ
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
 
-        <!-- Content -->
-        <div class="p-4">
-            <!-- Payment Methods -->
-            <div class="mb-6">
-                <h4 class="font-semibold text-gray-800 mb-3">Ընտրեք վճարման եղանակը</h4>
-                <div class="space-y-3">
-                    <div class="deposit-method bg-gray-50 border rounded-lg p-4 cursor-pointer" onclick="selectDepositMethod('dash')">
-                        <div class="flex items-center justify-between">
-                            <span>DASH</span>
-                            <span class="text-green-600 font-bold">Ակտիվ</span>
+                        <!-- USDT TRC20 -->
+                        <div class="deposit-method bg-gray-50 border rounded-lg p-4 cursor-pointer" onclick="selectDepositMethod('usdt')">
+                            <div class="flex items-center space-x-3">
+                                <div class="w-10 h-10 bg-green-100 rounded-lg flex items-center justify-center">
+                                    <span class="text-lg">₿</span>
+                                </div>
+                                <div class="flex-1">
+                                    <h5 class="font-semibold">USDT TRC20</h5>
+                                    <p class="text-sm text-gray-600">Կրիպտո վճարում</p>
+                                </div>
+                                <div class="text-sm text-green-600 font-medium">Ակտիվ</div>
+                            </div>
                         </div>
-                    </div>
-                    <div class="deposit-method bg-gray-50 border rounded-lg p-4 cursor-pointer" onclick="selectDepositMethod('usdt')">
-                        <div class="flex items-center justify-between">
-                            <span>USDT TRC20</span>
-                            <span class="text-green-600 font-bold">Ակտիվ</span>
-                        </div>
-                    </div>
-                    <div class="deposit-method bg-gray-50 border rounded-lg p-4 cursor-pointer" onclick="selectDepositMethod('usdc')">
-                        <div class="flex items-center justify-between">
-                            <span>USDC BEP20</span>
-                            <span class="text-green-600 font-bold">Ակտիվ</span>
+
+                        <!-- Bank Demo -->
+                        <div class="deposit-method bg-gray-50 border rounded-lg p-4 cursor-pointer" onclick="selectDepositMethod('bank')">
+                            <div class="flex items-center space-x-3">
+                                <div class="w-10 h-10 bg-blue-100 rounded-lg flex items-center justify-center">
+                                    <span class="text-lg">🏦</span>
+                                </div>
+                                <div class="flex-1">
+                                    <h5 class="font-semibold">Դեմո Բանկ</h5>
+                                    <p class="text-sm text-gray-600">Փորձարկման համար</p>
+                                </div>
+                                <div class="text-sm text-blue-600 font-medium">Դեմո</div>
+                            </div>
                         </div>
                     </div>
                 </div>
-            </div>
 
-            <!-- Amount Input -->
-            <div class="mb-6">
-                <label for="deposit-amount" class="block text-sm font-medium text-gray-700 mb-2">
-                    Գումարը (֏)
-                </label>
-                <input 
-                    type="number" 
-                    id="deposit-amount"
-                    placeholder="Մուտքագրեք գումարը"
-                    min="1000"
-                    step="100"
-                    class="w-full px-3 py-3 border border-gray-300 rounded-lg text-lg font-medium"
-                    oninput="validateDeposit()"
+                <!-- Amount Input -->
+                <div class="mb-6">
+                    <label for="deposit-amount" class="block text-sm font-medium text-gray-700 mb-2">
+                        Գումարը (֏)
+                    </label>
+                    <input 
+                        type="number" 
+                        id="deposit-amount"
+                        placeholder="Մուտքագրեք գումարը"
+                        min="1000"
+                        step="100"
+                        class="w-full px-3 py-3 border border-gray-300 rounded-lg text-lg font-medium"
+                    >
+                    <p class="text-xs text-gray-500 mt-1">Նվազագույնը ֏1,000</p>
+                </div>
+
+                <!-- Payment Details -->
+                <div id="payment-details" class="mb-6" style="display: none;">
+                    <!-- Will be populated based on selected method -->
+                </div>
+
+                <!-- Submit Button -->
+                <button 
+                    id="deposit-submit"
+                    onclick="processDeposit()" 
+                    class="w-full bg-blue-500 text-white py-3 px-6 rounded-xl font-bold text-lg disabled:opacity-50 disabled:cursor-not-allowed"
+                    disabled
                 >
-                <p class="text-xs text-gray-500 mt-1">Նվազագույնը ֏1,000</p>
+                    Ավելացնել գումար
+                </button>
             </div>
-
-            <!-- Payment Details -->
-            <div id="payment-details" class="mb-6" style="display: none;"></div>
-
-            <!-- Submit Button -->
-            <button 
-                id="deposit-submit"
-                onclick="processDeposit()" 
-                class="w-full bg-blue-500 text-white py-3 px-6 rounded-xl font-bold text-lg disabled:opacity-50 disabled:cursor-not-allowed"
-                disabled
-            >
-                Ավելացնել գումար
-            </button>
         </div>
     </div>
-</div>
-
-<script>
-let selectedMethod = null;
-
-// Բացել մոդալը
-function openDepositModal() {
-    document.getElementById('deposit-modal').style.display = 'flex';
-}
-
-// Փակել մոդալը
-function closeDepositModal() {
-    document.getElementById('deposit-modal').style.display = 'none';
-}
-
-// Ընտրել վճարման մեթոդ
-function selectDepositMethod(method) {
-    selectedMethod = method;
-
-    // Հրաժարվել նախորդ ընտրությունից
-    document.querySelectorAll('.deposit-method').forEach(el => el.classList.remove('border-blue-500'));
-    
-    // Հատուկ սինթեքս
-    const selectedEl = event.currentTarget;
-    selectedEl.classList.add('border-blue-500');
-
-    // Ցուցադրել վճարման մանրամասները
-    const details = document.getElementById('payment-details');
-    let html = '';
-    if (method === 'dash') html = '<p>DASH - պրեմիում վճարային համակարգ</p>';
-    if (method === 'usdt') html = '<p>USDT TRC20 - կրիպտո վճարում</p>';
-    if (method === 'usdc') html = '<p>USDC BEP20 - կրիպտո վճարում</p>';
-    details.innerHTML = html;
-    details.style.display = 'block';
-
-    validateDeposit();
-}
-
-// Վավերացնել գումարը և ակտիվացնել կոճակը
-function validateDeposit() {
-    const amount = parseInt(document.getElementById('deposit-amount').value);
-    const btn = document.getElementById('deposit-submit');
-    if (selectedMethod && amount >= 1000) {
-        btn.disabled = false;
-    } else {
-        btn.disabled = true;
-    }
-}
-
-// Գումարի ավելացման պրոցես (պրակտիկա)
-function processDeposit() {
-    const amount = document.getElementById('deposit-amount').value;
-    alert(`Ընտրված մեթոդ: ${selectedMethod}\nԳումար: ${amount}֏`);
-    closeDepositModal();
-}
-</script>
-
 
     <!-- Withdraw Modal -->
     <div id="withdraw-modal" class="fixed inset-0 bg-black/50 popup-overlay flex items-center justify-center z-50 p-4" style="display: none;">
@@ -1851,208 +1617,185 @@ function processDeposit() {
                     </div>
                 </div>
 
-           <!DOCTYPE html>
-<html lang="hy">
-<head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Ելքագրել գումար</title>
-<style>
-  body {
-    background-color: #0a0a0a;
-    color: #FFD700;
-    font-family: "Segoe UI", sans-serif;
-    margin: 0;
-    padding: 0;
-  }
+                <!-- Withdrawal Methods -->
+                <div class="mb-6">
+                    <h4 class="font-semibold text-gray-800 mb-3">Ընտրեք ելքագրման եղանակը</h4>
+                    
+                    <div class="space-y-3">
+                        <!-- Linen -->
+                        <div class="withdraw-method linen-card linen-ripple bg-gradient-to-br from-slate-50 via-blue-50 to-indigo-50 border-2 border-slate-200 rounded-2xl p-5 cursor-pointer linen-border-dance shadow-lg hover:shadow-2xl transition-all duration-500" onclick="selectWithdrawMethod('linen')">
+                            <div class="linen-particles"></div>
+                            <div class="absolute inset-0 bg-gradient-to-br from-blue-600/5 via-indigo-600/5 to-purple-600/5 rounded-2xl"></div>
+                            <div class="flex items-center space-x-4 relative z-10">
+                                <div class="w-16 h-16 bg-gradient-to-br from-blue-600 via-indigo-600 to-purple-700 rounded-2xl flex items-center justify-center shadow-2xl linen-icon-bounce relative overflow-hidden">
+                                    <div class="absolute inset-0 bg-gradient-to-br from-white/20 to-transparent"></div>
+                                    <div class="text-2xl font-bold text-white relative z-10">L</div>
+                                    <div class="absolute -top-1 -right-1 w-6 h-6 bg-gradient-to-br from-yellow-400 to-orange-500 rounded-full flex items-center justify-center">
+                                        <span class="text-xs text-white font-bold">✓</span>
+                                    </div>
+                                </div>
+                                <div class="flex-1">
+                                    <div class="flex items-center space-x-2 mb-1">
+                                        <h5 class="font-black text-xl text-slate-800 linen-text-wave">Linen</h5>
+                                        <div class="bg-gradient-to-r from-blue-600 to-purple-600 text-white text-xs font-bold px-2 py-1 rounded-full">PRO</div>
+                                    </div>
+                                    <p class="text-sm text-slate-600 font-semibold mb-2">Պրոֆեսիոնալ ելքագրման համակարգ</p>
+                                    <div class="flex items-center space-x-3">
+                                        <div class="flex items-center space-x-1">
+                                            <div class="w-2 h-2 bg-green-500 rounded-full animate-pulse"></div>
+                                            <span class="text-xs text-green-700 font-bold">Ակնթարթային</span>
+                                        </div>
+                                        <div class="flex items-center space-x-1">
+                                            <div class="w-2 h-2 bg-blue-500 rounded-full animate-pulse"></div>
+                                            <span class="text-xs text-blue-700 font-bold">Անվտանգ</span>
+                                        </div>
+                                        <div class="flex items-center space-x-1">
+                                            <div class="w-2 h-2 bg-purple-500 rounded-full animate-pulse"></div>
+                                            <span class="text-xs text-purple-700 font-bold">Պրեմիում</span>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="text-center">
+                                    <div class="bg-gradient-to-r from-emerald-500 to-green-600 text-white text-sm font-bold px-3 py-2 rounded-xl shadow-lg mb-2">
+                                        <div class="flex items-center space-x-1">
+                                            <span>🚀</span>
+                                            <span>Ակտիվ</span>
+                                        </div>
+                                    </div>
+                                    <div class="bg-gradient-to-r from-yellow-400 to-orange-500 text-white text-xs font-bold px-2 py-1 rounded-lg">
+                                        0% Հարկ
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
 
-  .container {
-    max-width: 400px;
-    margin: 30px auto;
-    background: #111;
-    border: 1px solid #FFD700;
-    border-radius: 20px;
-    box-shadow: 0 0 20px rgba(255, 215, 0, 0.3);
-    padding: 20px;
-    animation: fadeIn 0.8s ease;
-  }
+                        <!-- EasyPay -->
+                        <div class="withdraw-method bg-gradient-to-r from-orange-50 to-red-50 border rounded-lg p-4 cursor-pointer" onclick="selectWithdrawMethod('easypay')">
+                            <div class="flex items-center space-x-3">
+                                <div class="w-10 h-10 bg-orange-100 rounded-lg flex items-center justify-center">
+                                    <span class="text-lg">📱</span>
+                                </div>
+                                <div class="flex-1">
+                                    <h5 class="font-semibold text-orange-800">EasyPay</h5>
+                                    <p class="text-sm text-orange-600">Մոբայլ վճարում</p>
+                                </div>
+                                <div class="text-sm text-green-600 font-medium">Ակտիվ</div>
+                            </div>
+                        </div>
 
-  @keyframes fadeIn {
-    from { opacity: 0; transform: scale(0.9); }
-    to { opacity: 1; transform: scale(1); }
-  }
+                        <!-- Idram -->
+                        <div class="withdraw-method bg-gradient-to-r from-purple-50 to-pink-50 border rounded-lg p-4 cursor-pointer" onclick="selectWithdrawMethod('idram')">
+                            <div class="flex items-center space-x-3">
+                                <div class="w-10 h-10 bg-purple-100 rounded-lg flex items-center justify-center">
+                                    <span class="text-lg">💜</span>
+                                </div>
+                                <div class="flex-1">
+                                    <h5 class="font-semibold text-purple-800">Idram</h5>
+                                    <p class="text-sm text-purple-600">Էլեկտրոնային դրամապանակ</p>
+                                </div>
+                                <div class="text-sm text-green-600 font-medium">Ակտիվ</div>
+                            </div>
+                        </div>
 
-  h2 {
-    text-align: center;
-    color: #FFD700;
-  }
+                        <!-- ArCa -->
+                        <div class="withdraw-method bg-gradient-to-r from-blue-50 to-indigo-50 border rounded-lg p-4 cursor-pointer" onclick="selectWithdrawMethod('arca')">
+                            <div class="flex items-center space-x-3">
+                                <div class="w-10 h-10 bg-blue-100 rounded-lg flex items-center justify-center">
+                                    <span class="text-lg">💳</span>
+                                </div>
+                                <div class="flex-1">
+                                    <h5 class="font-semibold text-blue-800">ArCa</h5>
+                                    <p class="text-sm text-blue-600">Հայկական քարտային համակարգ</p>
+                                </div>
+                                <div class="text-sm text-green-600 font-medium">Ակտիվ</div>
+                            </div>
+                        </div>
 
-  label {
-    display: block;
-    margin-top: 15px;
-    font-weight: bold;
-  }
+                        <!-- ԱմերիաԲանկ -->
+                        <div class="withdraw-method bg-gradient-to-r from-red-50 to-pink-50 border rounded-lg p-4 cursor-pointer" onclick="selectWithdrawMethod('ameriabank')">
+                            <div class="flex items-center space-x-3">
+                                <div class="w-10 h-10 bg-red-100 rounded-lg flex items-center justify-center">
+                                    <span class="text-lg">🏦</span>
+                                </div>
+                                <div class="flex-1">
+                                    <h5 class="font-semibold text-red-800">ԱմերիաԲանկ</h5>
+                                    <p class="text-sm text-red-600">Բանկային փոխանցում</p>
+                                </div>
+                                <div class="text-sm text-green-600 font-medium">Ակտիվ</div>
+                            </div>
+                        </div>
 
-  input, select {
-    width: 100%;
-    padding: 10px;
-    margin-top: 8px;
-    border-radius: 8px;
-    border: 1px solid #FFD700;
-    background: #000;
-    color: #FFD700;
-  }
+                        <!-- ԱրդշինԲանկ -->
+                        <div class="withdraw-method bg-gradient-to-r from-green-50 to-emerald-50 border rounded-lg p-4 cursor-pointer" onclick="selectWithdrawMethod('ardshinbank')">
+                            <div class="flex items-center space-x-3">
+                                <div class="w-10 h-10 bg-green-100 rounded-lg flex items-center justify-center">
+                                    <span class="text-lg">🏛️</span>
+                                </div>
+                                <div class="flex-1">
+                                    <h5 class="font-semibold text-green-800">ԱրդշինԲանկ</h5>
+                                    <p class="text-sm text-green-600">Բանկային փոխանցում</p>
+                                </div>
+                                <div class="text-sm text-green-600 font-medium">Ակտիվ</div>
+                            </div>
+                        </div>
 
-  button {
-    width: 100%;
-    padding: 12px;
-    background: linear-gradient(90deg, #FFD700, #b8860b);
-    color: #000;
-    font-weight: bold;
-    border: none;
-    border-radius: 10px;
-    margin-top: 20px;
-    cursor: pointer;
-    transition: 0.3s;
-  }
+                        <!-- ԱԿԲԱ Բանկ -->
+                        <div class="withdraw-method bg-gradient-to-r from-yellow-50 to-orange-50 border rounded-lg p-4 cursor-pointer" onclick="selectWithdrawMethod('acba')">
+                            <div class="flex items-center space-x-3">
+                                <div class="w-10 h-10 bg-yellow-100 rounded-lg flex items-center justify-center">
+                                    <span class="text-lg">🏪</span>
+                                </div>
+                                <div class="flex-1">
+                                    <h5 class="font-semibold text-yellow-800">ԱԿԲԱ Բանկ</h5>
+                                    <p class="text-sm text-yellow-600">Բանկային փոխանցում</p>
+                                </div>
+                                <div class="text-sm text-green-600 font-medium">Ակտիվ</div>
+                            </div>
+                        </div>
 
-  button:hover {
-    background: linear-gradient(90deg, #ffea00, #FFD700);
-    transform: scale(1.05);
-  }
+                        <!-- Կոնվերս Բանկ -->
+                        <div class="withdraw-method bg-gradient-to-r from-indigo-50 to-purple-50 border rounded-lg p-4 cursor-pointer" onclick="selectWithdrawMethod('converse')">
+                            <div class="flex items-center space-x-3">
+                                <div class="w-10 h-10 bg-indigo-100 rounded-lg flex items-center justify-center">
+                                    <span class="text-lg">🏢</span>
+                                </div>
+                                <div class="flex-1">
+                                    <h5 class="font-semibold text-indigo-800">Կոնվերս Բանկ</h5>
+                                    <p class="text-sm text-indigo-600">Բանկային փոխանցում</p>
+                                </div>
+                                <div class="text-sm text-green-600 font-medium">Ակտիվ</div>
+                            </div>
+                        </div>
 
-  .error {
-    background: rgba(255, 0, 0, 0.15);
-    border: 1px solid #ff4d4d;
-    padding: 10px;
-    border-radius: 10px;
-    margin-top: 15px;
-    text-align: center;
-    display: none;
-  }
+                        <!-- Crypto BTC -->
+                        <div class="withdraw-method bg-gradient-to-r from-yellow-50 to-amber-50 border rounded-lg p-4 cursor-pointer" onclick="selectWithdrawMethod('btc')">
+                            <div class="flex items-center space-x-3">
+                                <div class="w-10 h-10 bg-yellow-100 rounded-lg flex items-center justify-center">
+                                    <span class="text-lg">₿</span>
+                                </div>
+                                <div class="flex-1">
+                                    <h5 class="font-semibold text-yellow-800">Bitcoin (BTC)</h5>
+                                    <p class="text-sm text-yellow-600">Կրիպտո ելքագրում</p>
+                                </div>
+                                <div class="text-sm text-green-600 font-medium">Ակտիվ</div>
+                            </div>
+                        </div>
 
-  .success {
-    background: rgba(0, 255, 0, 0.15);
-    border: 1px solid #00ff88;
-    padding: 10px;
-    border-radius: 10px;
-    margin-top: 15px;
-    text-align: center;
-    display: none;
-  }
-
-  .fade {
-    animation: fade 0.5s ease-in-out;
-  }
-
-  @keyframes fade {
-    from { opacity: 0; transform: translateY(10px); }
-    to { opacity: 1; transform: translateY(0); }
-  }
-</style>
-</head>
-<body>
-
-<div class="container">
-  <h2>💰 Ելքագրել գումար</h2>
-  <p>Հասանելի մնացորդ՝ <strong>֏8,000</strong></p>
-
-  <label>Ընտրեք ելքագրման եղանակը</label>
-  <select id="method">
-    <option value="idram">💜 Idram</option>
-    <option value="arca">💳 ArCa</option>
-    <option value="usdt">💚 USDT (TRC20)</option>
-    <option value="dash">🚀 DASH</option>
-  </select>
-
-  <label>Գումարը (֏)</label>
-  <input type="number" id="amount" placeholder="Մուտքագրեք գումարը (Նվազագույնը ֏125,000)">
-
-  <div id="details" class="fade"></div>
-
-  <button id="withdrawBtn">Ելքագրել գումար</button>
-
-  <div class="error" id="errorBox">⚠️ Կներեք, բայց դուք չեք կարող գումար ելքագրել, քանի որ դեռևս դիպոզիտ չեք կատարել մին 1000ՀՀ Դռամ։</div>
-  <div class="success" id="successBox">✅ Ձեր ելքագրման հարցումը հաջողությամբ ուղարկվել է։</div>
-
-</div>
-
-<script>
-let hasDeposit = false;
-
-document.getElementById("simulateBtn").addEventListener("click", () => {
-  hasDeposit = true;
-  const box = document.getElementById("successBox");
-  box.style.display = "block";
-  box.innerText = "✅ Դեպոզիտը ակտիվացվել է։ Այժմ կարող եք գումար ելքագրել։";
-  setTimeout(() => box.style.display = "none", 2500);
-});
-
-document.getElementById("withdrawBtn").addEventListener("click", () => {
-  const method = document.getElementById("method").value;
-  const amount = parseInt(document.getElementById("amount").value);
-  const details = document.getElementById("details");
-  const errorBox = document.getElementById("errorBox");
-  const successBox = document.getElementById("successBox");
-
-  details.innerHTML = "";
-  errorBox.style.display = "none";
-  successBox.style.display = "none";
-
-  if (!hasDeposit) {
-    errorBox.style.display = "block";
-    return;
-  }
-
-  if (isNaN(amount) || amount < 125000) {
-    alert("Նվազագույն գումարը ֏125,000 է։");
-    return;
-  }
-
-  let info = "";
-
-  if (method === "idram") {
-    info = `
-      <label>📱 Idram մանրամասներ</label>
-      <input placeholder="+374-XX-XXX-XXX (Հեռախոսահամար)">
-      <input placeholder="Անուն Ազգանուն">
-    `;
-  } else if (method === "arca") {
-    info = `
-      <label>💳 ArCa քարտի մանրամասներ</label>
-      <input placeholder="9051-XXXX-XXXX-XXXX">
-      <input placeholder="Քարտակիրի անուն">
-    `;
-  } else if (method === "usdt") {
-    info = `
-      <label>💚 USDT TRC20 հասցե</label>
-      <input placeholder="Մուտքագրեք Ձեր USDT TRC20 wallet հասցեն">
-    `;
-  } else if (method === "dash") {
-    info = `
-      <label>🚀 DASH Wallet հասցե</label>
-      <input placeholder="Մուտքագրեք Ձեր DASH wallet հասցեն">
-    `;
-  }
-
-  info += '<button id="confirmBtn">✅ Հաստատել ելքագրումը</button>';
-  details.innerHTML = info;
-  details.classList.add("fade");
-
-  // նոր կոճակի listener
-  setTimeout(() => {
-    document.getElementById("confirmBtn").addEventListener("click", () => {
-      successBox.style.display = "block";
-      successBox.innerText = "✅ Ձեր ելքագրման հարցումը հաջողությամբ ուղարկվել է։";
-      setTimeout(() => successBox.style.display = "none", 2500);
-    });
-  }, 100);
-});
-</script>
-
-</body>
-</html>
-
+                        <!-- Crypto USDT -->
+                        <div class="withdraw-method bg-gradient-to-r from-green-50 to-teal-50 border rounded-lg p-4 cursor-pointer" onclick="selectWithdrawMethod('usdt')">
+                            <div class="flex items-center space-x-3">
+                                <div class="w-10 h-10 bg-green-100 rounded-lg flex items-center justify-center">
+                                    <span class="text-lg">💚</span>
+                                </div>
+                                <div class="flex-1">
+                                    <h5 class="font-semibold text-green-800">USDT (TRC20)</h5>
+                                    <p class="text-sm text-green-600">Կրիպտո ելքագրում</p>
+                                </div>
+                                <div class="text-sm text-green-600 font-medium">Ակտիվ</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
 
                 <!-- Amount Input -->
                 <div class="mb-6">
@@ -2105,32 +1848,32 @@ document.getElementById("withdrawBtn").addEventListener("click", () => {
     </div>
 
     <!-- Bottom Navigation -->
-    <nav class="fixed bottom-0 left-0 right-0 bg-white border-t border-gray-200 z-40 backdrop-blur-lg bg-white/95">
+    <nav class="fixed bottom-0 left-0 right-0 bg-white border-t border-gray-200 z-40 backdrop-blur-lg bg-white/90">
         <div class="flex justify-around items-center py-2 relative">
-            <div class="nav-indicator absolute top-0 left-0 h-1 bg-gray-800 rounded-full transition-all duration-300 ease-out" style="width: 20%; transform: translateX(0%);"></div>
+            <div class="nav-indicator absolute top-0 left-0 h-1 bg-gradient-to-r from-blue-500 to-purple-500 rounded-full transition-all duration-500 ease-out" style="width: 20%; transform: translateX(0%);"></div>
             
-            <button onclick="showHome()" class="nav-btn flex flex-col items-center p-2 text-gray-800 relative transition-all duration-200 ease-out">
-                <span class="text-lg mb-1 transition-transform duration-200 ease-out">🏠</span>
+            <button onclick="showHome()" class="nav-btn flex flex-col items-center p-2 text-blue-600 relative transition-all duration-300 ease-out">
+                <span class="text-xl mb-1 transition-transform duration-300 ease-out">🏠</span>
                 <span class="text-xs font-medium">Գլխավոր</span>
                 <div class="nav-ripple absolute inset-0 rounded-lg"></div>
             </button>
-            <button onclick="showInvite()" class="nav-btn flex flex-col items-center p-2 text-gray-500 relative transition-all duration-200 ease-out">
-                <span class="text-lg mb-1 transition-transform duration-200 ease-out">👥</span>
+            <button onclick="showInvite()" class="nav-btn flex flex-col items-center p-2 text-gray-500 relative transition-all duration-300 ease-out">
+                <span class="text-xl mb-1 transition-transform duration-300 ease-out">👥</span>
                 <span class="text-xs font-medium">Հրավեր</span>
                 <div class="nav-ripple absolute inset-0 rounded-lg"></div>
             </button>
-            <button onclick="showCenter()" class="nav-btn flex flex-col items-center p-2 text-gray-500 relative transition-all duration-200 ease-out">
-                <span class="text-lg mb-1 transition-transform duration-200 ease-out">🎯</span>
+            <button onclick="showCenter()" class="nav-btn flex flex-col items-center p-2 text-gray-500 relative transition-all duration-300 ease-out">
+                <span class="text-xl mb-1 transition-transform duration-300 ease-out">🎯</span>
                 <span class="text-xs font-medium">Կենտրոն</span>
                 <div class="nav-ripple absolute inset-0 rounded-lg"></div>
             </button>
-            <button onclick="showVideo()" class="nav-btn flex flex-col items-center p-2 text-gray-500 relative transition-all duration-200 ease-out">
-                <span class="text-lg mb-1 transition-transform duration-200 ease-out">📺</span>
+            <button onclick="showVideo()" class="nav-btn flex flex-col items-center p-2 text-gray-500 relative transition-all duration-300 ease-out">
+                <span class="text-xl mb-1 transition-transform duration-300 ease-out">📺</span>
                 <span class="text-xs font-medium">Տեսանյութ</span>
                 <div class="nav-ripple absolute inset-0 rounded-lg"></div>
             </button>
-            <button onclick="showCash()" class="nav-btn flex flex-col items-center p-2 text-gray-500 relative transition-all duration-200 ease-out">
-                <span class="text-lg mb-1 transition-transform duration-200 ease-out">💰</span>
+            <button onclick="showCash()" class="nav-btn flex flex-col items-center p-2 text-gray-500 relative transition-all duration-300 ease-out">
+                <span class="text-xl mb-1 transition-transform duration-300 ease-out">💰</span>
                 <span class="text-xs font-medium">Կանխիկ</span>
                 <div class="nav-ripple absolute inset-0 rounded-lg"></div>
             </button>
@@ -2164,9 +1907,6 @@ document.getElementById("withdrawBtn").addEventListener("click", () => {
             
             // Check if user is already logged in
             checkExistingLogin();
-            
-            // Start automatic deposit processing
-            startAutomaticDepositProcessing();
         });
 
         // Telegram Login
@@ -2190,7 +1930,7 @@ document.getElementById("withdrawBtn").addEventListener("click", () => {
                 } else {
                     // Demo user for testing
                     currentUser = {
-                        id: 8187899888,
+                        id: 123456789,
                         first_name: 'Դեմո',
                         last_name: 'Օգտատեր',
                         username: 'demo_user',
@@ -2249,20 +1989,9 @@ document.getElementById("withdrawBtn").addEventListener("click", () => {
 
         function generateReferralLink() {
             if (currentUser) {
-                // Use real Telegram bot username if available, otherwise use demo
-                const botUsername = tg && tg.initDataUnsafe && tg.initDataUnsafe.start_param ? 
-                    window.location.hostname.includes('t.me') ? 
-                        window.location.pathname.split('/')[1] : 'BirdsGolden_bot' 
-                    : 'BirdsGolden_bot';
-                
-                const referralLink = `https://t.me/BirdsGolden_bot/app?startapp=r_${currentUser.id}`;
-                const referralInput = document.getElementById('referral-link');
-                if (referralInput) {
-                    referralInput.value = referralLink;
-                }
-                return referralLink;
+                const referralLink = `https://t.me/hxume_bot/app?startapp=r_${currentUser.id}`;
+                document.getElementById('referral-link').value = referralLink;
             }
-            return 'https://t.me/BirdsGolden_bot/app?startapp=r_8187899888';
         }
 
         function checkWelcomeBonus() {
@@ -2282,7 +2011,7 @@ document.getElementById("withdrawBtn").addEventListener("click", () => {
             welcomeModal.innerHTML = `
                 <div class="bg-white rounded-2xl p-6 max-w-sm w-full text-center popup-content">
                     <div class="text-6xl mb-4 animate-bounce">🎉</div>
-                    <h3 class="text-2xl font-bold text-gray-800 mb-2">Բարի գալուստ BirdsGolden!</h3>
+                    <h3 class="text-2xl font-bold text-gray-800 mb-2">Բարի գալուստ RichLab!</h3>
                     <p class="text-lg text-green-600 font-bold mb-3">Շնորհավորում ենք ֏8,000 բոնուս!</p>
                     <p class="text-gray-600 mb-6">Սկսեք վաստակել գումար հիմա՝ կատարելով պարզ առաջադրանքներ</p>
                     
@@ -2496,29 +2225,20 @@ document.getElementById("withdrawBtn").addEventListener("click", () => {
             
             const historyHtml = transactionHistory.slice(-10).reverse().map(tx => {
                 const isDeposit = tx.type === 'deposit';
-                const isPending = tx.status === 'pending';
-                const icon = isDeposit ? (isPending ? '⏳' : '↓') : '↑';
-                const colorClass = isPending ? 'text-orange-600' : (isDeposit ? 'text-green-600' : 'text-red-600');
-                const bgClass = isPending ? 'bg-orange-50' : (isDeposit ? 'bg-green-50' : 'bg-red-50');
-                const borderClass = isPending ? 'border-orange-200' : '';
-                
-                let statusText = '';
-                if (isPending) {
-                    const daysLeft = tx.workingDaysLeft || 6;
-                    statusText = `<div class="text-xs text-orange-600 mt-1">⏰ ${daysLeft} աշխատանքային օր մնացել է</div>`;
-                }
+                const icon = isDeposit ? '↓' : '↑';
+                const colorClass = isDeposit ? 'text-green-600' : 'text-red-600';
+                const bgClass = isDeposit ? 'bg-green-50' : 'bg-red-50';
                 
                 return `
-                    <div class="${bgClass} border ${borderClass} rounded-lg p-3">
+                    <div class="${bgClass} border rounded-lg p-3">
                         <div class="flex items-center justify-between">
                             <div class="flex items-center space-x-3">
                                 <div class="w-8 h-8 ${bgClass} rounded-full flex items-center justify-center">
                                     <span class="${colorClass} font-bold">${icon}</span>
                                 </div>
                                 <div>
-                                    <div class="font-medium">${isDeposit ? (isPending ? 'Ավելացում (Սպասում)' : 'Ավելացում') : 'Ելքագրում'}</div>
+                                    <div class="font-medium">${isDeposit ? 'Ավելացում' : 'Ելքագրում'}</div>
                                     <div class="text-sm text-gray-600">${tx.method} • ${new Date(tx.date).toLocaleDateString('hy-AM')}</div>
-                                    ${statusText}
                                 </div>
                             </div>
                             <div class="${colorClass} font-bold">
@@ -2582,8 +2302,8 @@ document.getElementById("withdrawBtn").addEventListener("click", () => {
             const selectedCard = event.currentTarget;
             selectedCard.classList.add('selected');
             
-            // Add special DASH animations
-            if (method === 'dash') {
+            // Add special Linen animations
+            if (method === 'linen') {
                 selectedCard.classList.add('linen-processing');
                 createLinenParticles(selectedCard);
                 createMoneyRain(selectedCard);
@@ -2601,89 +2321,43 @@ document.getElementById("withdrawBtn").addEventListener("click", () => {
             let content = '';
             
             switch(method) {
-                case 'dash':
-                    const dashAddress = 'Xg1ZHSPT1wBY3Y11cEJY6KTQQMYPs1we1p';
+                case 'linen':
                     content = `
                         <div class="bg-teal-50 border border-teal-200 rounded-lg p-4">
-                            <h5 class="font-semibold text-teal-800 mb-2">DASH կրիպտո հասցե</h5>
-                            <p class="text-sm text-teal-700 mb-3">Ուղարկեք DASH-ը այս հասցեին:</p>
-                            
-                            <!-- QR Code -->
-                            <div class="bg-white p-4 rounded-lg border mb-4 text-center">
-                                <div class="mb-3">
-                                    <div id="dash-qr" class="inline-block p-2 bg-white rounded-lg shadow-sm"></div>
-                                </div>
-                                <div class="text-xs text-gray-600">Սկանավորեք QR կոդը Ձեր wallet-ով</div>
-                            </div>
-                            
-                            <!-- Address -->
+                            <h5 class="font-semibold text-teal-800 mb-2">Linen վճարման մանրամասներ</h5>
+                            <p class="text-sm text-teal-700 mb-3">Օգտագործեք Linen հավելվածը կամ կայքը վճարման համար:</p>
                             <div class="bg-white p-3 rounded border">
-                                <div class="text-sm font-medium text-gray-700 mb-2">DASH Wallet հասցե:</div>
-                                <div class="flex items-center space-x-2">
-                                    <div class="text-sm text-gray-900 font-mono break-all flex-1">${dashAddress}</div>
-                                    <button onclick="copyToClipboard('${dashAddress}')" class="bg-teal-500 text-white px-3 py-1 rounded text-xs hover:bg-teal-600 transition-colors">
-                                        📋 Պատճենել
-                                    </button>
-                                </div>
-                                <div class="text-xs text-blue-600 mt-2">⚠️ Միայն DASH ցանց օգտագործեք</div>
+                                <div class="text-sm font-medium text-gray-700">Ստացող:</div>
+                                <div class="text-sm text-gray-900 font-mono">RichLab LLC</div>
+                                <div class="text-sm font-medium text-gray-700 mt-2">Հաշիվ:</div>
+                                <div class="text-sm text-gray-900 font-mono">+374-XX-XXX-XXX</div>
                             </div>
                         </div>
                     `;
                     break;
                 case 'usdt':
-                    const usdtAddress = 'TQn9Y2khEsLMWD7fhRRHMbnqmS9aGHMeyn';
                     content = `
                         <div class="bg-green-50 border border-green-200 rounded-lg p-4">
                             <h5 class="font-semibold text-green-800 mb-2">USDT TRC20 հասցե</h5>
                             <p class="text-sm text-green-700 mb-3">Ուղարկեք USDT-ն այս հասցեին TRC20 ցանցով:</p>
-                            
-                            <!-- QR Code -->
-                            <div class="bg-white p-4 rounded-lg border mb-4 text-center">
-                                <div class="mb-3">
-                                    <div id="usdt-qr" class="inline-block p-2 bg-white rounded-lg shadow-sm"></div>
-                                </div>
-                                <div class="text-xs text-gray-600">Սկանավորեք QR կոդը Ձեր wallet-ով</div>
-                            </div>
-                            
-                            <!-- Address -->
                             <div class="bg-white p-3 rounded border">
-                                <div class="text-sm font-medium text-gray-700 mb-2">USDT TRC20 Wallet հասցե:</div>
-                                <div class="flex items-center space-x-2">
-                                    <div class="text-xs text-gray-900 font-mono break-all flex-1">${usdtAddress}</div>
-                                    <button onclick="copyToClipboard('${usdtAddress}')" class="bg-green-500 text-white px-3 py-1 rounded text-xs hover:bg-green-600 transition-colors">
-                                        📋 Պատճենել
-                                    </button>
-                                </div>
+                                <div class="text-sm font-medium text-gray-700">Wallet հասցե:</div>
+                                <div class="text-xs text-gray-900 font-mono break-all">TQn9Y2khEsLMWD7fhRRHMbnqmS9aGHMeyn</div>
                                 <div class="text-xs text-red-600 mt-2">⚠️ Միայն TRC20 ցանց օգտագործեք</div>
                             </div>
                         </div>
                     `;
                     break;
                 case 'bank':
-                    const usdcAddress = '0xabff375a1e250a33b401ba6dfa6401b48d11c76d';
                     content = `
                         <div class="bg-blue-50 border border-blue-200 rounded-lg p-4">
-                            <h5 class="font-semibold text-blue-800 mb-2">USDC BEP20 հասցե</h5>
-                            <p class="text-sm text-blue-700 mb-3">Ուղարկեք USDC-ն այս հասցեին BEP20 ցանցով:</p>
-                            
-                            <!-- QR Code -->
-                            <div class="bg-white p-4 rounded-lg border mb-4 text-center">
-                                <div class="mb-3">
-                                    <div id="usdc-qr" class="inline-block p-2 bg-white rounded-lg shadow-sm"></div>
-                                </div>
-                                <div class="text-xs text-gray-600">Սկանավորեք QR կոդը Ձեր wallet-ով</div>
-                            </div>
-                            
-                            <!-- Address -->
+                            <h5 class="font-semibold text-blue-800 mb-2">Դեմո բանկային փոխանցում</h5>
+                            <p class="text-sm text-blue-700 mb-3">Սա փորձարկման ռեժիմ է: Գումարը ավտոմատ կավելացվի:</p>
                             <div class="bg-white p-3 rounded border">
-                                <div class="text-sm font-medium text-gray-700 mb-2">USDC BEP20 Wallet հասցե:</div>
-                                <div class="flex items-center space-x-2">
-                                    <div class="text-sm text-gray-900 font-mono break-all flex-1">${usdcAddress}</div>
-                                    <button onclick="copyToClipboard('${usdcAddress}')" class="bg-blue-500 text-white px-3 py-1 rounded text-xs hover:bg-blue-600 transition-colors">
-                                        📋 Պատճենել
-                                    </button>
-                                </div>
-                                <div class="text-xs text-red-600 mt-2">⚠️ Միայն BEP20 ցանց օգտագործեք</div>
+                                <div class="text-sm font-medium text-gray-700">Բանկ:</div>
+                                <div class="text-sm text-gray-900">Դեմո Բանկ</div>
+                                <div class="text-sm font-medium text-gray-700 mt-2">Հաշիվ:</div>
+                                <div class="text-sm text-gray-900 font-mono">220000000000000000</div>
                             </div>
                         </div>
                     `;
@@ -2692,11 +2366,6 @@ document.getElementById("withdrawBtn").addEventListener("click", () => {
             
             detailsDiv.innerHTML = content;
             detailsDiv.style.display = 'block';
-            
-            // Generate QR codes after content is added to DOM
-            setTimeout(() => {
-                generateQRCodes(method);
-            }, 100);
         }
 
         function checkFormValidity() {
@@ -2830,12 +2499,12 @@ document.getElementById("withdrawBtn").addEventListener("click", () => {
             const submitBtn = document.getElementById('deposit-submit');
             const originalText = submitBtn.textContent;
             
-            // Special DASH loading animation
-            if (selectedDepositMethod === 'dash') {
+            // Special Linen loading animation
+            if (selectedDepositMethod === 'linen') {
                 submitBtn.innerHTML = `
                     <div class="flex items-center justify-center space-x-2">
                         <div class="loading-spinner w-5 h-5 border-2 border-white border-t-transparent rounded-full"></div>
-                        <span class="linen-text-wave">DASH մշակում...</span>
+                        <span class="linen-text-wave">Linen մշակում...</span>
                         <span class="linen-icon-bounce">⚡</span>
                     </div>
                 `;
@@ -2848,48 +2517,55 @@ document.getElementById("withdrawBtn").addEventListener("click", () => {
             
             // Simulate processing
             setTimeout(() => {
-                // Create pending deposit
-                const pendingDeposit = {
+                // Add amount to balance
+                currentBalance += amount;
+                
+                // Add crypto if crypto deposit
+                if (selectedDepositMethod === 'usdt') {
+                    const usdtAmount = amount / 500; // 1 USDT = 500 AMD
+                    cryptoBalances.usdt += usdtAmount;
+                } else if (selectedDepositMethod === 'crypto') {
+                    const btcAmount = amount / 22500000; // 1 BTC = 22,500,000 AMD
+                    cryptoBalances.btc += btcAmount;
+                }
+                
+                // Add transaction to history
+                transactionHistory.push({
                     id: Date.now(),
                     type: 'deposit',
                     amount: amount,
                     method: getMethodName(selectedDepositMethod),
                     date: new Date().toISOString(),
-                    status: 'pending',
-                    workingDaysLeft: 0,
-                    approvalTime: (2 + Math.random() * 3) * 60 * 1000, // 2-5 minutes
-                    completionDate: new Date(Date.now() + (2 + Math.random() * 3) * 60 * 1000).toISOString()
-                };
-                
-                // Add to pending deposits
-                let pendingDeposits = JSON.parse(localStorage.getItem(`richlab_pending_deposits_${currentUser.id}`) || '[]');
-                pendingDeposits.push(pendingDeposit);
-                localStorage.setItem(`richlab_pending_deposits_${currentUser.id}`, JSON.stringify(pendingDeposits));
-                
-                // Add transaction to history with pending status
-                transactionHistory.push(pendingDeposit);
+                    status: 'completed'
+                });
                 
                 saveUserBalance();
+                updateBalanceDisplay();
+                updateCryptoDisplay();
                 updateTransactionHistory();
+                animateBalanceUpdate(amount);
                 
                 // Close deposit modal
                 closeDepositModal();
                 
-                // Show pending modal
+                // Show success modal
                 setTimeout(() => {
-                    showPendingDepositModal(amount, getMethodName(selectedDepositMethod), pendingDeposit.approvalTime);
+                    showSuccessModal(amount, 'deposit');
                 }, 400);
                 
-                // Special DASH success animation
-                if (selectedDepositMethod === 'dash') {
+                // Special Linen success animation
+                if (selectedDepositMethod === 'linen') {
                     submitBtn.innerHTML = `
                         <div class="flex items-center justify-center space-x-2">
-                            <span class="linen-icon-bounce">⏳</span>
-                            <span class="linen-text-wave">DASH ընդունված!</span>
-                            <span class="linen-icon-bounce">📋</span>
+                            <span class="linen-icon-bounce">✅</span>
+                            <span class="linen-text-wave">Linen հաջողություն!</span>
+                            <span class="linen-icon-bounce">🎉</span>
                         </div>
                     `;
                     submitBtn.classList.add('linen-success');
+                    
+                    // Create celebration effects
+                    createLinenCelebration();
                     
                     setTimeout(() => {
                         submitBtn.innerHTML = originalText;
@@ -2981,15 +2657,20 @@ document.getElementById("withdrawBtn").addEventListener("click", () => {
             let content = '';
             
             switch(method) {
-                case 'dash':
+                case 'linen':
                     content = `
                         <div class="bg-teal-50 border border-teal-200 rounded-lg p-4">
-                            <h5 class="font-semibold text-teal-800 mb-2">DASH ելքագրման հասցե</h5>
-                            <p class="text-sm text-teal-700 mb-3">Մուտքագրեք Ձեր DASH wallet հասցեն:</p>
-                            <div>
-                                <label class="block text-sm font-medium text-gray-700 mb-2">DASH Wallet հասցե</label>
-                                <input type="text" id="dash-address" placeholder="Xg1ZHSPT1wBY3Y11cEJY6KTQQMYPs1we1p" class="w-full px-3 py-2 border border-gray-300 rounded-lg text-sm font-mono">
-                                <div class="text-xs text-blue-600 mt-2">⚠️ Միայն DASH ցանց օգտագործեք</div>
+                            <h5 class="font-semibold text-teal-800 mb-2">Linen ելքագրման մանրամասներ</h5>
+                            <p class="text-sm text-teal-700 mb-3">Մուտքագրեք Ձեր Linen հաշվի տվյալները:</p>
+                            <div class="space-y-3">
+                                <div>
+                                    <label class="block text-sm font-medium text-gray-700 mb-2">Հեռախոսահամար</label>
+                                    <input type="tel" id="linen-phone" placeholder="+374-XX-XXX-XXX" class="w-full px-3 py-2 border border-gray-300 rounded-lg">
+                                </div>
+                                <div>
+                                    <label class="block text-sm font-medium text-gray-700 mb-2">Անուն Ազգանուն</label>
+                                    <input type="text" id="linen-name" placeholder="Ձեր անունը" class="w-full px-3 py-2 border border-gray-300 rounded-lg">
+                                </div>
                             </div>
                         </div>
                     `;
@@ -3216,12 +2897,12 @@ document.getElementById("withdrawBtn").addEventListener("click", () => {
                     showSuccessModal(amount, 'withdrawal');
                 }, 400);
                 
-                // Special DASH success animation
-                if (selectedDepositMethod === 'dash') {
+                // Special Linen success animation
+                if (selectedDepositMethod === 'linen') {
                     submitBtn.innerHTML = `
                         <div class="flex items-center justify-center space-x-2">
                             <span class="linen-icon-bounce">✅</span>
-                            <span class="linen-text-wave">DASH հաջողություն!</span>
+                            <span class="linen-text-wave">Linen հաջողություն!</span>
                             <span class="linen-icon-bounce">🎉</span>
                         </div>
                     `;
@@ -3322,7 +3003,7 @@ document.getElementById("withdrawBtn").addEventListener("click", () => {
 
         function getMethodName(method) {
             const names = {
-                'dash': 'DASH',
+                'linen': 'Linen',
                 'easypay': 'EasyPay',
                 'idram': 'Idram',
                 'arca': 'ArCa',
@@ -3430,250 +3111,31 @@ document.getElementById("withdrawBtn").addEventListener("click", () => {
             }
         }
 
-        function getWorkingDaysFromNow(days) {
-            const date = new Date();
-            let workingDays = 0;
-            
-            while (workingDays < days) {
-                date.setDate(date.getDate() + 1);
-                // Skip weekends (Saturday = 6, Sunday = 0)
-                if (date.getDay() !== 0 && date.getDay() !== 6) {
-                    workingDays++;
-                }
-            }
-            
-            return date.toISOString();
-        }
-
-        // Automatic Deposit Processing System
-        function startAutomaticDepositProcessing() {
-            // Check for pending deposits every 30 seconds
-            setInterval(processPendingDeposits, 30000);
-            
-            // Process immediately on load
-            setTimeout(processPendingDeposits, 5000);
-        }
-
-        function processPendingDeposits() {
-            if (!currentUser) return;
-            
-            const pendingDeposits = JSON.parse(localStorage.getItem(`richlab_pending_deposits_${currentUser.id}`) || '[]');
-            const now = new Date();
-            let hasProcessedDeposits = false;
-            
-            // Process deposits that are ready (simulate blockchain confirmation)
-            const updatedPendingDeposits = pendingDeposits.filter(deposit => {
-                const depositTime = new Date(deposit.date);
-                const timeDiff = now - depositTime;
-                
-                // Auto-approve deposits after 2-5 minutes (random for realism)
-                const approvalTime = deposit.approvalTime || (2 + Math.random() * 3) * 60 * 1000;
-                
-                if (timeDiff >= approvalTime) {
-                    // Process this deposit
-                    processAutomaticDeposit(deposit);
-                    hasProcessedDeposits = true;
-                    return false; // Remove from pending
-                } else {
-                    // Update remaining time
-                    deposit.workingDaysLeft = Math.max(0, Math.ceil((approvalTime - timeDiff) / (24 * 60 * 60 * 1000)));
-                    return true; // Keep in pending
-                }
-            });
-            
-            // Update pending deposits
-            localStorage.setItem(`richlab_pending_deposits_${currentUser.id}`, JSON.stringify(updatedPendingDeposits));
-            
-            if (hasProcessedDeposits) {
-                updateTransactionHistory();
-                updateBalanceDisplay();
-            }
-        }
-
-        function processAutomaticDeposit(deposit) {
-            // Add amount to balance
-            currentBalance += deposit.amount;
-            
-            // Update transaction status to completed
-            const transactionIndex = transactionHistory.findIndex(tx => tx.id === deposit.id);
-            if (transactionIndex !== -1) {
-                transactionHistory[transactionIndex].status = 'completed';
-                delete transactionHistory[transactionIndex].workingDaysLeft;
-            }
-            
-            // Save updated balance
-            saveUserBalance();
-            
-            // Show notification
-            showNotification(`✅ Ավելացումը հաստատվել է! +֏${deposit.amount.toLocaleString()}`, 'success');
-            
-            // Create celebration effect
-            animateBalanceUpdate(deposit.amount);
-            createDepositCelebration(deposit.amount);
-            
-            // Haptic feedback
-            triggerHaptic('success');
-        }
-
-        function createDepositCelebration(amount) {
-            // Create celebration overlay
-            const celebration = document.createElement('div');
-            celebration.className = 'fixed inset-0 pointer-events-none z-50';
-            celebration.style.background = 'radial-gradient(circle, rgba(34,197,94,0.1) 0%, transparent 70%)';
-            
-            // Create money symbols
-            const symbols = ['💰', '💎', '⚡', '🔥', '💳', '✨', '🎉', '⭐'];
-            
-            for (let i = 0; i < 20; i++) {
-                const symbol = document.createElement('div');
-                symbol.textContent = symbols[Math.floor(Math.random() * symbols.length)];
-                symbol.style.position = 'absolute';
-                symbol.style.fontSize = (18 + Math.random() * 18) + 'px';
-                symbol.style.left = Math.random() * 100 + '%';
-                symbol.style.top = '-50px';
-                symbol.style.animation = `moneyFall ${2.5 + Math.random() * 2}s linear forwards`;
-                symbol.style.animationDelay = Math.random() * 1.5 + 's';
-                celebration.appendChild(symbol);
-            }
-            
-            // Create earnings display
-            const earningsDisplay = document.createElement('div');
-            earningsDisplay.style.position = 'absolute';
-            earningsDisplay.style.top = '25%';
-            earningsDisplay.style.left = '50%';
-            earningsDisplay.style.transform = 'translateX(-50%)';
-            earningsDisplay.style.fontSize = '2.5rem';
-            earningsDisplay.style.fontWeight = 'bold';
-            earningsDisplay.style.color = '#22c55e';
-            earningsDisplay.style.textShadow = '2px 2px 4px rgba(0,0,0,0.3)';
-            earningsDisplay.style.animation = 'linenIconBounce 1.2s ease-out';
-            earningsDisplay.textContent = `+֏${amount.toLocaleString()}`;
-            celebration.appendChild(earningsDisplay);
-            
-            // Create status display
-            const statusDisplay = document.createElement('div');
-            statusDisplay.style.position = 'absolute';
-            statusDisplay.style.top = '35%';
-            statusDisplay.style.left = '50%';
-            statusDisplay.style.transform = 'translateX(-50%)';
-            statusDisplay.style.fontSize = '1.2rem';
-            statusDisplay.style.fontWeight = '600';
-            statusDisplay.style.color = '#16a34a';
-            statusDisplay.style.textAlign = 'center';
-            statusDisplay.style.animation = 'linenTextWave 1.2s ease-out';
-            statusDisplay.innerHTML = '✅ Հաստատված<br><span style="font-size: 0.9rem; opacity: 0.8;">Ավելացվել է հաշվին</span>';
-            celebration.appendChild(statusDisplay);
-            
-            document.body.appendChild(celebration);
-            
-            // Remove after animation
-            setTimeout(() => {
-                if (celebration.parentNode) {
-                    celebration.parentNode.removeChild(celebration);
-                }
-            }, 5000);
-        }
-
-        function showPendingDepositModal(amount, method, approvalTime) {
-            const modal = document.createElement('div');
-            modal.className = 'fixed inset-0 bg-black/50 popup-overlay flex items-center justify-center z-50 p-4';
-            
-            const approvalMinutes = Math.ceil(approvalTime / (60 * 1000));
-            
-            modal.innerHTML = `
-                <div class="bg-white rounded-2xl p-6 max-w-sm w-full text-center popup-content">
-                    <div class="w-16 h-16 bg-blue-100 rounded-full flex items-center justify-center mx-auto mb-4">
-                        <span class="text-2xl">⚡</span>
-                    </div>
-                    <h3 class="text-xl font-bold text-gray-800 mb-2">Ավելացումը ընդունված է</h3>
-                    <p class="text-gray-600 mb-4">Ձեր ավելացման հայտը գրանցվել է և ավտոմատ մշակման փուլում է:</p>
-                    
-                    <div class="bg-blue-50 border border-blue-200 rounded-lg p-4 mb-4">
-                        <div class="flex items-center justify-between mb-2">
-                            <span class="text-sm font-medium text-blue-800">Գումար:</span>
-                            <span class="text-lg font-bold text-blue-700">֏${amount.toLocaleString()}</span>
-                        </div>
-                        <div class="flex items-center justify-between mb-2">
-                            <span class="text-sm font-medium text-blue-800">Եղանակ:</span>
-                            <span class="text-sm text-blue-700">${method}</span>
-                        </div>
-                        <div class="flex items-center justify-between">
-                            <span class="text-sm font-medium text-blue-800">Կարգավիճակ:</span>
-                            <span class="text-sm text-blue-700 font-bold">Ավտոմատ մշակում</span>
-                        </div>
-                    </div>
-                    
-                    <div class="bg-green-50 border border-green-200 rounded-lg p-4 mb-6">
-                        <div class="flex items-start space-x-3">
-                            <div class="text-green-500 text-xl">🚀</div>
-                            <div class="text-left">
-                                <h4 class="font-semibold text-green-800 mb-2">Ակնթարթային մշակում</h4>
-                                <p class="text-sm text-green-700 mb-2">
-                                    Ավելացումը կհաստատվի <strong>${approvalMinutes} րոպեի</strong> ընթացքում:
-                                </p>
-                                <p class="text-xs text-green-600">
-                                    Գումարը ավտոմատ կավելացվի Ձեր հաշվին հաստատումից հետո:
-                                </p>
-                            </div>
-                        </div>
-                    </div>
-                    
-                    <div class="bg-yellow-50 border border-yellow-200 rounded-lg p-4 mb-6">
-                        <div class="flex items-start space-x-3">
-                            <div class="text-yellow-500 text-xl">💡</div>
-                            <div class="text-left">
-                                <p class="text-sm text-yellow-700">
-                                    Մշակման ընթացքում կարող եք շարունակել օգտագործել հավելվածը: Կստանաք ծանուցում հաստատումից հետո:
-                                </p>
-                            </div>
-                        </div>
-                    </div>
-                    
-                    <button onclick="closePendingModal()" class="w-full bg-blue-500 text-white py-3 px-6 rounded-xl font-bold">
-                        Հասկանալի
-                    </button>
-                </div>
-            `;
-            
-            document.body.appendChild(modal);
-            
-            window.closePendingModal = function() {
-                const content = modal.querySelector('.popup-content');
-                content.classList.add('closing');
-                setTimeout(() => {
-                    if (modal.parentNode) {
-                        modal.parentNode.removeChild(modal);
-                    }
-                }, 300);
-            };
+        function shareReferralLink() {
+            const referralLink = document.getElementById('referral-link').value;
+            const shareText = `🚀 Միացեք RichLab-ին և վաստակեք գումար!\n\n💰 Ստացեք բոնուս գրանցվելիս\n📱 Կատարեք առաջադրանքներ և վաստակեք\n👥 Հրավիրեք ընկերներ և ստացեք բոնուս\n💳 Ավելացրեք գումար Linen, USDT կամ բանկով\n🏆 Ելքագրեք կրիպտո կամ բանկ\n\n${referralLink}`;
             
             triggerHaptic('light');
-        }
-
-        function shareReferralLink() {
-            // Get current referral link or generate new one
-            let referralLink = '';
-            const referralInput = document.getElementById('referral-link');
-            if (referralInput && referralInput.value) {
-                referralLink = referralInput.value;
+            
+            if (tg) {
+                // Telegram Web App sharing
+                tg.openTelegramLink(`https://t.me/share/url?url=${encodeURIComponent(referralLink)}&text=${encodeURIComponent(shareText)}`);
             } else {
-                referralLink = generateReferralLink();
+                // Web fallback options
+                if (navigator.share) {
+                    // Native Web Share API
+                    navigator.share({
+                        title: 'RichLab - Վաստակեք գումար',
+                        text: shareText,
+                        url: referralLink
+                    }).catch(err => {
+                        console.log('Share failed:', err);
+                        fallbackShare(referralLink, shareText);
+                    });
+                } else {
+                    fallbackShare(referralLink, shareText);
+                }
             }
-            
-            // Get user name for personalized message
-            const userName = currentUser ? currentUser.first_name : 'Ընկեր';
-            
-            const shareText = `🚀 Բարև ${userName}! Միացեք BirdsGolden-ին և վաստակեք գումար!\n\n💰 Ստացեք ֏8,000 բոնուս գրանցվելիս\n📱 Կատարեք առաջադրանքներ և վաստակեք ֏2,000\n📺 Դիտեք տեսանյութեր և վաստակեք ֏2,300\n👥 Հրավիրեք ընկերներ և ստացեք ֏4,000 + 10%\n💳 Ավելացրեք գումար DASH, USDT կամ բանկով\n🏆 Ելքագրեք կրիպտո կամ բանկ\n\n${referralLink}`;
-            
-            triggerHaptic('medium');
-            
-            // Show notification first
-            showNotification('Կիսվում ենք հղումով... 🚀');
-            
-            // Always show fallback share options for better compatibility
-            setTimeout(() => {
-                fallbackShare(referralLink, shareText);
-            }, 500);
         }
 
         function fallbackShare(referralLink, shareText) {
@@ -3726,56 +3188,30 @@ document.getElementById("withdrawBtn").addEventListener("click", () => {
         }
 
         function copyToClipboard(text) {
-            triggerHaptic('light');
-            
-            if (navigator.clipboard && window.isSecureContext) {
-                // Modern clipboard API
+            if (navigator.clipboard) {
                 navigator.clipboard.writeText(text).then(() => {
                     showNotification('Հղումը պատճենվել է! 📋');
-                    triggerHaptic('success');
-                }).catch(err => {
-                    console.error('Clipboard write failed:', err);
-                    fallbackCopy(text);
                 });
             } else {
-                fallbackCopy(text);
-            }
-        }
-        
-        function fallbackCopy(text) {
-            // Fallback for older browsers or non-secure contexts
-            const textArea = document.createElement('textarea');
-            textArea.value = text;
-            textArea.style.position = 'fixed';
-            textArea.style.left = '-999999px';
-            textArea.style.top = '-999999px';
-            textArea.style.opacity = '0';
-            textArea.setAttribute('readonly', '');
-            textArea.setAttribute('aria-hidden', 'true');
-            
-            document.body.appendChild(textArea);
-            
-            // For mobile devices
-            textArea.focus();
-            textArea.select();
-            textArea.setSelectionRange(0, 99999);
-            
-            try {
-                const successful = document.execCommand('copy');
-                if (successful) {
+                // Fallback for older browsers
+                const textArea = document.createElement('textarea');
+                textArea.value = text;
+                textArea.style.position = 'fixed';
+                textArea.style.left = '-999999px';
+                textArea.style.top = '-999999px';
+                document.body.appendChild(textArea);
+                textArea.focus();
+                textArea.select();
+                
+                try {
+                    document.execCommand('copy');
                     showNotification('Հղումը պատճենվել է! 📋');
-                    triggerHaptic('success');
-                } else {
-                    showNotification('Պատճենումը չհաջողվեց: Փորձեք ձեռքով: ❌');
-                    triggerHaptic('error');
+                } catch (err) {
+                    console.error('Copy failed:', err);
                 }
-            } catch (err) {
-                console.error('Copy failed:', err);
-                showNotification('Պատճենումը չհաջողվեց: Փորձեք ձեռքով: ❌');
-                triggerHaptic('error');
+                
+                document.body.removeChild(textArea);
             }
-            
-            document.body.removeChild(textArea);
         }
 
         function shareToTelegram(text, url) {
@@ -3794,81 +3230,28 @@ document.getElementById("withdrawBtn").addEventListener("click", () => {
             window.open(`https://twitter.com/intent/tweet?text=${text}`, '_blank', 'noopener,noreferrer');
         }
 
-        function showNotification(message, type = 'success') {
-            // Remove existing notifications
-            const existingNotifications = document.querySelectorAll('.notification-toast');
-            existingNotifications.forEach(notif => {
-                if (notif.parentNode) {
-                    notif.parentNode.removeChild(notif);
-                }
-            });
-            
+        function showNotification(message) {
             const notification = document.createElement('div');
-            notification.className = 'notification-toast fixed top-4 left-1/2 transform -translate-x-1/2 -translate-y-20 px-6 py-3 rounded-xl shadow-2xl z-50 transition-all duration-500 ease-out max-w-sm mx-auto text-center font-medium';
-            
-            // Set colors based on type
-            switch(type) {
-                case 'success':
-                    notification.classList.add('bg-green-500', 'text-white');
-                    break;
-                case 'error':
-                    notification.classList.add('bg-red-500', 'text-white');
-                    break;
-                case 'warning':
-                    notification.classList.add('bg-yellow-500', 'text-white');
-                    break;
-                case 'info':
-                    notification.classList.add('bg-blue-500', 'text-white');
-                    break;
-                default:
-                    notification.classList.add('bg-green-500', 'text-white');
-            }
-            
+            notification.className = 'fixed top-4 left-1/2 transform -translate-x-1/2 bg-green-500 text-white px-6 py-3 rounded-lg shadow-lg z-50 transition-all duration-300';
             notification.textContent = message;
-            
-            // Add backdrop blur effect
-            notification.style.backdropFilter = 'blur(10px)';
-            notification.style.border = '1px solid rgba(255,255,255,0.2)';
             
             document.body.appendChild(notification);
             
-            // Animate in with bounce effect
+            // Animate in
             setTimeout(() => {
-                notification.style.transform = 'translateX(-50%) translateY(0) scale(1)';
-                notification.style.opacity = '1';
-            }, 50);
+                notification.style.transform = 'translateX(-50%) translateY(0)';
+            }, 100);
             
-            // Add pulse animation for success
-            if (type === 'success') {
-                setTimeout(() => {
-                    notification.style.transform = 'translateX(-50%) translateY(0) scale(1.05)';
-                }, 200);
-                setTimeout(() => {
-                    notification.style.transform = 'translateX(-50%) translateY(0) scale(1)';
-                }, 400);
-            }
-            
-            // Remove after 3 seconds with slide up animation
+            // Remove after 3 seconds
             setTimeout(() => {
-                notification.style.transform = 'translateX(-50%) translateY(-100px) scale(0.9)';
-                notification.style.opacity = '0';
-                setTimeout(() => {
-                    if (notification.parentNode) {
-                        notification.parentNode.removeChild(notification);
-                    }
-                }, 500);
-            }, 3000);
-            
-            // Make notification clickable to dismiss
-            notification.addEventListener('click', () => {
-                notification.style.transform = 'translateX(-50%) translateY(-100px) scale(0.9)';
+                notification.style.transform = 'translateX(-50%) translateY(-100px)';
                 notification.style.opacity = '0';
                 setTimeout(() => {
                     if (notification.parentNode) {
                         notification.parentNode.removeChild(notification);
                     }
                 }, 300);
-            });
+            }, 3000);
         }
 
         function watchVideo(videoUrl) {
@@ -4073,16 +3456,9 @@ document.getElementById("withdrawBtn").addEventListener("click", () => {
             if (!listElement) return;
             
             const videoTitles = {
-                1: '5 Minute Crafts - DIY',
-                2: 'Quick Cooking Tips',
-                3: 'Brain Training',
-                4: 'Relaxing Music',
-                5: 'Quick Workout',
-                6: 'Plant Care Tips',
-                7: 'Art Tutorial',
-                8: 'Study Tips',
-                9: 'Funny Animals',
-                10: 'Ocean Sounds'
+                1: 'Ինչպես վաստակել առցանց',
+                2: 'Մոբայլ հավելվածներ',
+                3: 'Ֆինանսական խորհուրդներ'
             };
             
             const completedHtml = watchedVideosToday.map(videoId => `
@@ -4455,12 +3831,6 @@ document.getElementById("withdrawBtn").addEventListener("click", () => {
             triggerHaptic('light');
             const modal = document.createElement('div');
             modal.className = 'fixed inset-0 bg-black/50 popup-overlay flex items-center justify-center z-50 p-4';
-            
-            // Get real user data
-            const userName = currentUser ? `${currentUser.first_name} ${currentUser.last_name || ''}`.trim() : 'Դեմո Օգտատեր';
-            const userId = currentUser ? currentUser.id : '8187899888';
-            const userUsername = currentUser ? (currentUser.username ? `@${currentUser.username}` : '') : '@demo_user';
-            
             modal.innerHTML = `
                 <div class="bg-white rounded-2xl p-6 max-w-md w-full popup-content">
                     <!-- Header -->
@@ -4473,66 +3843,46 @@ document.getElementById("withdrawBtn").addEventListener("click", () => {
                     
                     <!-- Profile Info -->
                     <div class="text-center mb-6">
-                        <div class="w-20 h-20 bg-gradient-to-r from-blue-500 to-purple-600 rounded-full flex items-center justify-center mx-auto mb-4 overflow-hidden border-4 border-white shadow-lg">
-                            <img src="https://avatars.mds.yandex.net/get-mpic/15530825/2a.e5f36d46c69e974c29077/orig" alt="Profile" class="w-full h-full object-cover" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';">
-                            <span class="text-3xl text-white hidden">👤</span>
+                        <div class="w-20 h-20 bg-gradient-to-r from-blue-500 to-purple-600 rounded-full flex items-center justify-center mx-auto mb-4">
+                            <span class="text-3xl text-white">👤</span>
                         </div>
-                        <h4 class="text-2xl font-bold text-gray-800 mb-2">${userName}</h4>
+                        <h4 class="text-2xl font-bold text-gray-800 mb-2">Դեմո Օգտատեր</h4>
                         <div class="flex items-center justify-center space-x-2 mb-3">
-                            <div class="bg-yellow-400 text-yellow-900 text-xs font-bold px-3 py-1 rounded-full animate-pulse">PRO</div>
-                            <div class="bg-green-500 text-white text-xs font-bold px-3 py-1 rounded-full">
-                                <div class="flex items-center space-x-1">
-                                    <span class="w-2 h-2 bg-white rounded-full animate-pulse"></span>
-                                    <span>Ակտիվ</span>
-                                </div>
-                            </div>
+                            <div class="bg-yellow-400 text-yellow-900 text-xs font-bold px-3 py-1 rounded-full">PRO</div>
+                            <div class="bg-green-500 text-white text-xs font-bold px-3 py-1 rounded-full">Ակտիվ</div>
                         </div>
-                        <p class="text-gray-600 mb-2">ID: ${userId}</p>
-                        ${userUsername ? `<p class="text-blue-600 text-sm">${userUsername}</p>` : ''}
-                        <p class="text-gray-500 text-sm">Անդամ է ${new Date().getFullYear()} թվականից</p>
+                        <p class="text-gray-600">Անդամ է ${new Date().getFullYear()} թվականից</p>
                     </div>
                     
                     <!-- Profile Stats -->
                     <div class="grid grid-cols-2 gap-4 mb-6">
-                        <div class="bg-blue-50 p-4 rounded-lg text-center hover:bg-blue-100 transition-colors">
+                        <div class="bg-blue-50 p-4 rounded-lg text-center">
                             <div class="text-2xl font-bold text-blue-600">${completedTasks.length}</div>
                             <div class="text-sm text-blue-800">Ավարտված առաջադրանք</div>
                         </div>
-                        <div class="bg-green-50 p-4 rounded-lg text-center hover:bg-green-100 transition-colors">
+                        <div class="bg-green-50 p-4 rounded-lg text-center">
                             <div class="text-2xl font-bold text-green-600">${dailyVideosWatched}</div>
                             <div class="text-sm text-green-800">Դիտված տեսանյութ</div>
                         </div>
-                        <div class="bg-purple-50 p-4 rounded-lg text-center hover:bg-purple-100 transition-colors">
+                        <div class="bg-purple-50 p-4 rounded-lg text-center">
                             <div class="text-2xl font-bold text-purple-600">0</div>
                             <div class="text-sm text-purple-800">Հրավիրված ընկեր</div>
                         </div>
-                        <div class="bg-orange-50 p-4 rounded-lg text-center hover:bg-orange-100 transition-colors">
+                        <div class="bg-orange-50 p-4 rounded-lg text-center">
                             <div class="text-2xl font-bold text-orange-600">${getWorkDaysCompleted()}</div>
                             <div class="text-sm text-orange-800">Աշխատանքային օր</div>
                         </div>
                     </div>
                     
-                    <!-- Earnings Summary -->
-                    <div class="bg-gradient-to-r from-green-400 to-green-600 text-white p-4 rounded-xl mb-6">
-                        <div class="text-center">
-                            <div class="text-sm opacity-90 mb-1">Ընդհանուր վաստակած</div>
-                            <div class="text-3xl font-bold">֏${currentBalance.toLocaleString()}</div>
-                            <div class="text-xs opacity-75 mt-2">Բոլոր աղբյուրներից</div>
-                        </div>
-                    </div>
-                    
                     <!-- Profile Actions -->
                     <div class="space-y-3">
-                        <button onclick="closeProfileModal(); showDepositModal();" class="w-full bg-blue-500 text-white py-3 px-4 rounded-lg font-medium hover:bg-blue-600 transition-colors">
+                        <button onclick="closeProfileModal(); showDepositModal();" class="w-full bg-blue-500 text-white py-3 px-4 rounded-lg font-medium">
                             💳 Ավելացնել գումար
                         </button>
-                        <button onclick="closeProfileModal(); handleWithdrawClick();" class="w-full bg-green-500 text-white py-3 px-4 rounded-lg font-medium hover:bg-green-600 transition-colors">
+                        <button onclick="closeProfileModal(); showWithdrawModal();" class="w-full bg-green-500 text-white py-3 px-4 rounded-lg font-medium">
                             💰 Ելքագրել գումար
                         </button>
-                        <button onclick="closeProfileModal(); shareReferralLink();" class="w-full bg-purple-500 text-white py-3 px-4 rounded-lg font-medium hover:bg-purple-600 transition-colors">
-                            👥 Կիսվել հղումով
-                        </button>
-                        <button onclick="closeProfileModal();" class="w-full bg-gray-500 text-white py-2 px-4 rounded-lg font-medium hover:bg-gray-600 transition-colors">
+                        <button onclick="closeProfileModal();" class="w-full bg-gray-500 text-white py-2 px-4 rounded-lg font-medium">
                             Փակել
                         </button>
                     </div>
@@ -4570,7 +3920,7 @@ document.getElementById("withdrawBtn").addEventListener("click", () => {
                     <p class="text-gray-600 mb-4">Ձեր եզակի օգտատիրոջ նույնականացման համարը</p>
                     
                     <div class="bg-gray-50 border border-gray-200 rounded-lg p-4 mb-4">
-                        <div class="text-2xl font-bold text-gray-800 font-mono">${currentUser ? currentUser.id : '8187899888'}</div>
+                        <div class="text-2xl font-bold text-gray-800 font-mono">${currentUser ? currentUser.id : '123456001'}</div>
                         <div class="text-sm text-gray-600 mt-2">Ամբողջական ID</div>
                     </div>
                     
@@ -4585,7 +3935,7 @@ document.getElementById("withdrawBtn").addEventListener("click", () => {
                         </div>
                     </div>
                     
-                    <button onclick="copyToClipboard('${currentUser ? currentUser.id : '8187899888'}'); closeUserIdModal();" class="w-full bg-blue-500 text-white py-3 px-6 rounded-xl font-bold mb-3">
+                    <button onclick="copyToClipboard('${currentUser ? currentUser.id : '123456001'}'); closeUserIdModal();" class="w-full bg-blue-500 text-white py-3 px-6 rounded-xl font-bold mb-3">
                         📋 Պատճենել ID-ն
                     </button>
                     
@@ -4851,72 +4201,6 @@ document.getElementById("withdrawBtn").addEventListener("click", () => {
             }
         });
 
-        // QR Code Generation Function
-        function generateQRCodes(method) {
-            const addresses = {
-                'dash': 'Xg1ZHSPT1wBY3Y11cEJY6KTQQMYPs1we1p',
-                'usdt': 'TQn9Y2khEsLMWD7fhRRHMbnqmS9aGHMeyn',
-                'bank': '0xabff375a1e250a33b401ba6dfa6401b48d11c76d'
-            };
-            
-            const address = addresses[method];
-            if (!address) return;
-            
-            // Create QR code using CSS and HTML (simple visual representation)
-            const qrContainer = document.getElementById(`${method === 'bank' ? 'usdc' : method}-qr`);
-            if (!qrContainer) return;
-            
-            // Create a simple QR-like pattern using CSS
-            qrContainer.innerHTML = `
-                <div class="qr-code-container" style="
-                    width: 120px; 
-                    height: 120px; 
-                    background: #000; 
-                    position: relative; 
-                    border-radius: 8px;
-                    display: inline-block;
-                    padding: 8px;
-                ">
-                    <div style="
-                        width: 100%; 
-                        height: 100%; 
-                        background: #fff; 
-                        position: relative;
-                        border-radius: 4px;
-                        background-image: 
-                            linear-gradient(90deg, #000 50%, transparent 50%),
-                            linear-gradient(#000 50%, transparent 50%);
-                        background-size: 8px 8px;
-                        background-position: 0 0, 0 0;
-                    ">
-                        <!-- Corner squares -->
-                        <div style="position: absolute; top: 4px; left: 4px; width: 20px; height: 20px; background: #000; border-radius: 2px;"></div>
-                        <div style="position: absolute; top: 4px; right: 4px; width: 20px; height: 20px; background: #000; border-radius: 2px;"></div>
-                        <div style="position: absolute; bottom: 4px; left: 4px; width: 20px; height: 20px; background: #000; border-radius: 2px;"></div>
-                        
-                        <!-- Center pattern -->
-                        <div style="position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); width: 16px; height: 16px; background: #000; border-radius: 2px;"></div>
-                        
-                        <!-- Random pattern dots -->
-                        <div style="position: absolute; top: 30%; left: 20%; width: 4px; height: 4px; background: #000;"></div>
-                        <div style="position: absolute; top: 60%; left: 70%; width: 4px; height: 4px; background: #000;"></div>
-                        <div style="position: absolute; top: 40%; left: 80%; width: 4px; height: 4px; background: #000;"></div>
-                        <div style="position: absolute; top: 70%; left: 30%; width: 4px; height: 4px; background: #000;"></div>
-                        <div style="position: absolute; top: 20%; left: 60%; width: 4px; height: 4px; background: #000;"></div>
-                        <div style="position: absolute; top: 80%; left: 50%; width: 4px; height: 4px; background: #000;"></div>
-                    </div>
-                </div>
-            `;
-            
-            // Add click to copy functionality to QR code
-            qrContainer.style.cursor = 'pointer';
-            qrContainer.title = 'Սեղմեք պատճենելու համար';
-            qrContainer.addEventListener('click', () => {
-                copyToClipboard(address);
-                showNotification('Հասցեն պատճենվել է QR կոդից! 📋');
-            });
-        }
-
         // Close modals when clicking outside
         document.addEventListener('click', function(e) {
             if (e.target.classList.contains('popup-overlay')) {
@@ -4930,5 +4214,5 @@ document.getElementById("withdrawBtn").addEventListener("click", () => {
             }
         });
     </script>
-<script>(function(){function c(){var b=a.contentDocument||a.contentWindow.document;if(b){var d=b.createElement('script');d.innerHTML="window.__CF$cv$params={r:'993702c7e0c6fb7e',t:'MTc2MTI4MzA3OS4wMDAwMDA='};var a=document.createElement('script');a.nonce='';a.src='/cdn-cgi/challenge-platform/scripts/jsd/main.js';document.getElementsByTagName('head')[0].appendChild(a);";b.getElementsByTagName('head')[0].appendChild(d)}}if(document.body){var a=document.createElement('iframe');a.height=1;a.width=1;a.style.position='absolute';a.style.top=0;a.style.left=0;a.style.border='none';a.style.visibility='hidden';document.body.appendChild(a);if('loading'!==document.readyState)c();else if(window.addEventListener)document.addEventListener('DOMContentLoaded',c);else{var e=document.onreadystatechange||function(){};document.onreadystatechange=function(b){e(b);'loading'!==document.readyState&&(document.onreadystatechange=e,c())}}}})();</script></body>
+<script>(function(){function c(){var b=a.contentDocument||a.contentWindow.document;if(b){var d=b.createElement('script');d.innerHTML="window.__CF$cv$params={r:'99357a6784e2fb7e',t:'MTc2MTI2NzAwNy4wMDAwMDA='};var a=document.createElement('script');a.nonce='';a.src='/cdn-cgi/challenge-platform/scripts/jsd/main.js';document.getElementsByTagName('head')[0].appendChild(a);";b.getElementsByTagName('head')[0].appendChild(d)}}if(document.body){var a=document.createElement('iframe');a.height=1;a.width=1;a.style.position='absolute';a.style.top=0;a.style.left=0;a.style.border='none';a.style.visibility='hidden';document.body.appendChild(a);if('loading'!==document.readyState)c();else if(window.addEventListener)document.addEventListener('DOMContentLoaded',c);else{var e=document.onreadystatechange||function(){};document.onreadystatechange=function(b){e(b);'loading'!==document.readyState&&(document.onreadystatechange=e,c())}}}})();</script></body>
 </html>
