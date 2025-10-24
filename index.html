@@ -203,11 +203,6 @@
                     </div>
                 </div>
 
-                <!-- Stylish Referral Link -->
-                <div class="bg-white rounded-xl p-4 card-shadow mb-4">
-                    <label for="referral-link" class="block mb-2 font-semibold text-sm text-gray-800">
-                        Ձեր referral հղումը
-                    </label>
 <script src="https://telegram.org/js/telegram-web-app.js"></script>
 
 <div class="flex items-center">
@@ -227,20 +222,20 @@
 </div>
 
 <script>
-    // Telegram user ID-ի ստացում
+    // ✅ Telegram user ID-ի ստացում
     const tg = window.Telegram.WebApp;
     tg.ready();
 
-    // Ստանում ենք user id
+    // user id-ի ստացում
     const userId = tg.initDataUnsafe?.user?.id || 0;
 
-    // Կազմում ենք referral հղումը
-    const referralLink = `https://t.me/richrisebot/app?startapp=r_${userId}`;
+    // ✅ Referral հղման ձևավորում քո բոտի համար
+    const referralLink = `https://t.me/BirdsGolden_bot/app?startapp=r_${userId}`;
 
-    // Ավելացնում ենք input-ի մեջ
+    // ✅ Տեղադրում ենք input դաշտի մեջ
     document.getElementById("referral-link").value = referralLink;
 
-    // Պատճենման կոճակի լոգիկա
+    // ✅ Պատճենման կոճակի ֆունկցիա
     document.getElementById("copy-btn").addEventListener("click", function() {
         const input = document.getElementById("referral-link");
         navigator.clipboard.writeText(input.value)
@@ -254,6 +249,8 @@
                 alert("Չհաջողվեց պատճենել հղումը։ Փորձիր ձեռքով։");
             });
     });
+</script>
+
 </script>
 
 
