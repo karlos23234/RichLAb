@@ -1752,139 +1752,188 @@
                     </div>
                 </div>
 
-                <!-- Withdraw Modal -->
-<div id="withdraw-modal" class="modal" style="display:none;">
-    <div class="modal-content">
-        <!-- Header -->
-        <div class="flex justify-between items-center mb-4">
-            <h3 class="text-lg font-bold">💸 Ելքագրել գումար</h3>
-            <button id="close-btn" class="text-gray-500 hover:text-gray-700 text-xl">✕</button>
-        </div>
-
-        <!-- Balance -->
-        <div class="bg-green-50 border border-green-200 rounded-lg p-4 mb-4 text-center">
-            <h4 class="font-semibold text-green-800 mb-1">Հասանելի մնացորդ</h4>
-            <div class="text-2xl font-bold text-green-600" id="withdraw-available-balance">֏8,000</div>
-        </div>
-
-        <!-- Withdrawal Methods -->
-        <div class="space-y-2">
-            <div class="withdraw-method" onclick="selectWithdrawMethod('dash')">✓ DASH - PRO 🚀</div>
-            <div class="withdraw-method" onclick="selectWithdrawMethod('easypay')">📱 EasyPay - Մոբայլ վճարում</div>
-            <div class="withdraw-method" onclick="selectWithdrawMethod('idram')">💜 Idram - Էլեկտրոնային դրամապանակ</div>
-            <div class="withdraw-method" onclick="selectWithdrawMethod('arca')">💳 ArCa - Հայկական քարտային համակարգ</div>
-            <div class="withdraw-method" onclick="selectWithdrawMethod('ameriabank')">🏦 ԱմերիաԲանկ</div>
-            <div class="withdraw-method" onclick="selectWithdrawMethod('ardshinbank')">🏛️ ԱրդշինԲանկ</div>
-            <div class="withdraw-method" onclick="selectWithdrawMethod('acba')">🏪 ԱԿԲԱ Բանկ</div>
-            <div class="withdraw-method" onclick="selectWithdrawMethod('converse')">🏢 Կոնվերս Բանկ</div>
-            <div class="withdraw-method" onclick="selectWithdrawMethod('btc')">₿ Bitcoin (BTC)</div>
-            <div class="withdraw-method" onclick="selectWithdrawMethod('usdt')">💚 USDT (TRC20)</div>
-        </div>
-
-        <!-- Amount Input -->
-        <div class="mt-4">
-            <label>Գումարը (֏)</label>
-            <input type="number" id="withdraw-amount" placeholder="Մուտքագրեք գումարը" min="125000" class="w-full p-2 border rounded-lg mt-1">
-        </div>
-
-        <!-- Idram Input Example -->
-        <div id="idram-details" style="display:none; margin-top:10px;">
-            <label>Հեռախոսահամար</label>
-            <input type="text" id="idram-phone" placeholder="+374-XX-XXX-XXX" class="w-full p-2 border rounded-lg mt-1">
-            <label class="mt-2">Անուն Ազգանուն</label>
-            <input type="text" id="idram-name" placeholder="Ձեր անունը" class="w-full p-2 border rounded-lg mt-1">
-        </div>
-
-        <!-- Withdraw Button -->
-        <button class="bg-blue-600 text-white w-full py-2 rounded-lg mt-4 hover:bg-blue-700 transition" onclick="withdrawMoney()">💰 Ելքագրել գումար</button>
-    </div>
-</div>
-
+                <!doctype html>
+<html lang="hy">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width,initial-scale=1" />
+<title>💰 Ելքագրում — Black & Gold</title>
 <style>
-.modal{
-    position: fixed;
-    inset: 0;
-    background: rgba(0,0,0,0.5);
-    display:flex;
+  :root{
+    --bg:#0a0a0a;
+    --card:#121212;
+    --accent:#FFD700;
+    --text:#fefefe;
+    --muted:#b3b3b3;
+  }
+  body{
+    font-family:Inter, ui-sans-serif, system-ui;
+    background:var(--bg);
+    color:var(--text);
+    margin:0;
+    padding:20px;
+  }
+  h1{color:var(--accent);margin-bottom:10px}
+  .btn{
+    background:var(--accent);
+    color:#000;
+    font-weight:700;
+    border:none;
+    border-radius:10px;
+    padding:10px 16px;
+    cursor:pointer;
+    box-shadow:0 0 10px rgba(255,215,0,0.5);
+    transition:transform .2s ease, box-shadow .2s ease;
+  }
+  .btn:hover{transform:scale(1.05);box-shadow:0 0 18px rgba(255,215,0,0.8)}
+  .btn.ghost{background:transparent;border:1px solid var(--accent);color:var(--accent)}
+  .modal{
+    position:fixed;inset:0;
+    background:rgba(0,0,0,0.7);
+    display:none;
     align-items:center;
     justify-content:center;
+    transition:opacity .3s ease;
     opacity:0;
-    pointer-events:none;
-    transition: opacity 0.3s ease;
-}
-.modal.show{
-    opacity:1;
-    pointer-events:auto;
-}
-.modal-content{
-    background:white;
-    border-radius:16px;
-    max-width:400px;
-    width:90%;
+  }
+  .modal.show{display:flex;opacity:1}
+  .panel{
+    background:var(--card);
+    border-radius:18px;
+    border:1px solid rgba(255,215,0,0.3);
+    box-shadow:0 0 25px rgba(255,215,0,0.15);
+    width:100%;
+    max-width:520px;
     padding:20px;
-    position: relative;
-    transform: translateY(-50px);
+    transform:translateY(-20px);
     opacity:0;
-    transition: transform 0.3s ease, opacity 0.3s ease;
-}
-.modal.show .modal-content{
-    transform: translateY(0);
-    opacity:1;
-}
-.withdraw-method{
-    padding:10px; 
-    border:1px solid #ddd; 
-    border-radius:8px;
-    cursor:pointer; 
-    transition: transform 0.2s, background 0.2s;
-}
-.withdraw-method:hover{
-    transform: scale(1.03);
-    background:#f0f0f0;
-}
+    transition:transform .35s ease, opacity .35s ease;
+  }
+  .modal.show .panel{transform:translateY(0);opacity:1}
+  .close{background:transparent;border:none;color:var(--accent);font-size:22px;cursor:pointer}
+  .balance{
+    background:linear-gradient(90deg,#1a1a1a,#2a2a2a);
+    border:1px solid rgba(255,215,0,0.3);
+    border-radius:12px;
+    padding:10px;
+    text-align:center;
+    margin-bottom:12px;
+  }
+  .balance .amt{color:var(--accent);font-size:20px;font-weight:700}
+  label{font-size:13px;color:var(--muted)}
+  .input{
+    width:100%;
+    padding:10px;
+    border-radius:10px;
+    background:#000;
+    border:1px solid rgba(255,215,0,0.3);
+    color:var(--accent);
+  }
+  .methods{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-top:10px}
+  .card{
+    background:#0f0f0f;
+    border:1px solid rgba(255,215,0,0.25);
+    padding:12px;
+    border-radius:12px;
+    cursor:pointer;
+    transition:all .25s ease;
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+    color:var(--text);
+  }
+  .card:hover{transform:translateY(-4px);box-shadow:0 0 15px rgba(255,215,0,0.4)}
+  .card.disabled{opacity:0.4;cursor:not-allowed;box-shadow:none;transform:none}
+  .card.active{border:1px solid var(--accent);box-shadow:0 0 12px rgba(255,215,0,0.7)}
+  .note{color:var(--muted);font-size:12px}
+  @keyframes glow {
+    0%{box-shadow:0 0 8px rgba(255,215,0,0.4)}
+    50%{box-shadow:0 0 20px rgba(255,215,0,1)}
+    100%{box-shadow:0 0 8px rgba(255,215,0,0.4)}
+  }
 </style>
+</head>
+<body>
+
+<h1>💎 Ելքագրել գումար</h1>
+<button class="btn" onclick="openModal()">Բացել Ելքագրման պատուհանը</button>
+<button class="btn ghost" onclick="activateDeposit()">Ակտիվացնել դիպոզիտ (simulate)</button>
+
+<div id="modal" class="modal">
+  <div class="panel">
+    <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:10px">
+      <div style="font-weight:700;color:var(--accent)">💰 Ելքագրում</div>
+      <button class="close" onclick="closeModal()">✕</button>
+    </div>
+
+    <div class="balance">
+      <div class="note">Հասանելի մնացորդ</div>
+      <div class="amt" id="balanceAmt">֏8,000</div>
+    </div>
+
+    <label>Գումարը (֏)</label>
+    <input id="amount" class="input" type="number" placeholder="Մուտքագրեք գումարը (նվազագույնը 125,000֏)">
+    <label style="margin-top:8px">Անուն Ազգանուն</label>
+    <input id="fullname" class="input" type="text" placeholder="Ձեր անունը և ազգանունը">
+    <label style="margin-top:8px">Հեռախոս/Wallet հասցե</label>
+    <input id="address" class="input" type="text" placeholder="+374 կամ wallet հասցե">
+
+    <p class="note" style="margin-top:10px">Ընտրեք ելքագրման եղանակը👇</p>
+    <div class="methods">
+      <div class="card disabled" data-method="Idram" onclick="selectMethod(this)">💜 Idram</div>
+      <div class="card disabled" data-method="EasyPay" onclick="selectMethod(this)">📱 EasyPay</div>
+      <div class="card disabled" data-method="ArCa" onclick="selectMethod(this)">💳 ArCa</div>
+      <div class="card disabled" data-method="USDT" onclick="selectMethod(this)">💚 USDT (TRC20)</div>
+      <div class="card disabled" data-method="BTC" onclick="selectMethod(this)">₿ Bitcoin</div>
+      <div class="card disabled" data-method="DASH" onclick="selectMethod(this)">🚀 DASH</div>
+    </div>
+
+    <button id="withdrawBtn" class="btn" style="width:100%;margin-top:14px" onclick="withdraw()">💰 Ելքագրել գումար</button>
+  </div>
+</div>
 
 <script>
-const modal = document.getElementById('withdraw-modal');
-document.getElementById('close-btn').addEventListener('click', closeWithdrawModal);
+let hasDeposit=false;
+let balance=8000;
+let selected=null;
+const modal=document.getElementById('modal');
+const balanceAmt=document.getElementById('balanceAmt');
 
-let hasDeposit = false; // Mock deposit state
-let selectedMethod = null;
-
-function openWithdrawModal(){
-    modal.classList.add('show');
+function formatAMD(n){return '֏'+Number(n).toLocaleString('en-US');}
+function openModal(){modal.classList.add('show');}
+function closeModal(){modal.classList.remove('show');}
+function activateDeposit(){
+  hasDeposit=true;
+  document.querySelectorAll('.card').forEach(c=>c.classList.remove('disabled'));
+  alert('Դիպոզիտը ակտիվացվեց✅ այժմ կարող եք ելքագրել։');
 }
-
-function closeWithdrawModal(){
-    modal.classList.remove('show');
-    setTimeout(()=> modal.style.display='none', 300);
-    setTimeout(()=> modal.style.display='flex', 10);
+function selectMethod(el){
+  if(el.classList.contains('disabled')){
+    alert('Դուք դեռ չեք կատարել 1x դիպոզիտ 💵');
+    return;
+  }
+  document.querySelectorAll('.card').forEach(c=>c.classList.remove('active'));
+  el.classList.add('active');
+  selected=el.dataset.method;
 }
+function withdraw(){
+  const amount=Number(document.getElementById('amount').value);
+  const name=document.getElementById('fullname').value.trim();
+  const addr=document.getElementById('address').value.trim();
 
-function selectWithdrawMethod(method){
-    selectedMethod = method;
-    document.getElementById('idram-details').style.display = (method==='idram') ? 'block' : 'none';
-}
+  if(!hasDeposit){alert('💡 Պետք է առնվազն մեկ դիպոզիտ կատարած լինեք։');return;}
+  if(amount<125000){alert('Նվազագույն ելքագրումը ֏125,000 է։');return;}
+  if(!name||!addr||!selected){alert('Լրացրեք բոլոր դաշտերը և ընտրեք եղանակ։');return;}
 
-function withdrawMoney(){
-    if(!hasDeposit){
-        alert('Դուք պետք է կատարել 1x deposit՝ ակտիվացնելու համար ելքագրումը։');
-        return;
-    }
-    let amount = document.getElementById('withdraw-amount').value;
-    if(amount<125000){
-        alert('Գումարը պետք է լինի 125,000 դրամից բարձր։');
-        return;
-    }
-    let methodInfo = '';
-    if(selectedMethod==='idram'){
-        let phone = document.getElementById('idram-phone').value;
-        let name = document.getElementById('idram-name').value;
-        methodInfo = `(${phone} - ${name})`;
-    }
-    alert(`Ելքագրում ${amount} դրամ, մեթոդ: ${selectedMethod} ${methodInfo}`);
+  alert(`✅ ${formatAMD(amount)} ուղարկվել է ${selected} հասցե ${addr}։\n(Դեմո ռեժիմ)`);
+  balance-=amount;
+  balanceAmt.textContent=formatAMD(balance);
+  if(balance<125000){hasDeposit=false;document.querySelectorAll('.card').forEach(c=>c.classList.add('disabled'));}
 }
 </script>
+</body>
+</html>
+
 
 
                 <!-- Amount Input -->
