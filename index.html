@@ -694,27 +694,78 @@
     </style>
 </head>
 <body class="bg-gray-50 min-h-full">
-    <!-- Login Screen -->
-    <div id="login-screen" class="fixed inset-0 bg-gradient-to-br from-blue-600 to-purple-700 flex items-center justify-center z-50">
-        <div class="text-center text-white p-8">
-            <div class="text-6xl mb-6">🚀</div>
-            <h1 class="text-3xl font-bold mb-4">RichLab</h1>
-            <p class="text-xl mb-8 opacity-90">Բացեք եկամտի հնարավորություններ</p>
-            
-            <div id="login-content">
-                <button onclick="loginWithTelegram()" class="bg-white text-blue-600 px-8 py-4 rounded-xl font-bold text-lg mb-4 w-full max-w-sm">
-                    <span class="mr-2">📱</span>
-                    Մուտք Telegram-ով
-                </button>
-                <p class="text-sm opacity-75">Անվտանգ և արագ մուտք</p>
-            </div>
-            
-            <div id="login-loading" class="hidden">
-                <div class="loading-spinner w-8 h-8 border-4 border-white border-t-transparent rounded-full mx-auto mb-4"></div>
-                <p class="text-lg">Մուտք գործում...</p>
-            </div>
-        </div>
-    </div>
+   <!DOCTYPE html>
+<html lang="hy">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>RichLab - Login</title>
+  <script src="https://telegram.org/js/telegram-web-app.js"></script>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <style>
+    body {
+      background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+      color: #fff;
+      text-align: center;
+      padding: 20px;
+    }
+    .login-box {
+      background: rgba(255, 255, 255, 0.1);
+      padding: 40px;
+      border-radius: 20px;
+      box-shadow: 0 10px 25px rgba(0,0,0,0.2);
+      max-width: 400px;
+      width: 100%;
+    }
+    button {
+      background: #fff;
+      color: #764ba2;
+      font-weight: bold;
+      padding: 12px 20px;
+      border-radius: 12px;
+      margin-top: 20px;
+      width: 100%;
+      cursor: pointer;
+      transition: 0.3s;
+    }
+    button:hover {
+      background: #f0f0f0;
+    }
+  </style>
+</head>
+<body>
+  <div class="login-box">
+    <h1 class="text-2xl font-bold mb-4">🚀 RichLab</h1>
+    <p class="mb-6">Բացեք եկամտի հնարավորություններ</p>
+
+    <button id="tg-login">📱 Մուտք Telegram-ով</button>
+    <p class="text-sm mt-4 opacity-90">Անվտանգ և արագ մուտք</p>
+  </div>
+
+  <script>
+    const tg = window.Telegram.WebApp;
+    tg.ready();
+
+    document.getElementById('tg-login').addEventListener('click', () => {
+      // Ստուգում է, արդյոք օգտվողը կարող է մուտք գործել Telegram WebApp-ի միջոցով
+      if(tg.initDataUnsafe?.user){
+        const user = tg.initDataUnsafe.user;
+        alert(`Բարև ${user.first_name}!
+ID: ${user.id}`);
+        // Այստեղ կարող ես ուղղարկել WebApp կամ referral էջ
+        window.location.href = 'referral.html';
+      } else {
+        alert('Խնդրում ենք բացել այս էջը Telegram հավելվածից');
+      }
+    });
+  </script>
+</body>
+</html>
 
     <!-- Mobile Header -->
     <header class="gradient-bg text-white py-4 sticky top-0 z-40">
