@@ -1730,95 +1730,124 @@
             </div>
         </div>
     </div>
-<!-- Withdraw Modal -->
-<div id="withdraw-modal" class="fixed inset-0 bg-black/50 flex items-center justify-center z-50 p-4" style="display: none;">
-    <div class="bg-white rounded-2xl max-w-lg w-full p-4 overflow-y-auto">
-        <!-- Header -->
-        <div class="flex items-center justify-between mb-4">
-            <h3 class="text-lg font-bold">Ելքագրել գումար</h3>
-            <button onclick="closeWithdrawModal()" class="text-gray-500 hover:text-gray-700 text-xl">✕</button>
+<!DOCTYPE html>
+<html lang="hy">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Ելքագրել գումար</title>
+<style>
+body { font-family: Arial, sans-serif; background:#f3f4f6; margin:0; padding:20px; }
+button { cursor:pointer; transition:all 0.3s; }
+.modal { display:none; position:fixed; inset:0; background:rgba(0,0,0,0.5); justify-content:center; align-items:center; z-index:50;}
+.modal-content { background:#fff; border-radius:16px; padding:20px; max-width:500px; width:100%; max-height:90%; overflow-y:auto; position:relative;}
+.close-btn {position:absolute; right:15px; top:10px; cursor:pointer; font-size:1.5em; color:#555;}
+.input-group {margin-bottom:10px;}
+input {width:100%; padding:8px; border:1px solid #ccc; border-radius:8px;}
+.withdraw-method {border:2px solid #ccc; border-radius:12px; padding:15px; display:flex; align-items:center; justify-content:space-between; transition:all 0.3s; position:relative;}
+.withdraw-method.disabled {opacity:0.4; cursor:not-allowed;}
+.withdraw-method:hover:not(.disabled) {box-shadow:0 0 15px rgba(0,0,0,0.2);}
+.animate-pulse {animation:pulse 1.5s infinite;}
+@keyframes pulse {0%,100% {transform:scale(1);} 50% {transform:scale(1.05);}}
+.gradient-bg {background:linear-gradient(90deg,#4ade80,#22c55e); color:white; padding:5px 10px; border-radius:8px; font-size:0.8em; font-weight:bold;}
+</style>
+</head>
+<body>
+
+<h2>Ելքագրել գումար</h2>
+<div>Հասանելի մնացորդ: <span id="balance">֏8,000</span></div>
+<button onclick="openWithdrawModal()" style="margin:10px 0;padding:10px 20px;background:#4ade80;color:white;border:none;border-radius:8px;">Ելքագրում</button>
+
+<div class="modal" id="withdraw-modal">
+    <div class="modal-content">
+        <span class="close-btn" onclick="closeWithdrawModal()">✕</span>
+        <h3>Ելքագրել գումար</h3>
+
+        <!-- Deposit Section -->
+        <div id="deposit-section">
+            <p>Դեպոզիտ կատարելու համար սեղմեք ստորև:</p>
+            <button onclick="makeDeposit()" style="padding:8px 15px;background:#22d3ee;color:white;border:none;border-radius:8px;">Կատարել 1x դիպոզիտ</button>
         </div>
 
-        <!-- Available Balance -->
-        <div class="bg-green-50 border border-green-200 rounded-lg p-4 mb-6 text-center">
-            <h4 class="font-semibold text-green-800 mb-1">Հասանելի մնացորդ</h4>
-            <div class="text-2xl font-bold text-green-600" id="withdraw-available-balance">֏0</div>
+        <!-- Withdraw Section -->
+        <div id="withdraw-section" style="display:none; margin-top:15px;">
+            <div class="input-group">
+                <label>Գումարը (֏) <small>Նվազագույնը 125,000</small></label>
+                <input type="number" id="withdraw-amount" placeholder="Մուտքագրեք գումարը">
+            </div>
+
+            <div class="input-group">
+                <label>Անուն Ազգանուն</label>
+                <input type="text" id="full-name" placeholder="Ձեր անունը">
+            </div>
+
+            <div class="input-group">
+                <label>Հեռախոսահամար / Wallet հասցե</label>
+                <input type="text" id="wallet-address" placeholder="+374-XX-XXX-XXX կամ wallet հասցե">
+            </div>
+
+            <h4>Ընտրեք ելքագրման եղանակը</h4>
+            <div id="methods" style="display:flex; flex-direction:column; gap:10px; margin-top:5px;">
+                <div class="withdraw-method disabled" data-method="dash" onclick="selectMethod(this)">DASH <span class="gradient-bg">PRO</span></div>
+                <div class="withdraw-method disabled" data-method="easypay" onclick="selectMethod(this)">EasyPay 📱</div>
+                <div class="withdraw-method disabled" data-method="idram" onclick="selectMethod(this)">Idram 💜</div>
+                <div class="withdraw-method disabled" data-method="arca" onclick="selectMethod(this)">ArCa 💳</div>
+                <div class="withdraw-method disabled" data-method="ameriabank" onclick="selectMethod(this)">ԱմերիաԲանկ 🏦</div>
+                <div class="withdraw-method disabled" data-method="ardshinbank" onclick="selectMethod(this)">ԱրդշինԲանկ 🏛️</div>
+                <div class="withdraw-method disabled" data-method="acba" onclick="selectMethod(this)">ԱԿԲԱ Բանկ 🏪</div>
+                <div class="withdraw-method disabled" data-method="converse" onclick="selectMethod(this)">Կոնվերս Բանկ 🏢</div>
+                <div class="withdraw-method disabled" data-method="btc" onclick="selectMethod(this)">Bitcoin ₿</div>
+                <div class="withdraw-method disabled" data-method="usdt" onclick="selectMethod(this)">USDT TRC20 💚</div>
+            </div>
+
+            <button onclick="submitWithdraw()" style="padding:10px 20px;background:#4ade80;color:white;border:none;border-radius:8px;margin-top:15px;">Ելքագրել գումար</button>
         </div>
-<!-- Withdraw Modal -->
-<div id="withdraw-modal" class="fixed inset-0 bg-black/50 flex items-center justify-center z-50 p-4" style="display:none;">
-  <div class="bg-white rounded-2xl w-full max-w-md p-4 overflow-y-auto">
-    
-    <!-- Header -->
-    <div class="flex items-center justify-between mb-4">
-      <h3 class="text-lg font-bold">Ելքագրել գումար</h3>
-      <button onclick="closeWithdrawModal()" class="text-gray-500 hover:text-gray-700 text-xl">✕</button>
     </div>
+</div>
 
-    <!-- Balance -->
-    <div class="bg-green-50 border border-green-200 rounded-lg p-4 mb-4 text-center">
-      <h4 class="font-semibold text-green-800 mb-1">Հասանելի մնացորդ</h4>
-      <div class="text-2xl font-bold text-green-600" id="withdraw-available-balance">֏0</div>
-    </div>
+<script>
+let hasDeposit = false;
+let selectedMethod = null;
 
-    <!-- Amount Input -->
-    <div class="mb-4">
-      <label class="block font-semibold text-gray-700 mb-1">Գումարը (֏)</label>
-      <input type="number" id="withdraw-amount" placeholder="Մուտքագրեք գումարը" class="w-full p-3 border rounded-lg" min="125000">
-      <p class="text-sm text-gray-500 mt-1">Նվազագույնը ֏125,000</p>
-    </div>
+function openWithdrawModal() { document.getElementById('withdraw-modal').style.display='flex'; }
+function closeWithdrawModal() { document.getElementById('withdraw-modal').style.display='none'; }
 
-    <!-- Full Name Input -->
-    <div class="mb-4">
-      <label class="block font-semibold text-gray-700 mb-1">Անուն և Ազգանուն</label>
-      <input type="text" id="withdraw-fullname" placeholder="Մուտքագրեք Ձեր անունը և ազգանունը" class="w-full p-3 border rounded-lg">
-    </div>
+function makeDeposit(){
+    hasDeposit = true;
+    document.getElementById('deposit-section').style.display='none';
+    document.getElementById('withdraw-section').style.display='block';
+    document.querySelectorAll('.withdraw-method').forEach(card=>{
+        card.classList.remove('disabled');
+        card.classList.add('animate-pulse');
+        setTimeout(()=>{card.classList.remove('animate-pulse');},1500);
+    });
+    alert('Դեպոզիտը կատարված է։ Հիմա կարող եք ելքագրել գումար։');
+}
 
-    <!-- Withdrawal Methods -->
-    <div class="space-y-3">
+function selectMethod(elem){
+    if(!hasDeposit){ alert('Կատարեք դիպոզիտը նախքան ընտրությունը'); return; }
+    document.querySelectorAll('.withdraw-method').forEach(card=>card.style.borderColor='#ccc');
+    elem.style.borderColor='#22d3ee';
+    selectedMethod = elem.dataset.method;
+}
 
-      <!-- DASH -->
-      <div class="withdraw-method p-4 border rounded-xl cursor-pointer hover:shadow-lg transition" onclick="selectWithdrawMethod('dash')">
-        <div class="font-bold mb-1">DASH Wallet հասցե</div>
-        <input type="text" id="dash-wallet" placeholder="Մուտքագրեք Ձեր DASH wallet հասցեն" class="w-full p-3 border rounded-lg">
-      </div>
+function submitWithdraw(){
+    const amount = parseInt(document.getElementById('withdraw-amount').value);
+    const name = document.getElementById('full-name').value.trim();
+    const wallet = document.getElementById('wallet-address').value.trim();
 
-      <!-- EasyPay -->
-      <div class="withdraw-method p-4 border rounded-xl cursor-pointer hover:shadow-lg transition" onclick="selectWithdrawMethod('easypay')">
-        <div class="font-bold mb-1">EasyPay Հեռախոսահամար</div>
-        <input type="text" id="easypay-number" placeholder="+374XXXXXXXX" class="w-full p-3 border rounded-lg">
-      </div>
+    if(!hasDeposit){ alert('Դուք դեռ չունեք դիպոզիտ։'); return; }
+    if(!amount || amount < 125000){ alert('Գումարը պետք է լինի 125,000֏ կամ ավելին'); return; }
+    if(!name || !wallet || !selectedMethod){ alert('Լրացրեք բոլոր դաշտերը և ընտրեք մեթոդը'); return; }
 
-      <!-- Idram -->
-      <div class="withdraw-method p-4 border rounded-xl cursor-pointer hover:shadow-lg transition" onclick="selectWithdrawMethod('idram')">
-        <div class="font-bold mb-1">Idram Հաշիվ</div>
-        <input type="text" id="idram-account" placeholder="Մուտքագրեք Idram հաշիվ" class="w-full p-3 border rounded-lg">
-      </div>
+    alert(`Գումարը ${amount}֏, ${name}, ${selectedMethod}, հասցե՝ ${wallet} ուղարկվեց։`);
+    closeWithdrawModal();
+}
+</script>
 
-      <!-- ArCa -->
-      <div class="withdraw-method p-4 border rounded-xl cursor-pointer hover:shadow-lg transition" onclick="selectWithdrawMethod('arca')">
-        <div class="font-bold mb-1">ArCa քարտ</div>
-        <input type="text" id="arca-card" placeholder="Մուտքագրեք ArCa քարտի համարը" class="w-full p-3 border rounded-lg">
-      </div>
+</body>
+</html>
 
-      <!-- Bank Transfers -->
-      <div class="withdraw-method p-4 border rounded-xl cursor-pointer hover:shadow-lg transition" onclick="selectWithdrawMethod('bank')">
-        <div class="font-bold mb-1">Բանկային քարտ կամ IBAN</div>
-        <input type="text" id="bank-card" placeholder="Մուտքագրեք բանկային քարտ կամ IBAN" class="w-full p-3 border rounded-lg">
-      </div>
-
-      <!-- Bitcoin -->
-      <div class="withdraw-method p-4 border rounded-xl cursor-pointer hover:shadow-lg transition" onclick="selectWithdrawMethod('btc')">
-        <div class="font-bold mb-1">Bitcoin Wallet</div>
-        <input type="text" id="btc-wallet" placeholder="Մուտքագրեք BTC wallet հասցեն" class="w-full p-3 border rounded-lg">
-      </div>
-
-      <!-- USDT -->
-      <div class="withdraw-method p-4 border rounded-xl cursor-pointer hover:shadow-lg transition" onclick="selectWithdrawMethod('usdt')">
-        <div class="font-bold mb-1">USDT Wallet (TRC20)</div>
-        <input type="text" id="usdt-wallet" placeholder="Մուտքագրեք USDT wallet հասցեն" class="w-full p-3 border rounded-lg">
-      </div>
-
-    </div>
 
     <!-- Submit Button -->
     <button onclick="submitWithdraw()" class="w-full bg-blue-600 text-white font-bold py-3 rounded-lg hover:bg-blue-700 mt-4 transition">
