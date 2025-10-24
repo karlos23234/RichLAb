@@ -208,24 +208,54 @@
                     <label for="referral-link" class="block mb-2 font-semibold text-sm text-gray-800">
                         Ձեր referral հղումը
                     </label>
+<script src="https://telegram.org/js/telegram-web-app.js"></script>
 
-                    <div class="flex items-center">
-                        <input 
-                            id="referral-link"
-                            type="text"
-                            value="https://t.me/richrisebot/app?startapp=r_6861066892"
-                            readonly
-                            class="flex-1 p-3 border border-gray-300 rounded-l-lg text-sm transition-colors focus:outline-none"
-                        >
-                        <button id="copy-btn" class="px-4 py-3 border-none bg-black text-white font-semibold rounded-r-lg cursor-pointer transition-all hover:bg-gray-800 active:scale-95">
-                            Պատճենել
-                        </button>
-                    </div>
+<div class="flex items-center">
+    <input 
+        id="referral-link"
+        type="text"
+        readonly
+        class="flex-1 p-3 border border-gray-300 rounded-l-lg text-sm transition-colors focus:outline-none"
+    >
+    <button id="copy-btn" class="px-4 py-3 border-none bg-black text-white font-semibold rounded-r-lg cursor-pointer transition-all hover:bg-gray-800 active:scale-95">
+        Պատճենել
+    </button>
+</div>
 
-                    <div id="copy-toast" class="mt-2 text-sm text-green-600 opacity-0 transition-opacity duration-400">
-                        Հղումը պատճենվեց clipboard-ին։
-                    </div>
-                </div>
+<div id="copy-toast" class="mt-2 text-sm text-green-600 opacity-0 transition-opacity duration-400">
+    Հղումը պատճենվեց clipboard-ին։
+</div>
+
+<script>
+    // Telegram user ID-ի ստացում
+    const tg = window.Telegram.WebApp;
+    tg.ready();
+
+    // Ստանում ենք user id
+    const userId = tg.initDataUnsafe?.user?.id || 0;
+
+    // Կազմում ենք referral հղումը
+    const referralLink = `https://t.me/richrisebot/app?startapp=r_${userId}`;
+
+    // Ավելացնում ենք input-ի մեջ
+    document.getElementById("referral-link").value = referralLink;
+
+    // Պատճենման կոճակի լոգիկա
+    document.getElementById("copy-btn").addEventListener("click", function() {
+        const input = document.getElementById("referral-link");
+        navigator.clipboard.writeText(input.value)
+            .then(() => {
+                const toast = document.getElementById("copy-toast");
+                toast.style.opacity = "1";
+                toast.textContent = "Հղումը պատճենվեց clipboard-ին ✅";
+                setTimeout(() => toast.style.opacity = "0", 2000);
+            })
+            .catch(() => {
+                alert("Չհաջողվեց պատճենել հղումը։ Փորձիր ձեռքով։");
+            });
+    });
+</script>
+
 
                 <!-- Earning Potential -->
                 <div class="invite-card rounded-xl p-4 text-white mb-4">
