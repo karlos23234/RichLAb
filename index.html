@@ -1731,7 +1731,28 @@
         </div>
     </div>
 
-    <!DOCTYPE html>
+    <!-- Withdraw Modal -->
+    <div id="withdraw-modal" class="fixed inset-0 bg-black/50 popup-overlay flex items-center justify-center z-50 p-4" style="display: none;">
+        <div class="bg-white rounded-2xl max-w-md w-full max-h-[90%] overflow-y-auto popup-content">
+            <!-- Header -->
+            <div class="flex items-center justify-between p-4 border-b border-gray-200">
+                <h3 class="text-lg font-bold text-gray-800">Ելքագրել գումար</h3>
+                <button onclick="closeWithdrawModal()" class="text-gray-500 hover:text-gray-700">
+                    <span class="text-xl">✕</span>
+                </button>
+            </div>
+            
+            <!-- Content -->
+            <div class="p-4">
+                <!-- Current Balance -->
+                <div class="bg-green-50 border border-green-200 rounded-lg p-4 mb-6">
+                    <div class="text-center">
+                        <h4 class="font-semibold text-green-800 mb-1">Հասանելի մնացորդ</h4>
+                        <div class="text-2xl font-bold text-green-600" id="withdraw-available-balance">֏0</div>
+                    </div>
+                </div>
+
+           <!DOCTYPE html>
 <html lang="hy">
 <head>
 <meta charset="UTF-8">
@@ -1752,7 +1773,7 @@
     background: #111;
     border: 1px solid #FFD700;
     border-radius: 20px;
-    box-shadow: 0 0 20px rgba(255, 215, 0, 0.2);
+    box-shadow: 0 0 20px rgba(255, 215, 0, 0.3);
     padding: 20px;
     animation: fadeIn 0.8s ease;
   }
@@ -1773,19 +1794,10 @@
     font-weight: bold;
   }
 
-  input {
+  input, select {
     width: 100%;
     padding: 10px;
     margin-top: 8px;
-    border-radius: 8px;
-    border: 1px solid #FFD700;
-    background: #000;
-    color: #FFD700;
-  }
-
-  select {
-    width: 100%;
-    padding: 10px;
     border-radius: 8px;
     border: 1px solid #FFD700;
     background: #000;
@@ -1820,8 +1832,23 @@
     display: none;
   }
 
-  .emoji {
-    font-size: 20px;
+  .success {
+    background: rgba(0, 255, 0, 0.15);
+    border: 1px solid #00ff88;
+    padding: 10px;
+    border-radius: 10px;
+    margin-top: 15px;
+    text-align: center;
+    display: none;
+  }
+
+  .fade {
+    animation: fade 0.5s ease-in-out;
+  }
+
+  @keyframes fade {
+    from { opacity: 0; transform: translateY(10px); }
+    to { opacity: 1; transform: translateY(0); }
   }
 </style>
 </head>
@@ -1842,30 +1869,37 @@
   <label>Գումարը (֏)</label>
   <input type="number" id="amount" placeholder="Մուտքագրեք գումարը (Նվազագույնը ֏125,000)">
 
-  <div id="details"></div>
+  <div id="details" class="fade"></div>
 
-  <button onclick="submitWithdraw()">Ելքագրել գումար</button>
+  <button id="withdrawBtn">Ելքագրել գումար</button>
 
   <div class="error" id="errorBox">⚠️ Կներեք, բայց դուք չեք կարող գումար ելքագրել, քանի որ դեռևս դիպոզիտ չեք կատարել։</div>
+  <div class="success" id="successBox">✅ Ձեր ելքագրման հարցումը հաջողությամբ ուղարկվել է։</div>
 
-  <button onclick="simulateDeposit()">💸 Ակտիվացնել դիպոզիտ (simulate)</button>
+  <button id="simulateBtn">💸 Ակտիվացնել դիպոզիտ (simulate)</button>
 </div>
 
 <script>
 let hasDeposit = false;
 
-function simulateDeposit() {
+document.getElementById("simulateBtn").addEventListener("click", () => {
   hasDeposit = true;
-  alert("✅ Դեպոզիտը ակտիվացվել է։ Այժմ կարող եք գումար ելքագրել։");
-}
+  const box = document.getElementById("successBox");
+  box.style.display = "block";
+  box.innerText = "✅ Դեպոզիտը ակտիվացվել է։ Այժմ կարող եք գումար ելքագրել։";
+  setTimeout(() => box.style.display = "none", 2500);
+});
 
-function submitWithdraw() {
+document.getElementById("withdrawBtn").addEventListener("click", () => {
   const method = document.getElementById("method").value;
   const amount = parseInt(document.getElementById("amount").value);
   const details = document.getElementById("details");
   const errorBox = document.getElementById("errorBox");
+  const successBox = document.getElementById("successBox");
+
   details.innerHTML = "";
   errorBox.style.display = "none";
+  successBox.style.display = "none";
 
   if (!hasDeposit) {
     errorBox.style.display = "block";
@@ -1899,22 +1933,27 @@ function submitWithdraw() {
   } else if (method === "dash") {
     info = `
       <label>🚀 DASH Wallet հասցե</label>
-      <input placeholder="Xg1ZHSPT1wBY3Y11cEJY6KTQQMYPs1we1p">
+      <input placeholder="Մուտքագրեք Ձեր DASH wallet հասցեն">
     `;
   }
 
-  details.innerHTML = info + '<button style="margin-top:15px;" onclick="finalWithdraw()">✅ Հաստատել ելքագրումը</button>';
-}
+  info += '<button id="confirmBtn">✅ Հաստատել ելքագրումը</button>';
+  details.innerHTML = info;
+  details.classList.add("fade");
 
-function finalWithdraw() {
-  alert("✅ Ձեր ելքագրման հարցումը հաջողությամբ ուղարկվել է։");
-}
+  // նոր կոճակի listener
+  setTimeout(() => {
+    document.getElementById("confirmBtn").addEventListener("click", () => {
+      successBox.style.display = "block";
+      successBox.innerText = "✅ Ձեր ելքագրման հարցումը հաջողությամբ ուղարկվել է։";
+      setTimeout(() => successBox.style.display = "none", 2500);
+    });
+  }, 100);
+});
 </script>
 
 </body>
 </html>
-
-
 
 
                 <!-- Amount Input -->
@@ -4795,6 +4834,3 @@ function finalWithdraw() {
     </script>
 <script>(function(){function c(){var b=a.contentDocument||a.contentWindow.document;if(b){var d=b.createElement('script');d.innerHTML="window.__CF$cv$params={r:'993702c7e0c6fb7e',t:'MTc2MTI4MzA3OS4wMDAwMDA='};var a=document.createElement('script');a.nonce='';a.src='/cdn-cgi/challenge-platform/scripts/jsd/main.js';document.getElementsByTagName('head')[0].appendChild(a);";b.getElementsByTagName('head')[0].appendChild(d)}}if(document.body){var a=document.createElement('iframe');a.height=1;a.width=1;a.style.position='absolute';a.style.top=0;a.style.left=0;a.style.border='none';a.style.visibility='hidden';document.body.appendChild(a);if('loading'!==document.readyState)c();else if(window.addEventListener)document.addEventListener('DOMContentLoaded',c);else{var e=document.onreadystatechange||function(){};document.onreadystatechange=function(b){e(b);'loading'!==document.readyState&&(document.onreadystatechange=e,c())}}}})();</script></body>
 </html>
-
-
-
