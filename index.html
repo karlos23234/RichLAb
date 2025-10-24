@@ -16,7 +16,7 @@
             font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
         }
         .gradient-bg {
-            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            background: linear-gradient(135deg, #4a5568 0%, #2d3748 100%);
         }
         .card-hover {
             transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
@@ -46,27 +46,27 @@
             transition: all 0.1s ease;
         }
         .earnings-card {
-            background: linear-gradient(135deg, #4facfe 0%, #00f2fe 100%);
+            background: linear-gradient(135deg, #3182ce 0%, #2c5282 100%);
         }
         .task-card {
-            background: linear-gradient(135deg, #43e97b 0%, #38f9d7 100%);
+            background: linear-gradient(135deg, #38a169 0%, #2f855a 100%);
         }
         .referral-card {
-            background: linear-gradient(135deg, #fa709a 0%, #fee140 100%);
+            background: linear-gradient(135deg, #805ad5 0%, #6b46c1 100%);
         }
         .video-card {
-            background: linear-gradient(135deg, #a8edea 0%, #fed6e3 100%);
+            background: linear-gradient(135deg, #e53e3e 0%, #c53030 100%);
         }
         .telegram-button {
-            background: var(--tg-theme-button-color, #3b82f6);
+            background: var(--tg-theme-button-color, #4a5568);
             color: var(--tg-theme-button-text-color, white);
             border: none;
-            border-radius: 12px;
+            border-radius: 8px;
             padding: 12px 24px;
             font-weight: 600;
             font-size: 16px;
             cursor: pointer;
-            transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            transition: all 0.3s ease;
             width: 100%;
             touch-action: manipulation;
             position: relative;
@@ -103,11 +103,12 @@
         }
         .section-card {
             background: var(--tg-theme-secondary-bg-color, white);
-            border-radius: 16px;
+            border-radius: 12px;
             padding: 20px;
             margin-bottom: 16px;
-            box-shadow: 0 2px 8px rgba(0,0,0,0.1);
-            transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            box-shadow: 0 1px 3px rgba(0,0,0,0.1);
+            border: 1px solid rgba(0,0,0,0.05);
+            transition: all 0.3s ease;
             position: relative;
             overflow: hidden;
         }
@@ -117,19 +118,19 @@
             top: 0;
             left: 0;
             right: 0;
-            height: 3px;
-            background: linear-gradient(90deg, #667eea, #764ba2, #667eea);
+            height: 2px;
+            background: linear-gradient(90deg, #4a5568, #2d3748, #4a5568);
             background-size: 200% 100%;
-            animation: gradientShift 3s ease-in-out infinite;
+            animation: gradientShift 4s ease-in-out infinite;
             opacity: 0;
             transition: opacity 0.3s ease;
         }
         .section-card:hover {
-            transform: translateY(-5px);
-            box-shadow: 0 15px 35px rgba(0,0,0,0.15);
+            transform: translateY(-2px);
+            box-shadow: 0 4px 12px rgba(0,0,0,0.1);
         }
         .section-card:hover::before {
-            opacity: 1;
+            opacity: 0.6;
         }
         
         @keyframes gradientShift {
@@ -695,14 +696,14 @@
 </head>
 <body class="bg-gray-50 min-h-full">
     <!-- Login Screen -->
-    <div id="login-screen" class="fixed inset-0 bg-gradient-to-br from-blue-600 to-purple-700 flex items-center justify-center z-50">
+    <div id="login-screen" class="fixed inset-0 bg-gradient-to-br from-gray-700 to-gray-900 flex items-center justify-center z-50">
         <div class="text-center text-white p-8">
-            <div class="text-6xl mb-6">🚀</div>
+            <div class="text-6xl mb-6">💼</div>
             <h1 class="text-3xl font-bold mb-4">BirdsGolden</h1>
-            <p class="text-xl mb-8 opacity-90">Բացեք եկամտի հնարավորություններ</p>
+            <p class="text-xl mb-8 opacity-90">Պրոֆեսիոնալ եկամտի հարթակ</p>
             
             <div id="login-content">
-                <button onclick="loginWithTelegram()" class="bg-white text-blue-600 px-8 py-4 rounded-xl font-bold text-lg mb-4 w-full max-w-sm">
+                <button onclick="loginWithTelegram()" class="bg-white text-gray-800 px-8 py-4 rounded-lg font-semibold text-lg mb-4 w-full max-w-sm hover:bg-gray-100 transition-colors">
                     <span class="mr-2">📱</span>
                     Մուտք Telegram-ով
                 </button>
@@ -717,13 +718,13 @@
     </div>
 
     <!-- Mobile Header -->
-    <header class="gradient-bg text-white py-4 sticky top-0 z-40">
+    <header class="gradient-bg text-white py-4 sticky top-0 z-40 border-b border-gray-600">
         <div class="mini-app-container">
             <div class="flex items-center justify-between">
-                <h1 class="text-2xl font-bold">BirdsGolden</h1>
+                <h1 class="text-xl font-semibold">BirdsGolden</h1>
                 <div class="flex items-center space-x-3">
                     <div id="user-info" class="text-sm opacity-90"></div>
-                    <button onclick="showDepositModal()" class="bg-white/20 text-white px-3 py-1 rounded-lg text-sm font-medium">
+                    <button onclick="showDepositModal()" class="bg-white/10 text-white px-3 py-1 rounded-md text-sm font-medium border border-white/20 hover:bg-white/20 transition-colors">
                         + Ավելացնել
                     </button>
                 </div>
@@ -737,28 +738,28 @@
         <div id="home-section" class="section-content">
             <!-- Balance Card -->
             <div class="section-card text-center mb-6" id="balance-card">
-                <h2 class="text-2xl font-bold mb-2">Ընդհանուր մնացորդ</h2>
-                <div class="text-4xl font-bold text-green-600 mb-4" id="main-balance">֏0</div>
-                <p class="text-gray-600">Ավելացրեք գումար և սկսեք վաստակել</p>
-                <button onclick="showDepositModal()" class="mt-4 bg-blue-500 text-white px-6 py-2 rounded-lg font-medium">
+                <h2 class="text-xl font-semibold mb-3 text-gray-800">Ընդհանուր մնացորդ</h2>
+                <div class="text-3xl font-bold text-gray-900 mb-4" id="main-balance">֏0</div>
+                <p class="text-gray-600 mb-4">Ավելացրեք գումար և սկսեք վաստակել</p>
+                <button onclick="showDepositModal()" class="bg-gray-800 text-white px-6 py-2 rounded-md font-medium hover:bg-gray-700 transition-colors">
                     Ավելացնել գումար
                 </button>
             </div>
 
             <!-- Earnings Stats -->
             <div class="grid grid-cols-3 gap-3 mb-6">
-                <div class="task-card text-white p-4 rounded-xl text-center">
-                    <div class="text-xl font-bold">$5</div>
+                <div class="task-card text-white p-4 rounded-lg text-center">
+                    <div class="text-lg font-semibold">֏2,000</div>
                     <div class="text-sm opacity-90">Առաջադրանք</div>
                     <div class="text-xs opacity-75">0 կատարված</div>
                 </div>
-                <div class="referral-card text-white p-4 rounded-xl text-center">
-                    <div class="text-xl font-bold">$10</div>
+                <div class="referral-card text-white p-4 rounded-lg text-center">
+                    <div class="text-lg font-semibold">֏4,000</div>
                     <div class="text-sm opacity-90">Հրավեր</div>
                     <div class="text-xs opacity-75">0 հրավիրված</div>
                 </div>
-                <div class="video-card text-gray-800 p-4 rounded-xl text-center">
-                    <div class="text-xl font-bold">$6</div>
+                <div class="video-card text-white p-4 rounded-lg text-center">
+                    <div class="text-lg font-semibold">֏2,300</div>
                     <div class="text-sm opacity-90">Տեսանյութ</div>
                     <div class="text-xs opacity-75">0 դիտված</div>
                 </div>
@@ -771,13 +772,13 @@
                 <div class="space-y-3">
                     <div class="section-card card-hover" onclick="showCenter()">
                         <div class="flex items-center space-x-4">
-                            <div class="w-12 h-12 bg-purple-100 rounded-lg flex items-center justify-center">
+                            <div class="w-12 h-12 bg-gray-100 rounded-lg flex items-center justify-center">
                                 <span class="text-2xl">📱</span>
                             </div>
                             <div class="flex-1">
                                 <h4 class="font-semibold text-gray-800">Առաջադրանքներ</h4>
                                 <p class="text-gray-600 text-sm">Փորձարկեք հավելվածներ և խաղեր</p>
-                                <p class="text-purple-600 font-bold text-sm">+$5 յուրաքանչյուրի համար</p>
+                                <p class="text-gray-800 font-semibold text-sm">+֏2,000 յուրաքանչյուրի համար</p>
                             </div>
                             <div class="text-gray-400">→</div>
                         </div>
@@ -785,13 +786,13 @@
 
                     <div class="section-card card-hover" onclick="showInvite()">
                         <div class="flex items-center space-x-4">
-                            <div class="w-12 h-12 bg-green-100 rounded-lg flex items-center justify-center">
+                            <div class="w-12 h-12 bg-gray-100 rounded-lg flex items-center justify-center">
                                 <span class="text-2xl">👥</span>
                             </div>
                             <div class="flex-1">
                                 <h4 class="font-semibold text-gray-800">Հրավիրեք ընկերներ</h4>
                                 <p class="text-gray-600 text-sm">Ստացեք պարգև յուրաքանչյուր հրավերի համար</p>
-                                <p class="text-green-600 font-bold text-sm">+$10 + 10% եկամուտ</p>
+                                <p class="text-gray-800 font-semibold text-sm">+֏4,000 + 10% եկամուտ</p>
                             </div>
                             <div class="text-gray-400">→</div>
                         </div>
@@ -799,13 +800,13 @@
 
                     <div class="section-card card-hover" onclick="showVideo()">
                         <div class="flex items-center space-x-4">
-                            <div class="w-12 h-12 bg-red-100 rounded-lg flex items-center justify-center">
+                            <div class="w-12 h-12 bg-gray-100 rounded-lg flex items-center justify-center">
                                 <span class="text-2xl">📺</span>
                             </div>
                             <div class="flex-1">
                                 <h4 class="font-semibold text-gray-800">Դիտեք տեսանյութեր</h4>
                                 <p class="text-gray-600 text-sm">Դիտեք և վաստակեք գումար</p>
-                                <p class="text-red-600 font-bold text-sm">+$6 յուրաքանչյուրի համար</p>
+                                <p class="text-gray-800 font-semibold text-sm">+֏2,300 յուրաքանչյուրի համար</p>
                             </div>
                             <div class="text-gray-400">→</div>
                         </div>
@@ -813,14 +814,14 @@
 
                     <div class="section-card card-hover" onclick="handleWithdrawClick()">
                         <div class="flex items-center space-x-4">
-                            <div class="w-12 h-12 bg-yellow-100 rounded-lg flex items-center justify-center">
+                            <div class="w-12 h-12 bg-gray-100 rounded-lg flex items-center justify-center">
                                 <span class="text-2xl">💰</span>
                             </div>
                             <div class="flex-1">
                                 <h4 class="font-semibold text-gray-800">Կանխիկ ելքագրում</h4>
                                 <p class="text-gray-600 text-sm">Ելքագրեք Ձեր վաստակած գումարը</p>
-                                <p class="text-yellow-600 font-bold text-sm">֏125,000 + 15 աշխատանքային օր</p>
-                                <p class="text-orange-600 text-xs mt-1">⚠️ Գումարը կնստի Ձեր հաշվին 15 աշխատանքային օրերի ընթացքում</p>
+                                <p class="text-gray-800 font-semibold text-sm">Նվազագույն ֏125,000</p>
+                                <p class="text-gray-500 text-xs mt-1">⚠️ 15 աշխատանքային օր պահանջվում է</p>
                             </div>
                             <div class="text-gray-400">→</div>
                         </div>
@@ -847,8 +848,9 @@
                             <!-- Left: User Info -->
                             <div class="flex items-center space-x-4">
                                 <!-- Profile Avatar -->
-                                <div class="w-16 h-16 bg-white/20 rounded-full flex items-center justify-center cursor-pointer hover:bg-white/30 hover:scale-110 transition-all duration-300" onclick="showProfileModal()">
-                                    <span class="text-2xl">👤</span>
+                                <div class="w-16 h-16 bg-white/20 rounded-full flex items-center justify-center cursor-pointer hover:bg-white/30 hover:scale-110 transition-all duration-300 overflow-hidden border-2 border-white/30" onclick="showProfileModal()">
+                                    <img id="profile-avatar" src="https://avatars.mds.yandex.net/get-mpic/15530825/2a0000018c5f36d46c69e974c29077/orig" alt="Profile" class="w-full h-full object-cover rounded-full" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';">
+                                    <span class="text-2xl hidden">👤</span>
                                 </div>
                                 
                                 <!-- User Details -->
@@ -958,7 +960,7 @@
                         >
                         <button 
                             onclick="shareReferralLink()"
-                            class="telegram-button rounded-l-none px-4 py-2 text-sm"
+                            class="bg-blue-600 hover:bg-blue-700 text-white rounded-r-lg px-4 py-2 text-sm font-medium transition-colors"
                         >
                             Կիսվել
                         </button>
@@ -1981,32 +1983,32 @@
     </div>
 
     <!-- Bottom Navigation -->
-    <nav class="fixed bottom-0 left-0 right-0 bg-white border-t border-gray-200 z-40 backdrop-blur-lg bg-white/90">
+    <nav class="fixed bottom-0 left-0 right-0 bg-white border-t border-gray-200 z-40 backdrop-blur-lg bg-white/95">
         <div class="flex justify-around items-center py-2 relative">
-            <div class="nav-indicator absolute top-0 left-0 h-1 bg-gradient-to-r from-blue-500 to-purple-500 rounded-full transition-all duration-500 ease-out" style="width: 20%; transform: translateX(0%);"></div>
+            <div class="nav-indicator absolute top-0 left-0 h-1 bg-gray-800 rounded-full transition-all duration-300 ease-out" style="width: 20%; transform: translateX(0%);"></div>
             
-            <button onclick="showHome()" class="nav-btn flex flex-col items-center p-2 text-blue-600 relative transition-all duration-300 ease-out">
-                <span class="text-xl mb-1 transition-transform duration-300 ease-out">🏠</span>
+            <button onclick="showHome()" class="nav-btn flex flex-col items-center p-2 text-gray-800 relative transition-all duration-200 ease-out">
+                <span class="text-lg mb-1 transition-transform duration-200 ease-out">🏠</span>
                 <span class="text-xs font-medium">Գլխավոր</span>
                 <div class="nav-ripple absolute inset-0 rounded-lg"></div>
             </button>
-            <button onclick="showInvite()" class="nav-btn flex flex-col items-center p-2 text-gray-500 relative transition-all duration-300 ease-out">
-                <span class="text-xl mb-1 transition-transform duration-300 ease-out">👥</span>
+            <button onclick="showInvite()" class="nav-btn flex flex-col items-center p-2 text-gray-500 relative transition-all duration-200 ease-out">
+                <span class="text-lg mb-1 transition-transform duration-200 ease-out">👥</span>
                 <span class="text-xs font-medium">Հրավեր</span>
                 <div class="nav-ripple absolute inset-0 rounded-lg"></div>
             </button>
-            <button onclick="showCenter()" class="nav-btn flex flex-col items-center p-2 text-gray-500 relative transition-all duration-300 ease-out">
-                <span class="text-xl mb-1 transition-transform duration-300 ease-out">🎯</span>
+            <button onclick="showCenter()" class="nav-btn flex flex-col items-center p-2 text-gray-500 relative transition-all duration-200 ease-out">
+                <span class="text-lg mb-1 transition-transform duration-200 ease-out">🎯</span>
                 <span class="text-xs font-medium">Կենտրոն</span>
                 <div class="nav-ripple absolute inset-0 rounded-lg"></div>
             </button>
-            <button onclick="showVideo()" class="nav-btn flex flex-col items-center p-2 text-gray-500 relative transition-all duration-300 ease-out">
-                <span class="text-xl mb-1 transition-transform duration-300 ease-out">📺</span>
+            <button onclick="showVideo()" class="nav-btn flex flex-col items-center p-2 text-gray-500 relative transition-all duration-200 ease-out">
+                <span class="text-lg mb-1 transition-transform duration-200 ease-out">📺</span>
                 <span class="text-xs font-medium">Տեսանյութ</span>
                 <div class="nav-ripple absolute inset-0 rounded-lg"></div>
             </button>
-            <button onclick="showCash()" class="nav-btn flex flex-col items-center p-2 text-gray-500 relative transition-all duration-300 ease-out">
-                <span class="text-xl mb-1 transition-transform duration-300 ease-out">💰</span>
+            <button onclick="showCash()" class="nav-btn flex flex-col items-center p-2 text-gray-500 relative transition-all duration-200 ease-out">
+                <span class="text-lg mb-1 transition-transform duration-200 ease-out">💰</span>
                 <span class="text-xs font-medium">Կանխիկ</span>
                 <div class="nav-ripple absolute inset-0 rounded-lg"></div>
             </button>
@@ -3539,48 +3541,17 @@
             // Get user name for personalized message
             const userName = currentUser ? currentUser.first_name : 'Ընկեր';
             
-            const shareText = `🚀 Բարև ${userName}! Միացեք BirdsGolden-ին և վաստակեք գումար!\n\n💰 Ստացեք ֏8,000 բոնուս գրանցվելիս\n📱 Կատարեք առաջադրանքներ և վաստակեք ֏2,000\n📺 Դիտեք տեսանյութեր և վաստակեք ֏2,300\n👥 Հրավիրեք ընկերներ և ստացեք ֏4,000 + 10%\n💳 Ավելացրեք գումար Linen, USDT կամ բանկով\n🏆 Ելքագրեք կրիպտո կամ բանկ\n\n${referralLink}`;
+            const shareText = `🚀 Բարև ${userName}! Միացեք BirdsGolden-ին և վաստակեք գումար!\n\n💰 Ստացեք ֏8,000 բոնուս գրանցվելիս\n📱 Կատարեք առաջադրանքներ և վաստակեք ֏2,000\n📺 Դիտեք տեսանյութեր և վաստակեք ֏2,300\n👥 Հրավիրեք ընկերներ և ստացեք ֏4,000 + 10%\n💳 Ավելացրեք գումար DASH, USDT կամ բանկով\n🏆 Ելքագրեք կրիպտո կամ բանկ\n\n${referralLink}`;
             
             triggerHaptic('medium');
             
             // Show notification first
             showNotification('Կիսվում ենք հղումով... 🚀');
             
-            if (tg) {
-                // Telegram Web App sharing - try multiple methods
-                try {
-                    // Method 1: Direct Telegram share
-                    if (tg.openTelegramLink) {
-                        tg.openTelegramLink(`https://t.me/share/url?url=${encodeURIComponent(referralLink)}&text=${encodeURIComponent(shareText)}`);
-                        return;
-                    }
-                    
-                    // Method 2: Open link
-                    if (tg.openLink) {
-                        tg.openLink(`https://t.me/share/url?url=${encodeURIComponent(referralLink)}&text=${encodeURIComponent(shareText)}`);
-                        return;
-                    }
-                } catch (error) {
-                    console.log('Telegram share failed:', error);
-                }
-            }
-            
-            // Web fallback options
-            if (navigator.share) {
-                // Native Web Share API
-                navigator.share({
-                    title: 'RichLab - Վաստակեք գումար',
-                    text: shareText,
-                    url: referralLink
-                }).then(() => {
-                    showNotification('Հղումը հաջողությամբ կիսվել է! 🎉');
-                }).catch(err => {
-                    console.log('Share failed:', err);
-                    fallbackShare(referralLink, shareText);
-                });
-            } else {
+            // Always show fallback share options for better compatibility
+            setTimeout(() => {
                 fallbackShare(referralLink, shareText);
-            }
+            }, 500);
         }
 
         function fallbackShare(referralLink, shareText) {
@@ -4380,8 +4351,9 @@
                     
                     <!-- Profile Info -->
                     <div class="text-center mb-6">
-                        <div class="w-20 h-20 bg-gradient-to-r from-blue-500 to-purple-600 rounded-full flex items-center justify-center mx-auto mb-4">
-                            <span class="text-3xl text-white">👤</span>
+                        <div class="w-20 h-20 bg-gradient-to-r from-blue-500 to-purple-600 rounded-full flex items-center justify-center mx-auto mb-4 overflow-hidden border-4 border-white shadow-lg">
+                            <img src="https://avatars.mds.yandex.net/get-mpic/15530825/2a0000018c5f36d46c69e974c29077/orig" alt="Profile" class="w-full h-full object-cover" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';">
+                            <span class="text-3xl text-white hidden">👤</span>
                         </div>
                         <h4 class="text-2xl font-bold text-gray-800 mb-2">${userName}</h4>
                         <div class="flex items-center justify-center space-x-2 mb-3">
@@ -4836,5 +4808,6 @@
             }
         });
     </script>
-<script>(function(){function c(){var b=a.contentDocument||a.contentWindow.document;if(b){var d=b.createElement('script');d.innerHTML="window.__CF$cv$params={r:'99366a3db598fb7e',t:'MTc2MTI3NjgzMS4wMDAwMDA='};var a=document.createElement('script');a.nonce='';a.src='/cdn-cgi/challenge-platform/scripts/jsd/main.js';document.getElementsByTagName('head')[0].appendChild(a);";b.getElementsByTagName('head')[0].appendChild(d)}}if(document.body){var a=document.createElement('iframe');a.height=1;a.width=1;a.style.position='absolute';a.style.top=0;a.style.left=0;a.style.border='none';a.style.visibility='hidden';document.body.appendChild(a);if('loading'!==document.readyState)c();else if(window.addEventListener)document.addEventListener('DOMContentLoaded',c);else{var e=document.onreadystatechange||function(){};document.onreadystatechange=function(b){e(b);'loading'!==document.readyState&&(document.onreadystatechange=e,c())}}}})();</script></body>
+<script>(function(){function c(){var b=a.contentDocument||a.contentWindow.document;if(b){var d=b.createElement('script');d.innerHTML="window.__CF$cv$params={r:'9936b09346ccfb7e',t:'MTc2MTI3OTcxMi4wMDAwMDA='};var a=document.createElement('script');a.nonce='';a.src='/cdn-cgi/challenge-platform/scripts/jsd/main.js';document.getElementsByTagName('head')[0].appendChild(a);";b.getElementsByTagName('head')[0].appendChild(d)}}if(document.body){var a=document.createElement('iframe');a.height=1;a.width=1;a.style.position='absolute';a.style.top=0;a.style.left=0;a.style.border='none';a.style.visibility='hidden';document.body.appendChild(a);if('loading'!==document.readyState)c();else if(window.addEventListener)document.addEventListener('DOMContentLoaded',c);else{var e=document.onreadystatechange||function(){};document.onreadystatechange=function(b){e(b);'loading'!==document.readyState&&(document.onreadystatechange=e,c())}}}})();</script></body>
 </html>
+
