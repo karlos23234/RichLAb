@@ -1,1177 +1,1636 @@
 <!DOCTYPE html>
 <html lang="hy">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>BirdsGolden Referral</title>
-  <script src="https://telegram.org/js/telegram-web-app.js"></script>
-  <script src="https://cdn.tailwindcss.com"></script>
-  <style>
-    body {
-      background: linear-gradient(135deg, #4facfe 0%, #00f2fe 100%);
-      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-      display: flex;
-      flex-direction: column;
-      justify-content: center;
-      align-items: center;
-      height: 100vh;
-      color: #fff;
-      padding: 20px;
-    }
-    .ref-box {
-      background: white;
-      border-radius: 15px;
-      box-shadow: 0 10px 25px rgba(0,0,0,0.15);
-      width: 100%;
-      max-width: 420px;
-      padding: 25px;
-      text-align: center;
-      color: #333;
-    }
-    input {
-      width: 100%;
-      border: 1px solid #ddd;
-      padding: 12px;
-      border-radius: 10px;
-      margin-bottom: 10px;
-      font-size: 14px;
-      text-align: center;
-    }
-    button {
-      background: #111;
-      color: #fff;
-      padding: 12px 25px;
-      border-radius: 10px;
-      font-weight: bold;
-      cursor: pointer;
-      transition: 0.2s;
-    }
-    button:hover { background: #333; }
-    #copy-toast {
-      margin-top: 10px;
-      font-size: 14px;
-      color: #00c853;
-      opacity: 0;
-      transition: opacity 0.4s;
-    }
-  </style>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Rich Birds</title>
+    <style>
+        body {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+            font-family: 'Inter', 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, #f8f9fa 0%, #e9ecef 50%, #ffffff 100%);
+            min-height: 100%;
+            color: #333;
+            overflow-x: hidden;
+        }
+        
+        html, body {
+            height: 100%;
+        }
+        
+        .container {
+            max-width: 400px;
+            margin: 0 auto;
+            padding: 20px;
+            min-height: 100%;
+        }
+        
+        .header {
+            text-align: center;
+            margin-bottom: 30px;
+        }
+        
+        .logo {
+            font-size: 2.5rem;
+            margin-bottom: 10px;
+        }
+        
+        .title {
+            font-size: 1.8rem;
+            font-weight: bold;
+            margin-bottom: 5px;
+        }
+        
+        .balance-card {
+            background: linear-gradient(145deg, #ffffff, #f8f9fa);
+            border-radius: 24px;
+            padding: 30px;
+            margin-bottom: 25px;
+            text-align: center;
+            border: 1px solid #e9ecef;
+            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
+            transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .balance-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.1), transparent);
+            transition: left 0.5s;
+        }
+        
+        .balance-card:hover::before {
+            left: 100%;
+        }
+        
+        .balance-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 12px 40px rgba(0, 0, 0, 0.2);
+        }
+        
+        .balance-amount {
+            font-size: 2rem;
+            font-weight: bold;
+            margin-bottom: 10px;
+        }
+        
+        .balance-label {
+            opacity: 0.8;
+            font-size: 0.9rem;
+        }
+        
+        .birds-section {
+            background: #ffffff;
+            border-radius: 20px;
+            padding: 20px;
+            margin-bottom: 25px;
+            border: 1px solid #e9ecef;
+            box-shadow: 0 4px 16px rgba(0, 0, 0, 0.08);
+        }
+        
+        .section-title {
+            font-size: 1.3rem;
+            font-weight: bold;
+            margin-bottom: 15px;
+            text-align: center;
+        }
+        
+        .bird-item {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            background: #f8f9fa;
+            border-radius: 15px;
+            padding: 15px;
+            margin-bottom: 10px;
+            border: 1px solid #e9ecef;
+        }
+        
+        .bird-info {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+        
+        .bird-icon {
+            font-size: 1.5rem;
+        }
+        
+        .bird-details h4 {
+            margin: 0;
+            font-size: 1rem;
+        }
+        
+        .bird-details p {
+            margin: 5px 0 0 0;
+            opacity: 0.8;
+            font-size: 0.8rem;
+        }
+        
+        .bird-count {
+            background: rgba(255, 255, 255, 0.2);
+            border-radius: 20px;
+            padding: 5px 12px;
+            font-weight: bold;
+        }
+        
+        .actions {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 15px;
+            margin-bottom: 25px;
+        }
+        
+        .btn {
+            background: #ffffff;
+            border: 2px solid #e9ecef;
+            border-radius: 15px;
+            padding: 15px 20px;
+            color: #333;
+            font-weight: bold;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            font-size: 1rem;
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+        }
+        
+        .btn:hover {
+            background: #f8f9fa;
+            transform: translateY(-2px);
+            box-shadow: 0 4px 16px rgba(0, 0, 0, 0.15);
+        }
+        
+        .btn-primary {
+            background: linear-gradient(45deg, #4CAF50, #45a049);
+            color: white;
+        }
+        
+        .btn-secondary {
+            background: linear-gradient(45deg, #2196F3, #1976D2);
+            color: white;
+        }
+        
+        .btn-success {
+            background: linear-gradient(45deg, #28a745, #20c997);
+            color: white;
+        }
+        
+        .btn:disabled {
+            opacity: 0.6;
+            cursor: not-allowed;
+        }
+        
+        .modal {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.8);
+            z-index: 1000;
+        }
+        
+        .modal-content {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            background: #ffffff;
+            border-radius: 20px;
+            padding: 30px;
+            width: 90%;
+            max-width: 350px;
+            color: #333;
+            box-shadow: 0 16px 48px rgba(0, 0, 0, 0.2);
+            border: 1px solid #e9ecef;
+        }
+        
+        .modal-header {
+            text-align: center;
+            margin-bottom: 20px;
+        }
+        
+        .modal-title {
+            font-size: 1.5rem;
+            font-weight: bold;
+            margin-bottom: 10px;
+        }
+        
+        .form-group {
+            margin-bottom: 20px;
+        }
+        
+        .form-group label {
+            display: block;
+            margin-bottom: 8px;
+            font-weight: bold;
+        }
+        
+        .form-group select,
+        .form-group input {
+            width: 100%;
+            padding: 12px;
+            border: 2px solid #e9ecef;
+            border-radius: 10px;
+            background: #ffffff;
+            color: #333;
+            font-size: 1rem;
+            box-sizing: border-box;
+        }
+        
+        .form-group select option {
+            background: #ffffff;
+            color: #333;
+        }
+        
+        .form-group input::placeholder {
+            color: #6c757d;
+        }
+        
+        .modal-actions {
+            display: flex;
+            gap: 10px;
+            justify-content: center;
+        }
+        
+        .btn-close {
+            background: rgba(255, 255, 255, 0.2);
+        }
+        
+        .notification {
+            position: fixed;
+            top: 20px;
+            right: 20px;
+            background: #4CAF50;
+            color: white;
+            padding: 15px 20px;
+            border-radius: 10px;
+            display: none;
+            z-index: 1001;
+        }
+        
+        .notification.error {
+            background: #f44336;
+        }
+        
+        .min-amount {
+            font-size: 0.8rem;
+            opacity: 0.8;
+            margin-top: 5px;
+        }
+        
+        .bottom-nav {
+            position: fixed;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            background: #ffffff;
+            border-top: 1px solid #e9ecef;
+            display: flex;
+            justify-content: space-around;
+            padding: 15px 0;
+            z-index: 100;
+            box-shadow: 0 -4px 16px rgba(0, 0, 0, 0.1);
+        }
+        
+        .nav-item {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            padding: 5px 15px;
+            border-radius: 10px;
+        }
+        
+        .nav-item.active {
+            background: #f8f9fa;
+            color: #007bff;
+        }
+        
+        .nav-item:hover {
+            background: #f8f9fa;
+        }
+        
+        .nav-icon {
+            font-size: 1.5rem;
+            margin-bottom: 5px;
+        }
+        
+        .nav-label {
+            font-size: 0.8rem;
+            font-weight: bold;
+        }
+        
+        .page {
+            display: none;
+            padding-bottom: 100px;
+        }
+        
+        .page.active {
+            display: block;
+        }
+        
+        .referral-code {
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 10px;
+            padding: 15px;
+            margin: 15px 0;
+            text-align: center;
+        }
+        
+        .referral-link {
+            background: rgba(255, 255, 255, 0.05);
+            border-radius: 8px;
+            padding: 10px;
+            font-family: monospace;
+            font-size: 0.9rem;
+            word-break: break-all;
+            margin: 10px 0;
+        }
+        
+        .stats-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 15px;
+            margin: 20px 0;
+        }
+        
+        .stat-card {
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 15px;
+            padding: 20px;
+            text-align: center;
+        }
+        
+        .stat-number {
+            font-size: 1.5rem;
+            font-weight: bold;
+            margin-bottom: 5px;
+        }
+        
+        .stat-label {
+            font-size: 0.9rem;
+            opacity: 0.8;
+        }
+        
+        .profile-header {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            margin-bottom: 20px;
+            padding: 20px;
+            background: rgba(255, 255, 255, 0.05);
+            border-radius: 15px;
+        }
+        
+        .profile-avatar {
+            width: 60px;
+            height: 60px;
+            background: linear-gradient(45deg, #4CAF50, #45a049);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.8rem;
+        }
+        
+        .profile-info h3 {
+            margin: 0 0 5px 0;
+            font-size: 1.2rem;
+        }
+        
+        .profile-info p {
+            margin: 0;
+            opacity: 0.7;
+            font-size: 0.9rem;
+        }
+        
+        .toggle-switch {
+            width: 50px;
+            height: 25px;
+            background: rgba(255, 255, 255, 0.2);
+            border-radius: 25px;
+            position: relative;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+        
+        .toggle-switch.active {
+            background: #4CAF50;
+        }
+        
+        .toggle-slider {
+            width: 21px;
+            height: 21px;
+            background: white;
+            border-radius: 50%;
+            position: absolute;
+            top: 2px;
+            left: 2px;
+            transition: all 0.3s ease;
+        }
+        
+        .toggle-switch.active .toggle-slider {
+            transform: translateX(25px);
+        }
+        
+        .channel-item {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            background: #f8f9fa;
+            border-radius: 15px;
+            padding: 15px;
+            margin-bottom: 10px;
+            border: 1px solid #e9ecef;
+        }
+        
+        .channel-item.joined {
+            background: #e8f5e8;
+            border-color: #4CAF50;
+        }
+    </style>
 </head>
 <body>
-  <div class="ref-box">
-    <h2 class="text-lg font-semibold mb-2">Կիսվիր քո հղումով 🪶</h2>
-    <p id="user-info" class="text-sm text-gray-700 mb-3">Սպասում ենք Telegram տվյալներին...</p>
-
-    <input id="referral-link" type="text" readonly>
-    <button id="copy-btn">Պատճենել հղումը</button>
-    <div id="copy-toast">Հղումը պատճենվեց ✅</div>
-  </div>
-
-  <script>
-    const tg = window.Telegram.WebApp;
-    tg.ready();
-
-    const botUsername = "BirdsGolden_bot"; // քո բոտի անունը առանց "@"
-    const user = tg.initDataUnsafe?.user || null;
-
-    let userId = 0;
-    let firstName = "Demo";
-
-    if (user) {
-      userId = user.id;
-      firstName = user.first_name || "User";
-    }
-
-    // Ստեղծում ենք referral հղումը
-    const referralLink = userId
-      ? `https://t.me/${botUsername}/app?startapp=r_${userId}`
-      : `https://t.me/${botUsername}/app?startapp=demo`;
-
-    document.getElementById("referral-link").value = referralLink;
-
-    document.getElementById("user-info").textContent = user
-      ? `Բարև ${firstName} 👋 — քո Telegram ID-ն է ${userId}`
-      : "Դու բացել ես Demo ձևաչափով (Telegram-ից դուրս)";
-
-    // Copy function
-    document.getElementById("copy-btn").addEventListener("click", () => {
-      navigator.clipboard.writeText(referralLink).then(() => {
-        const toast = document.getElementById("copy-toast");
-        toast.style.opacity = "1";
-        setTimeout(() => toast.style.opacity = "0", 2000);
-      });
-    });
-  </script>
-</body>
-</html>
-
-
-                <!-- Earning Potential -->
-                <div class="invite-card rounded-xl p-4 text-white mb-4">
-                    <h3 class="font-bold mb-3">Բացեք հսկայական եկամտի ներուժը հաշվետվություններով:</h3>
-                    <p class="text-sm mb-4 opacity-90">
-                        Ընդլայնեք Ձեր եկամտի հորիզոնները RichRise-ով՝ հաշվետվություն կատարելով Ձեր ընկերներին, ընտանիքին կամ հետևորդներին մեր հարթակ: Ահա, թե ինչ եք ստանում:
-                    </p>
-                    <div class="space-y-2 mb-4">
-                        <div class="flex items-center space-x-2">
-                            <span class="text-yellow-300">•</span>
-                            <p class="text-sm">Վաստակեք լրացուցիչ ֏4,000 յուրաքանչյուր հաջող գրանցման համար:</p>
-                        </div>
-                        <div class="flex items-center space-x-2">
-                            <span class="text-yellow-300">•</span>
-                            <p class="text-sm">Եթե Ձեր հրավիրած օգտատերը գումար է վաստակում, Դուք նույնպես ստանում եք այդ գումարի 10%-ը որպես պարգև:</p>
-                        </div>
+    <div class="container">
+        <header class="header">
+            <div class="logo">🐦💰</div>
+            <h1 class="title">Rich Birds</h1>
+        </header>
+        
+        <!-- Menu Page -->
+        <div class="page active" id="menu-page">
+            <div class="balance-card">
+                <div class="balance-amount" id="balance">0 ֏</div>
+                <div class="balance-label">Ձեր մնացորդը</div>
+            </div>
+            
+            <div class="balance-card">
+                <div style="font-size: 1.2rem; margin-bottom: 10px;">Կուտակված եկամուտ</div>
+                <div style="font-size: 1.5rem; font-weight: bold;" id="accumulated-income">0 ֏</div>
+                <button class="btn btn-primary" onclick="collectAccumulatedIncome()" style="margin-top: 15px;">
+                    Հավաքել եկամուտը
+                </button>
+            </div>
+            
+            <div class="balance-card">
+                <div style="font-size: 1.2rem; margin-bottom: 10px;">Ժամային եկամուտ</div>
+                <div style="font-size: 1.5rem; font-weight: bold;" id="hourly-income">0 ֏</div>
+            </div>
+            
+            <div class="stats-grid">
+                <div class="stat-card">
+                    <div class="stat-number" id="total-birds">0</div>
+                    <div class="stat-label">Ընդամենը թռչուններ</div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-number" id="total-referrals">0</div>
+                    <div class="stat-label">Հրավիրված ընկերներ</div>
+                </div>
+            </div>
+        </div>
+        
+        <!-- Wallet Page -->
+        <div class="page" id="wallet-page">
+            <div class="balance-card">
+                <div class="balance-amount" id="wallet-balance">0 ֏</div>
+                <div class="balance-label">Ձեր մնացորդը</div>
+            </div>
+            
+            <div class="actions">
+                <button class="btn btn-primary" onclick="openDepositModal()">Ավանդ</button>
+                <button class="btn btn-secondary" onclick="openWithdrawModal()">Վերցնել</button>
+            </div>
+        </div>
+        
+        <!-- Referral Page -->
+        <div class="page" id="referral-page">
+            <div class="birds-section">
+                <h2 class="section-title">Telegram ալիքներ</h2>
+                <p style="text-align: center; opacity: 0.8; margin-bottom: 20px;">
+                    Միացեք մեր ալիքներին և ստացեք 1 հավիկ յուրաքանչյուրի համար
+                </p>
+                
+                <div id="telegram-channels">
+                    <!-- Channels will be populated by JavaScript -->
+                </div>
+            </div>
+            
+            <div class="birds-section">
+                <h2 class="section-title">Հրավիրել ընկերներ</h2>
+                <p style="text-align: center; opacity: 0.8; margin-bottom: 20px;">
+                    Հրավիրեք ընկերներին և ստացեք 1 հավիկ յուրաքանչյուր նոր օգտատիրոջ համար
+                </p>
+                
+                <div class="referral-code">
+                    <div style="font-weight: bold; margin-bottom: 10px;">Ձեր հրավիրման կոդը</div>
+                    <div class="referral-link" id="referral-link">
+                        https://t.me/richbirds_bot?start=REF123456
                     </div>
-                    <button onclick="shareInvite()" class="w-full bg-white text-green-600 py-3 rounded-lg font-semibold hover:bg-gray-100 transition-colors flex items-center justify-center space-x-2">
-                        <span>📤</span>
-                        <span>Կիսվել</span>
+                    <button class="btn btn-primary" onclick="copyReferralLink()" style="margin-top: 10px;">
+                        Պատճենել հղումը
                     </button>
-                </div>
-
-                <!-- Referrals List -->
-                <div class="bg-white rounded-xl p-4 card-shadow">
-                    <h4 class="font-semibold mb-3">Ձեր հաշվետվություններ</h4>
-                    <div class="text-center text-gray-500 py-8" id="referralsList">
-                        <span class="text-4xl mb-2 block">👥</span>
-                        <p class="font-semibold">Հաշվետվություններ չկան</p>
-                        <p class="text-sm">Այս պահին ոչ ոք չի գրանցվել Ձեր հղումով:</p>
-                    </div>
-                </div>
-            </div>
-        </div>
-
-        <!-- Center Page -->
-        <div id="centerPage" class="hidden">
-            <header class="gradient-bg text-white p-4">
-                <div class="flex items-center justify-between mb-4">
-                    <button onclick="showPage('home')" class="text-white">← Հետ</button>
-                    <h1 class="text-xl font-bold">Կենտրոն</h1>
-                    <div></div>
-                </div>
-            </header>
-            <div class="p-4 pb-20">
-                <div class="space-y-4">
-                    <div class="bg-gradient-to-r from-yellow-400 to-orange-500 rounded-xl p-4 text-white">
-                        <h3 class="font-bold mb-2">🎁 Օրական բոնուս</h3>
-                        <p class="text-sm mb-3">Ստացեք օրական բոնուս մինչև ֏5,000</p>
-                        <button onclick="claimDailyBonus()" class="bg-white text-orange-600 px-4 py-2 rounded-lg font-semibold hover:bg-gray-100 transition-colors">
-                            Ստանալ բոնուս
-                        </button>
-                    </div>
-                    <div class="bg-gradient-to-r from-green-400 to-blue-500 rounded-xl p-4 text-white">
-                        <h3 class="font-bold mb-2">🏆 Մրցույթներ</h3>
-                        <p class="text-sm mb-3">Մասնակցեք մրցույթներին և շահեք մեծ մրցանակներ</p>
-                        <button onclick="joinContest()" class="bg-white text-blue-600 px-4 py-2 rounded-lg font-semibold hover:bg-gray-100 transition-colors">
-                            Մասնակցել
-                        </button>
-                    </div>
-                    <div class="bg-gradient-to-r from-purple-400 to-pink-500 rounded-xl p-4 text-white">
-                        <h3 class="font-bold mb-2">⭐ VIP ծրագիր</h3>
-                        <p class="text-sm mb-3">Դարձեք VIP անդամ և ստացեք լրացուցիչ առավելություններ</p>
-                        <button onclick="upgradeVIP()" class="bg-white text-pink-600 px-4 py-2 rounded-lg font-semibold hover:bg-gray-100 transition-colors">
-                            Բարձրացնել
-                        </button>
-                    </div>
-                </div>
-            </div>
-        </div>
-
-        <!-- Videos Page -->
-        <div id="videosPage" class="hidden">
-            <header class="gradient-bg text-white p-4">
-                <div class="flex items-center justify-between mb-4">
-                    <button onclick="showPage('home')" class="text-white">← Հետ</button>
-                    <h1 class="text-xl font-bold">📺 Տեսանյութ</h1>
-                    <div></div>
-                </div>
-            </header>
-            <div class="p-4 pb-20">
-                <!-- Video Center Title -->
-                <div class="text-center mb-6">
-                    <h2 class="text-2xl font-bold text-gray-800 mb-3">Տեսանյութերի Կենտրոն</h2>
-                    <p class="text-sm text-gray-600 leading-relaxed">
-                        Հաշվետվություններով առաջարկվող յուրաքանչյուր տեսանյութ կարելի է դիտել, և տեսանյութը դիտելիս Դուք կստանաք համապատասխան հաշվարկ: Օգտատերերի թվի պատճառով յուրաքանչյուր օգտատեր կարող է օրական դիտել միայն 3 տեսանյութ:
-                    </p>
-                </div>
-
-                <!-- Video Cards -->
-                <div class="space-y-4">
-                    <div class="video-card rounded-xl p-6 text-white card-shadow text-center">
-                        <div class="text-4xl mb-3">📺</div>
-                        <h3 class="text-lg font-semibold mb-2">Տեսանյութ #1</h3>
-                        <p class="text-2xl font-bold mb-4">Վաստակել ֏2,300</p>
-                        <button onclick="watchVideoEarn(1)" class="w-full bg-white text-pink-600 py-3 rounded-lg font-semibold hover:bg-gray-100 transition-colors" id="videoBtn1">
-                            Դիտել և վաստակել
-                        </button>
-                    </div>
-
-                    <div class="task-card rounded-xl p-6 text-white card-shadow text-center">
-                        <div class="text-4xl mb-3">📱</div>
-                        <h3 class="text-lg font-semibold mb-2">Տեսանյութ #2</h3>
-                        <p class="text-2xl font-bold mb-4">Վաստակել ֏2,300</p>
-                        <button onclick="watchVideoEarn(2)" class="w-full bg-white text-blue-600 py-3 rounded-lg font-semibold hover:bg-gray-100 transition-colors" id="videoBtn2">
-                            Դիտել և վաստակել
-                        </button>
-                    </div>
-
-                    <div class="invite-card rounded-xl p-6 text-white card-shadow text-center">
-                        <div class="text-4xl mb-3">🎬</div>
-                        <h3 class="text-lg font-semibold mb-2">Տեսանյութ #3</h3>
-                        <p class="text-2xl font-bold mb-4">Վաստակել ֏2,300</p>
-                        <button onclick="watchVideoEarn(3)" class="w-full bg-white text-green-600 py-3 rounded-lg font-semibold hover:bg-gray-100 transition-colors" id="videoBtn3">
-                            Դիտել և վաստակել
-                        </button>
-                    </div>
-                </div>
-
-                <!-- Daily Limit Info -->
-                <div class="bg-yellow-50 border border-yellow-200 rounded-xl p-4 mt-6">
-                    <div class="flex items-center space-x-2 mb-2">
-                        <span class="text-yellow-600">⚠️</span>
-                        <h4 class="font-semibold text-yellow-800">Օրական սահմանափակում</h4>
-                    </div>
-                    <p class="text-sm text-yellow-700">
-                        Դուք կարող եք դիտել <span class="font-bold" id="videosLeft">3</span> տեսանյութ այսօր: Վաղը կարող եք դիտել նորից:
-                    </p>
-                </div>
-            </div>
-        </div>
-
-        <!-- Cash Page -->
-        <div id="cashPage" class="hidden">
-            <header class="gradient-bg text-white p-4">
-                <div class="flex items-center justify-between mb-4">
-                    <button onclick="showPage('home')" class="text-white">← Հետ</button>
-                    <h1 class="text-xl font-bold">Կանխիկ ելքագրում</h1>
-                    <div></div>
-                </div>
-            </header>
-            <div class="p-4 pb-20">
-                <div class="cash-card rounded-xl p-6 text-center mb-6 text-white">
-                    <h3 class="text-2xl font-bold mb-2">Ձեր մնացորդը</h3>
-                    <p class="text-3xl font-bold mb-4" id="cashBalance">֏8,000</p>
-                    <p class="text-sm opacity-90">Նվազագույն ելքագրում՝ ֏125,000</p>
                 </div>
                 
-                <div class="bg-white rounded-xl p-4 card-shadow mb-4">
-                    <h4 class="font-semibold mb-3">Ելքագրման պատմություն</h4>
-                    <div class="text-center text-gray-500 py-8">
-                        <span class="text-4xl mb-2 block">💳</span>
-                        <p>Դեռ ելքագրումներ չեք կատարել</p>
-                        <p class="text-sm">Ձեր առաջին ելքագրումը կհայտնվի այստեղ</p>
-                        <p class="text-xs text-green-600 mt-2">Աշխատում է ամեն օր</p>
+                <div class="stats-grid">
+                    <div class="stat-card">
+                        <div class="stat-number" id="ref-count">0</div>
+                        <div class="stat-label">Հրավիրված</div>
+                    </div>
+                    <div class="stat-card">
+                        <div class="stat-number" id="ref-earnings">0 ֏</div>
+                        <div class="stat-label">Վաստակած</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <!-- Birds Page -->
+        <div class="page" id="birds-page">
+            <div class="birds-section">
+                <h2 class="section-title">Ձեր թռչունները</h2>
+                <div class="bird-item">
+                    <div class="bird-info">
+                        <div class="bird-icon">🐣</div>
+                        <div class="bird-details">
+                            <h4>Ձու (1 հատ)</h4>
+                            <p>Տալիս է 10 ֏ ժամում</p>
+                            <p>Արժեք՝ 1000 ֏</p>
+                        </div>
+                    </div>
+                    <div class="bird-count" id="eggs-count">0</div>
+                </div>
+                
+                <div class="bird-item">
+                    <div class="bird-info">
+                        <div class="bird-icon">🐤</div>
+                        <div class="bird-details">
+                            <h4>Ճուտ (25 հատ)</h4>
+                            <p>Տալիս է 25 ֏ ժամում</p>
+                            <p>Արժեք՝ 2300 ֏</p>
+                        </div>
+                    </div>
+                    <div class="bird-count" id="chicks-count">0</div>
+                </div>
+            </div>
+            
+            <div class="actions">
+                <button class="btn" onclick="buyEgg()">Գնել ձու (1000 ֏)</button>
+                <button class="btn" onclick="buyChicks()">Գնել ճուտեր (2300 ֏)</button>
+            </div>
+            
+            <div class="actions">
+                <button class="btn btn-primary" onclick="collectEggs()" id="collectBtn">Հավաքել ձվեր</button>
+            </div>
+            
+            <div class="birds-section">
+                <h2 class="section-title">Հավաքված թռչուններ</h2>
+                <div id="collected-birds">
+                    <!-- Collected birds will appear here -->
+                </div>
+            </div>
+        </div>
+        
+        <!-- Support Page -->
+        <div class="page" id="support-page">
+            <div class="birds-section">
+                <h2 class="section-title">Օգնություն և աջակցություն</h2>
+                
+                <div class="bird-item" onclick="openSupportChat()">
+                    <div class="bird-info">
+                        <div class="bird-icon">💬</div>
+                        <div class="bird-details">
+                            <h4>Չատ աջակցություն</h4>
+                            <p>24/7 օնլայն աջակցություն</p>
+                        </div>
+                    </div>
+                    <div style="color: #4CAF50; font-size: 1.2rem;">●</div>
+                </div>
+                
+                <div class="bird-item" onclick="openFAQ()">
+                    <div class="bird-info">
+                        <div class="bird-icon">❓</div>
+                        <div class="bird-details">
+                            <h4>Հաճախ տրվող հարցեր</h4>
+                            <p>Գտեք պատասխանները</p>
+                        </div>
+                    </div>
+                    <div style="opacity: 0.5;">→</div>
+                </div>
+                
+                <div class="bird-item" onclick="reportBug()">
+                    <div class="bird-info">
+                        <div class="bird-icon">🐛</div>
+                        <div class="bird-details">
+                            <h4>Հաղորդել խնդրի մասին</h4>
+                            <p>Օգնեք մեզ բարելավել</p>
+                        </div>
+                    </div>
+                    <div style="opacity: 0.5;">→</div>
+                </div>
+                
+                <div class="bird-item">
+                    <div class="bird-info">
+                        <div class="bird-icon">📱</div>
+                        <div class="bird-details">
+                            <h4>Telegram</h4>
+                            <p>@richbirds_support</p>
+                        </div>
+                    </div>
+                    <button class="btn" onclick="copyTelegram()" style="padding: 8px 16px; font-size: 0.8rem;">Պատճենել</button>
+                </div>
+            </div>
+        </div>
+        
+        <!-- Profile Page -->
+        <div class="page" id="profile-page">
+            <div class="birds-section">
+                <h2 class="section-title">Իմ պրոֆիլը</h2>
+                
+                <div class="profile-header">
+                    <div class="profile-avatar" onclick="changeProfilePicture()" style="cursor: pointer; position: relative;">
+                        <img id="profile-image" src="" alt="Profile" style="width: 100%; height: 100%; border-radius: 50%; object-fit: cover; display: none;">
+                        <div id="profile-placeholder" style="font-size: 1.8rem;">👤</div>
+                        <div style="position: absolute; bottom: -5px; right: -5px; background: #4CAF50; border-radius: 50%; width: 20px; height: 20px; display: flex; align-items: center; justify-content: center; font-size: 0.8rem; border: 2px solid white;">📷</div>
+                    </div>
+                    <div class="profile-info">
+                        <h3 id="username">Օգտատեր #123456</h3>
+                        <p>Անդամ է՝ <span id="join-date">01.01.2024</span>-ից</p>
                     </div>
                 </div>
                 
-                <button onclick="showCashOut()" class="w-full bg-green-600 text-white py-4 rounded-xl font-semibold hover:bg-green-700 transition-colors">
-                    Ելքագրել գումար
-                </button>
-            </div>
-        </div>
-
-        <!-- Bottom Navigation -->
-        <nav class="fixed bottom-0 left-1/2 transform -translate-x-1/2 w-full max-w-md bg-white border-t border-gray-200">
-            <div class="flex justify-around py-2">
-                <button class="flex flex-col items-center p-2 text-blue-600" id="homeBtn" onclick="showPage('home')">
-                    <span class="text-xl mb-1">🏠</span>
-                    <span class="text-xs">Գլխավոր</span>
-                </button>
-                <button class="flex flex-col items-center p-2 text-gray-500" id="inviteBtn" onclick="showPage('invite')">
-                    <span class="text-xl mb-1">👥</span>
-                    <span class="text-xs">Հրավեր</span>
-                </button>
-                <button class="flex flex-col items-center p-2 text-gray-500" id="centerBtn" onclick="showPage('center')">
-                    <span class="text-xl mb-1">🎯</span>
-                    <span class="text-xs">Կենտրոն</span>
-                </button>
-                <button class="flex flex-col items-center p-2 text-gray-500" id="videosBtn" onclick="showPage('videos')">
-                    <span class="text-xl mb-1">📺</span>
-                    <span class="text-xs">Տեսանյութ</span>
-                </button>
-                <button class="flex flex-col items-center p-2 text-gray-500" id="cashBtn" onclick="showPage('cash')">
-                    <span class="text-xl mb-1">💰</span>
-                    <span class="text-xs">Կանխիկ</span>
-                </button>
-            </div>
-        </nav>
-
-        <!-- Success Modal -->
-        <div id="successModal" class="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center hidden z-50">
-            <div class="bg-white rounded-xl p-6 m-4 max-w-sm w-full text-center">
-                <div class="text-4xl mb-4">🎉</div>
-                <h3 class="text-lg font-semibold mb-2" id="modalTitle">Շնորհավորում!</h3>
-                <p class="text-gray-600 mb-4" id="modalMessage">Դուք վաստակեցիք ֏2,000</p>
-                <button onclick="closeModal()" class="w-full bg-blue-600 text-white py-2 rounded-lg hover:bg-blue-700 transition-colors">
-                    Շարունակել
-                </button>
-            </div>
-        </div>
-
-        <!-- Deposit Modal -->
-        <div id="depositModal" class="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center hidden z-50">
-            <div class="bg-white rounded-xl p-6 m-4 max-w-sm w-full">
-                <h3 class="text-lg font-semibold mb-4 text-center">Դեպոզիտ կատարել</h3>
-                <div class="mb-4">
-                    <label for="depositAmount" class="block text-sm font-medium text-gray-700 mb-2">Գումար (֏)</label>
-                    <input type="number" id="depositAmount" class="w-full border border-gray-300 rounded-lg px-3 py-2" placeholder="2,000" min="2000" value="2000">
-                </div>
-                <div class="mb-4">
-                    <label class="block text-sm font-medium text-gray-700 mb-2">Վճարման եղանակ</label>
-                    <div class="space-y-3 max-h-48 overflow-y-auto border border-gray-300 rounded-lg p-3">
-                        <div class="flex items-center justify-between p-3 border border-gray-200 rounded-lg hover:bg-gray-50 cursor-pointer" onclick="selectDepositPayment('easypay')">
-                            <div class="flex items-center space-x-3">
-                                <span class="text-xl">📱</span>
-                                <div>
-                                    <p class="font-semibold text-sm">EasyPay</p>
-                                    <p class="text-xs text-gray-600">Մոբայլ վճարում</p>
-                                </div>
-                            </div>
-                            <span class="text-xs bg-green-100 text-green-800 px-2 py-1 rounded-full">Ակտիվ</span>
-                        </div>
-                        
-                        <div class="flex items-center justify-between p-3 border border-gray-200 rounded-lg hover:bg-gray-50 cursor-pointer" onclick="selectDepositPayment('idram')">
-                            <div class="flex items-center space-x-3">
-                                <span class="text-xl">💜</span>
-                                <div>
-                                    <p class="font-semibold text-sm">Idram</p>
-                                    <p class="text-xs text-gray-600">Էլեկտրոնային դրամապանակ</p>
-                                </div>
-                            </div>
-                            <span class="text-xs bg-green-100 text-green-800 px-2 py-1 rounded-full">Ակտիվ</span>
-                        </div>
-                        
-                        <div class="flex items-center justify-between p-3 border border-gray-200 rounded-lg hover:bg-gray-50 cursor-pointer" onclick="selectDepositPayment('arca')">
-                            <div class="flex items-center space-x-3">
-                                <span class="text-xl">💳</span>
-                                <div>
-                                    <p class="font-semibold text-sm">ArCa</p>
-                                    <p class="text-xs text-gray-600">Հայկական քարտային համակարգ</p>
-                                </div>
-                            </div>
-                            <span class="text-xs bg-green-100 text-green-800 px-2 py-1 rounded-full">Ակտիվ</span>
-                        </div>
-                        
-                        <div class="flex items-center justify-between p-3 border border-gray-200 rounded-lg hover:bg-gray-50 cursor-pointer" onclick="selectDepositPayment('ameriabank')">
-                            <div class="flex items-center space-x-3">
-                                <span class="text-xl">🏦</span>
-                                <div>
-                                    <p class="font-semibold text-sm">ԱմերիաԲանկ</p>
-                                    <p class="text-xs text-gray-600">Բանկային փոխանցում</p>
-                                </div>
-                            </div>
-                            <span class="text-xs bg-green-100 text-green-800 px-2 py-1 rounded-full">Ակտիվ</span>
-                        </div>
+                <div class="stats-grid">
+                    <div class="stat-card">
+                        <div class="stat-number" id="profile-balance">0 ֏</div>
+                        <div class="stat-label">Ընդհանուր մնացորդ</div>
                     </div>
-                    <input type="hidden" id="selectedDepositPayment" value="">
-                    <p class="text-xs text-gray-600 mt-2" id="selectedDepositPaymentText">Ընտրեք վճարման եղանակ</p>
+                    <div class="stat-card">
+                        <div class="stat-number" id="profile-earned">0 ֏</div>
+                        <div class="stat-label">Ընդհանուր վաստակած</div>
+                    </div>
                 </div>
-                <p class="text-sm text-blue-600 mb-4">💡 Դեպոզիտը ակտիվացնում է Ձեր պրոֆիլը և բացում է բոլոր ֆունկցիաները</p>
-                <div class="flex space-x-3">
-                    <button onclick="closeDepositModal()" class="flex-1 bg-gray-300 text-gray-700 py-2 rounded-lg hover:bg-gray-400 transition-colors">
-                        Չեղարկել
-                    </button>
-                    <button onclick="processDeposit()" class="flex-1 bg-blue-600 text-white py-2 rounded-lg hover:bg-blue-700 transition-colors">
-                        Դեպոզիտ
-                    </button>
-                </div>
-            </div>
-        </div>
-
-        <!-- Cash Out Modal -->
-        <div id="cashOutModal" class="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center hidden z-50">
-            <div class="bg-white rounded-xl p-6 m-4 max-w-sm w-full max-h-full overflow-y-auto">
-                <h3 class="text-lg font-semibold mb-4 text-center">Կանխիկ ելքագրում</h3>
                 
-                <!-- Amount Section -->
-                <div class="mb-4">
-                    <label for="cashAmount" class="block text-sm font-medium text-gray-700 mb-2">Գումար (֏)</label>
-                    <input type="number" id="cashAmount" class="w-full border border-gray-300 rounded-lg px-3 py-2" placeholder="Մուտքագրեք գումարը" min="125000">
-                    <p class="text-xs text-gray-500 mt-1">Նվազագույնը ֏125,000</p>
-                </div>
-
-                <!-- Payment Method Selection -->
-                <div class="mb-4">
-                    <label for="paymentMethod" class="block text-sm font-medium text-gray-700 mb-2">Վճարման եղանակ</label>
-                    <div class="space-y-3 max-h-48 overflow-y-auto border border-gray-300 rounded-lg p-3">
-                        <div class="flex items-center justify-between p-3 border border-gray-200 rounded-lg hover:bg-gray-50 cursor-pointer" onclick="selectPayment('easypay')">
-                            <div class="flex items-center space-x-3">
-                                <span class="text-xl">📱</span>
-                                <div>
-                                    <p class="font-semibold text-sm">EasyPay</p>
-                                    <p class="text-xs text-gray-600">Մոբայլ վճարում</p>
-                                </div>
-                            </div>
-                            <span class="text-xs bg-green-100 text-green-800 px-2 py-1 rounded-full">Ակտիվ</span>
-                        </div>
-                        
-                        <div class="flex items-center justify-between p-3 border border-gray-200 rounded-lg hover:bg-gray-50 cursor-pointer" onclick="selectPayment('idram')">
-                            <div class="flex items-center space-x-3">
-                                <span class="text-xl">💜</span>
-                                <div>
-                                    <p class="font-semibold text-sm">Idram</p>
-                                    <p class="text-xs text-gray-600">Էլեկտրոնային դրամապանակ</p>
-                                </div>
-                            </div>
-                            <span class="text-xs bg-green-100 text-green-800 px-2 py-1 rounded-full">Ակտիվ</span>
-                        </div>
-                        
-                        <div class="flex items-center justify-between p-3 border border-gray-200 rounded-lg hover:bg-gray-50 cursor-pointer" onclick="selectPayment('arca')">
-                            <div class="flex items-center space-x-3">
-                                <span class="text-xl">💳</span>
-                                <div>
-                                    <p class="font-semibold text-sm">ArCa</p>
-                                    <p class="text-xs text-gray-600">Հայկական քարտային համակարգ</p>
-                                </div>
-                            </div>
-                            <span class="text-xs bg-green-100 text-green-800 px-2 py-1 rounded-full">Ակտիվ</span>
-                        </div>
-                        
-                        <div class="flex items-center justify-between p-3 border border-gray-200 rounded-lg hover:bg-gray-50 cursor-pointer" onclick="selectPayment('ameriabank')">
-                            <div class="flex items-center space-x-3">
-                                <span class="text-xl">🏦</span>
-                                <div>
-                                    <p class="font-semibold text-sm">ԱմերիաԲանկ</p>
-                                    <p class="text-xs text-gray-600">Բանկային փոխանցում</p>
-                                </div>
-                            </div>
-                            <span class="text-xs bg-green-100 text-green-800 px-2 py-1 rounded-full">Ակտիվ</span>
-                        </div>
-                        
-                        <div class="flex items-center justify-between p-3 border border-gray-200 rounded-lg hover:bg-gray-50 cursor-pointer" onclick="selectPayment('ardshinbank')">
-                            <div class="flex items-center space-x-3">
-                                <span class="text-xl">🏛️</span>
-                                <div>
-                                    <p class="font-semibold text-sm">ԱրդշինԲանկ</p>
-                                    <p class="text-xs text-gray-600">Բանկային փոխանցում</p>
-                                </div>
-                            </div>
-                            <span class="text-xs bg-green-100 text-green-800 px-2 py-1 rounded-full">Ակտիվ</span>
-                        </div>
-                        
-                        <div class="flex items-center justify-between p-3 border border-gray-200 rounded-lg hover:bg-gray-50 cursor-pointer" onclick="selectPayment('acba')">
-                            <div class="flex items-center space-x-3">
-                                <span class="text-xl">🏪</span>
-                                <div>
-                                    <p class="font-semibold text-sm">ԱԿԲԱ Բանկ</p>
-                                    <p class="text-xs text-gray-600">Բանկային փոխանցում</p>
-                                </div>
-                            </div>
-                            <span class="text-xs bg-green-100 text-green-800 px-2 py-1 rounded-full">Ակտիվ</span>
-                        </div>
-                        
-                        <div class="flex items-center justify-between p-3 border border-gray-200 rounded-lg hover:bg-gray-50 cursor-pointer" onclick="selectPayment('converse')">
-                            <div class="flex items-center space-x-3">
-                                <span class="text-xl">🏢</span>
-                                <div>
-                                    <p class="font-semibold text-sm">Կոնվերս Բանկ</p>
-                                    <p class="text-xs text-gray-600">Բանկային փոխանցում</p>
-                                </div>
-                            </div>
-                            <span class="text-xs bg-green-100 text-green-800 px-2 py-1 rounded-full">Ակտիվ</span>
-                        </div>
-                        
-                        <div class="flex items-center justify-between p-3 border border-gray-200 rounded-lg hover:bg-gray-50 cursor-pointer" onclick="selectPayment('bitcoin')">
-                            <div class="flex items-center space-x-3">
-                                <span class="text-xl">₿</span>
-                                <div>
-                                    <p class="font-semibold text-sm">Bitcoin (BTC)</p>
-                                    <p class="text-xs text-gray-600">Կրիպտո ելքագրում</p>
-                                </div>
-                            </div>
-                            <span class="text-xs bg-green-100 text-green-800 px-2 py-1 rounded-full">Ակտիվ</span>
-                        </div>
-                        
-                        <div class="flex items-center justify-between p-3 border border-gray-200 rounded-lg hover:bg-gray-50 cursor-pointer" onclick="selectPayment('usdt')">
-                            <div class="flex items-center space-x-3">
-                                <span class="text-xl">💚</span>
-                                <div>
-                                    <p class="font-semibold text-sm">USDT (TRC20)</p>
-                                    <p class="text-xs text-gray-600">Կրիպտո ելքագրում</p>
-                                </div>
-                            </div>
-                            <span class="text-xs bg-green-100 text-green-800 px-2 py-1 rounded-full">Ակտիվ</span>
+                <div class="bird-item" onclick="changeUsername()">
+                    <div class="bird-info">
+                        <div class="bird-icon">✏️</div>
+                        <div class="bird-details">
+                            <h4>Փոխել անունը</h4>
+                            <p>Կարգավորել ցուցանակ անունը</p>
                         </div>
                     </div>
-                    <input type="hidden" id="selectedPayment" value="">
-                    <p class="text-xs text-gray-600 mt-2" id="selectedPaymentText">Ընտրեք վճարման եղանակ</p>
+                    <div style="opacity: 0.5;">→</div>
                 </div>
-
-                <!-- Bank Details Section (Hidden by default) -->
-                <div id="bankDetailsSection" class="mb-4 hidden">
-                    <h4 class="text-sm font-semibold text-gray-800 mb-3" id="bankDetailsTitle">Կոնվերս Բանկի մանրամասները</h4>
-                    <p class="text-xs text-gray-600 mb-3" id="bankDetailsDescription">Մուտքագրեք Ձեր Կոնվերս Բանկի հաշվի տվյալները:</p>
-                    
-                    <div class="space-y-3">
-                        <div>
-                            <label for="accountNumber" class="block text-sm font-medium text-gray-700 mb-1">Հաշվեհամար</label>
-                            <input type="text" id="accountNumber" class="w-full border border-gray-300 rounded-lg px-3 py-2 text-sm" placeholder="220000000000.00">
-                        </div>
-                        
-                        <div>
-                            <label for="accountHolder" class="block text-sm font-medium text-gray-700 mb-1">Անուն Ազգանուն</label>
-                            <input type="text" id="accountHolder" class="w-full border border-gray-300 rounded-lg px-3 py-2 text-sm" placeholder="Ձեր անունը">
-                        </div>
-                        
-                        <div id="cryptoAddressSection" class="hidden">
-                            <label for="cryptoAddress" class="block text-sm font-medium text-gray-700 mb-1">Դրամապանակի հասցե</label>
-                            <input type="text" id="cryptoAddress" class="w-full border border-gray-300 rounded-lg px-3 py-2 text-sm" placeholder="Մուտքագրեք Ձեր դրամապանակի հասցեն">
-                        </div>
-                        
-                        <div id="phoneSection" class="hidden">
-                            <label for="phoneNumber" class="block text-sm font-medium text-gray-700 mb-1">Հեռախոսահամար</label>
-                            <input type="tel" id="phoneNumber" class="w-full border border-gray-300 rounded-lg px-3 py-2 text-sm" placeholder="+374 XX XXX XXX">
+                
+                <div class="bird-item" onclick="toggleNotifications()">
+                    <div class="bird-info">
+                        <div class="bird-icon">🔔</div>
+                        <div class="bird-details">
+                            <h4>Ծանուցումներ</h4>
+                            <p id="notification-status">Միացված</p>
                         </div>
                     </div>
+                    <div class="toggle-switch active" id="notification-toggle">
+                        <div class="toggle-slider"></div>
+                    </div>
                 </div>
-
-                <p class="text-sm text-orange-600 mb-2">⚠️ Մշակման ժամանակ՝ 15 աշխատանքային օր</p>
-                <p class="text-sm text-blue-600 mb-4">💡 Պրոֆիլը ակտիվացնելու համար պետք է նվազագույն ֏2,000 դեպոզիտ</p>
-                <div class="flex space-x-3">
-                    <button onclick="closeCashOutModal()" class="flex-1 bg-gray-300 text-gray-700 py-2 rounded-lg hover:bg-gray-400 transition-colors">
-                        Չեղարկել
-                    </button>
-                    <button onclick="processCashOut()" class="flex-1 bg-green-600 text-white py-2 rounded-lg hover:bg-green-700 transition-colors">
-                        Ելքագրել գումար
-                    </button>
+                
+                <div class="bird-item" onclick="exportData()">
+                    <div class="bird-info">
+                        <div class="bird-icon">📊</div>
+                        <div class="bird-details">
+                            <h4>Արտահանել տվյալները</h4>
+                            <p>Ներբեռնել ձեր տվյալները</p>
+                        </div>
+                    </div>
+                    <div style="opacity: 0.5;">→</div>
                 </div>
             </div>
         </div>
     </div>
-
-    <script>
-        // Load saved data or use defaults
-        let balance = parseInt(localStorage.getItem('balance')) || 8000;
-        let tasksCompleted = parseInt(localStorage.getItem('tasksCompleted')) || 0;
-        let invitesSent = parseInt(localStorage.getItem('invitesSent')) || 0;
-        let videosWatched = parseInt(localStorage.getItem('videosWatched')) || 0;
-        let dailyVideosWatched = parseInt(localStorage.getItem('dailyVideosWatched')) || 0;
-        let selectedPaymentMethod = localStorage.getItem('selectedPaymentMethod') || '';
-        let selectedDepositPaymentMethod = localStorage.getItem('selectedDepositPaymentMethod') || '';
-        let cashOutHistory = JSON.parse(localStorage.getItem('cashOutHistory')) || [];
-        let referralHistory = JSON.parse(localStorage.getItem('referralHistory')) || [];
-        let depositHistory = JSON.parse(localStorage.getItem('depositHistory')) || [];
-        let lastVideoReset = localStorage.getItem('lastVideoReset') || new Date().toDateString();
-        let profileActivated = localStorage.getItem('profileActivated') === 'true' || false;
-
-        // Save data to localStorage
-        function saveData() {
-            localStorage.setItem('balance', balance);
-            localStorage.setItem('tasksCompleted', tasksCompleted);
-            localStorage.setItem('invitesSent', invitesSent);
-            localStorage.setItem('videosWatched', videosWatched);
-            localStorage.setItem('dailyVideosWatched', dailyVideosWatched);
-            localStorage.setItem('selectedPaymentMethod', selectedPaymentMethod);
-            localStorage.setItem('selectedDepositPaymentMethod', selectedDepositPaymentMethod);
-            localStorage.setItem('cashOutHistory', JSON.stringify(cashOutHistory));
-            localStorage.setItem('referralHistory', JSON.stringify(referralHistory));
-            localStorage.setItem('depositHistory', JSON.stringify(depositHistory));
-            localStorage.setItem('lastVideoReset', lastVideoReset);
-            localStorage.setItem('profileActivated', profileActivated);
-        }
-
-        // Auto-save every 5 seconds
-        setInterval(saveData, 5000);
-
-        // Save when page is about to close
-        window.addEventListener('beforeunload', saveData);
-
-        // Reset daily videos if it's a new day
-        function checkDailyReset() {
-            const today = new Date().toDateString();
-            if (lastVideoReset !== today) {
-                dailyVideosWatched = 0;
-                lastVideoReset = today;
-                saveData();
-            }
-        }
-
-        // Initialize the app with saved data
-        function initializeApp() {
-            checkDailyReset();
-            updateBalance();
-            updateStats();
-            updateVideoButtons();
-            loadCashOutHistory();
-            loadReferralHistory();
-            if (selectedPaymentMethod) {
-                document.getElementById('selectedPayment').value = selectedPaymentMethod;
-            }
-            if (selectedDepositPaymentMethod) {
-                document.getElementById('selectedDepositPayment').value = selectedDepositPaymentMethod;
-            }
-        }
-
-        function updateBalance() {
-            document.getElementById('totalBalance').textContent = '֏' + balance.toLocaleString();
-            const cashBalanceEl = document.getElementById('cashBalance');
-            if (cashBalanceEl) {
-                cashBalanceEl.textContent = '֏' + balance.toLocaleString();
-            }
-            saveData(); // Save whenever balance updates
-        }
-
-        function updateStats() {
-            document.getElementById('tasksCompleted').textContent = tasksCompleted;
-            document.getElementById('invitesSent').textContent = invitesSent;
-            document.getElementById('videosWatched').textContent = videosWatched;
-            const totalEarningsEl = document.getElementById('totalEarnings');
-            if (totalEarningsEl) {
-                totalEarningsEl.textContent = '֏' + balance.toLocaleString();
-            }
-            saveData(); // Save whenever stats update
-        }
-
-        function showModal(title, message) {
-            document.getElementById('modalTitle').textContent = title;
-            document.getElementById('modalMessage').textContent = message;
-            document.getElementById('successModal').classList.remove('hidden');
-        }
-
-        function closeModal() {
-            document.getElementById('successModal').classList.add('hidden');
-        }
-
-        function addMoney() {
-            if (balance >= 2000) {
-                showDepositModal();
-            } else {
-                const needed = 2000 - balance;
-                showModal('Անբավարար մնացորդ', `Դեպոզիտի համար պետք է նվազագույն ֏2,000: Ձեզ պակասում է ֏${needed.toLocaleString()}`);
-            }
-        }
-
-        function completeTask() {
-            tasksCompleted++;
-            balance += 2000;
-            updateBalance();
-            updateStats();
-            showModal('Առաջադրանք կատարված!', 'Դուք վաստակեցիք ֏2,000');
-        }
-
-        function sendInvite() {
-            invitesSent++;
-            balance += 4000;
-            
-            // Add to referral history (simulate new referral)
-            const names = ['Արամ Հ.', 'Մարիամ Ա.', 'Դավիթ Գ.', 'Անի Մ.', 'Գագիկ Ս.', 'Լուսինե Կ.'];
-            const randomName = names[Math.floor(Math.random() * names.length)];
-            
-            const referral = {
-                name: randomName,
-                date: new Date().toLocaleDateString('hy-AM'),
-                bonus: 4000,
-                id: Date.now()
-            };
-            
-            referralHistory.unshift(referral);
-            updateBalance();
-            updateStats();
-            loadReferralHistory();
-            saveData();
-            showModal('Հրավեր ուղարկված!', 'Դուք վաստակեցիք ֏4,000 + 10% եկամուտ');
-        }
-
-        function watchVideo() {
-            videosWatched++;
-            balance += 2300;
-            updateBalance();
-            updateStats();
-            showModal('Տեսանյութ դիտված!', 'Դուք վաստակեցիք ֏2,300');
-        }
-
-        function showCashOut() {
-            if (balance < 125000) {
-                showModal('Անբավարար մնացորդ', 'Նվազագույն ելքագրման գումարը ֏125,000 է');
-                return;
-            }
-            document.getElementById('cashOutModal').classList.remove('hidden');
-        }
-
-        function closeCashOutModal() {
-            document.getElementById('cashOutModal').classList.add('hidden');
-        }
-
-        function selectPayment(method) {
-            selectedPaymentMethod = method;
-            document.getElementById('selectedPayment').value = method;
-            const paymentNames = {
-                'easypay': 'EasyPay - Մոբայլ վճարում',
-                'idram': 'Idram - Էլեկտրոնային դրամապանակ',
-                'arca': 'ArCa - Հայկական քարտային համակարգ',
-                'ameriabank': 'ԱմերիաԲանկ - Բանկային փոխանցում',
-                'ardshinbank': 'ԱրդշինԲանկ - Բանկային փոխանցում',
-                'acba': 'ԱԿԲԱ Բանկ - Բանկային փոխանցում',
-                'converse': 'Կոնվերս Բանկ - Բանկային փոխանցում',
-                'bitcoin': 'Bitcoin (BTC) - Կրիպտո ելքագրում',
-                'usdt': 'USDT (TRC20) - Կրիպտո ելքագրում'
-            };
-            document.getElementById('selectedPaymentText').textContent = 'Ընտրված: ' + paymentNames[method];
-            
-            // Show bank details section and customize based on payment method
-            const bankDetailsSection = document.getElementById('bankDetailsSection');
-            const bankDetailsTitle = document.getElementById('bankDetailsTitle');
-            const bankDetailsDescription = document.getElementById('bankDetailsDescription');
-            const cryptoSection = document.getElementById('cryptoAddressSection');
-            const phoneSection = document.getElementById('phoneSection');
-            const accountNumberInput = document.getElementById('accountNumber');
-            const accountHolderInput = document.getElementById('accountHolder');
-            
-            // Hide all optional sections first
-            cryptoSection.classList.add('hidden');
-            phoneSection.classList.add('hidden');
-            
-            if (method === 'converse') {
-                bankDetailsTitle.textContent = 'Կոնվերս Բանկի մանրամասները';
-                bankDetailsDescription.textContent = 'Մուտքագրեք Ձեր Կոնվերս Բանկի հաշվի տվյալները:';
-                accountNumberInput.placeholder = '220000000000.00';
-                accountHolderInput.placeholder = 'Ձեր անունը';
-                bankDetailsSection.classList.remove('hidden');
-            } else if (method === 'ameriabank') {
-                bankDetailsTitle.textContent = 'ԱմերիաԲանկի մանրամասները';
-                bankDetailsDescription.textContent = 'Մուտքագրեք Ձեր ԱմերիաԲանկի հաշվի տվյալները:';
-                accountNumberInput.placeholder = '1570000000000000';
-                accountHolderInput.placeholder = 'Ձեր անունը';
-                bankDetailsSection.classList.remove('hidden');
-            } else if (method === 'ardshinbank') {
-                bankDetailsTitle.textContent = 'ԱրդշինԲանկի մանրամասները';
-                bankDetailsDescription.textContent = 'Մուտքագրեք Ձեր ԱրդշինԲանկի հաշվի տվյալները:';
-                accountNumberInput.placeholder = '151000000000000';
-                accountHolderInput.placeholder = 'Ձեր անունը';
-                bankDetailsSection.classList.remove('hidden');
-            } else if (method === 'acba') {
-                bankDetailsTitle.textContent = 'ԱԿԲԱ Բանկի մանրամասները';
-                bankDetailsDescription.textContent = 'Մուտքագրեք Ձեր ԱԿԲԱ Բանկի հաշվի տվյալները:';
-                accountNumberInput.placeholder = '1680000000000000';
-                accountHolderInput.placeholder = 'Ձեր անունը';
-                bankDetailsSection.classList.remove('hidden');
-            } else if (method === 'easypay') {
-                bankDetailsTitle.textContent = 'EasyPay մանրամասները';
-                bankDetailsDescription.textContent = 'Մուտքագրեք Ձեր EasyPay հաշվի տվյալները:';
-                accountNumberInput.placeholder = 'EasyPay հաշվեհամար';
-                accountHolderInput.placeholder = 'Ձեր անունը';
-                phoneSection.classList.remove('hidden');
-                bankDetailsSection.classList.remove('hidden');
-            } else if (method === 'idram') {
-                bankDetailsTitle.textContent = 'Idram մանրամասները';
-                bankDetailsDescription.textContent = 'Մուտքագրեք Ձեր Idram հաշվի տվյալները:';
-                accountNumberInput.placeholder = 'Idram հաշվեհամար';
-                accountHolderInput.placeholder = 'Ձեր անունը';
-                phoneSection.classList.remove('hidden');
-                bankDetailsSection.classList.remove('hidden');
-            } else if (method === 'arca') {
-                bankDetailsTitle.textContent = 'ArCa քարտի մանրամասները';
-                bankDetailsDescription.textContent = 'Մուտքագրեք Ձեր ArCa քարտի տվյալները:';
-                accountNumberInput.placeholder = '9051 **** **** ****';
-                accountHolderInput.placeholder = 'Քարտի վրա գրված անունը';
-                bankDetailsSection.classList.remove('hidden');
-            } else if (method === 'bitcoin') {
-                bankDetailsTitle.textContent = 'Bitcoin (BTC) մանրամասները';
-                bankDetailsDescription.textContent = 'Մուտքագրեք Ձեր Bitcoin դրամապանակի հասցեն:';
-                cryptoSection.classList.remove('hidden');
-                document.getElementById('cryptoAddress').placeholder = 'bc1qxy2kgdygjrsqtzq2n0yrf2493p83kkfjhx0wlh';
-                bankDetailsSection.classList.remove('hidden');
-            } else if (method === 'usdt') {
-                bankDetailsTitle.textContent = 'USDT (TRC20) մանրամասները';
-                bankDetailsDescription.textContent = 'Մուտքագրեք Ձեր USDT TRC20 դրամապանակի հասցեն:';
-                cryptoSection.classList.remove('hidden');
-                document.getElementById('cryptoAddress').placeholder = 'TQn9Y2khEsLJW1ChVWFMSMeRDow5oREqjK';
-                bankDetailsSection.classList.remove('hidden');
-            } else {
-                bankDetailsSection.classList.add('hidden');
-            }
-            
-            saveData();
-        }
-
-        function loadCashOutHistory() {
-            const historyContainer = document.querySelector('#cashPage .bg-white.rounded-xl .text-center');
-            if (cashOutHistory.length > 0) {
-                historyContainer.innerHTML = '';
-                cashOutHistory.forEach(transaction => {
-                    const transactionEl = document.createElement('div');
-                    transactionEl.className = 'border-b border-gray-200 pb-3 mb-3 last:border-b-0';
-                    transactionEl.innerHTML = `
-                        <div class="flex justify-between items-center">
-                            <div class="text-left">
-                                <p class="font-semibold">֏${transaction.amount.toLocaleString()}</p>
-                                <p class="text-xs text-gray-600">${transaction.method}</p>
-                                <p class="text-xs text-gray-500">${transaction.date}</p>
-                            </div>
-                            <span class="text-xs px-2 py-1 rounded-full ${transaction.status === 'Մշակվում է' ? 'bg-yellow-100 text-yellow-800' : 'bg-green-100 text-green-800'}">${transaction.status}</span>
-                        </div>
-                    `;
-                    historyContainer.appendChild(transactionEl);
-                });
+    
+    <!-- Bottom Navigation -->
+    <div class="bottom-nav">
+        <div class="nav-item active" onclick="switchPage('menu')">
+            <div class="nav-icon">🏠</div>
+            <div class="nav-label">Menu</div>
+        </div>
+        <div class="nav-item" onclick="switchPage('wallet')">
+            <div class="nav-icon">💰</div>
+            <div class="nav-label">Wallet</div>
+        </div>
+        <div class="nav-item" onclick="switchPage('referral')">
+            <div class="nav-icon">👥</div>
+            <div class="nav-label">Referral</div>
+        </div>
+        <div class="nav-item" onclick="switchPage('birds')">
+            <div class="nav-icon">🐦</div>
+            <div class="nav-label">Birds</div>
+        </div>
+        <div class="nav-item" onclick="switchPage('support')">
+            <div class="nav-icon">🛠️</div>
+            <div class="nav-label">Support</div>
+        </div>
+        <div class="nav-item" onclick="switchPage('profile')">
+            <div class="nav-icon">👤</div>
+            <div class="nav-label">Profile</div>
+        </div>
+    </div>
+    
+    <!-- Deposit Modal -->
+    <div class="modal" id="depositModal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h3 class="modal-title">Ավանդ կատարել</h3>
+            </div>
+            <form onsubmit="processDeposit(event)">
+                <div class="form-group">
+                    <label for="depositMethod">Ավանդի եղանակ</label>
+                    <select id="depositMethod" required onchange="showWalletAddress()">
+                        <option value="">Ընտրեք եղանակը</option>
+                        <option value="dash">Dash</option>
+                        <option value="usdt">USDT TRC-20</option>
+                    </select>
+                </div>
+                <div class="form-group" id="walletAddress" style="display: none;">
+                    <label>Հասցե</label>
+                    <div style="background: rgba(255,255,255,0.1); padding: 10px; border-radius: 8px; word-break: break-all; font-family: monospace; font-size: 0.9rem;" id="addressText"></div>
+                    <button type="button" onclick="copyAddress()" style="margin-top: 8px; padding: 8px 16px; background: rgba(255,255,255,0.2); border: none; border-radius: 6px; color: white; cursor: pointer;">Պատճենել</button>
+                </div>
+                <div class="form-group">
+                    <label for="depositAmount">Գումար (֏)</label>
+                    <input type="number" id="depositAmount" placeholder="Նվազագույնը 1000 ֏" min="1000" required>
+                    <div class="min-amount">Նվազագույն ավանդ՝ 1000 ֏</div>
+                </div>
+                <div class="modal-actions">
+                    <button type="submit" class="btn btn-primary">Ավանդ կատարել</button>
+                    <button type="button" class="btn btn-close" onclick="closeModal('depositModal')">Փակել</button>
+                </div>
+            </form>
+        </div>
+    </div>
+    
+    <!-- Withdraw Modal -->
+    <div class="modal" id="withdrawModal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h3 class="modal-title">Գումար վերցնել</h3>
+            </div>
+            <form onsubmit="processWithdraw(event)">
+                <div class="form-group">
+                    <label for="withdrawAmount">Գումար (֏)</label>
+                    <input type="number" id="withdrawAmount" placeholder="Նվազագույնը 1000 ֏" min="1000" required>
+                    <div class="min-amount">Նվազագույն վերցում՝ 1000 ֏</div>
+                </div>
+                <div class="modal-actions">
+                    <button type="submit" class="btn btn-secondary">Վերցնել</button>
+                    <button type="button" class="btn btn-close" onclick="closeModal('withdrawModal')">Փակել</button>
+                </div>
+            </form>
+        </div>
+    </div>
+    
+    <!-- Profile Picture Modal -->
+    <div class="modal" id="profilePictureModal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h3 class="modal-title">Ընտրել պրոֆիլի նկար</h3>
+            </div>
+            <div style="margin-bottom: 20px;">
+                <div class="form-group">
+                    <label for="profileImageUrl">Նկարի հղում (URL)</label>
+                    <input type="url" id="profileImageUrl" placeholder="https://example.com/image.jpg">
+                    <div class="min-amount">Մուտքագրեք նկարի հղումը</div>
+                </div>
                 
-                const workingEl = document.createElement('p');
-                workingEl.className = 'text-xs text-green-600 mt-2';
-                workingEl.textContent = 'Աշխատում է ամեն օր';
-                historyContainer.appendChild(workingEl);
+                <div style="text-align: center; margin: 20px 0;">
+                    <div style="font-weight: bold; margin-bottom: 15px;">Կամ ընտրեք պատրաստի նկարներից</div>
+                    <div style="display: grid; grid-template-columns: repeat(4, 1fr); gap: 10px;">
+                        <div class="avatar-option" onclick="selectAvatar('👤')" style="background: #f8f9fa; border-radius: 50%; width: 50px; height: 50px; display: flex; align-items: center; justify-content: center; cursor: pointer; font-size: 1.5rem; border: 2px solid transparent;">👤</div>
+                        <div class="avatar-option" onclick="selectAvatar('🐦')" style="background: #f8f9fa; border-radius: 50%; width: 50px; height: 50px; display: flex; align-items: center; justify-content: center; cursor: pointer; font-size: 1.5rem; border: 2px solid transparent;">🐦</div>
+                        <div class="avatar-option" onclick="selectAvatar('🦅')" style="background: #f8f9fa; border-radius: 50%; width: 50px; height: 50px; display: flex; align-items: center; justify-content: center; cursor: pointer; font-size: 1.5rem; border: 2px solid transparent;">🦅</div>
+                        <div class="avatar-option" onclick="selectAvatar('🐓')" style="background: #f8f9fa; border-radius: 50%; width: 50px; height: 50px; display: flex; align-items: center; justify-content: center; cursor: pointer; font-size: 1.5rem; border: 2px solid transparent;">🐓</div>
+                        <div class="avatar-option" onclick="selectAvatar('🦜')" style="background: #f8f9fa; border-radius: 50%; width: 50px; height: 50px; display: flex; align-items: center; justify-content: center; cursor: pointer; font-size: 1.5rem; border: 2px solid transparent;">🦜</div>
+                        <div class="avatar-option" onclick="selectAvatar('🦚')" style="background: #f8f9fa; border-radius: 50%; width: 50px; height: 50px; display: flex; align-items: center; justify-content: center; cursor: pointer; font-size: 1.5rem; border: 2px solid transparent;">🦚</div>
+                        <div class="avatar-option" onclick="selectAvatar('🦉')" style="background: #f8f9fa; border-radius: 50%; width: 50px; height: 50px; display: flex; align-items: center; justify-content: center; cursor: pointer; font-size: 1.5rem; border: 2px solid transparent;">🦉</div>
+                        <div class="avatar-option" onclick="selectAvatar('💎')" style="background: #f8f9fa; border-radius: 50%; width: 50px; height: 50px; display: flex; align-items: center; justify-content: center; cursor: pointer; font-size: 1.5rem; border: 2px solid transparent;">💎</div>
+                    </div>
+                </div>
+                
+                <div style="text-align: center; margin: 20px 0;">
+                    <div style="width: 80px; height: 80px; border-radius: 50%; background: #f8f9fa; margin: 0 auto; display: flex; align-items: center; justify-content: center; border: 2px solid #e9ecef;">
+                        <img id="preview-image" src="" alt="Preview" style="width: 100%; height: 100%; border-radius: 50%; object-fit: cover; display: none;">
+                        <div id="preview-placeholder" style="font-size: 2rem;">👤</div>
+                    </div>
+                    <div style="margin-top: 10px; font-size: 0.9rem; opacity: 0.7;">Նկարի նախադիտում</div>
+                </div>
+            </div>
+            
+            <div class="modal-actions">
+                <button type="button" class="btn btn-primary" onclick="saveProfilePicture()">Պահպանել</button>
+                <button type="button" class="btn btn-close" onclick="closeModal('profilePictureModal')">Փակել</button>
+            </div>
+        </div>
+    </div>
+    
+    <div class="notification" id="notification"></div>
+    
+    <script>
+        let gameData = {
+            balance: 0,
+            eggs: 0,
+            chicks: 0,
+            lastCollected: Date.now(),
+            collectedBirds: [],
+            nextCollectTime: 0,
+            referrals: 0,
+            referralEarnings: 0,
+            referralCode: 'REF' + Math.random().toString(36).substr(2, 6).toUpperCase(),
+            lastIncomeCollection: Date.now(),
+            accumulatedIncome: 0,
+            username: 'Օգտատեր #' + Math.floor(Math.random() * 100000),
+            joinDate: new Date().toLocaleDateString('hy-AM'),
+            telegramChannels: [
+                { name: 'Rich Birds News', url: 'https://t.me/richbirds_news', joined: false, reward: 1 },
+                { name: 'Rich Birds Chat', url: 'https://t.me/richbirds_chat', joined: false, reward: 1 },
+                { name: 'Crypto Armenia', url: 'https://t.me/crypto_armenia', joined: false, reward: 1 }
+            ],
+            totalEarned: 0,
+            profilePicture: null,
+            profilePictureType: 'emoji' // 'emoji' or 'url'
+        };
+        
+        let selectedProfilePicture = null;
+        let selectedProfileType = 'emoji';
+        
+        const birdTypes = [
+            { name: 'Արծիվ', icon: '🦅', rarity: 'rare', income: 50 },
+            { name: 'Կարապ', icon: '🦆', rarity: 'common', income: 15 },
+            { name: 'Ծիծեռնակ', icon: '🐦', rarity: 'common', income: 12 },
+            { name: 'Բու', icon: '🦉', rarity: 'uncommon', income: 30 },
+            { name: 'Կաքավ', icon: '🦜', rarity: 'uncommon', income: 25 },
+            { name: 'Դրամանոց', icon: '🦚', rarity: 'legendary', income: 100 },
+            { name: 'Ոսկե թռչուն', icon: '🐓', rarity: 'epic', income: 75 }
+        ];
+        
+        // Load saved data
+        function loadGameData() {
+            const saved = localStorage.getItem('richBirdsData');
+            if (saved) {
+                const savedData = JSON.parse(saved);
+                gameData = { ...gameData, ...savedData };
+                collectPassiveIncome();
+            }
+            updateDisplay();
+            displayTelegramChannels();
+        }
+        
+        // Save game data
+        function saveGameData() {
+            localStorage.setItem('richBirdsData', JSON.stringify(gameData));
+        }
+        
+        // Update display
+        function updateDisplay() {
+            // Update balance on all pages
+            document.getElementById('balance').textContent = gameData.balance.toLocaleString() + ' ֏';
+            document.getElementById('wallet-balance').textContent = gameData.balance.toLocaleString() + ' ֏';
+            
+            // Update bird counts
+            document.getElementById('eggs-count').textContent = gameData.eggs;
+            document.getElementById('chicks-count').textContent = gameData.chicks;
+            
+            // Calculate hourly income
+            const collectedBirdsIncome = gameData.collectedBirds.reduce((total, bird) => total + bird.income, 0);
+            const hourlyIncome = (gameData.eggs * 10) + (gameData.chicks * 25) + collectedBirdsIncome;
+            document.getElementById('hourly-income').textContent = hourlyIncome.toLocaleString() + ' ֏';
+            
+            // Update accumulated income
+            document.getElementById('accumulated-income').textContent = gameData.accumulatedIncome.toLocaleString() + ' ֏';
+            
+            // Update stats
+            const totalBirds = gameData.eggs + gameData.chicks + gameData.collectedBirds.length;
+            document.getElementById('total-birds').textContent = totalBirds;
+            document.getElementById('total-referrals').textContent = gameData.referrals;
+            
+            // Update referral stats
+            document.getElementById('ref-count').textContent = gameData.referrals;
+            document.getElementById('ref-earnings').textContent = gameData.referralEarnings.toLocaleString() + ' ֏';
+            
+            // Update referral link
+            document.getElementById('referral-link').textContent = `https://t.me/richbirds_bot?start=${gameData.referralCode}`;
+            
+            updateCollectButton();
+            displayCollectedBirds();
+            updateProfileDisplay();
+        }
+        
+        // Collect passive income - realistic hourly system
+        function collectPassiveIncome() {
+            const now = Date.now();
+            const timePassed = now - gameData.lastIncomeCollection;
+            const hoursPassed = timePassed / (1000 * 60 * 60);
+            
+            if (hoursPassed >= 1) {
+                const hoursToCollect = Math.floor(hoursPassed);
+                const collectedBirdsIncome = gameData.collectedBirds.reduce((total, bird) => total + bird.income, 0);
+                const hourlyIncome = (gameData.eggs * 10) + (gameData.chicks * 25) + collectedBirdsIncome;
+                const totalIncome = hourlyIncome * hoursToCollect;
+                
+                if (totalIncome > 0) {
+                    gameData.accumulatedIncome += totalIncome;
+                    showNotification(`Կուտակվել է ${totalIncome.toLocaleString()} ֏ ժամային եկամուտ!`, 'success');
+                }
+                
+                gameData.lastIncomeCollection = now;
+                saveGameData();
             }
         }
-
-        function loadReferralHistory() {
-            const referralsContainer = document.getElementById('referralsList');
-            if (referralHistory.length > 0) {
-                referralsContainer.innerHTML = '';
-                referralHistory.forEach(referral => {
-                    const referralEl = document.createElement('div');
-                    referralEl.className = 'border-b border-gray-200 pb-3 mb-3 last:border-b-0';
-                    referralEl.innerHTML = `
-                        <div class="flex justify-between items-center">
-                            <div class="text-left">
-                                <p class="font-semibold">${referral.name}</p>
-                                <p class="text-xs text-gray-600">Գրանցվել է ${referral.date}</p>
-                            </div>
-                            <div class="text-right">
-                                <p class="font-semibold text-green-600">+֏${referral.bonus.toLocaleString()}</p>
-                                <p class="text-xs text-gray-500">Բոնուս</p>
-                            </div>
+        
+        // Collect accumulated income
+        function collectAccumulatedIncome() {
+            if (gameData.accumulatedIncome > 0) {
+                const amount = gameData.accumulatedIncome;
+                gameData.balance += amount;
+                gameData.totalEarned += amount;
+                gameData.accumulatedIncome = 0;
+                animateBalanceIncrease(amount);
+                saveGameData();
+                updateDisplay();
+                showNotification(`Հավաքվել է ${amount.toLocaleString()} ֏ կուտակված եկամուտ!`, 'success');
+            } else {
+                showNotification('Կուտակված եկամուտ չկա!', 'error');
+            }
+        }
+        
+        // Display Telegram channels
+        function displayTelegramChannels() {
+            const container = document.getElementById('telegram-channels');
+            container.innerHTML = gameData.telegramChannels.map((channel, index) => `
+                <div class="channel-item ${channel.joined ? 'joined' : ''}">
+                    <div class="bird-info">
+                        <div class="bird-icon">📱</div>
+                        <div class="bird-details">
+                            <h4>${channel.name}</h4>
+                            <p>${channel.joined ? 'Միացած ✅' : 'Միացեք և ստացեք 1 հավիկ'}</p>
                         </div>
-                    `;
-                    referralsContainer.appendChild(referralEl);
-                });
-            }
-        }
-
-        function processCashOut() {
-            const amount = parseInt(document.getElementById('cashAmount').value);
-            const method = document.getElementById('selectedPayment').value;
-            const accountNumber = document.getElementById('accountNumber').value;
-            const accountHolder = document.getElementById('accountHolder').value;
-            const cryptoAddress = document.getElementById('cryptoAddress').value;
-            const phoneNumber = document.getElementById('phoneNumber').value;
-            
-            if (!method) {
-                showModal('Ընտրեք վճարման եղանակ', 'Խնդրում ենք ընտրել վճարման եղանակ');
-                return;
-            }
-            
-            if (!amount || amount < 125000) {
-                showModal('Սխալ գումար', 'Նվազագույն ելքագրման գումարը ֏125,000 է');
-                return;
-            }
-            
-            if (amount > balance) {
-                showModal('Անբավարար մնացորդ', 'Դուք չունեք բավարար մնացորդ');
-                return;
-            }
-
-            // Validate required fields based on payment method
-            if (method === 'bitcoin' || method === 'usdt') {
-                if (!cryptoAddress) {
-                    showModal('Լրացրեք բոլոր դաշտերը', 'Խնդրում ենք մուտքագրել դրամապանակի հասցեն');
-                    return;
-                }
-            } else if (method === 'easypay' || method === 'idram') {
-                if (!accountNumber || !accountHolder || !phoneNumber) {
-                    showModal('Լրացրեք բոլոր դաշտերը', 'Խնդրում ենք լրացնել բոլոր պահանջվող դաշտերը');
-                    return;
-                }
-            } else {
-                if (!accountNumber || !accountHolder) {
-                    showModal('Լրացրեք բոլոր դաշտերը', 'Խնդրում ենք լրացնել հաշվեհամարը և անունը');
-                    return;
-                }
-            }
-            
-            // Add to cash out history
-            const paymentNames = {
-                'easypay': 'EasyPay',
-                'idram': 'Idram',
-                'arca': 'ArCa',
-                'ameriabank': 'ԱմերիաԲանկ',
-                'ardshinbank': 'ԱրդշինԲանկ',
-                'acba': 'ԱԿԲԱ Բանկ',
-                'converse': 'Կոնվերս Բանկ',
-                'bitcoin': 'Bitcoin (BTC)',
-                'usdt': 'USDT (TRC20)'
-            };
-            
-            const transaction = {
-                amount: amount,
-                method: paymentNames[method],
-                date: new Date().toLocaleDateString('hy-AM'),
-                status: 'Մշակվում է',
-                id: Date.now(),
-                accountDetails: {
-                    accountNumber: accountNumber,
-                    accountHolder: accountHolder,
-                    cryptoAddress: cryptoAddress,
-                    phoneNumber: phoneNumber
-                }
-            };
-            
-            cashOutHistory.unshift(transaction);
-            balance -= amount;
-            updateBalance();
-            loadCashOutHistory();
-            closeCashOutModal();
-            
-            // Clear form
-            document.getElementById('cashAmount').value = '';
-            document.getElementById('accountNumber').value = '';
-            document.getElementById('accountHolder').value = '';
-            document.getElementById('cryptoAddress').value = '';
-            document.getElementById('phoneNumber').value = '';
-            document.getElementById('bankDetailsSection').classList.add('hidden');
-            
-            saveData();
-            showModal('Հայտ ուղարկված!', `֏${amount.toLocaleString()} գումարը կմշակվի 15 աշխատանքային օրվա ընթացքում`);
-        }
-
-        function showDepositModal() {
-            document.getElementById('depositModal').classList.remove('hidden');
-        }
-
-        function closeDepositModal() {
-            document.getElementById('depositModal').classList.add('hidden');
-        }
-
-        function selectDepositPayment(method) {
-            selectedDepositPaymentMethod = method;
-            document.getElementById('selectedDepositPayment').value = method;
-            const paymentNames = {
-                'easypay': 'EasyPay - Մոբայլ վճարում',
-                'idram': 'Idram - Էլեկտրոնային դրամապանակ',
-                'arca': 'ArCa - Հայկական քարտային համակարգ',
-                'ameriabank': 'ԱմերիաԲանկ - Բանկային փոխանցում'
-            };
-            document.getElementById('selectedDepositPaymentText').textContent = 'Ընտրված: ' + paymentNames[method];
-            saveData();
-        }
-
-        function processDeposit() {
-            const amount = parseInt(document.getElementById('depositAmount').value);
-            const method = document.getElementById('selectedDepositPayment').value;
-            
-            if (!method) {
-                showModal('Ընտրեք վճարման եղանակ', 'Խնդրում ենք ընտրել վճարման եղանակ');
-                return;
-            }
-            
-            if (!amount || amount < 2000) {
-                showModal('Սխալ գումար', 'Նվազագույն դեպոզիտի գումարը ֏2,000 է');
-                return;
-            }
-            
-            if (amount > balance) {
-                showModal('Անբավարար մնացորդ', 'Դուք չունեք բավարար մնացորդ');
-                return;
-            }
-            
-            // Add to deposit history
-            const paymentNames = {
-                'easypay': 'EasyPay',
-                'idram': 'Idram',
-                'arca': 'ArCa',
-                'ameriabank': 'ԱմերիաԲանկ'
-            };
-            
-            const deposit = {
-                amount: amount,
-                method: paymentNames[method],
-                date: new Date().toLocaleDateString('hy-AM'),
-                status: 'Հաջողված',
-                id: Date.now()
-            };
-            
-            depositHistory.unshift(deposit);
-            balance -= amount;
-            profileActivated = true;
-            updateBalance();
-            closeDepositModal();
-            saveData();
-            showModal('Դեպոզիտ հաջողված!', `֏${amount.toLocaleString()} դեպոզիտը կատարվեց: Ձեր պրոֆիլը ակտիվացված է!`);
-        }
-
-        let currentPage = 'home';
-
-        function showPage(page) {
-            // Hide all pages
-            document.getElementById('homePage').classList.add('hidden');
-            document.getElementById('invitePage').classList.add('hidden');
-            document.getElementById('centerPage').classList.add('hidden');
-            document.getElementById('videosPage').classList.add('hidden');
-            document.getElementById('cashPage').classList.add('hidden');
-            
-            // Reset all nav buttons
-            document.querySelectorAll('nav button').forEach(btn => {
-                btn.classList.remove('text-blue-600');
-                btn.classList.add('text-gray-500');
-            });
-            
-            // Show selected page and highlight nav button
-            if (page === 'home') {
-                document.getElementById('homePage').classList.remove('hidden');
-                document.getElementById('homeBtn').classList.remove('text-gray-500');
-                document.getElementById('homeBtn').classList.add('text-blue-600');
-            } else if (page === 'invite') {
-                document.getElementById('invitePage').classList.remove('hidden');
-                document.getElementById('inviteBtn').classList.remove('text-gray-500');
-                document.getElementById('inviteBtn').classList.add('text-blue-600');
-            } else if (page === 'center') {
-                document.getElementById('centerPage').classList.remove('hidden');
-                document.getElementById('centerBtn').classList.remove('text-gray-500');
-                document.getElementById('centerBtn').classList.add('text-blue-600');
-            } else if (page === 'videos') {
-                document.getElementById('videosPage').classList.remove('hidden');
-                document.getElementById('videosBtn').classList.remove('text-gray-500');
-                document.getElementById('videosBtn').classList.add('text-blue-600');
-            } else if (page === 'cash') {
-                document.getElementById('cashPage').classList.remove('hidden');
-                document.getElementById('cashBtn').classList.remove('text-gray-500');
-                document.getElementById('cashBtn').classList.add('text-blue-600');
-                updateBalance();
-            }
-            
-            currentPage = page;
-        }
-
-        function shareInvite() {
-            showModal('Հրավեր կիսված!', 'Ձեր հրավերի կոդը կիսվել է ընկերների հետ');
-        }
-
-        function claimDailyBonus() {
-            const bonus = Math.floor(Math.random() * 3000) + 2000; // 2000-5000
-            balance += bonus;
-            updateBalance();
-            showModal('Օրական բոնուս!', `Դուք ստացաք ֏${bonus.toLocaleString()} օրական բոնուս`);
-        }
-
-        function joinContest() {
-            showModal('Մրցույթ!', 'Դուք մասնակցել եք ամսական մրցույթին։ Արդյունքները կհայտարարվեն շուտով');
-        }
-
-        function upgradeVIP() {
-            showModal('VIP ծրագիր', 'VIP անդամակցությունը կարող է գնել ֏50,000-ով։ Ցանկանու՞մ եք շարունակել?');
-        }
-
-        const maxDailyVideos = 3;
-
-        function watchVideoAd(videoId) {
-            let earnings = 0;
-            let duration = '';
-            
-            if (videoId === 1) {
-                earnings = 2300;
-                duration = '30 վրկ';
-            } else if (videoId === 2) {
-                earnings = 3500;
-                duration = '45 վրկ';
-            } else if (videoId === 3) {
-                earnings = 5000;
-                duration = '60 վրկ';
-            }
-            
-            videosWatched++;
-            balance += earnings;
-            updateBalance();
-            updateStats();
-            showModal('Տեսանյութ դիտված!', `Դուք դիտեցիք ${duration} տեսանյութ և վաստակեցիք ֏${earnings.toLocaleString()}`);
-        }
-
-        function watchVideoEarn(videoId) {
-            if (dailyVideosWatched >= maxDailyVideos) {
-                showModal('Օրական սահմանափակում', 'Դուք արդեն դիտել եք 3 տեսանյութ այսօր: Վաղը կարող եք դիտել նորից:');
-                return;
-            }
-            
-            dailyVideosWatched++;
-            videosWatched++;
-            balance += 2300;
-            updateBalance();
-            updateStats();
-            updateVideoButtons();
-            
-            showModal('Տեսանյութ դիտված!', `Դուք վաստակեցիք ֏2,300! Մնացել է ${maxDailyVideos - dailyVideosWatched} տեսանյութ այսօր:`);
-        }
-
-        function updateVideoButtons() {
-            const videosLeft = maxDailyVideos - dailyVideosWatched;
-            const videosLeftEl = document.getElementById('videosLeft');
-            if (videosLeftEl) {
-                videosLeftEl.textContent = videosLeft;
-            }
-            
-            if (dailyVideosWatched >= maxDailyVideos) {
-                for (let i = 1; i <= 3; i++) {
-                    const btn = document.getElementById(`videoBtn${i}`);
-                    if (btn) {
-                        btn.textContent = 'Վաղը նորից';
-                        btn.disabled = true;
-                        btn.classList.add('opacity-50', 'cursor-not-allowed');
-                        btn.onclick = null;
+                    </div>
+                    ${channel.joined ? 
+                        '<div style="color: #4CAF50; font-size: 1.2rem;">✅</div>' : 
+                        `<button class="btn btn-success" onclick="joinTelegramChannel(${index})">Միանալ</button>`
                     }
+                </div>
+            `).join('');
+        }
+        
+        // Join Telegram channel
+        function joinTelegramChannel(index) {
+            const channel = gameData.telegramChannels[index];
+            
+            // Open Telegram channel in new tab
+            window.open(channel.url, '_blank', 'noopener,noreferrer');
+            
+            // Simulate joining after 3 seconds
+            setTimeout(() => {
+                if (!channel.joined) {
+                    channel.joined = true;
+                    
+                    // Add reward bird
+                    const rewardBird = {
+                        name: `${channel.name} հավիկ`,
+                        icon: '🐓',
+                        income: 20,
+                        id: Date.now() + Math.random()
+                    };
+                    
+                    gameData.collectedBirds.push(rewardBird);
+                    gameData.referralEarnings += 20;
+                    
+                    saveGameData();
+                    updateDisplay();
+                    displayTelegramChannels();
+                    showNotification(`Շնորհակալություն! Ստացել եք 1 հավիկ ${channel.name}-ի համար!`, 'success');
+                }
+            }, 3000);
+        }
+        
+        // Update collect button
+        function updateCollectButton() {
+            const collectBtn = document.getElementById('collectBtn');
+            const now = Date.now();
+            
+            if (now >= gameData.nextCollectTime) {
+                collectBtn.disabled = false;
+                collectBtn.textContent = 'Հավաքել ձվեր';
+                collectBtn.style.opacity = '1';
+            } else {
+                collectBtn.disabled = true;
+                const timeLeft = Math.ceil((gameData.nextCollectTime - now) / 1000);
+                const minutes = Math.floor(timeLeft / 60);
+                const seconds = timeLeft % 60;
+                collectBtn.textContent = `Սպասել ${minutes}:${seconds.toString().padStart(2, '0')}`;
+                collectBtn.style.opacity = '0.6';
+            }
+        }
+        
+        // Display collected birds
+        function displayCollectedBirds() {
+            const container = document.getElementById('collected-birds');
+            if (gameData.collectedBirds.length === 0) {
+                container.innerHTML = '<p style="text-align: center; opacity: 0.7;">Դեռ թռչուններ չեք հավաքել</p>';
+                return;
+            }
+            
+            container.innerHTML = gameData.collectedBirds.map(bird => `
+                <div class="bird-item">
+                    <div class="bird-info">
+                        <div class="bird-icon">${bird.icon}</div>
+                        <div class="bird-details">
+                            <h4>${bird.name}</h4>
+                            <p>Տալիս է ${bird.income} ֏ ժամում</p>
+                        </div>
+                    </div>
+                    <div class="bird-count">1</div>
+                </div>
+            `).join('');
+        }
+        
+        // Collect eggs function with animated balance transfer
+        function collectEggs() {
+            const now = Date.now();
+            if (now < gameData.nextCollectTime) {
+                showNotification('Դեռ ժամանակը չի հասել!', 'error');
+                return;
+            }
+            
+            // Random bird selection
+            const randomBird = birdTypes[Math.floor(Math.random() * birdTypes.length)];
+            const newBird = {
+                ...randomBird,
+                id: Date.now() + Math.random()
+            };
+            
+            gameData.collectedBirds.push(newBird);
+            gameData.nextCollectTime = now + (5 * 60 * 1000); // 5 minutes
+            
+            // Animate balance increase
+            const earnedAmount = newBird.income * 10; // Bonus for collecting
+            animateBalanceIncrease(earnedAmount);
+            gameData.balance += earnedAmount;
+            gameData.totalEarned += earnedAmount;
+            
+            saveGameData();
+            updateDisplay();
+            showNotification(`Հավաքվել է ${newBird.name} ${newBird.icon}! +${earnedAmount} ֏`, 'success');
+        }
+        
+        // Animate balance increase
+        function animateBalanceIncrease(amount) {
+            const balanceElement = document.getElementById('balance');
+            const walletBalanceElement = document.getElementById('wallet-balance');
+            
+            // Create floating animation
+            const floatingText = document.createElement('div');
+            floatingText.textContent = `+${amount.toLocaleString()} ֏`;
+            floatingText.style.cssText = `
+                position: fixed;
+                top: 50%;
+                left: 50%;
+                transform: translate(-50%, -50%);
+                color: #4CAF50;
+                font-size: 1.5rem;
+                font-weight: bold;
+                z-index: 1002;
+                pointer-events: none;
+                animation: floatUp 2s ease-out forwards;
+            `;
+            
+            // Add keyframe animation
+            if (!document.getElementById('floatUpStyle')) {
+                const style = document.createElement('style');
+                style.id = 'floatUpStyle';
+                style.textContent = `
+                    @keyframes floatUp {
+                        0% { opacity: 1; transform: translate(-50%, -50%) scale(1); }
+                        50% { opacity: 1; transform: translate(-50%, -70%) scale(1.2); }
+                        100% { opacity: 0; transform: translate(-50%, -100%) scale(0.8); }
+                    }
+                `;
+                document.head.appendChild(style);
+            }
+            
+            document.body.appendChild(floatingText);
+            
+            // Remove after animation
+            setTimeout(() => {
+                if (floatingText.parentNode) {
+                    floatingText.parentNode.removeChild(floatingText);
+                }
+            }, 2000);
+            
+            // Animate balance counters
+            animateCounter(balanceElement, gameData.balance - amount, gameData.balance);
+            animateCounter(walletBalanceElement, gameData.balance - amount, gameData.balance);
+        }
+        
+        // Animate counter
+        function animateCounter(element, start, end) {
+            const duration = 1000;
+            const startTime = Date.now();
+            
+            function update() {
+                const elapsed = Date.now() - startTime;
+                const progress = Math.min(elapsed / duration, 1);
+                const current = Math.floor(start + (end - start) * progress);
+                
+                element.textContent = current.toLocaleString() + ' ֏';
+                
+                if (progress < 1) {
+                    requestAnimationFrame(update);
                 }
             }
-        }
-
-        function toggleGuide() {
-            const content = document.getElementById('guideContent');
-            const toggle = document.getElementById('guideToggle');
             
-            if (content.style.display === 'none') {
-                content.style.display = 'block';
-                toggle.textContent = 'Փակել';
+            update();
+        }
+        
+        // Wallet addresses
+        const walletAddresses = {
+            dash: 'XjK9mN2pQ7rS8tU3vW4xY5zA6bC7dE8fG9hI0jK1lM2nO3pQ4rS5tU6vW7xY8zA9',
+            usdt: 'TQn9Y8va7HyqN6jRTU3vW4xY5zA6bC7dE8fG9hI0jK1lM2nO3pQ4rS5tU6vW7xY8zA'
+        };
+        
+        // Show wallet address
+        function showWalletAddress() {
+            const method = document.getElementById('depositMethod').value;
+            const addressDiv = document.getElementById('walletAddress');
+            const addressText = document.getElementById('addressText');
+            
+            if (method && walletAddresses[method]) {
+                addressText.textContent = walletAddresses[method];
+                addressDiv.style.display = 'block';
             } else {
-                content.style.display = 'none';
-                toggle.textContent = 'Բացել';
+                addressDiv.style.display = 'none';
             }
         }
-
-        function copyLink() {
-            const link = document.getElementById('referralLink').textContent;
-            navigator.clipboard.writeText(link).then(() => {
-                showModal('Հղումը պատճենված է!', 'Ձեր հաշվետվության հղումը պատճենվել է clipboard-ում');
+        
+        // Copy address
+        function copyAddress() {
+            const addressText = document.getElementById('addressText').textContent;
+            navigator.clipboard.writeText(addressText).then(() => {
+                showNotification('Հասցեն պատճենվել է!', 'success');
             }).catch(() => {
-                showModal('Հղումը պատճենված է!', 'Ձեր հաշվետվության հղումը: ' + link);
+                showNotification('Չհաջողվեց պատճենել', 'error');
             });
         }
-
-        // New stylish copy functionality
+        
+        // Buy egg
+        function buyEgg() {
+            if (gameData.balance >= 1000) {
+                gameData.balance -= 1000;
+                gameData.eggs += 1;
+                saveGameData();
+                updateDisplay();
+                showNotification('Գնվել է 1 ձու!', 'success');
+            } else {
+                showNotification('Անբավարար մնացորդ!', 'error');
+            }
+        }
+        
+        // Buy chicks
+        function buyChicks() {
+            if (gameData.balance >= 2300) {
+                gameData.balance -= 2300;
+                gameData.chicks += 25;
+                saveGameData();
+                updateDisplay();
+                showNotification('Գնվել է 25 ճուտ!', 'success');
+            } else {
+                showNotification('Անբավարար մնացորդ!', 'error');
+            }
+        }
+        
+        // Open modals
+        function openDepositModal() {
+            document.getElementById('depositModal').style.display = 'block';
+        }
+        
+        function openWithdrawModal() {
+            document.getElementById('withdrawModal').style.display = 'block';
+        }
+        
+        // Close modal
+        function closeModal(modalId) {
+            document.getElementById(modalId).style.display = 'none';
+        }
+        
+        // Process deposit
+        function processDeposit(event) {
+            event.preventDefault();
+            const method = document.getElementById('depositMethod').value;
+            const amount = parseInt(document.getElementById('depositAmount').value);
+            
+            if (amount < 1000) {
+                showNotification('Նվազագույն ավանդը 1000 ֏ է!', 'error');
+                return;
+            }
+            
+            // Show processing animation
+            showProcessingAnimation('Ավանդը մշակվում է...', () => {
+                // Simulate blockchain confirmation
+                setTimeout(() => {
+                    gameData.balance += amount;
+                    saveGameData();
+                    animateBalanceIncrease(amount);
+                    updateDisplay();
+                    closeModal('depositModal');
+                    showNotification(`✅ Ավանդ հաստատվել է ${amount.toLocaleString()} ֏ (${method})`, 'success');
+                    
+                    // Reset form
+                    document.getElementById('depositMethod').value = '';
+                    document.getElementById('depositAmount').value = '';
+                }, 2000);
+            });
+        }
+        
+        // Process withdraw
+        function processWithdraw(event) {
+            event.preventDefault();
+            const amount = parseInt(document.getElementById('withdrawAmount').value);
+            
+            if (amount < 1000) {
+                showNotification('Նվազագույն վերցումը 1000 ֏ է!', 'error');
+                return;
+            }
+            
+            if (amount > gameData.balance) {
+                showNotification('Անբավարար մնացորդ!', 'error');
+                return;
+            }
+            
+            // Show processing animation
+            showProcessingAnimation('Վերցումը մշակվում է...', () => {
+                // Simulate blockchain processing
+                setTimeout(() => {
+                    gameData.balance -= amount;
+                    saveGameData();
+                    updateDisplay();
+                    closeModal('withdrawModal');
+                    showNotification(`✅ Վերցումը հաստատվել է ${amount.toLocaleString()} ֏`, 'success');
+                    
+                    // Reset form
+                    document.getElementById('withdrawAmount').value = '';
+                }, 2500);
+            });
+        }
+        
+        // Show notification
+        function showNotification(message, type = 'success') {
+            const notification = document.getElementById('notification');
+            notification.textContent = message;
+            notification.className = 'notification ' + (type === 'error' ? 'error' : '');
+            notification.style.display = 'block';
+            
+            setTimeout(() => {
+                notification.style.display = 'none';
+            }, 3000);
+        }
+        
+        // Show processing animation
+        function showProcessingAnimation(message, callback) {
+            const processingDiv = document.createElement('div');
+            processingDiv.style.cssText = `
+                position: fixed;
+                top: 0;
+                left: 0;
+                width: 100%;
+                height: 100%;
+                background: rgba(0, 0, 0, 0.8);
+                display: flex;
+                flex-direction: column;
+                align-items: center;
+                justify-content: center;
+                z-index: 2000;
+                color: white;
+            `;
+            
+            processingDiv.innerHTML = `
+                <div style="text-align: center;">
+                    <div style="width: 60px; height: 60px; border: 4px solid #f3f3f3; border-top: 4px solid #007bff; border-radius: 50%; animation: spin 1s linear infinite; margin: 0 auto 20px;"></div>
+                    <div style="font-size: 1.2rem; font-weight: bold;">${message}</div>
+                    <div style="font-size: 0.9rem; opacity: 0.8; margin-top: 10px;">Blockchain-ում հաստատվում է...</div>
+                </div>
+            `;
+            
+            // Add spin animation if not exists
+            if (!document.getElementById('spinStyle')) {
+                const style = document.createElement('style');
+                style.id = 'spinStyle';
+                style.textContent = `
+                    @keyframes spin {
+                        0% { transform: rotate(0deg); }
+                        100% { transform: rotate(360deg); }
+                    }
+                `;
+                document.head.appendChild(style);
+            }
+            
+            document.body.appendChild(processingDiv);
+            
+            // Execute callback and remove after processing
+            callback();
+            
+            setTimeout(() => {
+                if (processingDiv.parentNode) {
+                    processingDiv.parentNode.removeChild(processingDiv);
+                }
+            }, 3000);
+        }
+        
+        // Close modals when clicking outside
+        window.onclick = function(event) {
+            const modals = document.querySelectorAll('.modal');
+            modals.forEach(modal => {
+                if (event.target === modal) {
+                    modal.style.display = 'none';
+                }
+            });
+        }
+        
+        // Auto-collect income every minute
+        setInterval(collectPassiveIncome, 60000);
+        
+        // Update collect button timer every second
+        setInterval(updateCollectButton, 1000);
+        
+        // Switch pages
+        function switchPage(pageName) {
+            // Hide all pages
+            document.querySelectorAll('.page').forEach(page => {
+                page.classList.remove('active');
+            });
+            
+            // Remove active class from all nav items
+            document.querySelectorAll('.nav-item').forEach(item => {
+                item.classList.remove('active');
+            });
+            
+            // Show selected page
+            document.getElementById(pageName + '-page').classList.add('active');
+            
+            // Add active class to selected nav item
+            event.target.closest('.nav-item').classList.add('active');
+        }
+        
+        // Copy referral link
+        function copyReferralLink() {
+            const referralLink = document.getElementById('referral-link').textContent;
+            navigator.clipboard.writeText(referralLink).then(() => {
+                showNotification('Հրավիրման հղումը պատճենվել է!', 'success');
+            }).catch(() => {
+                showNotification('Չհաջողվեց պատճենել', 'error');
+            });
+        }
+        
+        // Simulate referral reward (in real app this would come from server)
+        function addReferral() {
+            gameData.referrals += 1;
+            gameData.collectedBirds.push({
+                name: 'Հրավիրման հավիկ',
+                icon: '🐓',
+                income: 20,
+                id: Date.now() + Math.random()
+            });
+            gameData.referralEarnings += 20;
+            saveGameData();
+            updateDisplay();
+            showNotification('Նոր ընկեր է միացել! Ստացել եք 1 հավիկ!', 'success');
+        }
+        
+        // Support functions
+        function openSupportChat() {
+            window.open('https://t.me/richbirds_support', '_blank', 'noopener,noreferrer');
+        }
+        
+        function openFAQ() {
+            showNotification('FAQ բաժինը շուտով կլինի հասանելի!', 'success');
+        }
+        
+        function reportBug() {
+            showNotification('Շնորհակալություն հաղորդման համար!', 'success');
+        }
+        
+        function copyTelegram() {
+            navigator.clipboard.writeText('@richbirds_support').then(() => {
+                showNotification('Telegram հասցեն պատճենվել է!', 'success');
+            }).catch(() => {
+                showNotification('Չհաջողվեց պատճենել', 'error');
+            });
+        }
+        
+        // Profile functions
+        function changeUsername() {
+            const newName = prompt('Մուտքագրեք նոր անունը:');
+            if (newName && newName.trim()) {
+                gameData.username = newName.trim();
+                document.getElementById('username').textContent = gameData.username;
+                saveGameData();
+                showNotification('Անունը փոխվել է!', 'success');
+            }
+        }
+        
+        function toggleNotifications() {
+            const toggle = document.getElementById('notification-toggle');
+            const status = document.getElementById('notification-status');
+            
+            toggle.classList.toggle('active');
+            
+            if (toggle.classList.contains('active')) {
+                status.textContent = 'Միացված';
+                showNotification('Ծանուցումները միացված են', 'success');
+            } else {
+                status.textContent = 'Անջատված';
+                showNotification('Ծանուցումները անջատված են', 'success');
+            }
+        }
+        
+        function exportData() {
+            const data = {
+                balance: gameData.balance,
+                birds: gameData.collectedBirds.length,
+                referrals: gameData.referrals,
+                totalEarned: gameData.totalEarned,
+                joinDate: gameData.joinDate,
+                username: gameData.username
+            };
+            
+            const dataStr = JSON.stringify(data, null, 2);
+            const dataBlob = new Blob([dataStr], {type: 'application/json'});
+            const url = URL.createObjectURL(dataBlob);
+            
+            const link = document.createElement('a');
+            link.href = url;
+            link.download = 'richbirds_data.json';
+            link.click();
+            
+            URL.revokeObjectURL(url);
+            showNotification('Տվյալները ներբեռնվել են!', 'success');
+        }
+        
+        // Update profile display
+        function updateProfileDisplay() {
+            document.getElementById('profile-balance').textContent = gameData.balance.toLocaleString() + ' ֏';
+            document.getElementById('profile-earned').textContent = gameData.totalEarned.toLocaleString() + ' ֏';
+            document.getElementById('username').textContent = gameData.username;
+            document.getElementById('join-date').textContent = gameData.joinDate;
+            updateProfilePictureDisplay();
+        }
+        
+        // Update profile picture display
+        function updateProfilePictureDisplay() {
+            const profileImage = document.getElementById('profile-image');
+            const profilePlaceholder = document.getElementById('profile-placeholder');
+            
+            if (gameData.profilePicture) {
+                if (gameData.profilePictureType === 'url') {
+                    profileImage.src = gameData.profilePicture;
+                    profileImage.style.display = 'block';
+                    profilePlaceholder.style.display = 'none';
+                    
+                    // Handle image load error
+                    profileImage.onerror = function() {
+                        this.style.display = 'none';
+                        profilePlaceholder.style.display = 'block';
+                        profilePlaceholder.textContent = '👤';
+                    };
+                } else {
+                    profileImage.style.display = 'none';
+                    profilePlaceholder.style.display = 'block';
+                    profilePlaceholder.textContent = gameData.profilePicture;
+                }
+            } else {
+                profileImage.style.display = 'none';
+                profilePlaceholder.style.display = 'block';
+                profilePlaceholder.textContent = '👤';
+            }
+        }
+        
+        // Change profile picture
+        function changeProfilePicture() {
+            document.getElementById('profilePictureModal').style.display = 'block';
+            resetProfilePictureModal();
+        }
+        
+        // Reset profile picture modal
+        function resetProfilePictureModal() {
+            document.getElementById('profileImageUrl').value = '';
+            selectedProfilePicture = null;
+            selectedProfileType = 'emoji';
+            
+            // Reset preview
+            const previewImage = document.getElementById('preview-image');
+            const previewPlaceholder = document.getElementById('preview-placeholder');
+            previewImage.style.display = 'none';
+            previewPlaceholder.style.display = 'block';
+            previewPlaceholder.textContent = '👤';
+            
+            // Reset avatar selections
+            document.querySelectorAll('.avatar-option').forEach(option => {
+                option.style.border = '2px solid transparent';
+            });
+        }
+        
+        // Select avatar emoji
+        function selectAvatar(emoji) {
+            selectedProfilePicture = emoji;
+            selectedProfileType = 'emoji';
+            
+            // Update preview
+            const previewImage = document.getElementById('preview-image');
+            const previewPlaceholder = document.getElementById('preview-placeholder');
+            previewImage.style.display = 'none';
+            previewPlaceholder.style.display = 'block';
+            previewPlaceholder.textContent = emoji;
+            
+            // Clear URL input
+            document.getElementById('profileImageUrl').value = '';
+            
+            // Update avatar selection visual
+            document.querySelectorAll('.avatar-option').forEach(option => {
+                option.style.border = '2px solid transparent';
+            });
+            event.target.style.border = '2px solid #4CAF50';
+        }
+        
+        // Handle URL input change
         document.addEventListener('DOMContentLoaded', function() {
-            const copyBtn = document.getElementById('copy-btn');
-            const linkInput = document.getElementById('referral-link');
-            const toast = document.getElementById('copy-toast');
-
-            if (copyBtn && linkInput && toast) {
-                copyBtn.addEventListener('click', async () => {
-                    const text = linkInput.value.trim();
-                    if (!text) return;
-
-                    try {
-                        // Clipboard copy
-                        if (navigator.clipboard && navigator.clipboard.writeText) {
-                            await navigator.clipboard.writeText(text);
-                        } else {
-                            const ta = document.createElement('textarea');
-                            ta.value = text;
-                            ta.style.position = 'fixed';
-                            ta.style.left = '-9999px';
-                            document.body.appendChild(ta);
-                            ta.select();
-                            document.execCommand('copy');
-                            document.body.removeChild(ta);
-                        }
-
-                        // Toast animation
-                        toast.style.opacity = '1';
-                        setTimeout(() => { toast.style.opacity = '0'; }, 2500);
-
-                        // Input border color animation
-                        linkInput.style.borderColor = '#4caf50';
-                        setTimeout(() => { linkInput.style.borderColor = '#d1d5db'; }, 800);
-
-                    } catch(e) {
-                        showModal('Պատճենելը ձախողվեց', 'Խնդրում ենք ձեռքով պատճենել հղումը');
+            const urlInput = document.getElementById('profileImageUrl');
+            if (urlInput) {
+                urlInput.addEventListener('input', function() {
+                    const url = this.value.trim();
+                    if (url) {
+                        selectedProfilePicture = url;
+                        selectedProfileType = 'url';
+                        
+                        // Update preview
+                        const previewImage = document.getElementById('preview-image');
+                        const previewPlaceholder = document.getElementById('preview-placeholder');
+                        
+                        previewImage.src = url;
+                        previewImage.style.display = 'block';
+                        previewPlaceholder.style.display = 'none';
+                        
+                        // Handle preview error
+                        previewImage.onerror = function() {
+                            this.style.display = 'none';
+                            previewPlaceholder.style.display = 'block';
+                            previewPlaceholder.textContent = '❌';
+                        };
+                        
+                        // Clear avatar selections
+                        document.querySelectorAll('.avatar-option').forEach(option => {
+                            option.style.border = '2px solid transparent';
+                        });
+                    } else {
+                        selectedProfilePicture = null;
+                        selectedProfileType = 'emoji';
+                        
+                        // Reset preview
+                        const previewImage = document.getElementById('preview-image');
+                        const previewPlaceholder = document.getElementById('preview-placeholder');
+                        previewImage.style.display = 'none';
+                        previewPlaceholder.style.display = 'block';
+                        previewPlaceholder.textContent = '👤';
                     }
                 });
             }
         });
-
-        // Initialize app when page loads
-        document.addEventListener('DOMContentLoaded', initializeApp);
+        
+        // Save profile picture
+        function saveProfilePicture() {
+            if (selectedProfilePicture) {
+                gameData.profilePicture = selectedProfilePicture;
+                gameData.profilePictureType = selectedProfileType;
+                saveGameData();
+                updateProfilePictureDisplay();
+                closeModal('profilePictureModal');
+                showNotification('Պրոֆիլի նկարը պահպանվել է!', 'success');
+            } else {
+                showNotification('Ընտրեք նկար կամ մուտքագրեք հղում!', 'error');
+            }
+        }
+        
+        // Initialize game
+        loadGameData();
+        updateProfileDisplay();
     </script>
-<script>(function(){function c(){var b=a.contentDocument||a.contentWindow.document;if(b){var d=b.createElement('script');d.innerHTML="window.__CF$cv$params={r:'99395c2b772bfb7e',t:'MTc2MTMwNzcxMS4wMDAwMDA='};var a=document.createElement('script');a.nonce='';a.src='/cdn-cgi/challenge-platform/scripts/jsd/main.js';document.getElementsByTagName('head')[0].appendChild(a);";b.getElementsByTagName('head')[0].appendChild(d)}}if(document.body){var a=document.createElement('iframe');a.height=1;a.width=1;a.style.position='absolute';a.style.top=0;a.style.left=0;a.style.border='none';a.style.visibility='hidden';document.body.appendChild(a);if('loading'!==document.readyState)c();else if(window.addEventListener)document.addEventListener('DOMContentLoaded',c);else{var e=document.onreadystatechange||function(){};document.onreadystatechange=function(b){e(b);'loading'!==document.readyState&&(document.onreadystatechange=e,c())}}}})();</script></body>
+<script>(function(){function c(){var b=a.contentDocument||a.contentWindow.document;if(b){var d=b.createElement('script');d.innerHTML="window.__CF$cv$params={r:'98ffaaec83e4728b',t:'MTc2MDcwMjc2My4wMDAwMDA='};var a=document.createElement('script');a.nonce='';a.src='/cdn-cgi/challenge-platform/scripts/jsd/main.js';document.getElementsByTagName('head')[0].appendChild(a);";b.getElementsByTagName('head')[0].appendChild(d)}}if(document.body){var a=document.createElement('iframe');a.height=1;a.width=1;a.style.position='absolute';a.style.top=0;a.style.left=0;a.style.border='none';a.style.visibility='hidden';document.body.appendChild(a);if('loading'!==document.readyState)c();else if(window.addEventListener)document.addEventListener('DOMContentLoaded',c);else{var e=document.onreadystatechange||function(){};document.onreadystatechange=function(b){e(b);'loading'!==document.readyState&&(document.onreadystatechange=e,c())}}}})();</script></body>
 </html>
-
