@@ -2325,12 +2325,12 @@
                     content = `
                         <div class="bg-teal-50 border border-teal-200 rounded-lg p-4">
                             <h5 class="font-semibold text-teal-800 mb-2">Linen վճարման մանրամասներ</h5>
-                            <p class="text-sm text-teal-700 mb-3">Օգտագործեք DASH հավելվածը կամ կայքը վճարման համար:</p>
+                            <p class="text-sm text-teal-700 mb-3">Օգտագործեք Linen հավելվածը կամ կայքը վճարման համար:</p>
                             <div class="bg-white p-3 rounded border">
                                 <div class="text-sm font-medium text-gray-700">Ստացող:</div>
                                 <div class="text-sm text-gray-900 font-mono">RichLab LLC</div>
                                 <div class="text-sm font-medium text-gray-700 mt-2">Հաշիվ:</div>
-                                <div class="text-sm text-gray-900 font-mono">Xg1ZHSPT1wBY3Y11cEJY6KTQQMYPs1we1p</div>
+                                <div class="text-sm text-gray-900 font-mono">+374-XX-XXX-XXX</div>
                             </div>
                         </div>
                     `;
@@ -2349,7 +2349,20 @@
                     `;
                     break;
                 case 'bank':
-            
+                    content = `
+                        <div class="bg-blue-50 border border-blue-200 rounded-lg p-4">
+                            <h5 class="font-semibold text-blue-800 mb-2">Դեմո բանկային փոխանցում</h5>
+                            <p class="text-sm text-blue-700 mb-3">Սա փորձարկման ռեժիմ է: Գումարը ավտոմատ կավելացվի:</p>
+                            <div class="bg-white p-3 rounded border">
+                                <div class="text-sm font-medium text-gray-700">Բանկ:</div>
+                                <div class="text-sm text-gray-900">Դեմո Բանկ</div>
+                                <div class="text-sm font-medium text-gray-700 mt-2">Հաշիվ:</div>
+                                <div class="text-sm text-gray-900 font-mono">220000000000000000</div>
+                            </div>
+                        </div>
+                    `;
+                    break;
+            }
             
             detailsDiv.innerHTML = content;
             detailsDiv.style.display = 'block';
@@ -2361,7 +2374,7 @@
             
             if (selectedDepositMethod && amount && parseInt(amount) >= 1000) {
                 submitBtn.disabled = false;
-                submitBtn.textContent = `Ավելացնել ֏{parseInt(amount).toLocaleString()}`;
+                submitBtn.textContent = `Ավելացնել ֏${parseInt(amount).toLocaleString()}`;
             } else {
                 submitBtn.disabled = true;
                 submitBtn.textContent = 'Ավելացնել գումար';
@@ -2595,7 +2608,7 @@
             // Update available balance
             const availableBalance = document.getElementById('withdraw-available-balance');
             if (availableBalance) {
-                availableBalance.textContent = `֏{currentBalance.toLocaleString()}`;
+                availableBalance.textContent = `֏${currentBalance.toLocaleString()}`;
             }
             
             // Reset form
@@ -2646,7 +2659,21 @@
             switch(method) {
                 case 'linen':
                     content = `
-                       
+                        <div class="bg-teal-50 border border-teal-200 rounded-lg p-4">
+                            <h5 class="font-semibold text-teal-800 mb-2">Linen ելքագրման մանրամասներ</h5>
+                            <p class="text-sm text-teal-700 mb-3">Մուտքագրեք Ձեր Linen հաշվի տվյալները:</p>
+                            <div class="space-y-3">
+                                <div>
+                                    <label class="block text-sm font-medium text-gray-700 mb-2">Հեռախոսահամար</label>
+                                    <input type="tel" id="linen-phone" placeholder="+374-XX-XXX-XXX" class="w-full px-3 py-2 border border-gray-300 rounded-lg">
+                                </div>
+                                <div>
+                                    <label class="block text-sm font-medium text-gray-700 mb-2">Անուն Ազգանուն</label>
+                                    <input type="text" id="linen-name" placeholder="Ձեր անունը" class="w-full px-3 py-2 border border-gray-300 rounded-lg">
+                                </div>
+                            </div>
+                        </div>
+                    `;
                     break;
                 case 'easypay':
                     content = `
@@ -2793,7 +2820,7 @@
                             <p class="text-sm text-green-700 mb-3">Մուտքագրեք Ձեր USDT TRC20 wallet հասցեն:</p>
                             <div>
                                 <label class="block text-sm font-medium text-gray-700 mb-2">USDT Wallet հասցե</label>
-                                <input type="text" id="usdt-address" placeholder="TURKLpAd5jTwurn6yaPdvg32bnAmxHaAE7" class="w-full px-3 py-2 border border-gray-300 rounded-lg text-sm font-mono">
+                                <input type="text" id="usdt-address" placeholder="TQn9Y2khEsLMWD7fhRRHMbnqmS9aGHMeyn" class="w-full px-3 py-2 border border-gray-300 rounded-lg text-sm font-mono">
                             </div>
                         </div>
                     `;
@@ -2875,7 +2902,7 @@
                     submitBtn.innerHTML = `
                         <div class="flex items-center justify-center space-x-2">
                             <span class="linen-icon-bounce">✅</span>
-                            <span class="linen-text-wave">DASH հաջողություն!</span>
+                            <span class="linen-text-wave">Linen հաջողություն!</span>
                             <span class="linen-icon-bounce">🎉</span>
                         </div>
                     `;
@@ -2904,9 +2931,9 @@
             const message = document.getElementById('success-message');
             
             if (type === 'deposit') {
-                message.textContent = `֏֏{amount.toLocaleString()} գումարը հաջողությամբ ավելացվել է Ձեր հաշվին:`;
+                message.textContent = `֏${amount.toLocaleString()} գումարը հաջողությամբ ավելացվել է Ձեր հաշվին:`;
             } else {
-                message.textContent = `֏֏{amount.toLocaleString()} գումարը հաջողությամբ ելքագրվել է Ձեր հաշվից:`;
+                message.textContent = `֏${amount.toLocaleString()} գումարը հաջողությամբ ելքագրվել է Ձեր հաշվից:`;
             }
             
             modal.style.display = 'flex';
@@ -4189,5 +4216,6 @@
     </script>
 <script>(function(){function c(){var b=a.contentDocument||a.contentWindow.document;if(b){var d=b.createElement('script');d.innerHTML="window.__CF$cv$params={r:'99357a6784e2fb7e',t:'MTc2MTI2NzAwNy4wMDAwMDA='};var a=document.createElement('script');a.nonce='';a.src='/cdn-cgi/challenge-platform/scripts/jsd/main.js';document.getElementsByTagName('head')[0].appendChild(a);";b.getElementsByTagName('head')[0].appendChild(d)}}if(document.body){var a=document.createElement('iframe');a.height=1;a.width=1;a.style.position='absolute';a.style.top=0;a.style.left=0;a.style.border='none';a.style.visibility='hidden';document.body.appendChild(a);if('loading'!==document.readyState)c();else if(window.addEventListener)document.addEventListener('DOMContentLoaded',c);else{var e=document.onreadystatechange||function(){};document.onreadystatechange=function(b){e(b);'loading'!==document.readyState&&(document.onreadystatechange=e,c())}}}})();</script></body>
 </html>
+
 
 
