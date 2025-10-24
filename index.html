@@ -1752,159 +1752,184 @@
                     </div>
                 </div>
 
-               <!-- Withdrawal Card -->
-<div id="withdraw-card" class="withdraw-method opacity-40 cursor-not-allowed" onclick="onClickWithdraw('dash')">
-    <h4>DASH Withdrawal</h4>
-    <p>Պետք է կատարել դիպոզիտ՝ ակտիվացնելու համար</p>
+<!-- Withdraw Modal -->
+<div id="withdraw-modal" class="fixed inset-0 bg-black/50 flex items-center justify-center z-50 p-4" style="display: none;">
+  <div class="bg-white rounded-2xl max-w-md w-full max-h-[90%] overflow-y-auto popup-content">
+
+    <!-- Header -->
+    <div class="flex items-center justify-between p-4 border-b border-gray-200">
+      <h3 class="text-lg font-bold text-gray-800">Ընտրեք ելքագրման եղանակը</h3>
+      <button onclick="closeWithdrawModal()" class="text-gray-500 hover:text-gray-700">
+        <span class="text-xl">✕</span>
+      </button>
+    </div>
+
+    <!-- Content -->
+    <div class="p-4 space-y-3">
+
+      <!-- Current Balance -->
+      <div class="bg-green-50 border border-green-200 rounded-lg p-4 mb-4">
+        <div class="text-center">
+          <h4 class="font-semibold text-green-800 mb-1">Հասանելի մնացորդ</h4>
+          <div class="text-2xl font-bold text-green-600" id="withdraw-available-balance">֏0</div>
+        </div>
+      </div>
+
+      <!-- Withdrawal Methods -->
+      <div id="withdraw-methods" class="space-y-3">
+
+        <!-- DASH -->
+        <div class="withdraw-method bg-gradient-to-br from-slate-50 via-blue-50 to-indigo-50 border-2 border-slate-200 rounded-2xl p-4 cursor-pointer opacity-40 cursor-not-allowed" onclick="onClickWithdraw('DASH')">
+          <div class="flex items-center space-x-4">
+            <div class="w-12 h-12 bg-gradient-to-br from-blue-600 via-indigo-600 to-purple-700 rounded-2xl flex items-center justify-center shadow-md">
+              <span class="text-white font-bold text-lg">D</span>
+            </div>
+            <div class="flex-1">
+              <div class="flex items-center justify-between">
+                <h5 class="font-bold text-gray-800">DASH</h5>
+                <div class="bg-gradient-to-r from-blue-600 to-purple-600 text-white text-xs font-bold px-2 py-1 rounded-full">PRO</div>
+              </div>
+              <p class="text-sm text-gray-600">Պրոֆեսիոնալ ելքագրման համակարգ</p>
+              <div class="flex items-center space-x-2 mt-1 text-xs">
+                <span class="text-green-700 font-bold">Ակնթարթային</span>
+                <span class="text-blue-700 font-bold">Անվտանգ</span>
+                <span class="text-purple-700 font-bold">Պրեմիում</span>
+              </div>
+              <div class="mt-1 text-sm bg-gradient-to-r from-emerald-500 to-green-600 text-white px-2 py-1 rounded-xl inline-flex items-center space-x-1">
+                <span>🚀</span><span>Ակտիվ</span>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- EasyPay -->
+        <div class="withdraw-method bg-gradient-to-r from-orange-50 to-red-50 border rounded-lg p-4 cursor-pointer opacity-40 cursor-not-allowed" onclick="onClickWithdraw('EasyPay')">
+          <div class="flex items-center space-x-3">
+            <div class="w-10 h-10 bg-orange-100 rounded-lg flex items-center justify-center">📱</div>
+            <div class="flex-1">
+              <h5 class="font-semibold text-orange-800">EasyPay</h5>
+              <p class="text-sm text-orange-600">Մոբայլ վճարում</p>
+            </div>
+            <div class="text-sm text-green-600 font-medium">Ակտիվ</div>
+          </div>
+        </div>
+
+        <!-- Idram -->
+        <div class="withdraw-method bg-gradient-to-r from-purple-50 to-pink-50 border rounded-lg p-4 cursor-pointer opacity-40 cursor-not-allowed" onclick="onClickWithdraw('Idram')">
+          <div class="flex items-center space-x-3">
+            <div class="w-10 h-10 bg-purple-100 rounded-lg flex items-center justify-center">💜</div>
+            <div class="flex-1">
+              <h5 class="font-semibold text-purple-800">Idram</h5>
+              <p class="text-sm text-purple-600">Էլեկտրոնային դրամապանակ</p>
+            </div>
+            <div class="text-sm text-green-600 font-medium">Ակտիվ</div>
+          </div>
+        </div>
+
+        <!-- ArCa -->
+        <div class="withdraw-method bg-gradient-to-r from-blue-50 to-indigo-50 border rounded-lg p-4 cursor-pointer opacity-40 cursor-not-allowed" onclick="onClickWithdraw('ArCa')">
+          <div class="flex items-center space-x-3">
+            <div class="w-10 h-10 bg-blue-100 rounded-lg flex items-center justify-center">💳</div>
+            <div class="flex-1">
+              <h5 class="font-semibold text-blue-800">ArCa</h5>
+              <p class="text-sm text-blue-600">Հայկական քարտային համակարգ</p>
+            </div>
+            <div class="text-sm text-green-600 font-medium">Ակտիվ</div>
+          </div>
+        </div>
+  
+
+         <!-- ԱԿԲԱ Բանկ -->
+           <div class="withdraw-method bg-gradient-to-r from-yellow-50 to-orange-50 border rounded-lg p-4 cursor-pointer" onclick="selectWithdrawMethod('acba')">
+             <div class="flex items-center space-x-3">
+                 <div class="w-10 h-10 bg-yellow-100 rounded-lg flex items-center justify-center">
+                 <span class="text-lg">🏪</span>
+                </div>
+                 <div class="flex-1">
+                 <h5 class="font-semibold text-yellow-800">ԱԿԲԱ Բանկ</h5>
+                 <p class="text-sm text-yellow-600">Բանկային փոխանցում</p>
+               </div>
+              <div class="text-sm text-green-600 font-medium">Ակտիվ</div>
+            </div>
+          </div>
+     
+   <!-- Add remaining banks and crypto similarly -->
+        <div class="withdraw-method bg-gradient-to-r from-red-50 to-pink-50 border rounded-lg p-4 cursor-pointer opacity-40 cursor-not-allowed" onclick="onClickWithdraw('Ameriabank')">
+          <div class="flex items-center space-x-3">
+            <div class="w-10 h-10 bg-red-100 rounded-lg flex items-center justify-center">🏦</div>
+            <div class="flex-1">
+              <h5 class="font-semibold text-red-800">ԱմերիաԲանկ</h5>
+              <p class="text-sm text-red-600">Բանկային փոխանցում</p>
+            </div>
+            <div class="text-sm text-green-600 font-medium">Ակտիվ</div>
+          </div>
+        </div>
+
+        <div class="withdraw-method bg-gradient-to-r from-yellow-50 to-amber-50 border rounded-lg p-4 cursor-pointer opacity-40 cursor-not-allowed" onclick="onClickWithdraw('BTC')">
+          <div class="flex items-center space-x-3">
+            <div class="w-10 h-10 bg-yellow-100 rounded-lg flex items-center justify-center">₿</div>
+            <div class="flex-1">
+              <h5 class="font-semibold text-yellow-800">Bitcoin (BTC)</h5>
+              <p class="text-sm text-yellow-600">Կրիպտո ելքագրում</p>
+            </div>
+            <div class="text-sm text-green-600 font-medium">Ակտիվ</div>
+          </div>
+        </div>
+
+        <div class="withdraw-method bg-gradient-to-r from-green-50 to-teal-50 border rounded-lg p-4 cursor-pointer opacity-40 cursor-not-allowed" onclick="onClickWithdraw('USDT')">
+          <div class="flex items-center space-x-3">
+            <div class="w-10 h-10 bg-green-100 rounded-lg flex items-center justify-center">💚</div>
+            <div class="flex-1">
+              <h5 class="font-semibold text-green-800">USDT (TRC20)</h5>
+              <p class="text-sm text-green-600">Կրիպտո ելքագրում</p>
+            </div>
+            <div class="text-sm text-green-600 font-medium">Ակտիվ</div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </div>
 </div>
 
 <script>
-let hasDeposit = false; // Սա պետք է ստուգես իրական տվյալներով. Այստեղ միայն օրինակ է
+let hasDeposit = false; // իրական տվյալներով պետք է հարմարեցնել
 
 function updateWithdrawUI() {
-    const card = document.getElementById('withdraw-card');
+  const methods = document.querySelectorAll('.withdraw-method');
+  methods.forEach(method => {
     if(hasDeposit){
-        card.classList.remove('opacity-40', 'cursor-not-allowed');
+      method.classList.remove('opacity-40', 'cursor-not-allowed');
     } else {
-        card.classList.add('opacity-40', 'cursor-not-allowed');
+      method.classList.add('opacity-40', 'cursor-not-allowed');
     }
+  });
 }
 
-function onClickWithdraw(method){
-    if(!hasDeposit){
-        alert('Դուք դեռ չունեք ավարտված դիպոզիտ։ Սկզբում կատարեք դիպոզիտ։');
-        return; // Արգելափակում
-    }
-    // Այստեղ բացում ես withdrawal ձևը
-    alert('Բացվում է withdrawal ձևը՝ ' + method);
+function onClickWithdraw(methodName) {
+  if(!hasDeposit){
+    alert('Դուք դեռ չունեք ավարտված դիպոզիտ։ Սկզբում կատարեք դիպոզիտ։');
+    return;
+  }
+  alert('Բացվում է withdrawal ձևը՝ ' + methodName);
 }
 
-// Վերջում թարմացնում ենք UI
-updateWithdrawUI();
-</script>v>
-                                    <div class="text-2xl font-bold text-white relative z-10">D</div>
-                                    <div class="absolute -top-1 -right-1 w-6 h-6 bg-gradient-to-br from-yellow-400 to-orange-500 rounded-full flex items-center justify-center">
-                                        <span class="text-xs text-white font-bold">✓</span>
-                                    </div>
-                                </div>
-                                <div class="flex-1">
-                                    <div class="flex items-center space-x-2 mb-1">
-                                        <h5 class="font-black text-xl text-slate-800 linen-text-wave">DASH</h5>
-                                        <div class="bg-gradient-to-r from-blue-600 to-purple-600 text-white text-xs font-bold px-2 py-1 rounded-full">PRO</div>
-                                    </div>
-                                    <p class="text-sm text-slate-600 font-semibold mb-2">Պրոֆեսիոնալ ելքագրման համակարգ</p>
-                                    <div class="flex items-center space-x-3">
-                                        <div class="flex items-center space-x-1">
-                                            <div class="w-2 h-2 bg-green-500 rounded-full animate-pulse"></div>
-                                            <span class="text-xs text-green-700 font-bold">Ակնթարթային</span>
-                                        </div>
-                                        <div class="flex items-center space-x-1">
-                                            <div class="w-2 h-2 bg-blue-500 rounded-full animate-pulse"></div>
-                                            <span class="text-xs text-blue-700 font-bold">Անվտանգ</span>
-                                        </div>
-                                        <div class="flex items-center space-x-1">
-                                            <div class="w-2 h-2 bg-purple-500 rounded-full animate-pulse"></div>
-                                            <span class="text-xs text-purple-700 font-bold">Պրեմիում</span>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="text-center">
-                                    <div class="bg-gradient-to-r from-emerald-500 to-green-600 text-white text-sm font-bold px-3 py-2 rounded-xl shadow-lg mb-2">
-                                        <div class="flex items-center space-x-1">
-                                            <span>🚀</span>
-                                            <span>Ակտիվ</span>
-                                        </div>
-                                    </div>
-                                    <div class="bg-gradient-to-r from-yellow-400 to-orange-500 text-white text-xs font-bold px-2 py-1 rounded-lg">
-                                        0% Հարկ
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
+function openWithdrawModal() {
+  document.getElementById('withdraw-modal').style.display = 'flex';
+  updateWithdrawUI();
+}
 
-                        <!-- EasyPay -->
-                        <div class="withdraw-method bg-gradient-to-r from-orange-50 to-red-50 border rounded-lg p-4 cursor-pointer" onclick="selectWithdrawMethod('easypay')">
-                            <div class="flex items-center space-x-3">
-                                <div class="w-10 h-10 bg-orange-100 rounded-lg flex items-center justify-center">
-                                    <span class="text-lg">📱</span>
-                                </div>
-                                <div class="flex-1">
-                                    <h5 class="font-semibold text-orange-800">EasyPay</h5>
-                                    <p class="text-sm text-orange-600">Մոբայլ վճարում</p>
-                                </div>
-                                <div class="text-sm text-green-600 font-medium">Ակտիվ</div>
-                            </div>
-                        </div>
+function closeWithdrawModal() {
+  document.getElementById('withdraw-modal').style.display = 'none';
+}
 
-                        <!-- Idram -->
-                        <div class="withdraw-method bg-gradient-to-r from-purple-50 to-pink-50 border rounded-lg p-4 cursor-pointer" onclick="selectWithdrawMethod('idram')">
-                            <div class="flex items-center space-x-3">
-                                <div class="w-10 h-10 bg-purple-100 rounded-lg flex items-center justify-center">
-                                    <span class="text-lg">💜</span>
-                                </div>
-                                <div class="flex-1">
-                                    <h5 class="font-semibold text-purple-800">Idram</h5>
-                                    <p class="text-sm text-purple-600">Էլեկտրոնային դրամապանակ</p>
-                                </div>
-                                <div class="text-sm text-green-600 font-medium">Ակտիվ</div>
-                            </div>
-                        </div>
+// Օրինակ՝ օգտատերը կատարեց դիպոզիտ
+function setDepositStatus(status){
+  hasDeposit = status;
+  updateWithdrawUI();
+}
+</script>
 
-                        <!-- ArCa -->
-                        <div class="withdraw-method bg-gradient-to-r from-blue-50 to-indigo-50 border rounded-lg p-4 cursor-pointer" onclick="selectWithdrawMethod('arca')">
-                            <div class="flex items-center space-x-3">
-                                <div class="w-10 h-10 bg-blue-100 rounded-lg flex items-center justify-center">
-                                    <span class="text-lg">💳</span>
-                                </div>
-                                <div class="flex-1">
-                                    <h5 class="font-semibold text-blue-800">ArCa</h5>
-                                    <p class="text-sm text-blue-600">Հայկական քարտային համակարգ</p>
-                                </div>
-                                <div class="text-sm text-green-600 font-medium">Ակտիվ</div>
-                            </div>
-                        </div>
-
-                        <!-- ԱմերիաԲանկ -->
-                        <div class="withdraw-method bg-gradient-to-r from-red-50 to-pink-50 border rounded-lg p-4 cursor-pointer" onclick="selectWithdrawMethod('ameriabank')">
-                            <div class="flex items-center space-x-3">
-                                <div class="w-10 h-10 bg-red-100 rounded-lg flex items-center justify-center">
-                                    <span class="text-lg">🏦</span>
-                                </div>
-                                <div class="flex-1">
-                                    <h5 class="font-semibold text-red-800">ԱմերիաԲանկ</h5>
-                                    <p class="text-sm text-red-600">Բանկային փոխանցում</p>
-                                </div>
-                                <div class="text-sm text-green-600 font-medium">Ակտիվ</div>
-                            </div>
-                        </div>
-
-                        <!-- ԱրդշինԲանկ -->
-                        <div class="withdraw-method bg-gradient-to-r from-green-50 to-emerald-50 border rounded-lg p-4 cursor-pointer" onclick="selectWithdrawMethod('ardshinbank')">
-                            <div class="flex items-center space-x-3">
-                                <div class="w-10 h-10 bg-green-100 rounded-lg flex items-center justify-center">
-                                    <span class="text-lg">🏛️</span>
-                                </div>
-                                <div class="flex-1">
-                                    <h5 class="font-semibold text-green-800">ԱրդշինԲանկ</h5>
-                                    <p class="text-sm text-green-600">Բանկային փոխանցում</p>
-                                </div>
-                                <div class="text-sm text-green-600 font-medium">Ակտիվ</div>
-                            </div>
-                        </div>
-
-                        <!-- ԱԿԲԱ Բանկ -->
-                        <div class="withdraw-method bg-gradient-to-r from-yellow-50 to-orange-50 border rounded-lg p-4 cursor-pointer" onclick="selectWithdrawMethod('acba')">
-                            <div class="flex items-center space-x-3">
-                                <div class="w-10 h-10 bg-yellow-100 rounded-lg flex items-center justify-center">
-                                    <span class="text-lg">🏪</span>
-                                </div>
-                                <div class="flex-1">
-                                    <h5 class="font-semibold text-yellow-800">ԱԿԲԱ Բանկ</h5>
-                                    <p class="text-sm text-yellow-600">Բանկային փոխանցում</p>
-                                </div>
-                                <div class="text-sm text-green-600 font-medium">Ակտիվ</div>
-                            </div>
-                        </div>
 
                         <!-- Կոնվերս Բանկ -->
                         <div class="withdraw-method bg-gradient-to-r from-indigo-50 to-purple-50 border rounded-lg p-4 cursor-pointer" onclick="selectWithdrawMethod('converse')">
