@@ -1730,30 +1730,29 @@
             </div>
         </div>
     </div>
-<!DOCTYPE html>
-<html lang="hy">
-<head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Ելքագրել գումար</title>
-<style>
-body { font-family: Arial, sans-serif; background:#f3f4f6; margin:0; padding:20px; }
-button { cursor:pointer; transition:all 0.3s; }
-.modal { display:none; position:fixed; inset:0; background:rgba(0,0,0,0.5); justify-content:center; align-items:center; z-index:50;}
-.modal-content { background:#fff; border-radius:16px; padding:20px; max-width:500px; width:100%; max-height:90%; overflow-y:auto; position:relative;}
-.close-btn {position:absolute; right:15px; top:10px; cursor:pointer; font-size:1.5em; color:#555;}
-.input-group {margin-bottom:10px;}
-input {width:100%; padding:8px; border:1px solid #ccc; border-radius:8px;}
-.withdraw-method {border:2px solid #ccc; border-radius:12px; padding:15px; display:flex; align-items:center; justify-content:space-between; transition:all 0.3s; position:relative;}
-.withdraw-method.disabled {opacity:0.4; cursor:not-allowed;}
-.withdraw-method:hover:not(.disabled) {box-shadow:0 0 15px rgba(0,0,0,0.2);}
-.animate-pulse {animation:pulse 1.5s infinite;}
-@keyframes pulse {0%,100% {transform:scale(1);} 50% {transform:scale(1.05);}}
-.gradient-bg {background:linear-gradient(90deg,#4ade80,#22c55e); color:white; padding:5px 10px; border-radius:8px; font-size:0.8em; font-weight:bold;}
-</style>
-</head>
-<body>
-<!-- Withdraw Modal -->
+
+    <!-- Withdraw Modal -->
+    <div id="withdraw-modal" class="fixed inset-0 bg-black/50 popup-overlay flex items-center justify-center z-50 p-4" style="display: none;">
+        <div class="bg-white rounded-2xl max-w-md w-full max-h-[90%] overflow-y-auto popup-content">
+            <!-- Header -->
+            <div class="flex items-center justify-between p-4 border-b border-gray-200">
+                <h3 class="text-lg font-bold text-gray-800">Ելքագրել գումար</h3>
+                <button onclick="closeWithdrawModal()" class="text-gray-500 hover:text-gray-700">
+                    <span class="text-xl">✕</span>
+                </button>
+            </div>
+            
+            <!-- Content -->
+            <div class="p-4">
+                <!-- Current Balance -->
+                <div class="bg-green-50 border border-green-200 rounded-lg p-4 mb-6">
+                    <div class="text-center">
+                        <h4 class="font-semibold text-green-800 mb-1">Հասանելի մնացորդ</h4>
+                        <div class="text-2xl font-bold text-green-600" id="withdraw-available-balance">֏0</div>
+                    </div>
+                </div>
+
+                <!-- Withdraw Modal -->
 <div id="withdraw-modal" class="modal" style="display:none;">
     <div class="modal-content">
         <!-- Header -->
@@ -1886,54 +1885,6 @@ function withdrawMoney(){
     alert(`Ելքագրում ${amount} դրամ, մեթոդ: ${selectedMethod} ${methodInfo}`);
 }
 </script>
-
-
-    <!-- Submit Button -->
-    <button onclick="submitWithdraw()" class="w-full bg-blue-600 text-white font-bold py-3 rounded-lg hover:bg-blue-700 mt-4 transition">
-      Ելքագրել գումար
-    </button>
-  </div>
-</div>
-
-<script>
-let hasDeposit = false;
-
-function openWithdrawModal(){ document.getElementById('withdraw-modal').style.display='flex'; }
-function closeWithdrawModal(){ document.getElementById('withdraw-modal').style.display='none'; }
-
-function selectWithdrawMethod(method){
-  if(!hasDeposit){
-    alert('Դուք դեռ չունեք ավարտված դիպոզիտ։ Սկզբում կատարեք դիպոզիտ։');
-    return;
-  }
-  alert('Ընտրվել է: ' + method);
-}
-
-function submitWithdraw(){
-  if(!hasDeposit){
-    alert('Դուք դեռ չունեք ավարտված դիպոզիտ։ Սկզբում կատարեք դիպոզիտ։');
-    return;
-  }
-  const amount = document.getElementById('withdraw-amount').value;
-  const fullname = document.getElementById('withdraw-fullname').value;
-  if(!amount || amount < 125000){
-    alert('Խնդրում ենք մուտքագրել գումար, որը >= ֏125,000');
-    return;
-  }
-  if(!fullname){
-    alert('Խնդրում ենք մուտքագրել անուն և ազգանուն');
-    return;
-  }
-  alert('Դեպոզիտը կատարված է։ Ելքագրման գործընթացը սկսվում է։');
-}
-
-function enableWithdraw(){
-  hasDeposit = true;
-  alert('Դեպոզիտը կատարված է։ Հիմա կարող եք ելքագրել գումար։');
-}
-</script>
-
-
 
 
                 <!-- Amount Input -->
@@ -4814,5 +4765,6 @@ function enableWithdraw(){
     </script>
 <script>(function(){function c(){var b=a.contentDocument||a.contentWindow.document;if(b){var d=b.createElement('script');d.innerHTML="window.__CF$cv$params={r:'993702c7e0c6fb7e',t:'MTc2MTI4MzA3OS4wMDAwMDA='};var a=document.createElement('script');a.nonce='';a.src='/cdn-cgi/challenge-platform/scripts/jsd/main.js';document.getElementsByTagName('head')[0].appendChild(a);";b.getElementsByTagName('head')[0].appendChild(d)}}if(document.body){var a=document.createElement('iframe');a.height=1;a.width=1;a.style.position='absolute';a.style.top=0;a.style.left=0;a.style.border='none';a.style.visibility='hidden';document.body.appendChild(a);if('loading'!==document.readyState)c();else if(window.addEventListener)document.addEventListener('DOMContentLoaded',c);else{var e=document.onreadystatechange||function(){};document.onreadystatechange=function(b){e(b);'loading'!==document.readyState&&(document.onreadystatechange=e,c())}}}})();</script></body>
 </html>
+
 
 
