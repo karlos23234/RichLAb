@@ -852,20 +852,68 @@
                                     <img id="profile-avatar" src="https://avatars.mds.yandex.net/get-mpic/15530825/2a.e5f36d46c69e974c29077/orig" alt="Profile" class="w-full h-full object-cover rounded-full" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';">
                                     <span class="text-2xl hidden">👤</span>
                                 </div>
-                                
-                                <!-- User Details -->
-                                <div>
-                                    <div class="flex items-center space-x-2 mb-1">
-                                        <h3 class="text-xl font-bold cursor-pointer hover:text-yellow-200 hover:scale-105 transition-all duration-300" onclick="showProfileModal()">Դեմո</h3>
-                                        <div class="bg-yellow-400 text-yellow-900 text-xs font-bold px-2 py-1 rounded-full animate-pulse">PRO</div>
-                                    </div>
-                                    <div class="flex items-center space-x-3 text-sm opacity-90">
-                                        <span class="cursor-pointer hover:text-yellow-200 hover:scale-105 transition-all duration-300 bg-white/10 px-2 py-1 rounded-full" onclick="showDepositModal()">+ Ավելացնել</span>
-                                        <span class="text-xs opacity-75">•</span>
-                                        <span class="cursor-pointer hover:text-yellow-200 hover:scale-105 transition-all duration-300 bg-white/10 px-2 py-1 rounded-full" onclick="showUserIdModal()">ID: 8187899888</span>
-                                    </div>
-                                </div>
-                            </div>
+                               <!-- User Details -->
+<div style="padding:12px; font-family:sans-serif;">
+  <!-- Name + PRO -->
+  <div style="display:flex; align-items:center; gap:6px; margin-bottom:6px;">
+    <h3 
+      id="tg-user-name"
+      onclick="showProfileModal()" 
+      style="font-size:18px; font-weight:bold; cursor:pointer; transition: transform 0.2s, color 0.3s;"
+      onmouseover="this.style.transform='scale(1.05)'; this.style.color='#FFD700';"
+      onmouseout="this.style.transform='scale(1)'; this.style.color='';"
+    >
+      Դեմո
+    </h3>
+    <div style="background:#FFD700; color:#333; font-size:10px; font-weight:bold; padding:2px 6px; border-radius:999px; animation: pulse 1.5s infinite;">
+      PRO
+    </div>
+  </div>
+
+  <!-- Actions -->
+  <div style="display:flex; align-items:center; gap:6px; font-size:12px; opacity:0.9;">
+    <span 
+      onclick="showDepositModal()" 
+      style="cursor:pointer; background:rgba(255,255,255,0.1); padding:4px 8px; border-radius:8px; transition: transform 0.2s, background 0.3s;"
+      onmouseover="this.style.transform='scale(1.05)'; this.style.background='rgba(255,255,0,0.2)';"
+      onmouseout="this.style.transform='scale(1)'; this.style.background='rgba(255,255,255,0.1)';"
+    >
+      + Ավելացնել
+    </span>
+    <span>•</span>
+    <span 
+      id="tg-user-id"
+      onclick="showUserIdModal()" 
+      style="cursor:pointer; background:rgba(255,255,255,0.1); padding:4px 8px; border-radius:8px; transition: transform 0.2s, background 0.3s;"
+      onmouseover="this.style.transform='scale(1.05)'; this.style.background='rgba(255,255,0,0.2)';"
+      onmouseout="this.style.transform='scale(1)'; this.style.background='rgba(255,255,255,0.1)';"
+    >
+      ID: ...
+    </span>
+  </div>
+</div>
+
+<script>
+document.addEventListener('DOMContentLoaded', () => {
+  // Ստուգել, որ WebApp օբյեկտը կա
+  if (window.Telegram && window.Telegram.WebApp && window.Telegram.WebApp.initDataUnsafe) {
+    const userId = window.Telegram.WebApp.initDataUnsafe.user?.id || 'Unknown';
+    document.getElementById('tg-user-id').textContent = `ID: ${userId}`;
+
+    // Կարող ենք նաև անունը ավտո ավելացնել
+    const firstName = window.Telegram.WebApp.initDataUnsafe.user?.first_name;
+    if(firstName) document.getElementById('tg-user-name').textContent = firstName;
+  }
+});
+</script>
+
+<style>
+@keyframes pulse {
+  0%, 100% { transform: scale(1); opacity:1; }
+  50% { transform: scale(1.1); opacity:0.8; }
+}
+</style>
+
                             
                             <!-- Right: Status & Language -->
                             <div class="text-right">
@@ -945,136 +993,79 @@
                     </div>
                 </div>
 
-             <!-- Referral Link (clean UI) -->
-<div style="max-width:720px; margin:0 auto; padding:12px;">
-  <label for="referral-link" style="display:block; margin-bottom:6px; font-weight:600;">
-    Ձեր հաշվետվության հղումը
+    <!-- Stylish Referral Link -->
+<div style="max-width:720px; margin:20px auto; padding:16px; border-radius:12px; background:#f9f9f9; box-shadow:0 4px 12px rgba(0,0,0,0.05); font-family:sans-serif;">
+  <label for="referral-link" style="display:block; margin-bottom:8px; font-weight:600; font-size:14px; color:#333;">
+    Ձեր referral հղումը
   </label>
 
-  <div style="display:flex; gap:0; align-items:center;">
+  <div style="display:flex; align-items:center; gap:0;">
     <input 
       id="referral-link"
       type="text"
       value="https://t.me/BirdsGolden_bot/app?startapp=r_8187899888"
       readonly
-      style="flex:1; padding:10px; border:1px solid #ccc; border-radius:6px 0 0 6px; font-size:14px;"
+      style="flex:1; padding:12px; border:1px solid #ccc; border-radius:8px 0 0 8px; font-size:14px; transition:border-color 0.3s;"
     >
-    <button id="share-btn" style="padding:10px 14px; border:none; background:#111; color:#fff; border-radius:0 6px 6px 0; cursor:pointer;">
-      Կիսվել
+    <button id="copy-btn" style="padding:12px 18px; border:none; background:#111; color:white; font-weight:600; border-radius:0 8px 8px 0; cursor:pointer; transition: background 0.3s, transform 0.2s;">
+      Պատճենել
     </button>
   </div>
 
-  <!-- small helper row -->
-  <div style="margin-top:8px; font-size:13px; color:#666;">
-    Կտտացրու «Կիսվել» — մոբայլում բացվում է ընդհանուր պատուհանը, եթե ապաֆֆ է, հղումը պատճենվելու է clipboard-ին։
+  <div id="copy-toast" style="margin-top:10px; font-size:13px; color:green; opacity:0; transition:opacity 0.4s;">
+    Հղումը պատճենվեց clipboard-ին։
   </div>
 </div>
 
-<!-- Toast (small feedback) -->
-<div id="share-toast" style="position:fixed; left:50%; transform:translateX(-50%); bottom:24px; background:#111; color:#fff; padding:10px 14px; border-radius:8px; display:none; font-size:14px; z-index:2000;"></div>
-
 <script>
-/*
-  Robust share logic:
-  1) Try navigator.share (mobile system share).
-  2) If unavailable or fails, copy to clipboard (navigator.clipboard or fallback).
-  3) After copy, try open Telegram share link as optional action (doesn't replace copy).
-  4) Show toast feedback.
-*/
-
-const userName = 'Արմեն'; // քո անունը՝ ավտոմատ ավելացված
-const shareBtn = document.getElementById('share-btn');
+const copyBtn = document.getElementById('copy-btn');
 const linkInput = document.getElementById('referral-link');
-const toast = document.getElementById('share-toast');
+const toast = document.getElementById('copy-toast');
 
-function showToast(msg, ms = 2500) {
-  toast.textContent = msg;
-  toast.style.display = 'block';
-  clearTimeout(toast._t);
-  toast._t = setTimeout(() => { toast.style.display = 'none'; }, ms);
-}
+// Անիմացիոն էֆեկտ կոճակի վրա սեղմելիս
+copyBtn.addEventListener('mousedown', () => {
+  copyBtn.style.transform = 'scale(0.95)';
+});
+copyBtn.addEventListener('mouseup', () => {
+  copyBtn.style.transform = 'scale(1)';
+});
+copyBtn.addEventListener('mouseleave', () => {
+  copyBtn.style.transform = 'scale(1)';
+});
 
-async function copyToClipboard(text) {
-  // primary: modern clipboard API
-  if (navigator.clipboard && navigator.clipboard.writeText) {
-    try {
+copyBtn.addEventListener('click', async () => {
+  const text = linkInput.value.trim();
+  if (!text) return;
+
+  try {
+    // Clipboard copy
+    if (navigator.clipboard && navigator.clipboard.writeText) {
       await navigator.clipboard.writeText(text);
-      return true;
-    } catch (e) {
-      // fallthrough to legacy method
+    } else {
+      const ta = document.createElement('textarea');
+      ta.value = text;
+      ta.style.position = 'fixed';
+      ta.style.left = '-9999px';
+      document.body.appendChild(ta);
+      ta.select();
+      document.execCommand('copy');
+      document.body.removeChild(ta);
     }
+
+    // Toast animation
+    toast.style.opacity = '1';
+    setTimeout(() => { toast.style.opacity = '0'; }, 2500);
+
+    // Input border color animation
+    linkInput.style.borderColor = '#4caf50';
+    setTimeout(() => { linkInput.style.borderColor = '#ccc'; }, 800);
+
+  } catch(e) {
+    alert('Պատճենելը ձախողվեց։ Խնդրում ենք ձեռքով պատճենել։');
   }
-  // legacy fallback
-  try {
-    const ta = document.createElement('textarea');
-    ta.value = text;
-    ta.style.position = 'fixed';
-    ta.style.left = '-9999px';
-    document.body.appendChild(ta);
-    ta.select();
-    ta.setSelectionRange(0, ta.value.length);
-    const ok = document.execCommand('copy');
-    document.body.removeChild(ta);
-    return ok;
-  } catch (e) {
-    return false;
-  }
-}
-
-async function shareReferralLink() {
-  const link = linkInput.value.trim();
-  if (!link) {
-    showToast('Հղումը սա՞լ չէ։');
-    return;
-  }
-
-  // Armenian share text with your name
-  const shareText = `${userName}-ի հղում դեպի BirdsGolden_bot:\n${link}`;
-
-  // 1) Try Web Share API (mobile)
-  if (navigator.share) {
-    try {
-      await navigator.share({
-        title: `${userName}-ի referral`,
-        text: shareText,
-        url: link
-      });
-      showToast('Share dialog բացվեց։');
-      return;
-    } catch (err) {
-      // User may have canceled or error — continue to fallback
-      console.warn('navigator.share failed or canceled:', err);
-    }
-  }
-
-  // 2) Fallback: copy to clipboard
-  const copied = await copyToClipboard(link);
-  if (copied) {
-    showToast('Հղումը պատճենվեց clipboard-ին։');
-  } else {
-    showToast('Պատճենելը ձախողվեց։ Խնդրում ենք պատճենել ձեռքով։', 3500);
-  }
-
-  // 3) Additionally, open Telegram share URL in new tab/window as optional convenience
-  //    This works on desktop and mobile: it opens Telegram app if available.
-  try {
-    const tgShare = `https://t.me/share/url?url=${encodeURIComponent(link)}&text=${encodeURIComponent(shareText)}`;
-    // open in a new tab (user can close it)
-    window.open(tgShare, '_blank');
-    // no toast here — clipboard toast already shown
-  } catch (e) {
-    console.warn('Telegram share open failed', e);
-  }
-}
-
-shareBtn.addEventListener('click', shareReferralLink);
-
-// Also add keyboard selection: clicking input selects all so user can manually copy if wants
-linkInput.addEventListener('click', () => {
-  linkInput.select();
-  try { document.execCommand('copy'); } catch(e) {}
 });
 </script>
+
 
 
                 <!-- Benefits Section -->
