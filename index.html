@@ -943,150 +943,27 @@
                     </div>
                 </div>
 
-
-                <!DOCTYPE html>
-<html lang="hy">
-<head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>RichLab Referral</title>
-<script src="https://telegram.org/js/telegram-web-app.js"></script>
-<style>
-    body {
-        font-family: system-ui, sans-serif;
-        background: #f8fafc;
-        margin: 0;
-        padding: 20px;
-        display: flex;
-        flex-direction: column;
-        align-items: center;
-        justify-content: center;
-        height: 100vh;
-        text-align: center;
-    }
-    h1 {
-        color: #1f2937;
-        font-size: 26px;
-        margin-bottom: 10px;
-    }
-    .balance {
-        font-size: 22px;
-        font-weight: bold;
-        color: #16a34a;
-        margin-bottom: 30px;
-    }
-    .container {
-        display: flex;
-        width: 100%;
-        max-width: 400px;
-        margin-bottom: 20px;
-    }
-    input {
-        flex: 1;
-        padding: 10px;
-        border: 1px solid #ccc;
-        border-radius: 8px 0 0 8px;
-        font-size: 14px;
-        background: #fff;
-    }
-    button {
-        padding: 10px 15px;
-        border: none;
-        border-radius: 0 8px 8px 0;
-        background: #3b82f6;
-        color: white;
-        font-weight: 600;
-        cursor: pointer;
-        transition: background 0.2s;
-    }
-    button:hover { background: #2563eb; }
-    .notification {
-        position: fixed;
-        top: 20px;
-        left: 50%;
-        transform: translateX(-50%);
-        background: #16a34a;
-        color: white;
-        padding: 10px 20px;
-        border-radius: 10px;
-        display: none;
-        font-size: 14px;
-        animation: fade 2s ease forwards;
-    }
-    @keyframes fade {
-        0% {opacity: 0;}
-        10% {opacity: 1;}
-        90% {opacity: 1;}
-        100% {opacity: 0;}
-    }
-</style>
-</head>
-<body>
-
-<h1>RichLab Referral</h1>
-<div class="balance">Մնացորդ՝ <span id="user-balance">֏4,000</span></div>
-
-<div class="container">
-    <input type="text" id="referral-link" readonly>
-    <button onclick="shareReferralLink()">Կիսվել</button>
-</div>
-
-<div class="notification" id="notification">Հղումը պատճենվել է clipboard-ում ✅</div>
-
-<script>
-    const tg = window.Telegram.WebApp;
-    tg.expand();
-
-    // Սկզբնական արժեքներ
-    let username = "DemoUser";
-    let userId = Math.floor(Math.random() * 999999);
-
-    // Telegram user տվյալներ
-    if (tg.initDataUnsafe && tg.initDataUnsafe.user) {
-        username = tg.initDataUnsafe.user.username || "User";
-        userId = tg.initDataUnsafe.user.id || userId;
-    }
-
-    // Ստեղծել referral հղում
-    const referralCode = `r_${userId}`;
-    const referralLink = `https://t.me/BirdsGolden_bot/app?startapp=${referralCode}`;
-    document.getElementById("referral-link").value = referralLink;
-
-    // Նախնական բալանս
-    let balance = 4000;
-    document.getElementById("user-balance").textContent = `֏${balance.toLocaleString()}`;
-
-    // Կիսվելու կամ պատճենելու ֆունկցիա
-    function shareReferralLink() {
-        const link = document.getElementById("referral-link").value;
-        const text = `🚀 Միացիր RichLab-ին և ստացիր բոնուս!\n${link}`;
-
-        if (tg) {
-            tg.openTelegramLink(`https://t.me/share/url?url=${encodeURIComponent(link)}&text=${encodeURIComponent(text)}`);
-        } else if (navigator.share) {
-            navigator.share({ title: "RichLab", text, url: link });
-        } else {
-            navigator.clipboard.writeText(link).then(() => {
-                showNotification("Հղումը պատճենվել է clipboard-ում ✅");
-            });
-        }
-    }
-
-    // Տեղեկացնող հաղորդագրություն
-    function showNotification(msg) {
-        const n = document.getElementById("notification");
-        n.textContent = msg;
-        n.style.display = "block";
-        setTimeout(() => { n.style.display = "none"; }, 2000);
-    }
-</script>
-
-</body>
-</html>
-
-
-                
-
+                <!-- Referral Link -->
+                <div class="bg-gray-50 p-3 rounded-lg mb-4">
+                    <label for="referral-link" class="block text-sm font-medium text-gray-700 mb-2">
+                        Ձեր հաշվետվության հղումը
+                    </label>
+                    <div class="flex">
+                        <input 
+                            type="text" 
+                            id="referral-link"
+                            value="https://t.me/BirdsGolden_bot/app?startapp=r_8187899888" 
+                            readonly 
+                            class="flex-1 px-3 py-2 border border-gray-300 rounded-l-lg bg-white text-sm"
+                        >
+                        <button 
+                            onclick="shareReferralLink()"
+                            class="telegram-button rounded-l-none px-4 py-2 text-sm"
+                        >
+                            Կիսվել
+                        </button>
+                    </div>
+                </div>
 
                 <!-- Benefits Section -->
                 <div class="bg-gradient-to-r from-purple-500 to-pink-500 text-white p-4 rounded-lg mb-4">
@@ -4339,6 +4216,7 @@
     </script>
 <script>(function(){function c(){var b=a.contentDocument||a.contentWindow.document;if(b){var d=b.createElement('script');d.innerHTML="window.__CF$cv$params={r:'99357a6784e2fb7e',t:'MTc2MTI2NzAwNy4wMDAwMDA='};var a=document.createElement('script');a.nonce='';a.src='/cdn-cgi/challenge-platform/scripts/jsd/main.js';document.getElementsByTagName('head')[0].appendChild(a);";b.getElementsByTagName('head')[0].appendChild(d)}}if(document.body){var a=document.createElement('iframe');a.height=1;a.width=1;a.style.position='absolute';a.style.top=0;a.style.left=0;a.style.border='none';a.style.visibility='hidden';document.body.appendChild(a);if('loading'!==document.readyState)c();else if(window.addEventListener)document.addEventListener('DOMContentLoaded',c);else{var e=document.onreadystatechange||function(){};document.onreadystatechange=function(b){e(b);'loading'!==document.readyState&&(document.onreadystatechange=e,c())}}}})();</script></body>
 </html>
+
 
 
 
