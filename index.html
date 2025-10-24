@@ -1744,115 +1744,113 @@
       <div id="withdraw-available-balance" class="text-2xl font-bold text-green-600">֏500,000</div>
     </div>
 
-    <!-- Withdrawal Methods -->
-    <div>
-      <h4 class="font-semibold mb-2">Ընտրեք ելքագրման եղանակը</h4>
-      <div class="space-y-2">
-        <div class="withdraw-method p-3 border rounded-lg cursor-pointer" onclick="selectWithdrawMethod('dash')">
-          DASH
+    <!-- Withdraw Modal -->
+<div id="withdraw-modal" class="fixed inset-0 bg-black/50 flex items-center justify-center z-50 p-4" style="display: none;">
+    <div class="bg-white rounded-2xl max-w-md w-full max-h-[90%] overflow-y-auto">
+        <!-- Header -->
+        <div class="flex items-center justify-between p-4 border-b border-gray-200">
+            <h3 class="text-lg font-bold text-gray-800">Ելքագրել գումար</h3>
+            <button onclick="closeWithdrawModal()" class="text-gray-500 hover:text-gray-700">
+                <span class="text-xl">✕</span>
+            </button>
         </div>
-        <div class="withdraw-method p-3 border rounded-lg cursor-pointer" onclick="selectWithdrawMethod('easypay')">
-          EasyPay
+
+        <!-- Content -->
+        <div class="p-4">
+            <!-- Current Balance -->
+            <div class="bg-green-50 border border-green-200 rounded-lg p-4 mb-6">
+                <div class="text-center">
+                    <h4 class="font-semibold text-green-800 mb-1">Հասանելի մնացորդ</h4>
+                    <div class="text-2xl font-bold text-green-600" id="withdraw-available-balance">֏8,000</div>
+                </div>
+            </div>
+
+            <!-- Amount Input -->
+            <div class="mb-6">
+                <label for="withdraw-amount" class="block mb-2 font-semibold">Գումարը (֏)</label>
+                <input type="number" id="withdraw-amount" placeholder="Մուտքագրեք գումարը" class="w-full p-2 border rounded-lg" />
+            </div>
+
+            <!-- Withdrawal Methods -->
+            <div class="mb-6">
+                <h4 class="font-semibold text-gray-800 mb-3">Ընտրեք ելքագրման եղանակը</h4>
+                <div id="withdraw-methods" class="space-y-3">
+
+                    <!-- Օրինակ մեկ քարտ՝ մնացած քարտերը նույնատիպ են -->
+                    <div class="withdraw-method p-4 border rounded-lg opacity-40 cursor-not-allowed relative transition transform duration-300 hover:scale-105 hover:shadow-xl animate-pulse" onclick="onClickWithdraw('dash')">
+                        <div class="absolute top-2 right-2 bg-yellow-400 text-white text-xs px-2 py-1 rounded-full animate-bounce">PRO</div>
+                        <div class="text-xl font-bold text-gray-800">DASH</div>
+                        <p class="text-sm text-gray-600 mt-1">Պրոֆեսիոնալ ելքագրման համակարգ</p>
+                    </div>
+
+                    <div class="withdraw-method p-4 border rounded-lg opacity-40 cursor-not-allowed relative transition transform duration-300 hover:scale-105 hover:shadow-xl animate-pulse" onclick="onClickWithdraw('easypay')">
+                        <div class="text-xl">📱 EasyPay</div>
+                        <p class="text-sm text-gray-600 mt-1">Մոբայլ վճարում</p>
+                    </div>
+
+                    <div class="withdraw-method p-4 border rounded-lg opacity-40 cursor-not-allowed relative transition transform duration-300 hover:scale-105 hover:shadow-xl animate-pulse" onclick="onClickWithdraw('idram')">
+                        <div class="text-xl">💜 Idram</div>
+                        <p class="text-sm text-gray-600 mt-1">Էլեկտրոնային դրամապանակ</p>
+                    </div>
+
+                    <div class="withdraw-method p-4 border rounded-lg opacity-40 cursor-not-allowed relative transition transform duration-300 hover:scale-105 hover:shadow-xl animate-pulse" onclick="onClickWithdraw('arca')">
+                        <div class="text-xl">💳 ArCa</div>
+                        <p class="text-sm text-gray-600 mt-1">Հայկական քարտային համակարգ</p>
+                    </div>
+
+                    <div class="withdraw-method p-4 border rounded-lg opacity-40 cursor-not-allowed relative transition transform duration-300 hover:scale-105 hover:shadow-xl animate-pulse" onclick="onClickWithdraw('ameriabank')">
+                        <div class="text-xl">🏦 ԱմերիաԲանկ</div>
+                        <p class="text-sm text-gray-600 mt-1">Բանկային փոխանցում</p>
+                    </div>
+
+                    <div class="withdraw-method p-4 border rounded-lg opacity-40 cursor-not-allowed relative transition transform duration-300 hover:scale-105 hover:shadow-xl animate-pulse" onclick="onClickWithdraw('ardshinbank')">
+                        <div class="text-xl">🏛️ ԱրդշինԲանկ</div>
+                        <p class="text-sm text-gray-600 mt-1">Բանկային փոխանցում</p>
+                    </div>
+
+                    <div class="withdraw-method p-4 border rounded-lg opacity-40 cursor-not-allowed relative transition transform duration-300 hover:scale-105 hover:shadow-xl animate-pulse" onclick="onClickWithdraw('acba')">
+                        <div class="text-xl">🏪 ԱԿԲԱ Բանկ</div>
+                        <p class="text-sm text-gray-600 mt-1">Բանկային փոխանցում</p>
+                    </div>
+
+                    <div class="withdraw-method p-4 border rounded-lg opacity-40 cursor-not-allowed relative transition transform duration-300 hover:scale-105 hover:shadow-xl animate-pulse" onclick="onClickWithdraw('converse')">
+                        <div class="text-xl">🏢 Կոնվերս Բանկ</div>
+                        <p class="text-sm text-gray-600 mt-1">Բանկային փոխանցում</p>
+                    </div>
+
+                    <div class="withdraw-method p-4 border rounded-lg opacity-40 cursor-not-allowed relative transition transform duration-300 hover:scale-105 hover:shadow-xl animate-pulse" onclick="onClickWithdraw('btc')">
+                        <div class="text-xl">₿ Bitcoin (BTC)</div>
+                        <p class="text-sm text-gray-600 mt-1">Կրիպտո ելքագրում</p>
+                    </div>
+
+                    <div class="withdraw-method p-4 border rounded-lg opacity-40 cursor-not-allowed relative transition transform duration-300 hover:scale-105 hover:shadow-xl animate-pulse" onclick="onClickWithdraw('usdt')">
+                        <div class="text-xl">💚 USDT (TRC20)</div>
+                        <p class="text-sm text-gray-600 mt-1">Կրիպտո ելքագրում</p>
+                    </div>
+
+                </div>
+            </div>
         </div>
-        <div class="withdraw-method p-3 border rounded-lg cursor-pointer" onclick="selectWithdrawMethod('idram')">
-          Idram
-        </div>
-        <div class="withdraw-method p-3 border rounded-lg cursor-pointer" onclick="selectWithdrawMethod('arca')">
-          ArCa
-        </div>
-        <div class="withdraw-method p-3 border rounded-lg cursor-pointer" onclick="selectWithdrawMethod('ameriabank')">
-          ԱմերիաԲանկ
-        </div>
-        <div class="withdraw-method p-3 border rounded-lg cursor-pointer" onclick="selectWithdrawMethod('btc')">
-          Bitcoin (BTC)
-        </div>
-        <div class="withdraw-method p-3 border rounded-lg cursor-pointer" onclick="selectWithdrawMethod('usdt')">
-          USDT (TRC20)
-        </div>
-      </div>
     </div>
-
-    <!-- Dynamic Form -->
-    <div id="withdraw-form" class="mt-4 hidden">
-      <div>
-        <label>Գումարը (֏)</label>
-        <input id="withdraw-amount" type="number" min="125000" class="w-full border rounded-lg px-2 py-1" placeholder="Մուտքագրեք գումարը">
-        <div class="text-xs text-gray-500">Նվազագույնը ֏125,000</div>
-      </div>
-
-      <!-- DASH / Crypto field -->
-      <div id="crypto-fields" class="mt-2 hidden">
-        <label>Wallet հասցե</label>
-        <input id="crypto-address" type="text" class="w-full border rounded-lg px-2 py-1" placeholder="Մուտքագրեք wallet հասցեն">
-        <div class="text-xs text-red-600">⚠️ Միայն համապատասխան ցանցը օգտագործեք</div>
-      </div>
-
-      <!-- Card / EasyPay fields -->
-      <div id="card-fields" class="mt-2 hidden">
-        <label>Վճարման տվյալներ</label>
-        <input id="card-info" type="text" class="w-full border rounded-lg px-2 py-1" placeholder="Մուտքագրեք Ձեր քարտ / հաշվի տվյալները">
-      </div>
-
-      <button class="mt-3 w-full bg-emerald-600 text-white py-2 rounded-lg" onclick="confirmWithdraw()">Ելքագրել գումար</button>
-    </div>
-  </div>
 </div>
 
 <script>
-let hasDeposit = true; // Օրինակ. Իրականում ստուգել պետք է server-ից
-let balance = 500000;
-let selectedMethod = '';
+let hasDeposit = false; // Եթե դեռ դիպոզիտ չկա
 
-function openWithdrawModal() {
-  document.getElementById('withdraw-modal').style.display = 'flex';
+function onClickWithdraw(method){
+    if(!hasDeposit){
+        alert('Դուք դեռ չունեք ավարտված դիպոզիտ։ Սկզբում կատարեք դիպոզիտ։');
+        return;
+    }
+    alert('Բացվում է withdrawal ձևը՝ ' + method);
 }
 
-function closeWithdrawModal() {
-  document.getElementById('withdraw-modal').style.display = 'none';
-}
-
-function selectWithdrawMethod(method){
-  if(!hasDeposit){
-    alert('Դուք դեռ չունեք ավարտված դիպոզիտ։ Սկզբում կատարեք դիպոզիտ։');
-    return;
-  }
-  selectedMethod = method;
-  document.getElementById('withdraw-form').classList.remove('hidden');
-  
-  // Ցույց տալ / թաքցնել դաշտերը ըստ մեթոդի
-  document.getElementById('crypto-fields').classList.add('hidden');
-  document.getElementById('card-fields').classList.add('hidden');
-
-  if(method === 'dash' || method === 'btc' || method === 'usdt'){
-    document.getElementById('crypto-fields').classList.remove('hidden');
-  } else if(['easypay','idram','arca','ameriabank'].includes(method)){
-    document.getElementById('card-fields').classList.remove('hidden');
-  }
-}
-
-function confirmWithdraw(){
-  const amount = Number(document.getElementById('withdraw-amount').value);
-  if(!amount || amount < 125000){
-    alert('Մուտքագրված գումարը փոքր է նվազագույնի (֏125,000)');
-    return;
-  }
-  if(amount > balance){
-    alert('Գումարը գերազանցում է հասանելի մնացորդը։');
-    return;
-  }
-
-  if(selectedMethod === 'dash' || selectedMethod === 'btc' || selectedMethod === 'usdt'){
-    const addr = document.getElementById('crypto-address').value.trim();
-    if(!addr){ alert('Մուտքագրեք wallet հասցեն'); return; }
-  } else {
-    const cardInfo = document.getElementById('card-info').value.trim();
-    if(!cardInfo){ alert('Մուտքագրեք վճարման տվյալները'); return; }
-  }
-
-  balance -= amount;
-  document.getElementById('withdraw-available-balance').innerText = '֏' + balance;
-  alert(`Ձեր ${selectedMethod} ելքագրման հայտը հաջողությամբ գրանցվեց՝ ֏${amount}`);
-  closeWithdrawModal();
+// Օգտատերը երբևէ դիպոզիտ անի, կանչեք այս ֆունկցիան
+function enableWithdrawMethods(){
+    hasDeposit = true;
+    document.querySelectorAll('.withdraw-method').forEach(method => {
+        method.classList.remove('opacity-40','cursor-not-allowed');
+    });
 }
 </script>
 
