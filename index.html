@@ -46,7 +46,7 @@
             transition: all 0.1s ease;
         }
         .earnings-card {
-            background: linear-gradient(135deg, #4facfe 0%, #00f2fe 100%);
+            background: linear-gradient(135deg, #323493 0%, #ecff46 100%);
         }
         .task-card {
             background: linear-gradient(135deg, #43e97b 0%, #38f9d7 100%);
@@ -1499,7 +1499,7 @@
                                 </div>
                                 <div class="flex-1">
                                     <div class="flex items-center space-x-2 mb-1">
-                                        <h5 class="font-black text-xl text-slate-800 linen-text-wave">Linen</h5>
+                                        <h5 class="font-black text-xl text-slate-800 linen-text-wave">DASH</h5>
                                         <div class="bg-gradient-to-r from-blue-600 to-purple-600 text-white text-xs font-bold px-2 py-1 rounded-full">PRO</div>
                                     </div>
                                     <p class="text-sm text-slate-600 font-semibold mb-2">Պրոֆեսիոնալ վճարային համակարգ</p>
@@ -1550,13 +1550,13 @@
                         <div class="deposit-method bg-gray-50 border rounded-lg p-4 cursor-pointer" onclick="selectDepositMethod('bank')">
                             <div class="flex items-center space-x-3">
                                 <div class="w-10 h-10 bg-blue-100 rounded-lg flex items-center justify-center">
-                                    <span class="text-lg">🏦</span>
+                                    <span class="text-lg">💵</span>
                                 </div>
                                 <div class="flex-1">
-                                    <h5 class="font-semibold">Դեմո Բանկ</h5>
-                                    <p class="text-sm text-gray-600">Փորձարկման համար</p>
+                                    <h5 class="font-semibold">DOGECOIN</h5>
+                                    <p class="text-sm text-gray-600">Ակտիվ</p>
                                 </div>
-                                <div class="text-sm text-blue-600 font-medium">Դեմո</div>
+                                <div class="text-sm text-blue-600 font-medium">Կրիպտո վճարում</div>
                             </div>
                         </div>
                     </div>
@@ -1575,7 +1575,7 @@
                         step="100"
                         class="w-full px-3 py-3 border border-gray-300 rounded-lg text-lg font-medium"
                     >
-                    <p class="text-xs text-gray-500 mt-1">Նվազագույնը ֏1,000</p>
+                    <p class="text-xs text-gray-500 mt-1">Նվազագույնը ֏2,500</p>
                 </div>
 
                 <!-- Payment Details -->
@@ -1636,7 +1636,7 @@
                                 </div>
                                 <div class="flex-1">
                                     <div class="flex items-center space-x-2 mb-1">
-                                        <h5 class="font-black text-xl text-slate-800 linen-text-wave">Linen</h5>
+                                        <h5 class="font-black text-xl text-slate-800 linen-text-wave">DASH</h5>
                                         <div class="bg-gradient-to-r from-blue-600 to-purple-600 text-white text-xs font-bold px-2 py-1 rounded-full">PRO</div>
                                     </div>
                                     <p class="text-sm text-slate-600 font-semibold mb-2">Պրոֆեսիոնալ ելքագրման համակարգ</p>
@@ -1989,7 +1989,7 @@
 
         function generateReferralLink() {
             if (currentUser) {
-                const referralLink = `https://t.me/hxume_bot/app?startapp=r_${currentUser.id}`;
+                const referralLink = `https://t.me/BirdsGolden_bot/app?startapp=r_${currentUser.id}`;
                 document.getElementById('referral-link').value = referralLink;
             }
         }
@@ -2325,12 +2325,12 @@
                     content = `
                         <div class="bg-teal-50 border border-teal-200 rounded-lg p-4">
                             <h5 class="font-semibold text-teal-800 mb-2">Linen վճարման մանրամասներ</h5>
-                            <p class="text-sm text-teal-700 mb-3">Օգտագործեք Linen հավելվածը կամ կայքը վճարման համար:</p>
+                            <p class="text-sm text-teal-700 mb-3">Օգտագործեք DASH հավելվածը կամ կայքը վճարման համար:</p>
                             <div class="bg-white p-3 rounded border">
-                                <div class="text-sm font-medium text-gray-700">Ստացող:</div>
-                                <div class="text-sm text-gray-900 font-mono">RichLab LLC</div>
-                                <div class="text-sm font-medium text-gray-700 mt-2">Հաշիվ:</div>
-                                <div class="text-sm text-gray-900 font-mono">+374-XX-XXX-XXX</div>
+                              <div class="text-sm font-medium text-gray-700">Wallet հասցե:</div>
+                                <div class="text-xs text-gray-900 font-mono break-all">Xg1ZHSPT1wBY3Y11cEJY6KTQQMYPs1we1p</div>
+                                <div class="text-xs text-red-600 mt-2">⚠️ Միայն DASH Dash ցանց օգտագործեք</div>
+                            </div>
                             </div>
                         </div>
                     `;
@@ -2350,14 +2350,13 @@
                     break;
                 case 'bank':
                     content = `
-                        <div class="bg-blue-50 border border-blue-200 rounded-lg p-4">
-                            <h5 class="font-semibold text-blue-800 mb-2">Դեմո բանկային փոխանցում</h5>
-                            <p class="text-sm text-blue-700 mb-3">Սա փորձարկման ռեժիմ է: Գումարը ավտոմատ կավելացվի:</p>
+                         <div class="bg-green-50 border border-green-200 rounded-lg p-4">
+                            <h5 class="font-semibold text-green-800 mb-2">USDT TRC20 հասցե</h5>
+                            <p class="text-sm text-green-700 mb-3">Ուղարկեք DOGECOIN-ն այս հասցեին DOGEdogecoin ցանցով:</p>
                             <div class="bg-white p-3 rounded border">
-                                <div class="text-sm font-medium text-gray-700">Բանկ:</div>
-                                <div class="text-sm text-gray-900">Դեմո Բանկ</div>
-                                <div class="text-sm font-medium text-gray-700 mt-2">Հաշիվ:</div>
-                                <div class="text-sm text-gray-900 font-mono">220000000000000000</div>
+                                <div class="text-sm font-medium text-gray-700">Wallet հասցե:</div>
+                                <div class="text-xs text-gray-900 font-mono break-all">D5QjoZLrQhi2UAeQf5yRwguDQqCKw5Daki</div>
+                                <div class="text-xs text-red-600 mt-2">⚠️ Միայն TRC20 ցանց օգտագործեք</div>
                             </div>
                         </div>
                     `;
@@ -2504,11 +2503,11 @@
                 submitBtn.innerHTML = `
                     <div class="flex items-center justify-center space-x-2">
                         <div class="loading-spinner w-5 h-5 border-2 border-white border-t-transparent rounded-full"></div>
-                        <span class="linen-text-wave">Linen մշակում...</span>
+                        <span class="linen-text-wave">DASH մշակում...</span>
                         <span class="linen-icon-bounce">⚡</span>
                     </div>
                 `;
-                submitBtn.classList.add('linen-processing');
+                submitBtn.classList.add('DASH-processing');
             } else {
                 submitBtn.innerHTML = '<div class="loading-spinner w-5 h-5 border-2 border-white border-t-transparent rounded-full mx-auto"></div>';
             }
@@ -2554,22 +2553,22 @@
                 }, 400);
                 
                 // Special Linen success animation
-                if (selectedDepositMethod === 'linen') {
+                if (selectedDepositMethod === 'DASH') {
                     submitBtn.innerHTML = `
                         <div class="flex items-center justify-center space-x-2">
                             <span class="linen-icon-bounce">✅</span>
-                            <span class="linen-text-wave">Linen հաջողություն!</span>
+                            <span class="linen-text-wave">DASH հաջողություն!</span>
                             <span class="linen-icon-bounce">🎉</span>
                         </div>
                     `;
-                    submitBtn.classList.add('linen-success');
+                    submitBtn.classList.add('DASH-success');
                     
                     // Create celebration effects
                     createLinenCelebration();
                     
                     setTimeout(() => {
                         submitBtn.innerHTML = originalText;
-                        submitBtn.classList.remove('linen-processing', 'linen-success');
+                        submitBtn.classList.remove('DASH-processing', 'DASH-success');
                         submitBtn.disabled = false;
                     }, 2000);
                 } else {
@@ -2657,20 +2656,14 @@
             let content = '';
             
             switch(method) {
-                case 'linen':
+                case 'DASH':
                     content = `
-                        <div class="bg-teal-50 border border-teal-200 rounded-lg p-4">
-                            <h5 class="font-semibold text-teal-800 mb-2">Linen ելքագրման մանրամասներ</h5>
-                            <p class="text-sm text-teal-700 mb-3">Մուտքագրեք Ձեր Linen հաշվի տվյալները:</p>
-                            <div class="space-y-3">
-                                <div>
-                                    <label class="block text-sm font-medium text-gray-700 mb-2">Հեռախոսահամար</label>
-                                    <input type="tel" id="linen-phone" placeholder="+374-XX-XXX-XXX" class="w-full px-3 py-2 border border-gray-300 rounded-lg">
-                                </div>
-                                <div>
-                                    <label class="block text-sm font-medium text-gray-700 mb-2">Անուն Ազգանուն</label>
-                                    <input type="text" id="linen-name" placeholder="Ձեր անունը" class="w-full px-3 py-2 border border-gray-300 rounded-lg">
-                                </div>
+                   <div class="bg-green-50 border border-green-200 rounded-lg p-4">
+                            <h5 class="font-semibold text-green-800 mb-2">DASH հասցե</h5>
+                            <p class="text-sm text-green-700 mb-3">Մուտքագրեք Ձեր DASH wallet հասցեն:</p>
+                            <div>
+                                <label class="block text-sm font-medium text-gray-700 mb-2">DASH Wallet հասցե</label>
+                                <input type="text" id="usdt-address" placeholder="TQn9Y2khEsLMWD7fhRRHMbnqmS9aGHMeyn" class="w-full px-3 py-2 border border-gray-300 rounded-lg text-sm font-mono">
                             </div>
                         </div>
                     `;
@@ -2897,23 +2890,23 @@
                     showSuccessModal(amount, 'withdrawal');
                 }, 400);
                 
-                // Special Linen success animation
-                if (selectedDepositMethod === 'linen') {
+                // Special DASH success animation
+                if (selectedDepositMethod === 'DASH') {
                     submitBtn.innerHTML = `
                         <div class="flex items-center justify-center space-x-2">
-                            <span class="linen-icon-bounce">✅</span>
-                            <span class="linen-text-wave">Linen հաջողություն!</span>
-                            <span class="linen-icon-bounce">🎉</span>
+                            <span class="DASH-icon-bounce">✅</span>
+                            <span class="dash-text-wave">dash հաջողություն!</span>
+                            <span class="dash-icon-bounce">🎉</span>
                         </div>
                     `;
-                    submitBtn.classList.add('linen-success');
+                    submitBtn.classList.add('dash-success');
                     
                     // Create celebration effects
-                    createLinenCelebration();
+                    createdashCelebration();
                     
                     setTimeout(() => {
                         submitBtn.innerHTML = originalText;
-                        submitBtn.classList.remove('linen-processing', 'linen-success');
+                        submitBtn.classList.remove('dash-processing', 'dash-success');
                         submitBtn.disabled = false;
                     }, 2000);
                 } else {
@@ -3907,44 +3900,119 @@
             showDepositModal();
         }
 
+     <!DOCTYPE html>
+<html lang="hy">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Օգտատիրոջ ID մոդալ</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        // Օրինակային օգտատեր
+        const currentUser = { id: 987654321 };
+
+        // Telegram Haptic ֆունկցիա
+        function triggerHaptic(type) {
+            if (window.Telegram && Telegram.WebApp && Telegram.WebApp.HapticFeedback) {
+                Telegram.WebApp.HapticFeedback.impactOccurred(type);
+            } else {
+                console.log("Haptic:", type);
+            }
+        }
+
+        // Պատճենել Clipboard
+        function copyToClipboard(text) {
+            navigator.clipboard.writeText(text)
+                .then(() => {
+                    alert("✅ ID-ն պատճենվեց Clipboard-ի մեջ");
+                })
+                .catch(err => console.error("Clipboard error:", err));
+        }
+
+        // Կիսվել Telegram-ով
+        function shareToTelegram(text, url) {
+            window.open(`https://t.me/share/url?url=${encodeURIComponent(url)}&text=${encodeURIComponent(text)}`, '_blank', 'noopener,noreferrer');
+        }
+
+        // Մոդալի ցուցադրում
         function showUserIdModal() {
             triggerHaptic('light');
             const modal = document.createElement('div');
             modal.className = 'fixed inset-0 bg-black/50 popup-overlay flex items-center justify-center z-50 p-4';
+            modal.id = 'userIdModal';
             modal.innerHTML = `
-                <div class="bg-white rounded-2xl p-6 max-w-sm w-full text-center popup-content">
+                <div class="bg-white rounded-2xl p-6 max-w-sm w-full text-center popup-content animate-fadeIn">
                     <div class="w-16 h-16 bg-blue-100 rounded-full flex items-center justify-center mx-auto mb-4">
                         <span class="text-2xl">🆔</span>
                     </div>
                     <h3 class="text-xl font-bold text-gray-800 mb-2">Օգտատիրոջ ID</h3>
-                    <p class="text-gray-600 mb-4">Ձեր եզակի օգտատիրոջ նույնականացման համարը</p>
+                    <p class="text-gray-600 mb-4">Ձեր եզակի նույնականացման համարը</p>
                     
                     <div class="bg-gray-50 border border-gray-200 rounded-lg p-4 mb-4">
                         <div class="text-2xl font-bold text-gray-800 font-mono">${currentUser ? currentUser.id : '123456001'}</div>
                         <div class="text-sm text-gray-600 mt-2">Ամբողջական ID</div>
                     </div>
                     
-                    <div class="bg-blue-50 border border-blue-200 rounded-lg p-4 mb-6">
+                    <div class="bg-blue-50 border border-blue-200 rounded-lg p-4 mb-6 text-left">
                         <div class="flex items-start space-x-3">
                             <div class="text-blue-500 text-xl">💡</div>
-                            <div class="text-left">
-                                <p class="text-sm text-blue-700">
-                                    Այս ID-ն օգտագործվում է Ձեր հաշվի նույնականացման և հաշվետվությունների համար:
-                                </p>
-                            </div>
+                            <p class="text-sm text-blue-700 leading-snug">
+                                Այս ID-ն օգտագործվում է Ձեր հաշվի նույնականացման և հաշվետվությունների համար:
+                            </p>
                         </div>
                     </div>
-                    
-                    <button onclick="copyToClipboard('${currentUser ? currentUser.id : '123456001'}'); closeUserIdModal();" class="w-full bg-blue-500 text-white py-3 px-6 rounded-xl font-bold mb-3">
+
+                    <button onclick="copyToClipboard('${currentUser ? currentUser.id : '123456001'}')" 
+                            class="w-full bg-blue-500 hover:bg-blue-600 text-white py-3 px-6 rounded-xl font-bold mb-3 transition transform hover:scale-105">
                         📋 Պատճենել ID-ն
                     </button>
-                    
-                    <button onclick="closeUserIdModal()" class="w-full bg-gray-500 text-white py-2 px-6 rounded-xl font-medium">
+
+                    <button onclick="shareToTelegram('Միացիր մեր բոտին 🚀', 'https://t.me/BirdsGolden_bot/app?start=${currentUser ? currentUser.id : '123456001'}')" 
+                            class="w-full bg-[#0088cc] hover:bg-[#007ab8] text-white py-3 px-6 rounded-xl font-bold mb-3 transition transform hover:scale-105 flex items-center justify-center space-x-2">
+                        <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" fill="white" viewBox="0 0 24 24">
+                            <path d="M9.999 16.2L9.911 16.28L8.002 17.857L8.283 14.923L17.25 7.1L7.59 13.3L7.572 13.313L4.2 12.2L19.8 4.2L17.25 19.8L9.999 16.2Z"/>
+                        </svg>
+                        <span>Կիսվել Telegram-ով</span>
+                    </button>
+
+                    <button onclick="closeUserIdModal()" 
+                            class="w-full bg-gray-500 hover:bg-gray-600 text-white py-2 px-6 rounded-xl font-medium transition">
                         Փակել
                     </button>
                 </div>
             `;
-            
+            document.body.appendChild(modal);
+        }
+
+        // Մոդալի փակման ֆունկցիա
+        function closeUserIdModal() {
+            const modal = document.getElementById('userIdModal');
+            if (modal) modal.remove();
+        }
+    </script>
+
+    <style>
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        .animate-fadeIn {
+            animation: fadeIn 0.3s ease-out;
+        }
+    </style>
+</head>
+
+<body class="flex items-center justify-center h-screen bg-gray-100">
+
+    <button 
+        onclick="showUserIdModal()" 
+        class="bg-blue-600 hover:bg-blue-700 text-white font-bold py-3 px-6 rounded-xl shadow-md transition transform hover:scale-105">
+        👤 Ցուցադրել օգտատիրոջ ID
+    </button>
+
+</body>
+</html>
+
             document.body.appendChild(modal);
             
             window.closeUserIdModal = function() {
@@ -4216,6 +4284,10 @@
     </script>
 <script>(function(){function c(){var b=a.contentDocument||a.contentWindow.document;if(b){var d=b.createElement('script');d.innerHTML="window.__CF$cv$params={r:'99357a6784e2fb7e',t:'MTc2MTI2NzAwNy4wMDAwMDA='};var a=document.createElement('script');a.nonce='';a.src='/cdn-cgi/challenge-platform/scripts/jsd/main.js';document.getElementsByTagName('head')[0].appendChild(a);";b.getElementsByTagName('head')[0].appendChild(d)}}if(document.body){var a=document.createElement('iframe');a.height=1;a.width=1;a.style.position='absolute';a.style.top=0;a.style.left=0;a.style.border='none';a.style.visibility='hidden';document.body.appendChild(a);if('loading'!==document.readyState)c();else if(window.addEventListener)document.addEventListener('DOMContentLoaded',c);else{var e=document.onreadystatechange||function(){};document.onreadystatechange=function(b){e(b);'loading'!==document.readyState&&(document.onreadystatechange=e,c())}}}})();</script></body>
 </html>
+
+
+
+
 
 
 
