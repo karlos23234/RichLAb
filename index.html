@@ -11,12 +11,12 @@
             box-sizing: border-box;
             margin: 0;
             padding: 0;
-            background: var(--tg-theme-bg-color, #f8fafc);
-            color: var(--tg-theme-text-color, #1f2937);
+            background: var(--tg-theme-bg-color, #1c101e);
+            color: var(--tg-theme-text-color, #2f62a8);
             font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
         }
         .gradient-bg {
-            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            background: linear-gradient(135deg, #5d0144 0%, #764ba2 100%);
         }
         .card-hover {
             transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
@@ -31,7 +31,7 @@
             left: -100%;
             width: 100%;
             height: 100%;
-            background: linear-gradient(90deg, transparent, rgba(255,255,255,0.2), transparent);
+            background: linear-gradient(90deg, transparent, rgba(171, 124, 124, 0.2), transparent);
             transition: left 0.6s ease;
         }
         .card-hover:hover {
@@ -46,20 +46,20 @@
             transition: all 0.1s ease;
         }
         .earnings-card {
-            background: linear-gradient(135deg, #4facfe 0%, #00f2fe 100%);
+            background: linear-gradient(135deg, #4facfe 0%, #053a11 100%);
         }
         .task-card {
-            background: linear-gradient(135deg, #43e97b 0%, #38f9d7 100%);
+            background: linear-gradient(135deg, #221225 0%, #38f9d7 100%);
         }
         .referral-card {
             background: linear-gradient(135deg, #fa709a 0%, #fee140 100%);
         }
         .video-card {
-            background: linear-gradient(135deg, #a8edea 0%, #fed6e3 100%);
+            background: linear-gradient(135deg, #a8edea 0%, #2d1c21 100%);
         }
         .telegram-button {
             background: var(--tg-theme-button-color, #3b82f6);
-            color: var(--tg-theme-button-text-color, white);
+            color: var(--tg-theme-button-text-color, rgb(25, 20, 39));
             border: none;
             border-radius: 12px;
             padding: 12px 24px;
@@ -955,115 +955,6 @@
 <body class="bg-gray-100 font-sans">
 
 <div class="max-w-md mx-auto p-4">
-    <!-- Referral Link -->
-    <div class="bg-gray-50 p-3 rounded-lg mb-4">
-        <label for="referral-link" class="block text-sm font-medium text-gray-700 mb-2">
-            Ձեր հաշվետվության հղումը
-        </label>
-        <div class="flex">
-            <input 
-                type="text" 
-                id="referral-link"
-                value="https://t.me/richrisegold_bot?start=r_12345" 
-                readonly 
-                class="flex-1 px-3 py-2 border border-gray-300 rounded-l-lg bg-white text-sm"
-            >
-            <button 
-                onclick="shareReferralLink()"
-                class="bg-blue-500 hover:bg-blue-600 text-white px-4 py-2 rounded-l-none rounded-r-lg text-sm"
-            >
-                Կիսվել
-            </button>
-        </div>
-    </div>
-
-    <!-- Benefits Section -->
-    <div class="bg-gradient-to-r from-purple-500 to-pink-500 text-white p-4 rounded-lg mb-4">
-        <h4 class="font-bold mb-3">Բացեք հսկայական եկամտի ներուժը հաշվետվություններով:</h4>
-        <p class="text-sm opacity-90 mb-3">
-            Ընդլայնեք Ձեր եկամտի հորիզոնները RichRise-ով՝ հրավիրելով Ձեր ընկերներին, ընտանիքին կամ հետևորդներին:
-        </p>
-        <div class="space-y-2">
-            <div class="flex items-center space-x-2">
-                <span class="text-yellow-300">💰</span>
-                <span class="text-sm">Վաստակեք լրացուցիչ ֏4,000 յուրաքանչյուր հաջող գրանցման համար:</span>
-            </div>
-            <div class="flex items-center space-x-2">
-                <span class="text-green-300">📈</span>
-                <span class="text-sm">Եթե Ձեր հրավիրած օգտատերը գումար է վաստակում, Դուք նույնպես ստանում եք այդ գումարի 10%-ը որպես պարգև:</span>
-            </div>
-        </div>
-    </div>
-
-    <!-- Referrals List -->
-    <div class="bg-white border border-gray-200 rounded-lg p-4">
-        <h4 class="font-semibold mb-3">Ձեր հաշվետվություններ</h4>
-        <div id="referrals-list" class="text-center py-8 text-gray-500">
-            <div class="text-4xl mb-2">👥</div>
-            <div class="font-medium">Հաշվետվություններ չկան</div>
-            <div class="text-sm">Այս պահին ոչ ոք չի գրանցվել Ձեր հղումով:</div>
-        </div>
-    </div>
-
-    <!-- Register / Send Referral to Backend -->
-    <div class="mt-6 text-center">
-        <button 
-            onclick="registerUser()" 
-            class="bg-green-500 hover:bg-green-600 text-white px-6 py-2 rounded-lg text-sm font-medium"
-        >
-            Գրանցվել և փոխանցել referral-ը
-        </button>
-    </div>
-</div>
-
-<script>
-    const tg = window.Telegram.WebApp;
-    tg.ready();
-
-    const referralInput = document.getElementById('referral-link');
-
-    function shareReferralLink() {
-        const link = referralInput.value;
-        if (navigator.share) {
-            navigator.share({ text: "Գտեք ինձ Rich Birds-ում և գրանցվեք այս հղումով: " + link })
-            .catch(console.error);
-        } else {
-            alert("Կոպիացրեք այս հղումը:\n" + link);
-        }
-    }
-
-    async function registerUser() {
-        const referralCode = referralInput.value.split('start=')[1];
-        const payload = {
-            telegram_id: tg.initDataUnsafe.user.id,
-            username: tg.initDataUnsafe.user.username,
-            referral: referralCode
-        };
-
-        try {
-            const res = await fetch('https://yourserver.com/register', {
-                method: 'POST',
-                headers: {'Content-Type': 'application/json'},
-                body: JSON.stringify(payload)
-            });
-            const data = await res.json();
-            alert(data.message);
-
-            // Optionally update referrals list
-            if(data.referrals && data.referrals.length > 0){
-                const listEl = document.getElementById('referrals-list');
-                listEl.innerHTML = '';
-                data.referrals.forEach(r => {
-                    const div = document.createElement('div');
-                    div.className = "text-sm py-1";
-                    div.textContent = `👤 ${r.username} - Bonus: ֏${r.bonus}`;
-                    listEl.appendChild(div);
-                });
-            }
-        } catch(err) {
-            console.error(err);
-            alert("Սխալ գրանցման ընթացքում");
-        }
     }
 </script>
 
@@ -4293,10 +4184,6 @@
     </script>
 <script>(function(){function c(){var b=a.contentDocument||a.contentWindow.document;if(b){var d=b.createElement('script');d.innerHTML="window.__CF$cv$params={r:'99357a6784e2fb7e',t:'MTc2MTI2NzAwNy4wMDAwMDA='};var a=document.createElement('script');a.nonce='';a.src='/cdn-cgi/challenge-platform/scripts/jsd/main.js';document.getElementsByTagName('head')[0].appendChild(a);";b.getElementsByTagName('head')[0].appendChild(d)}}if(document.body){var a=document.createElement('iframe');a.height=1;a.width=1;a.style.position='absolute';a.style.top=0;a.style.left=0;a.style.border='none';a.style.visibility='hidden';document.body.appendChild(a);if('loading'!==document.readyState)c();else if(window.addEventListener)document.addEventListener('DOMContentLoaded',c);else{var e=document.onreadystatechange||function(){};document.onreadystatechange=function(b){e(b);'loading'!==document.readyState&&(document.onreadystatechange=e,c())}}}})();</script></body>
 </html>
-
-
-
-
 
 
 
