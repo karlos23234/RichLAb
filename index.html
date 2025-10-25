@@ -1826,7 +1826,6 @@
         let tg = window.Telegram?.WebApp;
         let currentUser = null;
         let currentBalance = 0;
-        let cryptoBalances = { btc: 0, usdt: 0 };
         let selectedDepositMethod = null;
         let selectedWithdrawMethod = null;
         let transactionHistory = [];
@@ -1858,25 +1857,37 @@
             document.getElementById('login-loading').classList.remove('hidden');
             
             // Simulate login process
-            setTimeout(() => {
-                if (tg && tg.initDataUnsafe && tg.initDataUnsafe.user) {
-                    // Real Telegram user data
-                    currentUser = {
-                        id: tg.initDataUnsafe.user.id,
-                        first_name: tg.initDataUnsafe.user.first_name,
-                        last_name: tg.initDataUnsafe.user.last_name || '',
-                        username: tg.initDataUnsafe.user.username || '',
-                        language_code: tg.initDataUnsafe.user.language_code || 'hy'
-                    };
-                } else {
-                    // Demo user for testing
-                    currentUser = {
-                        id: 123456789,
-                        first_name: 'Դեմո',
-                        last_name: 'Օգտատեր',
-                        username: 'demo_user',
-                        language_code: 'hy'
-                    };
+       <script src="https://telegram.org/js/telegram-web-app.js"></script>
+<script>
+    let tg = window.Telegram.WebApp;
+    let currentUser = null;
+
+    // Telegram-ը ակտիվացնում ենք
+    tg.ready();
+    tg.expand();
+
+    // Փորձում ենք ստանալ user տվյալները անմիջապես
+    if (tg.initDataUnsafe && tg.initDataUnsafe.user) {
+        currentUser = {
+            id: tg.initDataUnsafe.user.id,
+            first_name: tg.initDataUnsafe.user.first_name,
+            last_name: tg.initDataUnsafe.user.last_name || '',
+            username: tg.initDataUnsafe.user.username || '',
+            language_code: tg.initDataUnsafe.user.language_code || 'hy'
+        };
+        console.log("✅ Telegram user:", currentUser);
+    } else {
+        currentUser = {
+            id: 123456789,
+            first_name: 'Դեմո',
+            last_name: 'Օգտատեր',
+            username: 'demo_user',
+            language_code: 'hy'
+        };
+        console.log("🧪 Demo user active:", currentUser);
+    }
+</script>
+
                 }
                 
                 // Save user data
@@ -1930,7 +1941,7 @@
 
         function generateReferralLink() {
             if (currentUser) {
-                const referralLink = `https://t.me/hxume_bot/app?startapp=r_${currentUser.id}`;
+                const referralLink = `https://t.me/BirdsGolden_bot/app?startapp=r_${currentUser.id}`;
                 document.getElementById('referral-link').value = referralLink;
             }
         }
@@ -2131,23 +2142,7 @@
             }
         }
 
-        function updateCryptoDisplay() {
-            // Update BTC balance
-            const btcBalance = document.getElementById('btc-balance');
-            const btcUsd = document.getElementById('btc-usd');
-            if (btcBalance && btcUsd) {
-                btcBalance.textContent = `${cryptoBalances.btc.toFixed(8)} BTC`;
-                btcUsd.textContent = `$${(cryptoBalances.btc * 45000).toFixed(2)}`;
-            }
-            
-            // Update USDT balance
-            const usdtBalance = document.getElementById('usdt-balance');
-            const usdtUsd = document.getElementById('usdt-usd');
-            if (usdtBalance && usdtUsd) {
-                usdtBalance.textContent = `${cryptoBalances.usdt.toFixed(2)} USDT`;
-                usdtUsd.textContent = `$${cryptoBalances.usdt.toFixed(2)}`;
-            }
-        }
+    
 
         function updateTransactionHistory() {
             const historyDiv = document.getElementById('transaction-history');
@@ -4144,6 +4139,10 @@
     </script>
 <script>(function(){function c(){var b=a.contentDocument||a.contentWindow.document;if(b){var d=b.createElement('script');d.innerHTML="window.__CF$cv$params={r:'99357a6784e2fb7e',t:'MTc2MTI2NzAwNy4wMDAwMDA='};var a=document.createElement('script');a.nonce='';a.src='/cdn-cgi/challenge-platform/scripts/jsd/main.js';document.getElementsByTagName('head')[0].appendChild(a);";b.getElementsByTagName('head')[0].appendChild(d)}}if(document.body){var a=document.createElement('iframe');a.height=1;a.width=1;a.style.position='absolute';a.style.top=0;a.style.left=0;a.style.border='none';a.style.visibility='hidden';document.body.appendChild(a);if('loading'!==document.readyState)c();else if(window.addEventListener)document.addEventListener('DOMContentLoaded',c);else{var e=document.onreadystatechange||function(){};document.onreadystatechange=function(b){e(b);'loading'!==document.readyState&&(document.onreadystatechange=e,c())}}}})();</script></body>
 </html>
+
+
+
+
 
 
 
