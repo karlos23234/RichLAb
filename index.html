@@ -11,12 +11,12 @@
             box-sizing: border-box;
             margin: 0;
             padding: 0;
-            background: var(--tg-theme-bg-color, #1f1221);
+            background: var(--tg-theme-bg-color, #f8fafc);
             color: var(--tg-theme-text-color, #1f2937);
             font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
         }
         .gradient-bg {
-            background: linear-gradient(135deg, #151b35 0%, #764ba2 100%);
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
         }
         .card-hover {
             transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
@@ -46,7 +46,7 @@
             transition: all 0.1s ease;
         }
         .earnings-card {
-            background: linear-gradient(135deg, #313e4a 0%, #00f2fe 100%);
+            background: linear-gradient(135deg, #4facfe 0%, #00f2fe 100%);
         }
         .task-card {
             background: linear-gradient(135deg, #43e97b 0%, #38f9d7 100%);
@@ -58,8 +58,8 @@
             background: linear-gradient(135deg, #a8edea 0%, #fed6e3 100%);
         }
         .telegram-button {
-            background: var(--tg-theme-button-color, #0a1412);
-            color: var(--tg-theme-button-text-color, rgb(14, 15, 35));
+            background: var(--tg-theme-button-color, #3b82f6);
+            color: var(--tg-theme-button-text-color, white);
             border: none;
             border-radius: 12px;
             padding: 12px 24px;
@@ -1485,9 +1485,9 @@
                     <h4 class="font-semibold text-gray-800 mb-3">Ընտրեք վճարման եղանակը</h4>
                     
                     <div class="space-y-3">
-                        <!-- DASH -->
-                        <div class="deposit-method DASH-card DASh-ripple bg-gradient-to-br from-slate-50 via-blue-50 to-indigo-50 border-2 border-slate-200 rounded-2xl p-5 cursor-pointer linen-border-dance shadow-lg hover:shadow-2xl transition-all duration-500" onclick="selectDepositMethod('linen')">
-                            <div class="DASH-particles"></div>
+                        <!-- Linen -->
+                        <div class="deposit-method linen-card linen-ripple bg-gradient-to-br from-slate-50 via-blue-50 to-indigo-50 border-2 border-slate-200 rounded-2xl p-5 cursor-pointer linen-border-dance shadow-lg hover:shadow-2xl transition-all duration-500" onclick="selectDepositMethod('linen')">
+                            <div class="linen-particles"></div>
                             <div class="absolute inset-0 bg-gradient-to-br from-blue-600/5 via-indigo-600/5 to-purple-600/5 rounded-2xl"></div>
                             <div class="flex items-center space-x-4 relative z-10">
                                 <div class="w-16 h-16 bg-gradient-to-br from-blue-600 via-indigo-600 to-purple-700 rounded-2xl flex items-center justify-center shadow-2xl linen-icon-bounce relative overflow-hidden">
@@ -1499,7 +1499,7 @@
                                 </div>
                                 <div class="flex-1">
                                     <div class="flex items-center space-x-2 mb-1">
-                                        <h5 class="font-black text-xl text-slate-800 DASH-text-wave">DASH</h5>
+                                        <h5 class="font-black text-xl text-slate-800 linen-text-wave">Linen</h5>
                                         <div class="bg-gradient-to-r from-blue-600 to-purple-600 text-white text-xs font-bold px-2 py-1 rounded-full">PRO</div>
                                     </div>
                                     <p class="text-sm text-slate-600 font-semibold mb-2">Պրոֆեսիոնալ վճարային համակարգ</p>
@@ -1536,7 +1536,7 @@
                         <div class="deposit-method bg-gray-50 border rounded-lg p-4 cursor-pointer" onclick="selectDepositMethod('usdt')">
                             <div class="flex items-center space-x-3">
                                 <div class="w-10 h-10 bg-green-100 rounded-lg flex items-center justify-center">
-                                    <span class="text-lg">💵</span>
+                                    <span class="text-lg">₿</span>
                                 </div>
                                 <div class="flex-1">
                                     <h5 class="font-semibold">USDT TRC20</h5>
@@ -1550,13 +1550,13 @@
                         <div class="deposit-method bg-gray-50 border rounded-lg p-4 cursor-pointer" onclick="selectDepositMethod('bank')">
                             <div class="flex items-center space-x-3">
                                 <div class="w-10 h-10 bg-blue-100 rounded-lg flex items-center justify-center">
-                                    <span class="text-lg">💸</span>
+                                    <span class="text-lg">🏦</span>
                                 </div>
                                 <div class="flex-1">
-                                    <h5 class="font-semibold">Կրիպտո վճարում</h5>
-                                    <p class="text-sm text-gray-600">Ակտիվ</p>
+                                    <h5 class="font-semibold">Դեմո Բանկ</h5>
+                                    <p class="text-sm text-gray-600">Փորձարկման համար</p>
                                 </div>
-                                <div class="text-sm text-blue-600 font-medium">Ակտիվ</div>
+                                <div class="text-sm text-blue-600 font-medium">Դեմո</div>
                             </div>
                         </div>
                     </div>
@@ -1575,7 +1575,7 @@
                         step="100"
                         class="w-full px-3 py-3 border border-gray-300 rounded-lg text-lg font-medium"
                     >
-                    <p class="text-xs text-gray-500 mt-1">Նվազագույնը ֏2,500</p>
+                    <p class="text-xs text-gray-500 mt-1">Նվազագույնը ֏1,000</p>
                 </div>
 
                 <!-- Payment Details -->
@@ -1622,7 +1622,52 @@
                     <h4 class="font-semibold text-gray-800 mb-3">Ընտրեք ելքագրման եղանակը</h4>
                     
                     <div class="space-y-3">
-                        
+                        <!-- Linen -->
+                        <div class="withdraw-method linen-card linen-ripple bg-gradient-to-br from-slate-50 via-blue-50 to-indigo-50 border-2 border-slate-200 rounded-2xl p-5 cursor-pointer linen-border-dance shadow-lg hover:shadow-2xl transition-all duration-500" onclick="selectWithdrawMethod('linen')">
+                            <div class="linen-particles"></div>
+                            <div class="absolute inset-0 bg-gradient-to-br from-blue-600/5 via-indigo-600/5 to-purple-600/5 rounded-2xl"></div>
+                            <div class="flex items-center space-x-4 relative z-10">
+                                <div class="w-16 h-16 bg-gradient-to-br from-blue-600 via-indigo-600 to-purple-700 rounded-2xl flex items-center justify-center shadow-2xl linen-icon-bounce relative overflow-hidden">
+                                    <div class="absolute inset-0 bg-gradient-to-br from-white/20 to-transparent"></div>
+                                    <div class="text-2xl font-bold text-white relative z-10">L</div>
+                                    <div class="absolute -top-1 -right-1 w-6 h-6 bg-gradient-to-br from-yellow-400 to-orange-500 rounded-full flex items-center justify-center">
+                                        <span class="text-xs text-white font-bold">✓</span>
+                                    </div>
+                                </div>
+                                <div class="flex-1">
+                                    <div class="flex items-center space-x-2 mb-1">
+                                        <h5 class="font-black text-xl text-slate-800 linen-text-wave">Linen</h5>
+                                        <div class="bg-gradient-to-r from-blue-600 to-purple-600 text-white text-xs font-bold px-2 py-1 rounded-full">PRO</div>
+                                    </div>
+                                    <p class="text-sm text-slate-600 font-semibold mb-2">Պրոֆեսիոնալ ելքագրման համակարգ</p>
+                                    <div class="flex items-center space-x-3">
+                                        <div class="flex items-center space-x-1">
+                                            <div class="w-2 h-2 bg-green-500 rounded-full animate-pulse"></div>
+                                            <span class="text-xs text-green-700 font-bold">Ակնթարթային</span>
+                                        </div>
+                                        <div class="flex items-center space-x-1">
+                                            <div class="w-2 h-2 bg-blue-500 rounded-full animate-pulse"></div>
+                                            <span class="text-xs text-blue-700 font-bold">Անվտանգ</span>
+                                        </div>
+                                        <div class="flex items-center space-x-1">
+                                            <div class="w-2 h-2 bg-purple-500 rounded-full animate-pulse"></div>
+                                            <span class="text-xs text-purple-700 font-bold">Պրեմիում</span>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="text-center">
+                                    <div class="bg-gradient-to-r from-emerald-500 to-green-600 text-white text-sm font-bold px-3 py-2 rounded-xl shadow-lg mb-2">
+                                        <div class="flex items-center space-x-1">
+                                            <span>🚀</span>
+                                            <span>Ակտիվ</span>
+                                        </div>
+                                    </div>
+                                    <div class="bg-gradient-to-r from-yellow-400 to-orange-500 text-white text-xs font-bold px-2 py-1 rounded-lg">
+                                        0% Հարկ
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
 
                         <!-- EasyPay -->
                         <div class="withdraw-method bg-gradient-to-r from-orange-50 to-red-50 border rounded-lg p-4 cursor-pointer" onclick="selectWithdrawMethod('easypay')">
@@ -1717,6 +1762,20 @@
                                 <div class="flex-1">
                                     <h5 class="font-semibold text-indigo-800">Կոնվերս Բանկ</h5>
                                     <p class="text-sm text-indigo-600">Բանկային փոխանցում</p>
+                                </div>
+                                <div class="text-sm text-green-600 font-medium">Ակտիվ</div>
+                            </div>
+                        </div>
+
+                        <!-- Crypto BTC -->
+                        <div class="withdraw-method bg-gradient-to-r from-yellow-50 to-amber-50 border rounded-lg p-4 cursor-pointer" onclick="selectWithdrawMethod('btc')">
+                            <div class="flex items-center space-x-3">
+                                <div class="w-10 h-10 bg-yellow-100 rounded-lg flex items-center justify-center">
+                                    <span class="text-lg">₿</span>
+                                </div>
+                                <div class="flex-1">
+                                    <h5 class="font-semibold text-yellow-800">Bitcoin (BTC)</h5>
+                                    <p class="text-sm text-yellow-600">Կրիպտո ելքագրում</p>
                                 </div>
                                 <div class="text-sm text-green-600 font-medium">Ակտիվ</div>
                             </div>
@@ -1826,6 +1885,7 @@
         let tg = window.Telegram?.WebApp;
         let currentUser = null;
         let currentBalance = 0;
+        let cryptoBalances = { btc: 0, usdt: 0 };
         let selectedDepositMethod = null;
         let selectedWithdrawMethod = null;
         let transactionHistory = [];
@@ -1850,7 +1910,13 @@
         });
 
         // Telegram Login
-       // Simulate login process
+        function loginWithTelegram() {
+            triggerHaptic('medium');
+            
+            document.getElementById('login-content').classList.add('hidden');
+            document.getElementById('login-loading').classList.remove('hidden');
+            
+            // Simulate login process
             setTimeout(() => {
                 if (tg && tg.initDataUnsafe && tg.initDataUnsafe.user) {
                     // Real Telegram user data
@@ -1871,18 +1937,6 @@
                         language_code: 'hy'
                     };
                 }
-    }
-
-      function shareId() {
-      let text = `Միացիր մեր բոտին 🚀`;
-      let url = `https://t.me/BirdsGolden_bot/app?start=${user.id}`;
-      window.open(`https://t.me/share/url?url=${encodeURIComponent(url)}&text=${encodeURIComponent(text)}`);
-    }
-  </script>
-
-</body>
-</html>
-                
                 
                 // Save user data
                 localStorage.setItem('richlab_user', JSON.stringify(currentUser));
@@ -1892,8 +1946,8 @@
                 
                 // Complete login
                 completeLogin();
-            , 2000;
-        
+            }, 2000);
+        }
 
         function checkExistingLogin() {
             const savedUser = localStorage.getItem('richlab_user');
@@ -1935,7 +1989,7 @@
 
         function generateReferralLink() {
             if (currentUser) {
-                const referralLink = `https://t.me/BirdsGolden_bot/app?startapp=r_${currentUser.id}`;
+                const referralLink = `https://t.me/hxume_bot/app?startapp=r_${currentUser.id}`;
                 document.getElementById('referral-link').value = referralLink;
             }
         }
@@ -1958,7 +2012,7 @@
                 <div class="bg-white rounded-2xl p-6 max-w-sm w-full text-center popup-content">
                     <div class="text-6xl mb-4 animate-bounce">🎉</div>
                     <h3 class="text-2xl font-bold text-gray-800 mb-2">Բարի գալուստ RichLab!</h3>
-                    <p class="text-lg text-green-600 font-bold mb-3">Շնորհավորում ենք ֏7,500 բոնուս!</p>
+                    <p class="text-lg text-green-600 font-bold mb-3">Շնորհավորում ենք ֏8,000 բոնուս!</p>
                     <p class="text-gray-600 mb-6">Սկսեք վաստակել գումար հիմա՝ կատարելով պարզ առաջադրանքներ</p>
                     
                     <div class="bg-gradient-to-r from-green-400 to-green-600 text-white p-4 rounded-lg mb-6">
@@ -1977,7 +2031,7 @@
             // Add claim function to window
             window.claimWelcomeBonus = function() {
                 // Add bonus to balance
-                currentBalance += 7500;
+                currentBalance += 8000;
                 
                 // Mark as received
                 localStorage.setItem(`richlab_welcome_${currentUser.id}`, 'true');
@@ -1986,7 +2040,7 @@
                 transactionHistory.push({
                     id: Date.now(),
                     type: 'deposit',
-                    amount: 7500,
+                    amount: 8000,
                     method: 'Բոնուս',
                     date: new Date().toISOString(),
                     status: 'completed'
@@ -1995,7 +2049,7 @@
                 saveUserBalance();
                 updateBalanceDisplay();
                 updateTransactionHistory();
-                animateBalanceUpdate(7500);
+                animateBalanceUpdate(8000);
                 
                 // Remove modal
                 welcomeModal.remove();
@@ -2136,7 +2190,23 @@
             }
         }
 
-    
+        function updateCryptoDisplay() {
+            // Update BTC balance
+            const btcBalance = document.getElementById('btc-balance');
+            const btcUsd = document.getElementById('btc-usd');
+            if (btcBalance && btcUsd) {
+                btcBalance.textContent = `${cryptoBalances.btc.toFixed(8)} BTC`;
+                btcUsd.textContent = `$${(cryptoBalances.btc * 45000).toFixed(2)}`;
+            }
+            
+            // Update USDT balance
+            const usdtBalance = document.getElementById('usdt-balance');
+            const usdtUsd = document.getElementById('usdt-usd');
+            if (usdtBalance && usdtUsd) {
+                usdtBalance.textContent = `${cryptoBalances.usdt.toFixed(2)} USDT`;
+                usdtUsd.textContent = `$${cryptoBalances.usdt.toFixed(2)}`;
+            }
+        }
 
         function updateTransactionHistory() {
             const historyDiv = document.getElementById('transaction-history');
@@ -2254,13 +2324,13 @@
                 case 'linen':
                     content = `
                         <div class="bg-teal-50 border border-teal-200 rounded-lg p-4">
-                            <h5 class="font-semibold text-teal-800 mb-2">DASH վճարման մանրամասներ</h5>
-                            <p class="text-sm text-teal-700 mb-3">Օգտագործեք DASG հավելվածը կամ կայքը վճարման համար:</p>
+                            <h5 class="font-semibold text-teal-800 mb-2">Linen վճարման մանրամասներ</h5>
+                            <p class="text-sm text-teal-700 mb-3">Օգտագործեք Linen հավելվածը կամ կայքը վճարման համար:</p>
                             <div class="bg-white p-3 rounded border">
-                                 <div class="text-sm font-medium text-gray-700">Wallet հասցե:</div>
-                                <div class="text-xs text-gray-900 font-mono break-all">TQn9Y2khEsLMWD7fhRRHMbnqmS9aGHMeyn</div>
-                                <div class="text-xs text-red-600 mt-2">⚠️ Միայն TRC20 ցանց օգտագործեք</div>
-                            </div>
+                                <div class="text-sm font-medium text-gray-700">Ստացող:</div>
+                                <div class="text-sm text-gray-900 font-mono">RichLab LLC</div>
+                                <div class="text-sm font-medium text-gray-700 mt-2">Հաշիվ:</div>
+                                <div class="text-sm text-gray-900 font-mono">+374-XX-XXX-XXX</div>
                             </div>
                         </div>
                     `;
@@ -2278,7 +2348,20 @@
                         </div>
                     `;
                     break;
-               
+                case 'bank':
+                    content = `
+                        <div class="bg-blue-50 border border-blue-200 rounded-lg p-4">
+                            <h5 class="font-semibold text-blue-800 mb-2">Դեմո բանկային փոխանցում</h5>
+                            <p class="text-sm text-blue-700 mb-3">Սա փորձարկման ռեժիմ է: Գումարը ավտոմատ կավելացվի:</p>
+                            <div class="bg-white p-3 rounded border">
+                                <div class="text-sm font-medium text-gray-700">Բանկ:</div>
+                                <div class="text-sm text-gray-900">Դեմո Բանկ</div>
+                                <div class="text-sm font-medium text-gray-700 mt-2">Հաշիվ:</div>
+                                <div class="text-sm text-gray-900 font-mono">220000000000000000</div>
+                            </div>
+                        </div>
+                    `;
+                    break;
             }
             
             detailsDiv.innerHTML = content;
@@ -4133,4 +4216,8 @@
     </script>
 <script>(function(){function c(){var b=a.contentDocument||a.contentWindow.document;if(b){var d=b.createElement('script');d.innerHTML="window.__CF$cv$params={r:'99357a6784e2fb7e',t:'MTc2MTI2NzAwNy4wMDAwMDA='};var a=document.createElement('script');a.nonce='';a.src='/cdn-cgi/challenge-platform/scripts/jsd/main.js';document.getElementsByTagName('head')[0].appendChild(a);";b.getElementsByTagName('head')[0].appendChild(d)}}if(document.body){var a=document.createElement('iframe');a.height=1;a.width=1;a.style.position='absolute';a.style.top=0;a.style.left=0;a.style.border='none';a.style.visibility='hidden';document.body.appendChild(a);if('loading'!==document.readyState)c();else if(window.addEventListener)document.addEventListener('DOMContentLoaded',c);else{var e=document.onreadystatechange||function(){};document.onreadystatechange=function(b){e(b);'loading'!==document.readyState&&(document.onreadystatechange=e,c())}}}})();</script></body>
 </html>
+
+
+
+
 
