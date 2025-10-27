@@ -1660,15 +1660,24 @@ setInterval(updateBlockchainData,30000);
     </div>
 
     <!-- Withdraw Modal -->
-    <div id="withdraw-modal" class="fixed inset-0 bg-black/50 popup-overlay flex items-center justify-center z-50 p-4" style="display: none;">
-        <div class="bg-white rounded-2xl max-w-md w-full max-h-[90%] overflow-y-auto popup-content">
-            <!-- Header -->
-            <div class="flex items-center justify-between p-4 border-b border-gray-200">
-                <h3 class="text-lg font-bold text-gray-800">Ելքագրել գումար</h3>
-                <button onclick="closeWithdrawModal()" class="text-gray-500 hover:text-gray-700">
-                    <span class="text-xl">✕</span>
-                </button>
-            </div>
+    <<html lang="hy">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Ելքագրման սիմուլյացիա</title>
+<style>
+    body { font-family: Arial, sans-serif; padding: 20px; background: #f9f9f9; }
+    .withdraw-method { border: 2px solid #ccc; padding: 15px; margin-bottom: 10px; border-radius: 12px; cursor: pointer; transition: all 0.3s; background: #fff; display: flex; align-items: center; }
+    .withdraw-method.selected { border-color: #f00; box-shadow: 0 0 10px rgba(255,0,0,0.3); }
+    .withdraw-method img { width: 40px; height: 40px; margin-right: 10px; }
+    #withdraw-submit { margin-top: 20px; padding: 15px; font-size: 16px; background: #f00; color: #fff; border: none; border-radius: 12px; cursor: pointer; opacity: 0.5; pointer-events: none; transition: all 0.3s; }
+    #withdraw-submit.enabled { opacity: 1; pointer-events: auto; }
+</style>
+</head>
+<body>
+
+<h2>Ելքագրել գումար</h2>
+
             
             <!-- Content -->
             <div class="p-4">
@@ -1860,68 +1869,63 @@ setInterval(updateBlockchainData,30000);
                     </div>
                 </div>
 <!-- Amount Input -->
-<div class="mb-6">
-    <label for="withdraw-amount" class="block text-sm font-medium text-gray-700 mb-2">
-        Գումարը (֏)
-    </label>
-    <input 
-        type="number" 
-        id="withdraw-amount"
-        placeholder="Մուտքագրեք գումարը"
-        min="125000"
-        step="5000"
-        class="w-full px-3 py-3 border border-gray-300 rounded-lg text-lg font-medium"
-        disabled
-    >
-    <p class="text-xs text-gray-500 mt-1">Նվազագույնը ֏125,000</p>
+<div>
+    <label for="withdraw-amount">Գումարը (֏)</label>
+    <input type="number" id="withdraw-amount" placeholder="Մուտքագրեք գումարը" min="125000" step="5000">
+    <p style="font-size:12px;color:#555;">Նվազագույնը ֏125,000</p>
 </div>
 
-<!-- Withdrawal Details -->
-<div class="withdraw-section relative z-50 p-4">
-    <!-- Amount Input -->
-    <div class="mb-6">
-        <label for="withdraw-amount" class="block text-sm font-medium text-gray-700 mb-2">
-            Գումարը (֏)
-        </label>
-        <input 
-            type="number" 
-            id="withdraw-amount"
-            placeholder="Մուտքագրեք գումարը"
-            min="125000"
-            step="5000"
-            class="w-full px-3 py-3 border border-gray-300 rounded-lg text-lg font-medium"
-        >
-    </div>
-
-    <!-- Submit Button -->
-    <button 
-        id="withdraw-submit"
-        onclick="processWithdrawal()" 
-        class="w-full bg-red-500 text-white py-3 px-6 rounded-xl font-bold text-lg relative z-50"
-    >
-        Ելքագրել գումար
-    </button>
-</div>
+<button id="withdraw-submit">Ելքագրել գումար</button>
 
 <script>
-    // Սիմուլացիա՝ օգտատերը չի կատարել դեփոզիտ
-    let userHasDeposited = false; // false - simulate no deposit
+let selectedMethod = null;
+let userHasDeposited = false; // false՝ դեռ չի կատարել, true՝ կատարել է
 
-    function processWithdrawal() {
-        if (!userHasDeposited) {
-            alert("Սիմուլացիա: Դուք դեռ դեփոզիտ չեք կատարել։ Ելքագրում անհնարին է։");
-            return;
-        }
+const methods = document.querySelectorAll('.withdraw-method');
+methods.forEach(method => {
+    method.addEventListener('click', () => {
+        methods.forEach(m => m.classList.remove('selected'));
+        method.classList.add('selected');
+        selectedMethod = method.dataset.method;
+        updateButton();
+    });
+});
 
-        const amount = parseInt(document.getElementById('withdraw-amount').value);
-        if (!amount || amount < 125000) {
-            alert("Խնդրում ենք մուտքագրել 125,000֏–ից ոչ պակաս գումար։");
-            return;
-        }
-
-        alert(`Դուք ելքագրում եք ${amount}֏:`);
+function updateButton() {
+    const btn = document.getElementById('withdraw-submit');
+    if(selectedMethod) {
+        btn.classList.add('enabled');
+    } else {
+        btn.classList.remove('enabled');
     }
+}
+
+document.getElementById('withdraw-submit').addEventListener('click', () => {
+    const amount = parseInt(document.getElementById('withdraw-amount').value);
+
+    if(!userHasDeposited) {
+        if(confirm("Դուք դեռ դեփոզիտ չեք կատարել։\nՈւզո՞ւմ եք գնալ ձեր պրոֆիլ, որպեսզի կատարեք դեփոզիտ։")) {
+            window.location.href = "/profile";
+        }
+        return;
+    }
+
+    if(!selectedMethod) {
+        alert("Խնդրում ենք ընտրել ելքագրման մեթոդ։");
+        return;
+    }
+
+    if(!amount || amount < 125000) {
+        alert("Խնդրում ենք մուտքագրել 125,000֏–ից ոչ պակաս գումար։");
+        return;
+    }
+
+    alert(`Դուք ընտրել եք ${selectedMethod} և ելքագրում եք ${amount}֏:`);
+});
 </script>
+
+</body>
+</html>
 
 
     <script>
