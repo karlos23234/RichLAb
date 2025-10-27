@@ -1532,36 +1532,7 @@
                             </div>
                         </div>
 
-                        <!-- USDT TRC20 -->
-                        <div class="deposit-method bg-gray-50 border rounded-lg p-4 cursor-pointer" onclick="selectDepositMethod('usdt')">
-                            <div class="flex items-center space-x-3">
-                                <div class="w-10 h-10 bg-green-100 rounded-lg flex items-center justify-center">
-                                    <span class="text-lg">₿</span>
-                                </div>
-                                <div class="flex-1">
-                                    <h5 class="font-semibold">USDT TRC20</h5>
-                                    <p class="text-sm text-gray-600">Կրիպտո վճարում</p>
-                                </div>
-                                <div class="text-sm text-green-600 font-medium">Ակտիվ</div>
-                            </div>
-                        </div>
-
-                        <!-- Bank Demo -->
-                        <div class="deposit-method bg-gray-50 border rounded-lg p-4 cursor-pointer" onclick="selectDepositMethod('bank')">
-                            <div class="flex items-center space-x-3">
-                                <div class="w-10 h-10 bg-blue-100 rounded-lg flex items-center justify-center">
-                                    <span class="text-lg">🏦</span>
-                                </div>
-                                <div class="flex-1">
-                                    <h5 class="font-semibold">USDC SOLANA</h5>
-                                    <p class="text-sm text-gray-600">Կրիպտո վճարում</p>
-                                </div>
-                                <div class="text-sm text-blue-600 font-medium">Ակտիվ</div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-
+                        
                 <!-- Amount Input -->
                 <div class="mb-6">
                     <label for="deposit-amount" class="block text-sm font-medium text-gray-700 mb-2">
@@ -2332,35 +2303,8 @@
                                 <div class="text-xs text-gray-900 font-mono break-all">0xC8a18cbD6a8457A3fB88c4B78095E7DA639e8B37</div>
                                 <div class="text-xs text-red-600 mt-2">⚠️ Միայն  DASH  ցանց օգտագործեք</div>
                             </div>
-                        </div>
-                    `;
-                    break;
-                case 'USDT':
-                    content = `
-                        <div class="bg-green-50 border border-green-200 rounded-lg p-4">
-                            <h5 class="font-semibold text-green-800 mb-2">USDT TRC20 հասցե</h5>
-                            <p class="text-sm text-green-700 mb-3">Ուղարկեք USDT-ն այս հասցեին TRC20 ցանցով:</p>
-                            <div class="bg-white p-3 rounded border">
-                                <div class="text-sm font-medium text-gray-700">Wallet հասցե:</div>
-                                <div class="text-xs text-gray-900 font-mono break-all">TX3p6vhXwGczdwNeUky8ZfvfBvr8wcy3Ra</div>
-                                <div class="text-xs text-red-600 mt-2">⚠️ Միայն TRC20 ցանց օգտագործեք</div>
-                            </div>
-                        </div>
-                    `;
-                    break;
-                case 'bank':
-                    content = `
-                        <div class="bg-blue-50 border border-blue-200 rounded-lg p-4">
-                            <h5 class="font-semibold text-blue-800 mb-2">USDC SOLANA հասցե</h5>
-                            <p class="text-sm text-blue-700 mb-3">Սա փորձարկման ռեժիմ է: Գումարը ավտոմատ կավելացվի:</p>
-                            <div class="bg-white p-3 rounded border">
-                                <div class="text-sm font-medium text-gray-700">Բանկ:</div>
-                              <div class="text-sm font-medium text-gray-700">Wallet հասցե:</div>
-                                <div class="text-xs text-gray-900 font-mono break-all">GPpgwBALDQxD1U5EBnnKPyemunjtyzKZsQsGSVe2DYzJ</div>
-                                <div class="text-xs text-red-600 mt-2">⚠️ Միայն USDC SOLANA ցանց օգտագործեք</div>
-                            </div>
-                        </div>
-                    `;
+                        </div>               
+                        `;
                     break;
             }
             
