@@ -942,28 +942,33 @@
                         </div>
                     </div>
                 </div>
-
-                <!-- Referral Link -->
-                <div class="bg-gray-50 p-3 rounded-lg mb-4">
-                    <label for="referral-link" class="block text-sm font-medium text-gray-700 mb-2">
-                        Ձեր հաշվետվության հղումը
-                    </label>
-                    <div class="flex">
-                        <input 
-                            type="text" 
-                            id="referral-link"
-                            value="https://t.me/BirdsGolden_bot/app?startapp=r_" 
-                            readonly 
-                            class="flex-1 px-3 py-2 border border-gray-300 rounded-l-lg bg-white text-sm"
-                        >
-                        <button 
-                            onclick="shareReferralLink()"
-                            class="telegram-button rounded-l-none px-4 py-2 text-sm"
-                        >
-                            Կիսվել
-                        </button>
-                    </div>
+                
+              <!-- Referral Link Section -->
+              <div class="bg-gray-50 p-3 rounded-lg mb-4">
+                <label class="block text-sm font-medium text-gray-700 mb-2">
+                  Ձեր հրավիրատոմսի հղումը
+                </label>
+                <div class="flex">
+                  <input 
+                    type="text"
+                    id="referral-link"
+                    readonly
+                    class="flex-1 px-3 py-2 border border-gray-300 rounded-l-lg bg-white text-sm"
+                  >
+                  <button 
+                   onclick="shareReferralLink()"
+                   class="telegram-button rounded-l-none px-4 py-2 text-sm"
+                  >
+                    Կիսվել
+                  </button>
                 </div>
+              </div>
+
+<!-- Balance Section -->
+<div id="user-balance" class="bg-white p-4 rounded-lg mb-4 border border-gray-200">
+  💰 Ձեր մնացորդը՝ <span id="balance-amount">0</span> դրամ
+</div>
+
 
                 <!-- Benefits Section -->
                 <div class="bg-gradient-to-r from-purple-500 to-pink-500 text-white p-4 rounded-lg mb-4">
@@ -1861,121 +1866,87 @@ setInterval(updateBlockchainData,30000);
                 </div>
 
                 <!-- Amount Input -->
-                <script>
-let currentBalance = 0;           // Օրինակային մնացորդ
-let selectedWithdrawMethod = null;
-let profileActive = false;        // false՝ մինչև 3000 դրամ դեպոզիտը չլինի
+                <div class="mb-6">
+                    <label for="withdraw-amount" class="block text-sm font-medium text-gray-700 mb-2">
+                        Գումարը (֏)
+                    </label>
+                    <input 
+                        type="number" 
+                        id="withdraw-amount"
+                        placeholder="Մուտքագրեք գումարը"
+                        min="125000"
+                        step="5000"
+                        class="w-full px-3 py-3 border border-gray-300 rounded-lg text-lg font-medium"
+                    >
+                    <p class="text-xs text-gray-500 mt-1">Նվազագույնը ֏125,000</p>
+                </div>
 
-// ⛔ Պահանջվող նվազագույն դեպոզիտ
-const REQUIRED_DEPOSIT_FOR_ACTIVATION = 3000;
+                <!-- Withdrawal Details -->
+                <div id="withdrawal-details" class="mb-6" style="display: none;">
+                    <!-- Will be populated based on selected method -->
+                </div>
 
-// 🟢 Սիմուլյացիա՝ երբ օգտագործողը լիցքավորում է հաշիվը
-function simulateDeposit(amount) {
-    amount = parseInt(amount) || 0;
-    if (amount < REQUIRED_DEPOSIT_FOR_ACTIVATION) {
-        showErrorModal(`Պրոֆիլի ակտիվացման համար անհրաժեշտ է մին. ${REQUIRED_DEPOSIT_FOR_ACTIVATION}֏ լիցքավորում։`);
-        return;
-    }
-
-    currentBalance += amount;
-    activateProfile();
-}
-
-// 🟢 Ակտիվացման անիմացիա
-function activateProfile() {
-    if (profileActive) return; // արդեն ակտիվ է
-
-    profileActive = true;
-
-    // success modal
-    document.getElementById('success-message').textContent = 'Ձեր պրոֆիլը հաջողությամբ ակտիվացվեց 🎉';
-    document.getElementById('success-modal').style.display = 'flex';
-
-    // անիմացիա / թեթև կշարժվի success checkmark-ը
-    const checkmark = document.querySelector('.success-checkmark');
-    checkmark.classList.add('animate-bounce');
-
-    setTimeout(() => {
-        checkmark.classList.remove('animate-bounce');
-    }, 1000);
-}
-
-// 🟡 Ելքագրման ստուգում՝ profileActive-ը պարտադիր է
-function checkWithdrawFormValidity() {
-    const amount = document.getElementById('withdraw-amount').value;
-    const submitBtn = document.getElementById('withdraw-submit');
-
-    if (
-        profileActive && 
-        selectedWithdrawMethod && 
-        amount && 
-        parseInt(amount) >= 125000 && 
-        parseInt(amount) <= currentBalance
-    ) {
-        submitBtn.disabled = false;
-        submitBtn.textContent = `Ելքագրել ֏${parseInt(amount).toLocaleString()}`;
-    } else {
-        submitBtn.disabled = true;
-        submitBtn.textContent = 'Ելքագրել գումար';
-    }
-}
-
-// 🟢 Ելքագրման գործողությունը
-function processWithdrawal() {
-    const amount = parseInt(document.getElementById('withdraw-amount').value);
-
-    if (!profileActive) {
-        showErrorModal('Պետք է նախ լիցքավորեք հաշիվը (մին. 3,000֏), որպեսզի ակտիվացնեք պրոֆիլը։');
-        return;
-    }
-
-    if (!selectedWithdrawMethod || !amount || amount < 125000 || amount > currentBalance) {
-        showErrorModal('Սխալ տվյալներ ելքագրման համար։');
-        return;
-    }
-
-    const submitBtn = document.getElementById('withdraw-submit');
-    const originalText = submitBtn.textContent;
-    submitBtn.innerHTML = '<div class="loading-spinner w-5 h-5 border-2 border-white border-t-transparent rounded-full mx-auto"></div>';
-    submitBtn.disabled = true;
-
-    setTimeout(() => {
-        currentBalance -= amount;
-        submitBtn.innerHTML = originalText;
-        submitBtn.disabled = false;
-
-        document.getElementById('success-message').textContent = `Ելքագրումը ֏${amount.toLocaleString()} կատարվեց հաջողությամբ։`;
-        document.getElementById('success-modal').style.display = 'flex';
-    }, 1500);
-}
-
-// 🔴 Սխալի մոդալ
-function showErrorModal(msg) {
-    const modal = document.createElement('div');
-    modal.className = "fixed inset-0 bg-black/50 flex items-center justify-center z-50";
-    modal.innerHTML = `
-      <div class="bg-white rounded-2xl p-6 max-w-sm w-full text-center">
-        <div class="w-16 h-16 bg-red-100 rounded-full flex items-center justify-center mx-auto mb-4">
-            <svg class="w-8 h-8 text-red-500" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="3" d="M6 18L18 6M6 6l12 12"></path>
-            </svg>
+                <!-- Submit Button -->
+                <button 
+                    id="withdraw-submit"
+                    onclick="processWithdrawal()" 
+                    class="w-full bg-red-500 text-white py-3 px-6 rounded-xl font-bold text-lg disabled:opacity-50 disabled:cursor-not-allowed"
+                    disabled
+                >
+                    Ելքագրել գումար
+                </button>
+            </div>
         </div>
-        <h3 class="text-xl font-bold text-gray-800 mb-2">Նշում</h3>
-        <p class="text-gray-600 mb-4">${msg}</p>
-        <button onclick="this.closest('.fixed').remove()" class="w-full bg-red-500 text-white py-3 px-6 rounded-xl font-bold">Լավ</button>
-      </div>`;
-    document.body.appendChild(modal);
-}
+    </div>
 
-// 🔵 Փակել success modal
-function closeSuccessModal() {
-    document.getElementById('success-modal').style.display = 'none';
-}
+    <!-- Success Modal -->
+    <div id="success-modal" class="fixed inset-0 bg-black/50 popup-overlay flex items-center justify-center z-50 p-4" style="display: none;">
+        <div class="bg-white rounded-2xl p-6 max-w-sm w-full text-center popup-content">
+            <div class="w-16 h-16 bg-green-100 rounded-full flex items-center justify-center mx-auto mb-4">
+                <svg class="w-8 h-8 text-green-500 success-checkmark" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="3" d="M5 13l4 4L19 7"></path>
+                </svg>
+            </div>
+            <h3 class="text-xl font-bold text-gray-800 mb-2">Հաջողություն!</h3>
+            <p class="text-gray-600 mb-4" id="success-message">Գումարը հաջողությամբ ավելացվել է Ձեր հաշվին:</p>
+            <button onclick="closeSuccessModal()" class="w-full bg-green-500 text-white py-3 px-6 rounded-xl font-bold">
+                Շարունակել
+            </button>
+        </div>
+    </div>
 
-// օրինակ՝ սիմուլյացիա (կարող ես հանել կամ քո կոճակին կցել)
-setTimeout(() => simulateDeposit(3000), 2000);
-</script>
-
+    <!-- Bottom Navigation -->
+    <nav class="fixed bottom-0 left-0 right-0 bg-white border-t border-gray-200 z-40 backdrop-blur-lg bg-white/90">
+        <div class="flex justify-around items-center py-2 relative">
+            <div class="nav-indicator absolute top-0 left-0 h-1 bg-gradient-to-r from-blue-500 to-purple-500 rounded-full transition-all duration-500 ease-out" style="width: 20%; transform: translateX(0%);"></div>
+            
+            <button onclick="showHome()" class="nav-btn flex flex-col items-center p-2 text-blue-600 relative transition-all duration-300 ease-out">
+                <span class="text-xl mb-1 transition-transform duration-300 ease-out">🏠</span>
+                <span class="text-xs font-medium">Գլխավոր</span>
+                <div class="nav-ripple absolute inset-0 rounded-lg"></div>
+            </button>
+            <button onclick="showInvite()" class="nav-btn flex flex-col items-center p-2 text-gray-500 relative transition-all duration-300 ease-out">
+                <span class="text-xl mb-1 transition-transform duration-300 ease-out">👥</span>
+                <span class="text-xs font-medium">Հրավեր</span>
+                <div class="nav-ripple absolute inset-0 rounded-lg"></div>
+            </button>
+            <button onclick="showCenter()" class="nav-btn flex flex-col items-center p-2 text-gray-500 relative transition-all duration-300 ease-out">
+                <span class="text-xl mb-1 transition-transform duration-300 ease-out">🎯</span>
+                <span class="text-xs font-medium">Կենտրոն</span>
+                <div class="nav-ripple absolute inset-0 rounded-lg"></div>
+            </button>
+            <button onclick="showVideo()" class="nav-btn flex flex-col items-center p-2 text-gray-500 relative transition-all duration-300 ease-out">
+                <span class="text-xl mb-1 transition-transform duration-300 ease-out">📺</span>
+                <span class="text-xs font-medium">Տեսանյութ</span>
+                <div class="nav-ripple absolute inset-0 rounded-lg"></div>
+            </button>
+            <button onclick="showCash()" class="nav-btn flex flex-col items-center p-2 text-gray-500 relative transition-all duration-300 ease-out">
+                <span class="text-xl mb-1 transition-transform duration-300 ease-out">💰</span>
+                <span class="text-xs font-medium">Կանխիկ</span>
+                <div class="nav-ripple absolute inset-0 rounded-lg"></div>
+            </button>
+        </div>
+    </nav>
 
     <script>
         // Global variables
