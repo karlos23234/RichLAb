@@ -1395,8 +1395,8 @@
                                         <span class="text-lg">₿</span>
                                     </div>
                                     <div>
-                                        <h5 class="font-semibold">Bitcoin (BTC)</h5>
-                                        <p class="text-sm text-gray-600" id="btc-balance">0.00000000 BTC</p>
+                                        <h5 class="font-semibold">Bitcoin (DASH)</h5>
+                                        <p class="text-sm text-gray-600" id="btc-balance">0.00000000 DASH</p>
                                     </div>
                                 </div>
                                 <div class="text-right">
@@ -1485,9 +1485,9 @@
                     <h4 class="font-semibold text-gray-800 mb-3">Ընտրեք վճարման եղանակը</h4>
                     
                     <div class="space-y-3">
-                        <!-- Linen -->
+                        <!-- DASH -->
                         <div class="deposit-method linen-card linen-ripple bg-gradient-to-br from-slate-50 via-blue-50 to-indigo-50 border-2 border-slate-200 rounded-2xl p-5 cursor-pointer linen-border-dance shadow-lg hover:shadow-2xl transition-all duration-500" onclick="selectDepositMethod('linen')">
-                            <div class="linen-particles"></div>
+                            <div class="DASH-particles"></div>
                             <div class="absolute inset-0 bg-gradient-to-br from-blue-600/5 via-indigo-600/5 to-purple-600/5 rounded-2xl"></div>
                             <div class="flex items-center space-x-4 relative z-10">
                                 <div class="w-16 h-16 bg-gradient-to-br from-blue-600 via-indigo-600 to-purple-700 rounded-2xl flex items-center justify-center shadow-2xl linen-icon-bounce relative overflow-hidden">
@@ -1499,7 +1499,7 @@
                                 </div>
                                 <div class="flex-1">
                                     <div class="flex items-center space-x-2 mb-1">
-                                        <h5 class="font-black text-xl text-slate-800 linen-text-wave">Linen</h5>
+                                        <h5 class="font-black text-xl text-slate-800 linen-text-wave">DASH</h5>
                                         <div class="bg-gradient-to-r from-blue-600 to-purple-600 text-white text-xs font-bold px-2 py-1 rounded-full">PRO</div>
                                     </div>
                                     <p class="text-sm text-slate-600 font-semibold mb-2">Պրոֆեսիոնալ վճարային համակարգ</p>
@@ -1546,21 +1546,6 @@
                             </div>
                         </div>
 
-                        <!-- Bank Demo -->
-                        <div class="deposit-method bg-gray-50 border rounded-lg p-4 cursor-pointer" onclick="selectDepositMethod('bank')">
-                            <div class="flex items-center space-x-3">
-                                <div class="w-10 h-10 bg-blue-100 rounded-lg flex items-center justify-center">
-                                    <span class="text-lg">🏦</span>
-                                </div>
-                                <div class="flex-1">
-                                    <h5 class="font-semibold">Դեմո Բանկ</h5>
-                                    <p class="text-sm text-gray-600">Փորձարկման համար</p>
-                                </div>
-                                <div class="text-sm text-blue-600 font-medium">Դեմո</div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
 
                 <!-- Amount Input -->
                 <div class="mb-6">
@@ -1571,11 +1556,11 @@
                         type="number" 
                         id="deposit-amount"
                         placeholder="Մուտքագրեք գումարը"
-                        min="1000"
+                        min="3000"
                         step="100"
                         class="w-full px-3 py-3 border border-gray-300 rounded-lg text-lg font-medium"
                     >
-                    <p class="text-xs text-gray-500 mt-1">Նվազագույնը ֏1,000</p>
+                    <p class="text-xs text-gray-500 mt-1">Նվազագույնը ֏3,000</p>
                 </div>
 
                 <!-- Payment Details -->
@@ -1622,54 +1607,10 @@
                     <h4 class="font-semibold text-gray-800 mb-3">Ընտրեք ելքագրման եղանակը</h4>
                     
                     <div class="space-y-3">
-                        <!-- Linen -->
-                        <div class="withdraw-method linen-card linen-ripple bg-gradient-to-br from-slate-50 via-blue-50 to-indigo-50 border-2 border-slate-200 rounded-2xl p-5 cursor-pointer linen-border-dance shadow-lg hover:shadow-2xl transition-all duration-500" onclick="selectWithdrawMethod('linen')">
-                            <div class="linen-particles"></div>
-                            <div class="absolute inset-0 bg-gradient-to-br from-blue-600/5 via-indigo-600/5 to-purple-600/5 rounded-2xl"></div>
-                            <div class="flex items-center space-x-4 relative z-10">
-                                <div class="w-16 h-16 bg-gradient-to-br from-blue-600 via-indigo-600 to-purple-700 rounded-2xl flex items-center justify-center shadow-2xl linen-icon-bounce relative overflow-hidden">
-                                    <div class="absolute inset-0 bg-gradient-to-br from-white/20 to-transparent"></div>
-                                    <div class="text-2xl font-bold text-white relative z-10">L</div>
-                                    <div class="absolute -top-1 -right-1 w-6 h-6 bg-gradient-to-br from-yellow-400 to-orange-500 rounded-full flex items-center justify-center">
-                                        <span class="text-xs text-white font-bold">✓</span>
-                                    </div>
-                                </div>
-                                <div class="flex-1">
-                                    <div class="flex items-center space-x-2 mb-1">
-                                        <h5 class="font-black text-xl text-slate-800 linen-text-wave">Linen</h5>
-                                        <div class="bg-gradient-to-r from-blue-600 to-purple-600 text-white text-xs font-bold px-2 py-1 rounded-full">PRO</div>
-                                    </div>
-                                    <p class="text-sm text-slate-600 font-semibold mb-2">Պրոֆեսիոնալ ելքագրման համակարգ</p>
-                                    <div class="flex items-center space-x-3">
-                                        <div class="flex items-center space-x-1">
-                                            <div class="w-2 h-2 bg-green-500 rounded-full animate-pulse"></div>
-                                            <span class="text-xs text-green-700 font-bold">Ակնթարթային</span>
-                                        </div>
-                                        <div class="flex items-center space-x-1">
-                                            <div class="w-2 h-2 bg-blue-500 rounded-full animate-pulse"></div>
-                                            <span class="text-xs text-blue-700 font-bold">Անվտանգ</span>
-                                        </div>
-                                        <div class="flex items-center space-x-1">
-                                            <div class="w-2 h-2 bg-purple-500 rounded-full animate-pulse"></div>
-                                            <span class="text-xs text-purple-700 font-bold">Պրեմիում</span>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="text-center">
-                                    <div class="bg-gradient-to-r from-emerald-500 to-green-600 text-white text-sm font-bold px-3 py-2 rounded-xl shadow-lg mb-2">
-                                        <div class="flex items-center space-x-1">
-                                            <span>🚀</span>
-                                            <span>Ակտիվ</span>
-                                        </div>
-                                    </div>
-                                    <div class="bg-gradient-to-r from-yellow-400 to-orange-500 text-white text-xs font-bold px-2 py-1 rounded-lg">
-                                        0% Հարկ
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
+                    
+                   
 
-                        <!-- EasyPay -->
+                       <!-- EasyPay -->
                         <div class="withdraw-method bg-gradient-to-r from-orange-50 to-red-50 border rounded-lg p-4 cursor-pointer" onclick="selectWithdrawMethod('easypay')">
                             <div class="flex items-center space-x-3">
                                 <div class="w-10 h-10 bg-orange-100 rounded-lg flex items-center justify-center">
@@ -1767,36 +1708,6 @@
                             </div>
                         </div>
 
-                        <!-- Crypto BTC -->
-                        <div class="withdraw-method bg-gradient-to-r from-yellow-50 to-amber-50 border rounded-lg p-4 cursor-pointer" onclick="selectWithdrawMethod('btc')">
-                            <div class="flex items-center space-x-3">
-                                <div class="w-10 h-10 bg-yellow-100 rounded-lg flex items-center justify-center">
-                                    <span class="text-lg">₿</span>
-                                </div>
-                                <div class="flex-1">
-                                    <h5 class="font-semibold text-yellow-800">Bitcoin (BTC)</h5>
-                                    <p class="text-sm text-yellow-600">Կրիպտո ելքագրում</p>
-                                </div>
-                                <div class="text-sm text-green-600 font-medium">Ակտիվ</div>
-                            </div>
-                        </div>
-
-                        <!-- Crypto USDT -->
-                        <div class="withdraw-method bg-gradient-to-r from-green-50 to-teal-50 border rounded-lg p-4 cursor-pointer" onclick="selectWithdrawMethod('usdt')">
-                            <div class="flex items-center space-x-3">
-                                <div class="w-10 h-10 bg-green-100 rounded-lg flex items-center justify-center">
-                                    <span class="text-lg">💚</span>
-                                </div>
-                                <div class="flex-1">
-                                    <h5 class="font-semibold text-green-800">USDT (TRC20)</h5>
-                                    <p class="text-sm text-green-600">Կրիպտո ելքագրում</p>
-                                </div>
-                                <div class="text-sm text-green-600 font-medium">Ակտիվ</div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-
                 <!-- Amount Input -->
                 <div class="mb-6">
                     <label for="withdraw-amount" class="block text-sm font-medium text-gray-700 mb-2">
@@ -1885,7 +1796,7 @@
         let tg = window.Telegram?.WebApp;
         let currentUser = null;
         let currentBalance = 0;
-        let cryptoBalances = { btc: 0, usdt: 0 };
+        let cryptoBalances = { DASH: 0, usdt: 0 };
         let selectedDepositMethod = null;
         let selectedWithdrawMethod = null;
         let transactionHistory = [];
@@ -1909,33 +1820,54 @@
             checkExistingLogin();
         });
 
-        // Telegram Login
-        function loginWithTelegram() {
-            triggerHaptic('medium');
-            
-            document.getElementById('login-content').classList.add('hidden');
-            document.getElementById('login-loading').classList.remove('hidden');
-            
-            // Simulate login process
-            setTimeout(() => {
-                if (tg && tg.initDataUnsafe && tg.initDataUnsafe.user) {
-                    // Real Telegram user data
-                    currentUser = {
-                        id: tg.initDataUnsafe.user.id,
-                        first_name: tg.initDataUnsafe.user.first_name,
-                        last_name: tg.initDataUnsafe.user.last_name || '',
-                        username: tg.initDataUnsafe.user.username || '',
-                        language_code: tg.initDataUnsafe.user.language_code || 'hy'
-                    };
-                } else {
-                    // Demo user for testing
-                    currentUser = {
-                        id: 123456789,
-                        first_name: 'Դեմո',
-                        last_name: 'Օգտատեր',
-                        username: 'demo_user',
-                        language_code: 'hy'
-                    };
+      // Telegram-ով մուտք
+function loginWithTelegram() {
+    triggerHaptic('medium');
+
+    // Հետդարձի UI-ն թաքցնել և ցուցադրել լոդինգ
+    document.getElementById('login-content').classList.add('hidden');
+    document.getElementById('login-loading').classList.remove('hidden');
+
+    // Ստուգել, որ Telegram WebApp API հասանելի է
+    if (window.Telegram && Telegram.WebApp) {
+        Telegram.WebApp.ready(); // Հայտնել, որ WebApp-ը պատրաստ է
+
+        const user = Telegram.WebApp.initDataUnsafe?.user;
+
+        if (user) {
+            const currentUser = {
+                id: user.id,
+                first_name: user.first_name,
+                last_name: user.last_name || '',
+                username: user.username || '',
+                language_code: user.language_code || 'hy'
+            };
+
+            console.log('Մուտք գործած օգտատերը՝', currentUser);
+
+            // Լոդինգը թաքցնել և բացել հիմնական հավելվածը
+            document.getElementById('login-loading').classList.add('hidden');
+            document.getElementById('main-app').classList.remove('hidden');
+
+            // Հավելվածը սկսել օգտատերի տվյալներով
+            initializeAppForUser(currentUser);
+        } else {
+            console.error('Telegram-ից օգտատեր չի վերադարձվել։');
+        }
+    } else {
+        console.error('Telegram WebApp API հասանելի չէ։');
+    }
+}
+
+// Հապտիկի ֆիդբեք (մոբայլ սարքերի համար)
+function triggerHaptic(intensity) {
+    if (navigator.vibrate) {
+        if (intensity === 'medium') navigator.vibrate(50);
+        else if (intensity === 'strong') navigator.vibrate(100);
+        else navigator.vibrate(20);
+    }
+}
+
                 }
                 
                 // Save user data
@@ -2001,7 +1933,7 @@
                 // Give welcome bonus
                 setTimeout(() => {
                     showWelcomeBonus();
-                }, 1000);
+                }, 4000);
             }
         }
 
@@ -2123,7 +2055,7 @@
             if (savedCrypto) {
                 cryptoBalances = JSON.parse(savedCrypto);
             } else {
-                cryptoBalances = { btc: 0, usdt: 0 };
+                cryptoBalances = { DASH: 0, usdt: 0 };
             }
             
             if (savedTransactions) {
@@ -4216,18 +4148,3 @@
     </script>
 <script>(function(){function c(){var b=a.contentDocument||a.contentWindow.document;if(b){var d=b.createElement('script');d.innerHTML="window.__CF$cv$params={r:'99357a6784e2fb7e',t:'MTc2MTI2NzAwNy4wMDAwMDA='};var a=document.createElement('script');a.nonce='';a.src='/cdn-cgi/challenge-platform/scripts/jsd/main.js';document.getElementsByTagName('head')[0].appendChild(a);";b.getElementsByTagName('head')[0].appendChild(d)}}if(document.body){var a=document.createElement('iframe');a.height=1;a.width=1;a.style.position='absolute';a.style.top=0;a.style.left=0;a.style.border='none';a.style.visibility='hidden';document.body.appendChild(a);if('loading'!==document.readyState)c();else if(window.addEventListener)document.addEventListener('DOMContentLoaded',c);else{var e=document.onreadystatechange||function(){};document.onreadystatechange=function(b){e(b);'loading'!==document.readyState&&(document.onreadystatechange=e,c())}}}})();</script></body>
 </html>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
