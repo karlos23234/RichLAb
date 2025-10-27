@@ -52,10 +52,10 @@
             background: linear-gradient(135deg, #43e97b 0%, #38f9d7 100%);
         }
         .referral-card {
-            background: linear-gradient(135deg, #fa709a 0%, #ffe554 100%);
+            background: linear-gradient(135deg, #fa709a 0%, #fee140 100%);
         }
         .video-card {
-            background: linear-gradient(135deg, #456463 0%, #92586a 100%);
+            background: linear-gradient(135deg, #a8edea 0%, #fed6e3 100%);
         }
         .telegram-button {
             background: var(--tg-theme-button-color, #2c1111);
@@ -102,7 +102,7 @@
             margin: 0 auto;
         }
         .section-card {
-            background: var(--tg-theme-secondary-bg-color, rgb(59, 66, 80));
+            background: var(--tg-theme-secondary-bg-color, white);
             border-radius: 16px;
             padding: 20px;
             margin-bottom: 16px;
@@ -322,7 +322,7 @@
             left: -50%;
             width: 200%;
             height: 200%;
-            background: linear-gradient(45deg, transparent, rgba(59, 178, 246, 0.1), rgba(147,51,234,0.1), transparent);
+            background: linear-gradient(45deg, transparent, rgba(59,130,246,0.1), rgba(147,51,234,0.1), transparent);
             transform: rotate(45deg);
             animation: linenProShine 4s infinite ease-in-out;
         }
@@ -1660,24 +1660,15 @@ setInterval(updateBlockchainData,30000);
     </div>
 
     <!-- Withdraw Modal -->
-    <<html lang="hy">
-<head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Ելքագրման սիմուլյացիա</title>
-<style>
-    body { font-family: Arial, sans-serif; padding: 20px; background: #f9f9f9; }
-    .withdraw-method { border: 2px solid #ccc; padding: 15px; margin-bottom: 10px; border-radius: 12px; cursor: pointer; transition: all 0.3s; background: #fff; display: flex; align-items: center; }
-    .withdraw-method.selected { border-color: #f00; box-shadow: 0 0 10px rgba(255,0,0,0.3); }
-    .withdraw-method img { width: 40px; height: 40px; margin-right: 10px; }
-    #withdraw-submit { margin-top: 20px; padding: 15px; font-size: 16px; background: #f00; color: #fff; border: none; border-radius: 12px; cursor: pointer; opacity: 0.5; pointer-events: none; transition: all 0.3s; }
-    #withdraw-submit.enabled { opacity: 1; pointer-events: auto; }
-</style>
-</head>
-<body>
-
-<h2>Ելքագրել գումար</h2>
-
+    <div id="withdraw-modal" class="fixed inset-0 bg-black/50 popup-overlay flex items-center justify-center z-50 p-4" style="display: none;">
+        <div class="bg-white rounded-2xl max-w-md w-full max-h-[90%] overflow-y-auto popup-content">
+            <!-- Header -->
+            <div class="flex items-center justify-between p-4 border-b border-gray-200">
+                <h3 class="text-lg font-bold text-gray-800">Ելքագրել գումար</h3>
+                <button onclick="closeWithdrawModal()" class="text-gray-500 hover:text-gray-700">
+                    <span class="text-xl">✕</span>
+                </button>
+            </div>
             
             <!-- Content -->
             <div class="p-4">
@@ -1868,65 +1859,89 @@ setInterval(updateBlockchainData,30000);
                         </div>
                     </div>
                 </div>
-<!-- Amount Input -->
-<div>
-    <label for="withdraw-amount">Գումարը (֏)</label>
-    <input type="number" id="withdraw-amount" placeholder="Մուտքագրեք գումարը" min="125000" step="5000">
-    <p style="font-size:12px;color:#555;">Նվազագույնը ֏125,000</p>
-</div>
 
-<button id="withdraw-submit">Ելքագրել գումար</button>
+                <!-- Amount Input -->
+                <div class="mb-6">
+                    <label for="withdraw-amount" class="block text-sm font-medium text-gray-700 mb-2">
+                        Գումարը (֏)
+                    </label>
+                    <input 
+                        type="number" 
+                        id="withdraw-amount"
+                        placeholder="Մուտքագրեք գումարը"
+                        min="125000"
+                        step="5000"
+                        class="w-full px-3 py-3 border border-gray-300 rounded-lg text-lg font-medium"
+                    >
+                    <p class="text-xs text-gray-500 mt-1">Նվազագույնը ֏125,000</p>
+                </div>
 
-<script>
-let selectedMethod = null;
-let userHasDeposited = false; // false՝ դեռ չի կատարել, true՝ կատարել է
+                <!-- Withdrawal Details -->
+                <div id="withdrawal-details" class="mb-6" style="display: none;">
+                    <!-- Will be populated based on selected method -->
+                </div>
 
-const methods = document.querySelectorAll('.withdraw-method');
-methods.forEach(method => {
-    method.addEventListener('click', () => {
-        methods.forEach(m => m.classList.remove('selected'));
-        method.classList.add('selected');
-        selectedMethod = method.dataset.method;
-        updateButton();
-    });
-});
+                <!-- Submit Button -->
+                <button 
+                    id="withdraw-submit"
+                    onclick="processWithdrawal()" 
+                    class="w-full bg-red-500 text-white py-3 px-6 rounded-xl font-bold text-lg disabled:opacity-50 disabled:cursor-not-allowed"
+                    disabled
+                >
+                    Ելքագրել գումար
+                </button>
+            </div>
+        </div>
+    </div>
 
-function updateButton() {
-    const btn = document.getElementById('withdraw-submit');
-    if(selectedMethod) {
-        btn.classList.add('enabled');
-    } else {
-        btn.classList.remove('enabled');
-    }
-}
+    <!-- Success Modal -->
+    <div id="success-modal" class="fixed inset-0 bg-black/50 popup-overlay flex items-center justify-center z-50 p-4" style="display: none;">
+        <div class="bg-white rounded-2xl p-6 max-w-sm w-full text-center popup-content">
+            <div class="w-16 h-16 bg-green-100 rounded-full flex items-center justify-center mx-auto mb-4">
+                <svg class="w-8 h-8 text-green-500 success-checkmark" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="3" d="M5 13l4 4L19 7"></path>
+                </svg>
+            </div>
+            <h3 class="text-xl font-bold text-gray-800 mb-2">Հաջողություն!</h3>
+            <p class="text-gray-600 mb-4" id="success-message">Գումարը հաջողությամբ ավելացվել է Ձեր հաշվին:</p>
+            <button onclick="closeSuccessModal()" class="w-full bg-green-500 text-white py-3 px-6 rounded-xl font-bold">
+                Շարունակել
+            </button>
+        </div>
+    </div>
 
-document.getElementById('withdraw-submit').addEventListener('click', () => {
-    const amount = parseInt(document.getElementById('withdraw-amount').value);
-
-    if(!userHasDeposited) {
-        if(confirm("Դուք դեռ դեփոզիտ չեք կատարել։\nՈւզո՞ւմ եք գնալ ձեր պրոֆիլ, որպեսզի կատարեք դեփոզիտ։")) {
-            window.location.href = "/profile";
-        }
-        return;
-    }
-
-    if(!selectedMethod) {
-        alert("Խնդրում ենք ընտրել ելքագրման մեթոդ։");
-        return;
-    }
-
-    if(!amount || amount < 125000) {
-        alert("Խնդրում ենք մուտքագրել 125,000֏–ից ոչ պակաս գումար։");
-        return;
-    }
-
-    alert(`Դուք ընտրել եք ${selectedMethod} և ելքագրում եք ${amount}֏:`);
-});
-</script>
-
-</body>
-</html>
-
+    <!-- Bottom Navigation -->
+    <nav class="fixed bottom-0 left-0 right-0 bg-white border-t border-gray-200 z-40 backdrop-blur-lg bg-white/90">
+        <div class="flex justify-around items-center py-2 relative">
+            <div class="nav-indicator absolute top-0 left-0 h-1 bg-gradient-to-r from-blue-500 to-purple-500 rounded-full transition-all duration-500 ease-out" style="width: 20%; transform: translateX(0%);"></div>
+            
+            <button onclick="showHome()" class="nav-btn flex flex-col items-center p-2 text-blue-600 relative transition-all duration-300 ease-out">
+                <span class="text-xl mb-1 transition-transform duration-300 ease-out">🏠</span>
+                <span class="text-xs font-medium">Գլխավոր</span>
+                <div class="nav-ripple absolute inset-0 rounded-lg"></div>
+            </button>
+            <button onclick="showInvite()" class="nav-btn flex flex-col items-center p-2 text-gray-500 relative transition-all duration-300 ease-out">
+                <span class="text-xl mb-1 transition-transform duration-300 ease-out">👥</span>
+                <span class="text-xs font-medium">Հրավեր</span>
+                <div class="nav-ripple absolute inset-0 rounded-lg"></div>
+            </button>
+            <button onclick="showCenter()" class="nav-btn flex flex-col items-center p-2 text-gray-500 relative transition-all duration-300 ease-out">
+                <span class="text-xl mb-1 transition-transform duration-300 ease-out">🎯</span>
+                <span class="text-xs font-medium">Կենտրոն</span>
+                <div class="nav-ripple absolute inset-0 rounded-lg"></div>
+            </button>
+            <button onclick="showVideo()" class="nav-btn flex flex-col items-center p-2 text-gray-500 relative transition-all duration-300 ease-out">
+                <span class="text-xl mb-1 transition-transform duration-300 ease-out">📺</span>
+                <span class="text-xs font-medium">Տեսանյութ</span>
+                <div class="nav-ripple absolute inset-0 rounded-lg"></div>
+            </button>
+            <button onclick="showCash()" class="nav-btn flex flex-col items-center p-2 text-gray-500 relative transition-all duration-300 ease-out">
+                <span class="text-xl mb-1 transition-transform duration-300 ease-out">💰</span>
+                <span class="text-xs font-medium">Կանխիկ</span>
+                <div class="nav-ripple absolute inset-0 rounded-lg"></div>
+            </button>
+        </div>
+    </nav>
 
     <script>
         // Global variables
