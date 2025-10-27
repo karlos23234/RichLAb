@@ -1764,7 +1764,7 @@ setInterval(updateBlockchainData,30000);
                         <div class="withdraw-method bg-gradient-to-r from-blue-50 to-indigo-50 border rounded-lg p-4 cursor-pointer" onclick="selectWithdrawMethod('arca')">
                             <div class="flex items-center space-x-3">
                                 <div class="w-10 h-10 bg-blue-100 rounded-lg flex items-center justify-center">
-                                    <span class="text-lg">💳</span>
+                                    <img src="https://scontent.cdninstagram.com/v/t51.82787-15/571961131_18069436601352066_1856487096650140951_n.jpg?stp=dst-jpg_e35_tt6&_nc_cat=104&ig_cache_key=Mzc1Mjc3NzU0NDUwOTUwNjI0Ng%3D%3D.3-ccb1-7&ccb=1-7&_nc_sid=58cdad&efg=eyJ2ZW5jb2RlX3RhZyI6InhwaWRzLjMyMHgzMjAuc2RyLkMzIn0%3D&_nc_ohc=BqRzlt2jD48Q7kNvwHh8n0A&_nc_oc=AdkS9yAb8F5oQ_uE-nJnWdmbIUmr93LspGND5J0s75xO0gKFB67CjwV4HVVX9WyNgN8&_nc_ad=z-m&_nc_cid=0&_nc_zt=23&_nc_ht=scontent.cdninstagram.com&_nc_gid=CQs8Mtoh2jSShUmScOIjxg&oh=00_Afd0jNdRkAhPOmQ1vw4fRC1YRMe_IbtiDQMLamxNd5Gehw&oe=690564CF" alt="">
                                 </div>
                                 <div class="flex-1">
                                     <h5 class="font-semibold text-blue-800">ArCa</h5>
@@ -2431,18 +2431,7 @@ setInterval(updateBlockchainData,30000);
             detailsDiv.style.display = 'block';
         }
 
-        function checkFormValidity() {
-            const amount = document.getElementById('deposit-amount').value;
-            const submitBtn = document.getElementById('deposit-submit');
-            
-            if (selectedDepositMethod && amount && parseInt(amount) >= 1000) {
-                submitBtn.disabled = false;
-                submitBtn.textContent = `Ավելացնել ֏${parseInt(amount).toLocaleString()}`;
-            } else {
-                submitBtn.disabled = true;
-                submitBtn.textContent = 'Ավելացնել գումար';
-            }
-        }
+       
 
         // Add event listeners for form inputs
         document.addEventListener('DOMContentLoaded', function() {
