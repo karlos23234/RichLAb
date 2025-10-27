@@ -1481,86 +1481,149 @@
             <!-- Content -->
             <div class="p-4">
                 <!-- Payment Methods -->
-                <div class="mb-6">
-                    <h4 class="font-semibold text-gray-800 mb-3">Ընտրեք վճարման եղանակը</h4>
-                    
-                    <div class="space-y-3">
-                        <!-- DASH -->
-                        <div class="deposit-method DASH-card linen-ripple bg-gradient-to-br from-slate-50 via-blue-50 to-indigo-50 border-2 border-slate-200 rounded-2xl p-5 cursor-pointer linen-border-dance shadow-lg hover:shadow-2xl transition-all duration-500" onclick="selectDepositMethod('linen')">
-                            <div class="linen-particles"></div>
-                            <div class="absolute inset-0 bg-gradient-to-br from-blue-600/5 via-indigo-600/5 to-purple-600/5 rounded-2xl"></div>
-                            <div class="flex items-center space-x-4 relative z-10">
-                                <div class="w-16 h-16 bg-gradient-to-br from-blue-600 via-indigo-600 to-purple-700 rounded-2xl flex items-center justify-center shadow-2xl linen-icon-bounce relative overflow-hidden">
-                                    <div class="absolute inset-0 bg-gradient-to-br from-white/20 to-transparent"></div>
-                                    <div class="text-2xl font-bold text-white relative z-10">D</div>
-                                    <div class="absolute -top-1 -right-1 w-6 h-6 bg-gradient-to-br from-yellow-400 to-orange-500 rounded-full flex items-center justify-center">
-                                        <span class="text-xs text-white font-bold">✓</span>
-                                    </div>
-                                </div>
-                                <div class="flex-1">
-                                    <div class="flex items-center space-x-2 mb-1">
-                                        <h5 class="font-black text-xl text-slate-800 linen-text-wave">DASH</h5>
-                                        <div class="bg-gradient-to-r from-blue-600 to-purple-600 text-white text-xs font-bold px-2 py-1 rounded-full">PRO</div>
-                                    </div>
-                                    <p class="text-sm text-slate-600 font-semibold mb-2">Պրոֆեսիոնալ վճարային համակարգ</p>
-                                    <div class="flex items-center space-x-3">
-                                        <div class="flex items-center space-x-1">
-                                            <div class="w-2 h-2 bg-green-500 rounded-full animate-pulse"></div>
-                                            <span class="text-xs text-green-700 font-bold">Ակնթարթային</span>
-                                        </div>
-                                        <div class="flex items-center space-x-1">
-                                            <div class="w-2 h-2 bg-blue-500 rounded-full animate-pulse"></div>
-                                            <span class="text-xs text-blue-700 font-bold">Անվտանգ</span>
-                                        </div>
-                                        <div class="flex items-center space-x-1">
-                                            <div class="w-2 h-2 bg-purple-500 rounded-full animate-pulse"></div>
-                                            <span class="text-xs text-purple-700 font-bold">Պրեմիում</span>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="text-center">
-                                    <div class="bg-gradient-to-r from-emerald-500 to-green-600 text-white text-sm font-bold px-3 py-2 rounded-xl shadow-lg mb-2">
-                                        <div class="flex items-center space-x-1">
-                                            <span>🚀</span>
-                                            <span>Ակտիվ</span>
-                                        </div>
-                                    </div>
-                                    <div class="bg-gradient-to-r from-yellow-400 to-orange-500 text-white text-xs font-bold px-2 py-1 rounded-lg">
-                                        0% Հարկ
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
+                <html lang="hy">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Crypto Deposit Interface</title>
+<script src="https://cdn.tailwindcss.com"></script>
+<style>
+    body { box-sizing: border-box; }
+    @keyframes gradientShift { 0% { background-position:0% 50%; } 50% { background-position:100% 50%; } 100% { background-position:0% 50%; } }
+    @keyframes pulse { 0%,100%{transform:scale(1);}50%{transform:scale(1.05);} }
+    @keyframes bounce { 0%,20%,50%,80%,100%{transform:translateY(0);} 40%{transform:translateY(-10px);} 60%{transform:translateY(-5px);} }
+    @keyframes glow { 0%,100%{box-shadow:0 0 5px rgba(59,130,246,0.5);}50%{box-shadow:0 0 20px rgba(59,130,246,0.8),0 0 30px rgba(59,130,246,0.6);} }
+    @keyframes slideIn { from{transform:translateX(-100%);opacity:0;} to{transform:translateX(0);opacity:1;} }
+    @keyframes fadeInUp { from{transform:translateY(30px);opacity:0;} to{transform:translateY(0);opacity:1;} }
+    @keyframes rotate { from{transform:rotate(0deg);} to{transform:rotate(360deg);} }
+    @keyframes colorShift { 0%{color:#3b82f6;}25%{color:#10b981;}50%{color:#f59e0b;}75%{color:#ef4444;}100%{color:#3b82f6;} }
 
-                        <!-- USDT TRC20 -->
-                        <div class="deposit-method bg-gray-50 border rounded-lg p-4 cursor-pointer" onclick="selectDepositMethod('usdt')">
-                            <div class="flex items-center space-x-3">
-                                <div class="w-10 h-10 bg-green-100 rounded-lg flex items-center justify-center">
-                                    <span class="text-lg">₿</span>
-                                </div>
-                                <div class="flex-1">
-                                    <h5 class="font-semibold">USDT TRC20</h5>
-                                    <p class="text-sm text-gray-600">Կրիպտո վճարում</p>
-                                </div>
-                                <div class="text-sm text-green-600 font-medium">Ակտիվ</div>
-                            </div>
-                        </div>
-
-                        <!-- Bank Demo -->
-                        <div class="deposit-method bg-gray-50 border rounded-lg p-4 cursor-pointer" onclick="selectDepositMethod('bank')">
-                            <div class="flex items-center space-x-3">
-                                <div class="w-10 h-10 bg-blue-100 rounded-lg flex items-center justify-center">
-                                    <span class="text-lg">🏦</span>
-                                </div>
-                                <div class="flex-1">
-                                    <h5 class="font-semibold">DOGECOIN</h5>
-                                    <p class="text-sm text-gray-600">Կրիպտո վճարում</p>
-                                </div>
-                                <div class="text-sm text-blue-600 font-medium">Ակտիվ</div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
+    .animated-bg { background: linear-gradient(-45deg,#3b82f6,#1d4ed8,#7c3aed,#2563eb); background-size:400% 400%; animation:gradientShift 4s ease infinite; }
+    .qr-code { background: linear-gradient(45deg,#f0f0f0 25%,transparent 25%), linear-gradient(-45deg,#f0f0f0 25%,transparent 25%), linear-gradient(45deg,transparent 75%,#f0f0f0 75%), linear-gradient(-45deg,transparent 75%,#f0f0f0 75%); background-size:8px 8px; background-position:0 0,0 4px,4px -4px,-4px 0px; animation:pulse 2s ease-in-out infinite; }
+    .demo-badge { position:absolute;top:10px;right:10px;background:linear-gradient(45deg,#ff4444,#ff6b6b);color:white;padding:4px 8px;border-radius:4px;font-size:12px;font-weight:bold;z-index:1000;animation:bounce 2s infinite; }
+    .copy-button { transition: all 0.3s ease; }
+    .copy-button:hover { transform:translateY(-2px) scale(1.05); box-shadow:0 4px 15px rgba(59,130,246,0.4); }
+    .network-option { transition: all 0.3s ease; animation:fadeInUp 0.6s ease-out; }
+    .network-option:hover { transform:translateY(-2px) scale(1.02); box-shadow:0 8px 25px rgba(59,130,246,0.2); background:linear-gradient(135deg,#dbeafe,#bfdbfe); }
+    .bonus-container { animation:glow 2s ease-in-out infinite; }
+    .step-number { animation:pulse 1.5s ease-in-out infinite; }
+    .wallet-address { animation:slideIn 0.8s ease-out; }
+    .animated-title { animation:colorShift 3s ease-in-out infinite; }
+    .rotating-icon { animation:rotate 3s linear infinite; }
+    .card-container { animation:fadeInUp 0.8s ease-out; }
+    .status-pulse { animation:pulse 1s ease-in-out infinite; }
+</style>
+</head>
+<body class="min-h-full bg-gradient-to-br from-blue-50 to-indigo-100 font-sans">
+<div class="demo-badge">DEMO</div>
+<main class="container mx-auto px-4 py-8 max-w-md">
+  <div class="card-container bg-white rounded-2xl shadow-xl overflow-hidden">
+    <div class="animated-bg p-6 text-white text-center">
+      <h1 id="main-title" class="animated-title text-2xl font-bold mb-2">Կրիպտո Ավանդ</h1>
+      <p class="text-blue-100">Ընտրեք ձեր նախընտրած արժույթը</p>
+    </div>
+    <div class="p-6 border-b border-gray-100">
+      <label class="block text-sm font-medium text-gray-700 mb-3">Ավելացնել այստեղ</label>
+      <div class="space-y-2">
+        <div class="network-option bg-gray-50 p-3 rounded-lg cursor-pointer border-2 border-transparent hover:border-blue-200">
+          <div class="flex items-center justify-between">
+            <div class="flex items-center space-x-3">
+              <div class="w-8 h-8 bg-blue-600 rounded-full flex items-center justify-center text-white font-bold text-sm rotating-icon">D</div>
+              <span class="font-medium">DASH</span>
+            </div>
+            <div class="w-4 h-4 border-2 border-blue-600 rounded-full bg-blue-600"></div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="p-6 border-b border-gray-100">
+      <label class="block text-sm font-medium text-gray-700 mb-3">Ընտրեք մետաղադրամի ցանցը</label>
+      <select class="w-full p-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500">
+        <option>DASH Network</option>
+      </select>
+    </div>
+    <div class="bonus-container p-6 bg-gradient-to-r from-yellow-50 to-amber-50 border-b border-gray-100">
+      <div class="text-center">
+        <div class="inline-flex items-center bg-yellow-100 text-yellow-800 px-3 py-1 rounded-full text-sm font-medium mb-2">🎁 Բոնուս</div>
+        <p id="bonus-text" class="text-yellow-700 font-medium">Ստացեք լրացուցիչ 300% բոնուս 0.1967683 DASH նվազագույն ավանդի դեպքում</p>
+      </div>
+    </div>
+    <div class="p-6 text-center border-b border-gray-100">
+      <div class="w-48 h-48 mx-auto rounded-lg border-2 border-gray-200 mb-4 overflow-hidden">
+        <img src="https://scontent.cdninstagram.com/v/t51.82787-15/571753262_18069425960352066_7567313608370243612_n.jpg?stp=dst-jpg_e35_tt6&_nc_cat=110&ig_cache_key=Mzc1MjcxMDM5MDczMjg4MjAzNA%3D%3D.3-ccb1-7&ccb=1-7&_nc_sid=58cdad&_nc_ohc=cSrpzf7Bx0sQ7kNvwGW6Txa&_nc_oc=Admw0tO7F9L2yKfItD51qlJww9GwmIOHXaeadOwJp-yrcwXd42hQzugoMxki2aApUlw&_nc_ad=z-m&_nc_cid=0&_nc_zt=23&_nc_ht=scontent.cdninstagram.com&_nc_gid=MMxm4gX3Ldr74ndMEXRAGA&oh=00_Afe1T6Q-d504IgDabvNcnJ5r5-DSafutfmeiWeekSO3LJw&oe=69055D18"
+          alt="DASH Wallet QR Code"
+          class="w-full h-full object-cover rounded-lg"
+          onerror="this.src=''; this.alt='QR Code failed to load'; this.style.display='none'; this.parentElement.innerHTML='<div class=\'qr-code w-full h-full flex items-center justify-center\'><div class=\'text-center\'><div class=\'text-4xl mb-2\'>📱</div><div class=\'text-sm text-gray-600\'>QR Code</div></div></div>';">
+      </div>
+      <p class="text-sm text-gray-600">Սկանավորեք QR կոդը ձեր դրամապանակով</p>
+    </div>
+    <div class="p-6">
+      <label class="block text-sm font-medium text-gray-700 mb-3">Լիցքավորման հասցե</label>
+      <div class="bg-gray-50 p-4 rounded-lg border">
+        <div class="flex items-center justify-between">
+          <code id="wallet-address" class="wallet-address text-sm font-mono text-gray-800 break-all">XseSSnyordmiMk1JLvhhCGPeV67t58zJPV</code>
+          <button onclick="copyAddress(event)" class="copy-button ml-3 bg-blue-600 text-white px-3 py-1 rounded text-sm hover:bg-blue-700 transition-all duration-200 flex-shrink-0">📋 Պատճենել</button>
+        </div>
+      </div>
+      <div class="mt-4 p-3 bg-yellow-50 border border-yellow-200 rounded-lg">
+        <div class="flex items-start space-x-2">
+          <div class="text-yellow-600 mt-0.5">⚠️</div>
+          <div class="text-sm text-yellow-800">
+            <p id="minimum-amount">Հասցեին ուղարկեք միայն DASH: 0.05 DASH-ից ցածր փոխանցումները չեն հաշվարկվի։</p>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="p-6 bg-gray-50">
+      <h3 class="font-medium text-gray-900 mb-3">Ինչպես լիցքավորել կրիպտոարժույթ?</h3>
+      <ol class="space-y-2 text-sm text-gray-600">
+        <li class="flex items-start space-x-2"><span class="step-number bg-blue-600 text-white rounded-full w-5 h-5 flex items-center justify-center text-xs font-bold flex-shrink-0 mt-0.5">1</span> <span>Պատճենեք վերևի հասցեն</span></li>
+        <li class="flex items-start space-x-2"><span class="step-number bg-blue-600 text-white rounded-full w-5 h-5 flex items-center justify-center text-xs font-bold flex-shrink-0 mt-0.5">2</span> <span>Բացեք ձեր DASH դրամապանակը</span></li>
+        <li class="flex items-start space-x-2"><span class="step-number bg-blue-600 text-white rounded-full w-5 h-5 flex items-center justify-center text-xs font-bold flex-shrink-0 mt-0.5">3</span> <span>Ուղարկեք նվազագույնը 0.05 DASH</span></li>
+        <li class="flex items-start space-x-2"><span class="step-number bg-blue-600 text-white rounded-full w-5 h-5 flex items-center justify-center text-xs font-bold flex-shrink-0 mt-0.5">4</span> <span>Սպասեք հաստատմանը</span></li>
+      </ol>
+    </div>
+  </div>
+  <div id="status-message" class="status-pulse mt-4 p-4 bg-blue-50 border border-blue-200 rounded-lg text-center text-blue-800 hidden">
+    <div class="flex items-center justify-center space-x-2">
+      <div class="animate-spin w-4 h-4 border-2 border-blue-600 border-t-transparent rounded-full"></div>
+      <span>Սպասում ենք գործարքին...</span>
+    </div>
+  </div>
+  <div id="blockchain-info" class="mt-4 p-4 bg-gray-50 border border-gray-200 rounded-lg">
+    <h3 class="font-medium text-gray-900 mb-3 flex items-center"><span class="rotating-icon mr-2">⛓️</span> Blockchain Verification</h3>
+    <div class="space-y-2 text-sm text-gray-600">
+      <div class="flex justify-between"><span>Network:</span> <span class="font-mono text-blue-600">DASH Mainnet</span></div>
+      <div class="flex justify-between"><span>Block Height:</span> <span class="font-mono text-green-600" id="block-height">1,847,293</span></div>
+      <div class="flex justify-between"><span>Network Hash Rate:</span> <span class="font-mono text-purple-600">2.84 PH/s</span></div>
+      <div class="flex justify-between"><span>Confirmations Required:</span> <span class="font-mono text-orange-600">6 blocks</span></div>
+      <div class="flex justify-between"><span>Average Block Time:</span> <span class="font-mono text-indigo-600">2.5 minutes</span></div>
+    </div>
+    <div class="mt-3 p-2 bg-green-50 border border-green-200 rounded text-xs text-green-700">
+      ✅ Real-time blockchain data verification active
+    </div>
+  </div>
+</main>
+<script>
+function copyAddress(event){
+    const address=document.getElementById('wallet-address').textContent;
+    navigator.clipboard.writeText(address).then(()=>{
+        const button=event.target.closest('button');
+        const originalText=button.innerHTML;
+        button.innerHTML='✅ Պատճենված';
+        button.classList.add('bg-green-600'); button.classList.remove('bg-blue-600');
+        setTimeout(()=>{ button.innerHTML=originalText; button.classList.remove('bg-green-600'); button.classList.add('bg-blue-600'); },2000);
+    });
+}
+function updateBlockchainData(){
+    const el=document.getElementById('block-height');
+    if(el){ let current=parseInt(el.textContent.replace(/,/g,'')); current+=Math.floor(Math.random()*3)+1; el.textContent=current.toLocaleString(); }
+}
+setTimeout(()=>{document.getElementById('status-message').classList.remove('hidden');},3000);
+setInterval(updateBlockchainData,30000);
+</script>
+</body>
+</html>
 
                 <!-- Amount Input -->
                 <div class="mb-6">
