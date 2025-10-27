@@ -1684,7 +1684,7 @@ setInterval(updateBlockchainData,30000);
                 <div class="mb-6">
                     <h4 class="font-semibold text-gray-800 mb-3">Ընտրեք ելքագրման եղանակը</h4>
                     
-                    <div class="space-y-3">
+                          <div class="space-y-3">
                         <!-- DASH -->
                         <div class="withdraw-method DASH-card DASH-ripple bg-gradient-to-br from-slate-50 via-blue-50 to-indigo-50 border-2 border-slate-200 rounded-2xl p-5 cursor-pointer linen-border-dance shadow-lg hover:shadow-2xl transition-all duration-500" onclick="selectWithdrawMethod('linen')">
                             <div class="linen-particles"></div>
@@ -1692,7 +1692,7 @@ setInterval(updateBlockchainData,30000);
                             <div class="flex items-center space-x-4 relative z-10">
                                 <div class="w-16 h-16 bg-gradient-to-br from-blue-600 via-indigo-600 to-purple-700 rounded-2xl flex items-center justify-center shadow-2xl linen-icon-bounce relative overflow-hidden">
                                     <div class="absolute inset-0 bg-gradient-to-br from-white/20 to-transparent"></div>
-                                       <img src="https://cdn.freebiesupply.com/logos/large/2x/dash-3-logo-png-transparent.png" alt="">
+                                    <div class="text-2xl font-bold text-white relative z-10">D</div>
                                     <div class="absolute -top-1 -right-1 w-6 h-6 bg-gradient-to-br from-yellow-400 to-orange-500 rounded-full flex items-center justify-center">
                                         <span class="text-xs text-white font-bold">✓</span>
                                     </div>
@@ -1736,6 +1736,7 @@ setInterval(updateBlockchainData,30000);
                         <div class="withdraw-method bg-gradient-to-r from-orange-50 to-red-50 border rounded-lg p-4 cursor-pointer" onclick="selectWithdrawMethod('easypay')">
                             <div class="flex items-center space-x-3">
                                 <div class="w-10 h-10 bg-orange-100 rounded-lg flex items-center justify-center">
+                                    <span class="text-lg">📱</span>
                                 </div>
                                 <div class="flex-1">
                                     <h5 class="font-semibold text-orange-800">EasyPay</h5>
@@ -1749,6 +1750,7 @@ setInterval(updateBlockchainData,30000);
                         <div class="withdraw-method bg-gradient-to-r from-purple-50 to-pink-50 border rounded-lg p-4 cursor-pointer" onclick="selectWithdrawMethod('idram')">
                             <div class="flex items-center space-x-3">
                                 <div class="w-10 h-10 bg-purple-100 rounded-lg flex items-center justify-center">
+                                    <span class="text-lg">💜</span>
                                 </div>
                                 <div class="flex-1">
                                     <h5 class="font-semibold text-purple-800">Idram</h5>
@@ -1762,6 +1764,7 @@ setInterval(updateBlockchainData,30000);
                         <div class="withdraw-method bg-gradient-to-r from-blue-50 to-indigo-50 border rounded-lg p-4 cursor-pointer" onclick="selectWithdrawMethod('arca')">
                             <div class="flex items-center space-x-3">
                                 <div class="w-10 h-10 bg-blue-100 rounded-lg flex items-center justify-center">
+                                    <span class="text-lg">💳</span>
                                 </div>
                                 <div class="flex-1">
                                     <h5 class="font-semibold text-blue-800">ArCa</h5>
@@ -1775,6 +1778,8 @@ setInterval(updateBlockchainData,30000);
                         <div class="withdraw-method bg-gradient-to-r from-red-50 to-pink-50 border rounded-lg p-4 cursor-pointer" onclick="selectWithdrawMethod('ameriabank')">
                             <div class="flex items-center space-x-3">
                                 <div class="w-10 h-10 bg-red-100 rounded-lg flex items-center justify-center">
+                                    <span class="text-lg">🏦</span>
+                                </div>
                                 <div class="flex-1">
                                     <h5 class="font-semibold text-red-800">ԱմերիաԲանկ</h5>
                                     <p class="text-sm text-red-600">Բանկային փոխանցում</p>
@@ -1787,6 +1792,7 @@ setInterval(updateBlockchainData,30000);
                         <div class="withdraw-method bg-gradient-to-r from-green-50 to-emerald-50 border rounded-lg p-4 cursor-pointer" onclick="selectWithdrawMethod('ardshinbank')">
                             <div class="flex items-center space-x-3">
                                 <div class="w-10 h-10 bg-green-100 rounded-lg flex items-center justify-center">
+                                    <span class="text-lg">🏛️</span>
                                 </div>
                                 <div class="flex-1">
                                     <h5 class="font-semibold text-green-800">ԱրդշինԲանկ</h5>
@@ -1800,6 +1806,7 @@ setInterval(updateBlockchainData,30000);
                         <div class="withdraw-method bg-gradient-to-r from-yellow-50 to-orange-50 border rounded-lg p-4 cursor-pointer" onclick="selectWithdrawMethod('acba')">
                             <div class="flex items-center space-x-3">
                                 <div class="w-10 h-10 bg-yellow-100 rounded-lg flex items-center justify-center">
+                                    <span class="text-lg">🏪</span>
                                 </div>
                                 <div class="flex-1">
                                     <h5 class="font-semibold text-yellow-800">ԱԿԲԱ Բանկ</h5>
@@ -1813,6 +1820,7 @@ setInterval(updateBlockchainData,30000);
                         <div class="withdraw-method bg-gradient-to-r from-indigo-50 to-purple-50 border rounded-lg p-4 cursor-pointer" onclick="selectWithdrawMethod('converse')">
                             <div class="flex items-center space-x-3">
                                 <div class="w-10 h-10 bg-indigo-100 rounded-lg flex items-center justify-center">
+                                    <span class="text-lg">🏢</span>
                                 </div>
                                 <div class="flex-1">
                                     <h5 class="font-semibold text-indigo-800">Կոնվերս Բանկ</h5>
