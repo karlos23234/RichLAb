@@ -1486,7 +1486,7 @@
                     
                     <div class="space-y-3">
                         <!-- DASH -->
-                        <div class="deposit-method DASH-card linen-ripple bg-gradient-to-br from-slate-50 via-blue-50 to-indigo-50 border-2 border-slate-200 rounded-2xl p-5 cursor-pointer linen-border-dance shadow-lg hover:shadow-2xl transition-all duration-500" onclick="selectDepositMethod('linen')">
+                        <div class="deposit-method DASH-card DASH-ripple bg-gradient-to-br from-slate-50 via-blue-50 to-indigo-50 border-2 border-slate-200 rounded-2xl p-5 cursor-pointer linen-border-dance shadow-lg hover:shadow-2xl transition-all duration-500" onclick="selectDepositMethod('linen')">
                             <div class="linen-particles"></div>
                             <div class="absolute inset-0 bg-gradient-to-br from-blue-600/5 via-indigo-600/5 to-purple-600/5 rounded-2xl"></div>
                             <div class="flex items-center space-x-4 relative z-10">
@@ -1553,7 +1553,7 @@
                                     <span class="text-lg">🏦</span>
                                 </div>
                                 <div class="flex-1">
-                                    <h5 class="font-semibold">DOGECOIN</h5>
+                                    <h5 class="font-semibold">USDC SOLANA</h5>
                                     <p class="text-sm text-gray-600">Կրիպտո վճարում</p>
                                 </div>
                                 <div class="text-sm text-blue-600 font-medium">Ակտիվ</div>
@@ -1575,7 +1575,7 @@
                         step="100"
                         class="w-full px-3 py-3 border border-gray-300 rounded-lg text-lg font-medium"
                     >
-                    <p class="text-xs text-gray-500 mt-1">Նվազագույնը ֏1,000</p>
+                    <p class="text-xs text-gray-500 mt-1">Նվազագույնը ֏3,000</p>
                 </div>
 
                 <!-- Payment Details -->
@@ -2329,8 +2329,8 @@
                             <div class="bg-white p-3 rounded border">
                                 <div class="text-sm font-medium text-gray-700">Ստացող:</div>
                              <div class="text-sm font-medium text-gray-700">Wallet հասցե:</div>
-                                <div class="text-xs text-gray-900 font-mono break-all">TQn9Y2khEsLMWD7fhRRHMbnqmS9aGHMeyn</div>
-                                <div class="text-xs text-red-600 mt-2">⚠️ Միայն TRC20 ցանց օգտագործեք</div>
+                                <div class="text-xs text-gray-900 font-mono break-all">0xC8a18cbD6a8457A3fB88c4B78095E7DA639e8B37</div>
+                                <div class="text-xs text-red-600 mt-2">⚠️ Միայն  DASH  ցանց օգտագործեք</div>
                             </div>
                         </div>
                     `;
@@ -2342,7 +2342,7 @@
                             <p class="text-sm text-green-700 mb-3">Ուղարկեք USDT-ն այս հասցեին TRC20 ցանցով:</p>
                             <div class="bg-white p-3 rounded border">
                                 <div class="text-sm font-medium text-gray-700">Wallet հասցե:</div>
-                                <div class="text-xs text-gray-900 font-mono break-all">TQn9Y2khEsLMWD7fhRRHMbnqmS9aGHMeyn</div>
+                                <div class="text-xs text-gray-900 font-mono break-all">TX3p6vhXwGczdwNeUky8ZfvfBvr8wcy3Ra</div>
                                 <div class="text-xs text-red-600 mt-2">⚠️ Միայն TRC20 ցանց օգտագործեք</div>
                             </div>
                         </div>
@@ -2351,13 +2351,13 @@
                 case 'bank':
                     content = `
                         <div class="bg-blue-50 border border-blue-200 rounded-lg p-4">
-                            <h5 class="font-semibold text-blue-800 mb-2">Դեմո բանկային փոխանցում</h5>
+                            <h5 class="font-semibold text-blue-800 mb-2">USDC SOLANA հասցե</h5>
                             <p class="text-sm text-blue-700 mb-3">Սա փորձարկման ռեժիմ է: Գումարը ավտոմատ կավելացվի:</p>
                             <div class="bg-white p-3 rounded border">
                                 <div class="text-sm font-medium text-gray-700">Բանկ:</div>
                               <div class="text-sm font-medium text-gray-700">Wallet հասցե:</div>
-                                <div class="text-xs text-gray-900 font-mono break-all">TQn9Y2khEsLMWD7fhRRHMbnqmS9aGHMeyn</div>
-                                <div class="text-xs text-red-600 mt-2">⚠️ Միայն TRC20 ցանց օգտագործեք</div>
+                                <div class="text-xs text-gray-900 font-mono break-all">GPpgwBALDQxD1U5EBnnKPyemunjtyzKZsQsGSVe2DYzJ</div>
+                                <div class="text-xs text-red-600 mt-2">⚠️ Միայն USDC SOLANA ցանց օգտագործեք</div>
                             </div>
                         </div>
                     `;
@@ -2489,7 +2489,7 @@
         function processDeposit() {
             const amount = parseInt(document.getElementById('deposit-amount').value);
             
-            if (!selectedDepositMethod || !amount || amount < 1000) {
+            if (!selectedDepositMethod || !amount || amount < 3000) {
                 return;
             }
             
@@ -2504,7 +2504,7 @@
                 submitBtn.innerHTML = `
                     <div class="flex items-center justify-center space-x-2">
                         <div class="loading-spinner w-5 h-5 border-2 border-white border-t-transparent rounded-full"></div>
-                        <span class="linen-text-wave">Linen մշակում...</span>
+                        <span class="linen-text-wave">DASH մշակում...</span>
                         <span class="linen-icon-bounce">⚡</span>
                     </div>
                 `;
@@ -2558,7 +2558,7 @@
                     submitBtn.innerHTML = `
                         <div class="flex items-center justify-center space-x-2">
                             <span class="linen-icon-bounce">✅</span>
-                            <span class="linen-text-wave">Linen հաջողություն!</span>
+                            <span class="linen-text-wave">DASH հաջողություն!</span>
                             <span class="linen-icon-bounce">🎉</span>
                         </div>
                     `;
@@ -2657,20 +2657,15 @@
             let content = '';
             
             switch(method) {
-                case 'linen':
+                case 'DASH':
                     content = `
                         <div class="bg-teal-50 border border-teal-200 rounded-lg p-4">
                             <h5 class="font-semibold text-teal-800 mb-2">Linen ելքագրման մանրամասներ</h5>
-                            <p class="text-sm text-teal-700 mb-3">Մուտքագրեք Ձեր Linen հաշվի տվյալները:</p>
+                            <p class="text-sm text-teal-700 mb-3">Մուտքագրեք Ձեր DASH հաշվի տվյալները:</p>
                             <div class="space-y-3">
                                 <div>
-                                    <label class="block text-sm font-medium text-gray-700 mb-2">Հեռախոսահամար</label>
-                                    <input type="tel" id="linen-phone" placeholder="+374-XX-XXX-XXX" class="w-full px-3 py-2 border border-gray-300 rounded-lg">
-                                </div>
-                                <div>
-                                    <label class="block text-sm font-medium text-gray-700 mb-2">Անուն Ազգանուն</label>
-                                    <input type="text" id="linen-name" placeholder="Ձեր անունը" class="w-full px-3 py-2 border border-gray-300 rounded-lg">
-                                </div>
+                              <label class="block text-sm font-medium text-gray-700 mb-2">BTC Wallet հասցե</label>
+                                <input type="text" id="btc-address" placeholder="bc1qxy2kgdygjrsqtzq2n0yrf2493p83kkfjhx0wlh" class="w-full px-3 py-2 border border-gray-300 rounded-lg text-sm font-mono">
                             </div>
                         </div>
                     `;
