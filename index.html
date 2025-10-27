@@ -964,55 +964,96 @@
                         </button>
                     </div>
                 </div>
-
-                <!-- Benefits Section -->
-                <div class="bg-gradient-to-r from-purple-500 to-pink-500 text-white p-4 rounded-lg mb-4">
-                    <h4 class="font-bold mb-3">Բացեք հսկայական եկամտի ներուժը հաշվետվություններով:</h4>
-                    <p class="text-sm opacity-90 mb-3">
-                        Ընդլայնեք Ձեր եկամտի հորիզոնները RichRise-ով՝ հաշվետվություն կատարելով Ձեր ընկերներին, ընտանիքին կամ հետևորդներին մեր հարթակ: Ահա, թե ինչ եք ստանում:
-                    </p>
-                    <div class="space-y-2">
-                        <div class="flex items-center space-x-2">
-                            <span class="text-yellow-300">💰</span>
-                            <span class="text-sm">Վաստակեք լրացուցիչ ֏4,000 յուրաքանչյուր հաջող գրանցման համար:</span>
-                        </div>
-                        <div class="flex items-center space-x-2">
-                            <span class="text-green-300">📈</span>
-                            <span class="text-sm">Եթե Ձեր հրավիրած օգտատերը գումար է վաստակում, Դուք նույնպես ստանում եք այդ գումարի 10%-ը որպես պարգև:</span>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- Referrals List -->
-                <div class="bg-white border border-gray-200 rounded-lg p-4">
-                    <h4 class="font-semibold mb-3">Ձեր հաշվետվություններ</h4>
-                    <div class="text-center py-8 text-gray-500">
-                        <div class="text-4xl mb-2">👥</div>
-                        <div class="font-medium">Հաշվետվություններ չկան</div>
-                        <div class="text-sm">Այս պահին ոչ ոք չի գրանցվել Ձեր հղումով:</div>
-                    </div>
-                </div>
+            <!-- Առաջադրանքների պրոգրես բար -->
+           <div class="bg-gray-200 rounded-full h-4 w-full mb-4 overflow-hidden">
+            <div id="task-progress-bar" class="bg-green-500 h-4 w-0 transition-all duration-500"></div>
             </div>
-        </div>
+              <div class="flex justify-between text-sm mb-4">
+            <span id="tasks-progress-text">0%</span>
+         <span id="tasks-earnings-text">0֏</span>
+       </div>
 
-        <!-- Center Section -->
-        <div id="center-section" class="section-content" style="display: none;">
-            <div class="section-card mb-6">
-                <h3 class="text-xl font-bold mb-4">Առաջադրանքների Կենտրոն</h3>
-                
-                <!-- Progress Summary -->
-                <div class="bg-gradient-to-r from-purple-500 to-pink-500 text-white p-4 rounded-lg mb-4">
-                    <div class="flex items-center justify-between mb-3">
-                        <div>
-                            <h4 class="font-bold">Ավարտված: <span id="completed-tasks-count">0</span></h4>
-                            <p class="text-sm opacity-90">Ընդհանուր վաստակած</p>
-                        </div>
-                        <div class="text-right">
-                            <div class="text-2xl font-bold" id="total-task-earnings">֏0</div>
-                            <div class="text-xs opacity-75">Tips</div>
-                        </div>
-                    </div>
-                </div>
+        <script>
+         // Օգտատիրոջ տվյալներ
+        const currentUser = { 
+        id: 12345,
+        name: "KING",
+        referrals: [],
+        tasks: { completed: 0, earnings: 0 },
+        balance: 0
+       };
+
+       const referralBonus = 4000;
+       const referralPercent = 0.10;
+       const totalTasksTarget = 10; // Առաջադրանքների նպատակ (բարով %-ը հաշվելու համար)
+
+// Referral link
+document.getElementById('referral-link').value = "https://t.me/BirdsGolden_bot/app?startapp=r_" + currentUser.id;
+function shareReferralLink() {
+    navigator.clipboard.writeText(document.getElementById('referral-link').value)
+        .then(() => alert("Հղումը պատճենվել է clipboard-ին"))
+        .catch(() => alert("Չհաջողվեց պատճենել հղումը"));
+}
+
+// Թարմացնող ֆունկցիա Dashboard-ի համար
+function updateDashboard() {
+    // Referrals list
+    const container = document.querySelector('#referrals-list');
+    if (currentUser.referrals.length === 0) {
+        container.innerHTML = `
+        <div class="text-center py-8 text-gray-500">
+            <div class="text-4xl mb-2">👥</div>
+            <div class="font-medium">Հաշվետվություններ չկան</div>
+            <div class="text-sm">Այս պահին ոչ ոք չի գրանցվել Ձեր հղումով:</div>
+        </div>`;
+    } else {
+        container.innerHTML = currentUser.referrals.map(r => `
+            <div class="flex justify-between py-2 border-b">
+                <span>${r.name}</span>
+                <span>${r.earned}֏</span>
+            </div>
+        `).join('');
+    }
+
+    // Առաջադրանքների պրոգրես բար
+    const progressPercent = Math.min((currentUser.tasks.completed / totalTasksTarget) * 100, 100);
+    document.getElementById('task-progress-bar').style.width = progressPercent + '%';
+    document.getElementById('tasks-progress-text').textContent = progressPercent.toFixed(0) + '%';
+    document.getElementById('tasks-earnings-text').textContent = currentUser.tasks.earnings + '֏';
+
+    // Ընդհանուր հաշվեկշիռ
+    document.getElementById('total-task-earnings').textContent = currentUser.balance + '֏';
+}
+
+// Նոր referral ավելացնել
+function addReferral(newUserName, newUserEarnings) {
+    currentUser.referrals.push({ name: newUserName, earned: newUserEarnings });
+    currentUser.balance += referralBonus + newUserEarnings * referralPercent;
+    updateDashboard();
+}
+
+// Նոր առաջադրանք ավելացնել
+function addTask(earnings) {
+    currentUser.tasks.completed += 1;
+    currentUser.tasks.earnings += earnings;
+    currentUser.balance += earnings;
+    updateDashboard();
+}
+
+// Դեմո տվյալներ՝ ռեալ-թայմ
+function demoRealtimeUpdates() {
+    setTimeout(() => addReferral("Անուշ", 5000), 1000);
+    setTimeout(() => addTask(2000), 2000);
+    setTimeout(() => addReferral("Մարատ", 8000), 3000);
+    setTimeout(() => addTask(3500), 4000);
+    setTimeout(() => addTask(1500), 5000);
+}
+
+// Սկսենք
+updateDashboard();
+demoRealtimeUpdates();
+</script>
+
 
                 <!-- Info Card -->
                 <div class="bg-blue-50 border border-blue-200 rounded-lg p-4 mb-4">
