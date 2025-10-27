@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="hy">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>BirdsGolden Dashboard Demo</title>
+<script src="https://cdn.tailwindcss.com"></script>
+</head>
+<body class="bg-gray-100 p-6 font-sans">
+
+<!-- Login Screen -->
+<div id="login-screen" class="max-w-md mx-auto bg-white rounded-xl shadow-lg p-6 space-y-4">
+    <h2 class="text-xl font-bold text-center mb-4">Մուտքագրեք Telegram-ով</h2>
+    <div id="login-content" class="text-center">
+        <button onclick="loginWithTelegram()" class="bg-blue-500 text-white px-6 py-2 rounded-lg">Login with Telegram</button>
+    </div>
+    <div id="login-loading" class="hidden text-center text-gray-500">Loading...</div>
+</div>
+
+<!-- Dashboard -->
+<div id="dashboard" class="max-w-md mx-auto hidden space-y-4">
+
+  <!-- User Info -->
+  <div class="flex items-center justify-between bg-white p-4 rounded-lg shadow">
+    <div class="flex items-center space-x-3">
+      <div class="text-4xl">👤</div>
+      <div>
+        <div id="user-info" class="font-bold text-lg">Դեմո</div>
+        <div class="text-sm text-gray-500">PRO</div>
+      </div>
+    </div>
+    <button class="bg-blue-500 text-white px-3 py-1 rounded-lg text-sm">+ Ավելացնել</button>
+  </div>
+
+  <!-- Referral Link -->
+  <div class="bg-gray-50 p-3 rounded-lg text-gray-700 text-sm flex justify-between">
+      <input type="text" id="referral-link" readonly class="flex-1 px-3 py-2 border rounded-l-lg">
+      <button onclick="shareReferralLink()" class="bg-blue-500 text-white px-3 py-2 rounded-r-lg">Կիսվել</button>
+  </div>
+
+  <!-- Balance & Status -->
+  <div class="flex justify-between text-sm text-gray-600">
+    <span>🌐 Լեզու: hy</span>
+    <span>Ընթացիկ մնացորդ: <strong id="total-task-earnings">֏14,600</strong></span>
+  </div>
+
+  <!-- Status Cards -->
+  <div class="grid grid-cols-3 gap-3 text-center text-sm">
+    <div class="bg-green-100 p-3 rounded-lg">💰<br>Ակտիվ</div>
+    <div class="bg-red-100 p-3 rounded-lg">🔒<br>Անվտանգ</div>
+    <div class="bg-yellow-100 p-3 rounded-lg">⚡<br>Ակնթարթային</div>
+  </div>
+
+  <!-- Task Progress -->
+  <div class="bg-gray-200 rounded-full h-4 w-full mb-2 overflow-hidden">
+      <div id="task-progress-bar" class="bg-green-500 h-4 w-0 transition-all duration-500"></div>
+  </div>
+  <div class="flex justify-between text-sm mb-4">
+      <span id="tasks-progress-text">0%</span>
+      <span id="tasks-earnings-text">0֏</span>
+  </div>
+
+  <!-- Referrals List -->
+  <div id="referrals-list" class="bg-white p-4 rounded-lg shadow text-center text-gray-500">
+      👥 <br>Հաշվետվություններ չկան
+  </div>
+
+</div>
+
+<script src="script.js"></script>
+</body>
+</html>
