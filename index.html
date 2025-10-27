@@ -1972,34 +1972,7 @@ setInterval(updateBlockchainData,30000);
             checkExistingLogin();
         });
 
-        // Telegram Login
-        function loginWithTelegram() {
-            triggerHaptic('medium');
-            
-            document.getElementById('login-content').classList.add('hidden');
-            document.getElementById('login-loading').classList.remove('hidden');
-            
-            // Simulate login process
-            setTimeout(() => {
-                if (tg && tg.initDataUnsafe && tg.initDataUnsafe.user) {
-                    // Real Telegram user data
-                    currentUser = {
-                        id: tg.initDataUnsafe.user.id,
-                        first_name: tg.initDataUnsafe.user.first_name,
-                        last_name: tg.initDataUnsafe.user.last_name || '',
-                        username: tg.initDataUnsafe.user.username || '',
-                        language_code: tg.initDataUnsafe.user.language_code || 'hy'
-                    };
-                } else {
-                    // Demo user for testing
-                    currentUser = {
-                        id: 123456789,
-                        first_name: 'Դեմո',
-                        last_name: 'Օգտատեր',
-                        username: 'demo_user',
-                        language_code: 'hy'
-                    };
-                }
+        
                 
                 // Save user data
                 localStorage.setItem('richlab_user', JSON.stringify(currentUser));
