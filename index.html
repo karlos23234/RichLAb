@@ -1877,93 +1877,52 @@ setInterval(updateBlockchainData,30000);
 </div>
 
 <!-- Withdrawal Details -->
-<div id="withdrawal-details" class="mb-6" style="display: none;">
-    <!-- Will be populated based on selected method -->
+<div class="withdraw-section relative z-50 p-4">
+    <!-- Amount Input -->
+    <div class="mb-6">
+        <label for="withdraw-amount" class="block text-sm font-medium text-gray-700 mb-2">
+            Գումարը (֏)
+        </label>
+        <input 
+            type="number" 
+            id="withdraw-amount"
+            placeholder="Մուտքագրեք գումարը"
+            min="125000"
+            step="5000"
+            class="w-full px-3 py-3 border border-gray-300 rounded-lg text-lg font-medium"
+        >
+    </div>
+
+    <!-- Submit Button -->
+    <button 
+        id="withdraw-submit"
+        onclick="processWithdrawal()" 
+        class="w-full bg-red-500 text-white py-3 px-6 rounded-xl font-bold text-lg relative z-50"
+    >
+        Ելքագրել գումար
+    </button>
 </div>
 
-<!-- Submit Button -->
-<button 
-    id="withdraw-submit"
-    onclick="processWithdrawal()" 
-    class="w-full bg-red-500 text-white py-3 px-6 rounded-xl font-bold text-lg disabled:opacity-50 disabled:cursor-not-allowed"
-    disabled
->
-    Ելքագրել գումար
-</button>
-
-<button 
-    id="withdraw-submit"
-    onclick="processWithdrawal()" 
-    class="w-full bg-red-500 text-white py-3 px-6 rounded-xl font-bold text-lg"
->
-    Ելքագրել գումար
-</button>
-
 <script>
-    let userHasDeposited = false; // false - դեռ չի կատարել, true - կատարել է
-    let selectedMethod = null;
-
-    function selectWithdrawMethod(method) {
-        selectedMethod = method;
-    }
+    // Սիմուլացիա՝ օգտատերը չի կատարել դեփոզիտ
+    let userHasDeposited = false; // false - simulate no deposit
 
     function processWithdrawal() {
         if (!userHasDeposited) {
-            // Հայերեն ծանուցում և ուղղորդում պրոֆիլ
-            if (confirm("Դուք դեռ դեփոզիտ չեք կատարել։\nՈւզո՞ւմ եք գնալ ձեր պրոֆիլ, որպեսզի կատարեք դեփոզիտ։")) {
-                window.location.href = "/profile"; // Փոխարինել ձեր պրոֆիլի URL-ով
-            }
+            alert("Սիմուլացիա: Դուք դեռ դեփոզիտ չեք կատարել։ Ելքագրում անհնարին է։");
             return;
         }
 
         const amount = parseInt(document.getElementById('withdraw-amount').value);
-        if (!selectedMethod) {
-            alert("Խնդրում ենք ընտրել ելքագրման մեթոդ։");
-            return;
-        }
-
         if (!amount || amount < 125000) {
             alert("Խնդրում ենք մուտքագրել 125,000֏–ից ոչ պակաս գումար։");
             return;
         }
 
-        // Այստեղ կատարում ենք ելքագրման լոգիկան
-        alert(`Դուք ընտրել եք ${selectedMethod} և ելքագրում եք ${amount}֏:`);
+        alert(`Դուք ելքագրում եք ${amount}֏:`);
     }
 </script>
 
-    <!-- Bottom Navigation -->
-    <nav class="fixed bottom-0 left-0 right-0 bg-white border-t border-gray-200 z-40 backdrop-blur-lg bg-white/90">
-        <div class="flex justify-around items-center py-2 relative">
-            <div class="nav-indicator absolute top-0 left-0 h-1 bg-gradient-to-r from-blue-500 to-purple-500 rounded-full transition-all duration-500 ease-out" style="width: 20%; transform: translateX(0%);"></div>
-            
-            <button onclick="showHome()" class="nav-btn flex flex-col items-center p-2 text-blue-600 relative transition-all duration-300 ease-out">
-                <span class="text-xl mb-1 transition-transform duration-300 ease-out">🏠</span>
-                <span class="text-xs font-medium">Գլխավոր</span>
-                <div class="nav-ripple absolute inset-0 rounded-lg"></div>
-            </button>
-            <button onclick="showInvite()" class="nav-btn flex flex-col items-center p-2 text-gray-500 relative transition-all duration-300 ease-out">
-                <span class="text-xl mb-1 transition-transform duration-300 ease-out">👥</span>
-                <span class="text-xs font-medium">Հրավեր</span>
-                <div class="nav-ripple absolute inset-0 rounded-lg"></div>
-            </button>
-            <button onclick="showCenter()" class="nav-btn flex flex-col items-center p-2 text-gray-500 relative transition-all duration-300 ease-out">
-                <span class="text-xl mb-1 transition-transform duration-300 ease-out">🎯</span>
-                <span class="text-xs font-medium">Կենտրոն</span>
-                <div class="nav-ripple absolute inset-0 rounded-lg"></div>
-            </button>
-            <button onclick="showVideo()" class="nav-btn flex flex-col items-center p-2 text-gray-500 relative transition-all duration-300 ease-out">
-                <span class="text-xl mb-1 transition-transform duration-300 ease-out">📺</span>
-                <span class="text-xs font-medium">Տեսանյութ</span>
-                <div class="nav-ripple absolute inset-0 rounded-lg"></div>
-            </button>
-            <button onclick="showCash()" class="nav-btn flex flex-col items-center p-2 text-gray-500 relative transition-all duration-300 ease-out">
-                <span class="text-xl mb-1 transition-transform duration-300 ease-out">💰</span>
-                <span class="text-xs font-medium">Կանխիկ</span>
-                <div class="nav-ripple absolute inset-0 rounded-lg"></div>
-            </button>
-        </div>
-    </nav>
 
     <script>
         // Global variables
