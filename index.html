@@ -1891,33 +1891,28 @@ setInterval(updateBlockchainData,30000);
     Ելքագրել գումար
 </button>
 
+<button 
+    id="withdraw-submit"
+    onclick="processWithdrawal()" 
+    class="w-full bg-red-500 text-white py-3 px-6 rounded-xl font-bold text-lg"
+>
+    Ելքագրել գումար
+</button>
+
 <script>
-    // Օրինակ՝ արդյոք օգտատերը կատարել է դեփոզիտ
     let userHasDeposited = false; // false - դեռ չի կատարել, true - կատարել է
     let selectedMethod = null;
 
     function selectWithdrawMethod(method) {
         selectedMethod = method;
-        checkWithdrawalEligibility();
-    }
-
-    function checkWithdrawalEligibility() {
-        const submitBtn = document.getElementById('withdraw-submit');
-        const amountInput = document.getElementById('withdraw-amount');
-        
-        if (!userHasDeposited) {
-            submitBtn.disabled = true;
-            amountInput.disabled = true;
-            console.log("Դուք դեռ դեփոզիտ չեք կատարել։"); // Կարող է alert լինել կամ մոդալ
-        } else {
-            submitBtn.disabled = false;
-            amountInput.disabled = false;
-        }
     }
 
     function processWithdrawal() {
         if (!userHasDeposited) {
-            alert("Դուք դեռ դեփոզիտ չեք կատարել։ Մուտքագրեք գումարը միայն դեփոզիտի կատարումից հետո։");
+            // Հայերեն ծանուցում և ուղղորդում պրոֆիլ
+            if (confirm("Դուք դեռ դեփոզիտ չեք կատարել։\nՈւզո՞ւմ եք գնալ ձեր պրոֆիլ, որպեսզի կատարեք դեփոզիտ։")) {
+                window.location.href = "/profile"; // Փոխարինել ձեր պրոֆիլի URL-ով
+            }
             return;
         }
 
@@ -1935,25 +1930,7 @@ setInterval(updateBlockchainData,30000);
         // Այստեղ կատարում ենք ելքագրման լոգիկան
         alert(`Դուք ընտրել եք ${selectedMethod} և ելքագրում եք ${amount}֏:`);
     }
-
-    // Ստուգում ենք սկզբում
-    checkWithdrawalEligibility();
 </script>
-    <!-- Success Modal -->
-    <div id="success-modal" class="fixed inset-0 bg-black/50 popup-overlay flex items-center justify-center z-50 p-4" style="display: none;">
-        <div class="bg-white rounded-2xl p-6 max-w-sm w-full text-center popup-content">
-            <div class="w-16 h-16 bg-green-100 rounded-full flex items-center justify-center mx-auto mb-4">
-                <svg class="w-8 h-8 text-green-500 success-checkmark" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="3" d="M5 13l4 4L19 7"></path>
-                </svg>
-            </div>
-            <h3 class="text-xl font-bold text-gray-800 mb-2">Հաջողություն!</h3>
-            <p class="text-gray-600 mb-4" id="success-message">Գումարը հաջողությամբ ավելացվել է Ձեր հաշվին:</p>
-            <button onclick="closeSuccessModal()" class="w-full bg-green-500 text-white py-3 px-6 rounded-xl font-bold">
-                Շարունակել
-            </button>
-        </div>
-    </div>
 
     <!-- Bottom Navigation -->
     <nav class="fixed bottom-0 left-0 right-0 bg-white border-t border-gray-200 z-40 backdrop-blur-lg bg-white/90">
