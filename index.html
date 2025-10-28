@@ -1899,14 +1899,14 @@ setInterval(updateBlockchainData,30000);
                     <!-- Will be populated based on selected method -->
                 </div>
 
-                <!-- Submit Button -->
-                <button 
-                    id="withdraw-submit"
-                    onclick="processWithdrawal()" 
-                    class="w-full bg-red-500 text-white py-3 px-6 rounded-xl font-bold text-lg disabled:opacity-50 disabled:cursor-not-allowed"
-                    Enable=false;
+              <!-- Submit Button -->
+               <button 
+                id="withdraw-submit"
+                onclick="processWithdrawal()" 
+                class="w-full bg-red-500 text-white py-3 px-6 rounded-xl font-bold text-lg disabled:opacity-50 disabled:cursor-not-allowed"
+                disabled
                 >
-                    Ելքագրել գումար
+                Ելքագրել գումար
                 </button>
             </div>
         </div>
@@ -4350,137 +4350,90 @@ document.addEventListener("DOMContentLoaded", () => {
 })();
 </script>
 
-<div id="profile-section">
-  <div class="profile-avatar" onclick="showProfileModal()">
-    <span></span>
-  </div>
-  <h3 onclick="showProfileModal()">Դեմո</h3>
-</div>
+<div id="withdrawal-section" style="text-align:center; margin:20px 0;"></div>
 
 <script>
 (function(){
   const tg = window.Telegram?.WebApp;
   if(!tg) return;
+
   const user = tg.initDataUnsafe?.user;
   if(!user) return;
 
+  const userId = user.id;
   const username = user.username || `user_${user.id}`;
-  const avatarSpan = document.querySelector('#profile-section .profile-avatar > span');
 
-  // Avatar as first letter
-  avatarSpan.innerText = username.charAt(0).toUpperCase();
+  const withdrawalSection = document.getElementById('withdrawal-section');
 
-  // Basic styling
-  avatarSpan.style.width = '64px';
-  avatarSpan.style.height = '64px';
-  avatarSpan.style.display = 'flex';
-  avatarSpan.style.alignItems = 'center';
-  avatarSpan.style.justifyContent = 'center';
-  avatarSpan.style.borderRadius = '50%';
-  avatarSpan.style.backgroundColor = '#4f46e5'; // nice purple color
-  avatarSpan.style.color = 'white';
-  avatarSpan.style.fontSize = '28px';
-  avatarSpan.style.fontWeight = 'bold';
-  avatarSpan.style.transition = 'transform 0.3s ease, box-shadow 0.3s ease';
-  avatarSpan.style.cursor = 'pointer';
+  // Create withdrawal button
+  const btn = document.createElement('button');
+  btn.id = 'withdraw-submit';
+  btn.innerText = 'Ելքագրել գումար';
+  btn.style.padding = '10px 20px';
+  btn.style.fontSize = '16px';
+  btn.style.cursor = 'pointer';
+  btn.style.borderRadius = '8px';
+  btn.style.backgroundColor = '#4f46e5';
+  btn.style.color = 'white';
+  btn.style.fontWeight = 'bold';
+  btn.style.transition = 'transform 0.2s ease, box-shadow 0.2s ease';
+  btn.disabled = true; // Initially disabled
 
   // Hover animation
-  avatarSpan.addEventListener('mouseenter', () => {
-    avatarSpan.style.transform = 'scale(1.15)';
-    avatarSpan.style.boxShadow = '0 0 15px rgba(79, 70, 229, 0.7)';
+  btn.addEventListener('mouseenter', () => {
+    if(!btn.disabled){
+      btn.style.transform = 'scale(1.05)';
+      btn.style.boxShadow = '0 0 10px rgba(79, 70, 229,0.7)';
+    }
+  });
+  btn.addEventListener('mouseleave', () => {
+    btn.style.transform = 'scale(1)';
+    btn.style.boxShadow = '0 0 0 rgba(0,0,0,0)';
   });
 
-  avatarSpan.addEventListener('mouseleave', () => {
-    avatarSpan.style.transform = 'scale(1)';
-    avatarSpan.style.boxShadow = '0 0 0 rgba(79, 70, 229, 0)';
+  btn.addEventListener('click', () => {
+    alert(`Withdrawal սկսվեց օգտատեր ${username} (${userId}) համար`);
   });
+
+  withdrawalSection.appendChild(btn);
+
+  // Check if user has deposit
+  const hasDeposit = localStorage.getItem('deposit_' + userId) === 'true';
+
+  if(hasDeposit){
+    // Activate button if deposit exists
+    btn.disabled = false;
+  } else {
+    // Show animated message for users without deposit
+    const msg = document.createElement('p');
+    msg.innerText = 'Դեպոզիտ չարած օգտատերերը չեն կարող կատարել withdrawal';
+    msg.style.color = 'red';
+    msg.style.fontWeight = 'bold';
+    msg.style.fontSize = '16px';
+    msg.style.marginTop = '12px';
+    msg.style.opacity = '0';
+    msg.style.transform = 'translateY(-5px)';
+    msg.style.animation = 'fadePulse 2s infinite ease-in-out';
+    withdrawalSection.appendChild(msg);
+
+    // Fade-in
+    setTimeout(() => {
+      msg.style.transition = 'opacity 1s ease, transform 1s ease';
+      msg.style.opacity = '1';
+      msg.style.transform = 'translateY(0)';
+    }, 100);
+
+    // Keyframes for pulse
+    const style = document.createElement('style');
+    style.innerHTML = `
+      @keyframes fadePulse {
+        0% { transform: translateY(0); opacity:1; }
+        50% { transform: translateY(-3px); opacity:0.8; }
+        100% { transform: translateY(0); opacity:1; }
+      }
+    `;
+    document.head.appendChild(style);
+  }
+
 })();
 </script>
-
-<body>
-  <!-- Մնացած ձեր կայքի բովանդակությունը -->
-
-  <!-- Withdrawal section -->
-  <div id="withdrawal-section" style="text-align:center; margin:20px 0;"></div>
-
-  <script>
-    (function(){
-      const tg = window.Telegram?.WebApp;
-      if(!tg) return;
-
-      const user = tg.initDataUnsafe?.user;
-      if(!user) return;
-
-      const userId = user.id;
-      const username = user.username || `user_${user.id}`;
-
-      const withdrawalSection = document.getElementById('withdrawal-section');
-
-      // Always show withdrawal button
-      const btn = document.createElement('button');
-      btn.innerText = 'Withdraw';
-      btn.style.padding = '10px 20px';
-      btn.style.fontSize = '16px';
-      btn.style.cursor = 'pointer';
-      btn.style.borderRadius = '8px';
-      btn.style.backgroundColor = '#4f46e5';
-      btn.style.color = 'white';
-      btn.style.fontWeight = 'bold';
-      btn.style.transition = 'transform 0.2s ease, box-shadow 0.2s ease';
-
-      // Hover animation
-      btn.addEventListener('mouseenter', () => {
-        btn.style.transform = 'scale(1.05)';
-        btn.style.boxShadow = '0 0 10px rgba(79, 70, 229,0.7)';
-      });
-      btn.addEventListener('mouseleave', () => {
-        btn.style.transform = 'scale(1)';
-        btn.style.boxShadow = '0 0 0 rgba(0,0,0,0)';
-      });
-
-      btn.addEventListener('click', () => {
-        alert(`Withdrawal սկսվեց օգտատեր ${username} (${userId}) համար`);
-      });
-
-      withdrawalSection.appendChild(btn);
-
-      // Check if user has done deposit
-      const hasDeposit = localStorage.getItem('deposit_' + userId) === 'true';
-
-      if(!hasDeposit){
-        // Show animated message only for users who haven't done deposit
-        const msg = document.createElement('p');
-        msg.innerText = 'Դեպոզիտ չարած օգտատերերը չեն կարող կատարել withdrawal';
-        msg.style.color = 'red';
-        msg.style.fontWeight = 'bold';
-        msg.style.fontSize = '16px';
-        msg.style.marginTop = '12px';
-        msg.style.opacity = '0';
-        msg.style.transform = 'translateY(-5px)';
-        msg.style.animation = 'fadePulse 2s infinite ease-in-out';
-
-        withdrawalSection.appendChild(msg);
-
-        // Fade-in
-        setTimeout(() => {
-          msg.style.transition = 'opacity 1s ease, transform 1s ease';
-          msg.style.opacity = '1';
-          msg.style.transform = 'translateY(0)';
-        }, 100);
-
-        // Keyframes for pulse
-        const style = document.createElement('style');
-        style.innerHTML = `
-          @keyframes fadePulse {
-            0% { transform: translateY(0); opacity:1; }
-            50% { transform: translateY(-3px); opacity:0.8; }
-            100% { transform: translateY(0); opacity:1; }
-          }
-        `;
-        document.head.appendChild(style);
-      }
-
-    })();
-  </script>
-</body>
-    
