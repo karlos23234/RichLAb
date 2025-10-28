@@ -903,39 +903,37 @@
                                 <button onclick="setLang('hy')">🇦🇲 Հայ</button>
                                 <button onclick="setLang('en')">🇬🇧 Eng</button>
                                 <button onclick="setLang('ru')">🇷🇺 Рус</button>
-                            </div>
-
-                    <script>
-                          
-                          const translations = {
-                        hy: {
-                            title: "Բարի գալուստ",
-                            text: "Սա ձեր կայքի հայերեն տարբերակն է։",
-                            login: "Մուտք գործել",
-                            register: "Գրանցվել",
-                            balance: "Իմ հաշվեկշիռը",
-                            deposit: "Նախավճար",
-                            withdraw: "Ելքագրում"
-                        },
-                        en: {
-                            title: "Welcome",
-                            text: "This is the English version of your site.",
-                            login: "Login",
-                            register: "Register",
-                            balance: "My Balance",
-                            deposit: "Deposit",
-                            withdraw: "Withdraw"
-                        },
-                        ru: {
-                           title: "Добро пожаловать",
-                           text: "Это русская версия вашего сайта.",
-                           login: "Войти",
-                           register: "Регистрация",
-                           balance: "Мой баланс",
-                           deposit: "Депозит",
-                           withdraw: "Вывод"
-                        }
-                    };
+                            </div>               
+<script>
+  const translations = {
+    hy: {
+      title: "Բարի գալուստ",
+      text: "Սա ձեր կայքի հայերեն տարբերակն է։",
+      login: "Մուտք գործել",
+      register: "Գրանցվել",
+      balance: "Իմ հաշվեկշիռը",
+      deposit: "Նախավճար",
+      withdraw: "Ելքագրում"
+    },
+    en: {
+      title: "Welcome",
+      text: "This is the English version of your site.",
+      login: "Login",
+      register: "Register",
+      balance: "My Balance",
+      deposit: "Deposit",
+      withdraw: "Withdraw"
+    },
+    ru: {
+      title: "Добро пожаловать",
+      text: "Это русская версия вашего сайта.",
+      login: "Войти",
+      register: "Регистрация",
+      balance: "Мой баланс",
+      deposit: "Депозит",
+      withdraw: "Вывод"
+    }
+  };
 
   function setLang(lang) {
     localStorage.setItem("lang", lang);
@@ -953,9 +951,9 @@
     const savedLang = localStorage.getItem("lang") || "hy";
     setLang(savedLang);
   };
-</script>
-            
-                        <!-- Balance Display -->
+</script>            
+                     
+                            <!-- Balance Display -->
                         <div class="bg-white/10 backdrop-blur-sm rounded-lg p-4 text-center cursor-pointer hover:bg-white/20 hover:scale-105 transition-all duration-300" onclick="showBalanceModal()">
                             <div class="text-sm opacity-90 mb-1">Ընթացիկ մնացորդ</div>
                             <div class="text-3xl font-bold mb-2" id="invite-balance">֏${currentBalance.toLocaleString()}</div>
@@ -4495,3 +4493,4 @@ document.addEventListener("DOMContentLoaded", () => {
 
 })();
 </script>
+
