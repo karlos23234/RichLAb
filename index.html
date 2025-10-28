@@ -895,8 +895,66 @@
                                     🌐 Լեզու
                                 </div>
                             </div>
-                        </div>
-                        
+                        </div> 
+                          <h1 id="title">Բարի գալուստ</h1>
+                                 <p id="text">Սա ձեր կայքի հայերեն տարբերակն է։</p>
+
+                                <div style="margin-top:20px;">
+                                <button onclick="setLang('hy')">🇦🇲 Հայ</button>
+                                <button onclick="setLang('en')">🇬🇧 Eng</button>
+                                <button onclick="setLang('ru')">🇷🇺 Рус</button>
+                            </div>
+
+                    <script>
+                          
+                          const translations = {
+                        hy: {
+                            title: "Բարի գալուստ",
+                            text: "Սա ձեր կայքի հայերեն տարբերակն է։",
+                            login: "Մուտք գործել",
+                            register: "Գրանցվել",
+                            balance: "Իմ հաշվեկշիռը",
+                            deposit: "Նախավճար",
+                            withdraw: "Ելքագրում"
+                        },
+                        en: {
+                            title: "Welcome",
+                            text: "This is the English version of your site.",
+                            login: "Login",
+                            register: "Register",
+                            balance: "My Balance",
+                            deposit: "Deposit",
+                            withdraw: "Withdraw"
+                        },
+                        ru: {
+                           title: "Добро пожаловать",
+                           text: "Это русская версия вашего сайта.",
+                           login: "Войти",
+                           register: "Регистрация",
+                           balance: "Мой баланс",
+                           deposit: "Депозит",
+                           withdraw: "Вывод"
+                        }
+                    };
+
+  function setLang(lang) {
+    localStorage.setItem("lang", lang);
+    document.documentElement.lang = lang;
+
+    // անցնում ենք բոլոր թարգմանվող տարրերով
+    for (const key in translations[lang]) {
+      const el = document.getElementById(key);
+      if (el) el.textContent = translations[lang][key];
+    }
+  }
+
+  // կայքը բացվելիս բերում է նախընտրած լեզուն
+  window.onload = () => {
+    const savedLang = localStorage.getItem("lang") || "hy";
+    setLang(savedLang);
+  };
+</script>
+            
                         <!-- Balance Display -->
                         <div class="bg-white/10 backdrop-blur-sm rounded-lg p-4 text-center cursor-pointer hover:bg-white/20 hover:scale-105 transition-all duration-300" onclick="showBalanceModal()">
                             <div class="text-sm opacity-90 mb-1">Ընթացիկ մնացորդ</div>
@@ -1410,7 +1468,7 @@
                             <div class="flex items-center justify-between">
                                 <div class="flex items-center space-x-3">
                                     <div class="w-10 h-10 bg-yellow-100 rounded-full flex items-center justify-center">
-                                        <span class="text-lg">₿</span>
+                                    <img src="https://www.bitcoin.com/static/5f428328e687dfda6e13504e2ded7ff6/how-to-receive-bitcoin_new.svg" alt="">
                                     </div>
                                     <div>
                                         <h5 class="font-semibold">Bitcoin (BTC)</h5>
@@ -1427,7 +1485,7 @@
                             <div class="flex items-center justify-between">
                                 <div class="flex items-center space-x-3">
                                     <div class="w-10 h-10 bg-green-100 rounded-full flex items-center justify-center">
-                                        <span class="text-lg">💚</span>
+                                    <img src="https://img.freepik.com/premium-psd/green-circle-with-large-t-it-that-is-labeled-t_767610-17.jpg?semt=ais_hybrid&w=740&q=80" alt="">  
                                     </div>
                                     <div>
                                         <h5 class="font-semibold">USDT (TRC20)</h5>
@@ -1892,7 +1950,7 @@ setInterval(updateBlockchainData,30000);
                         class="w-full px-3 py-3 border border-gray-300 rounded-lg text-lg font-medium"
                    > 
                     <p class="text-xs text-gray-500 mt-1">Նվազագույնը ֏125,000</p>
-                </div>
+                 </div>
               
                 <!-- Withdrawal Details -->
                 <div id="withdrawal-details" class="mb-6" style="display: none;">
