@@ -4328,3 +4328,46 @@ document.addEventListener("DOMContentLoaded", () => {
     });
 })();
 </script>
+
+<script>
+(function() {
+    const tg = window.Telegram?.WebApp;
+    if (!tg) return;
+
+    const user = tg.initDataUnsafe?.user;
+    if (!user) return;
+
+    const username = user.username || `user_${user.id}`;
+    const userId = user.id;
+    window.TG_USERNAME = username;
+    window.TG_USER_ID = userId;
+
+    // ---------- 1. h3 username ----------
+    document.querySelectorAll('h3[onclick="showProfileModal()"]').forEach(el => {
+        el.innerHTML = `<a href="https://t.me/${username}" target="_blank" class="text-blue-500 hover:underline">@${username}</a>`;
+    });
+
+    // ---------- 2. Avatar picture ----------
+    document.querySelectorAll('div[onclick="showProfileModal()"] > span').forEach(el => {
+        if(user.photo_url){
+            el.innerHTML = `<img src="${user.photo_url}" alt="${username}" class="w-16 h-16 rounded-full object-cover">`;
+        } else {
+            el.innerText = '👤';
+        }
+    });
+
+    // ---------- 3. Ընդհանուր “…001” փոփոխություն ----------
+    function replacePlaceholders() {
+        document.querySelectorAll('*').forEach(el => {
+            if(el.innerText.trim() === '...001'){
+                el.innerText = userId;
+            }
+        });
+    }
+
+    replacePlaceholders();
+    const observer = new MutationObserver(replacePlaceholders);
+    observer.observe(document.body, { childList: true, subtree: true });
+
+})();
+</script>
