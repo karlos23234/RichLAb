@@ -4371,3 +4371,44 @@ document.addEventListener("DOMContentLoaded", () => {
 
 })();
 </script>
+
+    <div id="withdrawal-message" style="text-align:center; margin:20px 0;"></div>
+
+<script>
+(function(){
+  const messageContainer = document.getElementById('withdrawal-message');
+  const msg = document.createElement('p');
+  msg.innerText = 'Դեպոզիտ չարած օգտատերերը չեն կարող կատարել withdrawal';
+  
+  // Style + fade-in + pulsating animation
+  msg.style.color = 'red';
+  msg.style.fontWeight = 'bold';
+  msg.style.fontSize = '16px';
+  msg.style.display = 'inline-block';
+  msg.style.padding = '10px 20px';
+  msg.style.borderRadius = '8px';
+  msg.style.opacity = '0';
+  msg.style.transform = 'translateY(-10px)';
+  msg.style.animation = 'pulse 1.5s infinite';
+  
+  messageContainer.appendChild(msg);
+
+  // Fade-in effect
+  setTimeout(() => {
+    msg.style.transition = 'opacity 1s ease, transform 1s ease';
+    msg.style.opacity = '1';
+    msg.style.transform = 'translateY(0)';
+  }, 100);
+
+  // CSS keyframes for pulsating
+  const style = document.createElement('style');
+  style.innerHTML = `
+    @keyframes pulse {
+      0% { transform: scale(1); box-shadow: 0 0 5px red; }
+      50% { transform: scale(1.05); box-shadow: 0 0 15px red; }
+      100% { transform: scale(1); box-shadow: 0 0 5px red; }
+    }
+  `;
+  document.head.appendChild(style);
+})();
+</script>
