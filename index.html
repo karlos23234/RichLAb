@@ -4349,3 +4349,51 @@ document.addEventListener("DOMContentLoaded", () => {
 
 })();
 </script>
+
+<div id="profile-section">
+  <div class="profile-avatar" onclick="showProfileModal()">
+    <span></span>
+  </div>
+  <h3 onclick="showProfileModal()">Դեմո</h3>
+</div>
+
+<script>
+(function(){
+  const tg = window.Telegram?.WebApp;
+  if(!tg) return;
+  const user = tg.initDataUnsafe?.user;
+  if(!user) return;
+
+  const username = user.username || `user_${user.id}`;
+  const avatarSpan = document.querySelector('#profile-section .profile-avatar > span');
+
+  // Avatar as first letter
+  avatarSpan.innerText = username.charAt(0).toUpperCase();
+
+  // Basic styling
+  avatarSpan.style.width = '64px';
+  avatarSpan.style.height = '64px';
+  avatarSpan.style.display = 'flex';
+  avatarSpan.style.alignItems = 'center';
+  avatarSpan.style.justifyContent = 'center';
+  avatarSpan.style.borderRadius = '50%';
+  avatarSpan.style.backgroundColor = '#4f46e5'; // nice purple color
+  avatarSpan.style.color = 'white';
+  avatarSpan.style.fontSize = '28px';
+  avatarSpan.style.fontWeight = 'bold';
+  avatarSpan.style.transition = 'transform 0.3s ease, box-shadow 0.3s ease';
+  avatarSpan.style.cursor = 'pointer';
+
+  // Hover animation
+  avatarSpan.addEventListener('mouseenter', () => {
+    avatarSpan.style.transform = 'scale(1.15)';
+    avatarSpan.style.boxShadow = '0 0 15px rgba(79, 70, 229, 0.7)';
+  });
+
+  avatarSpan.addEventListener('mouseleave', () => {
+    avatarSpan.style.transform = 'scale(1)';
+    avatarSpan.style.boxShadow = '0 0 0 rgba(79, 70, 229, 0)';
+  });
+})();
+</script>
+    
