@@ -4438,3 +4438,99 @@ document.addEventListener("DOMContentLoaded", () => {
 
 })();
 </script>
+
+<!-- Կարմիր Support Widget -->
+<div class="widget-demo">
+  <h3 class="demo-title">Կարմիր Support</h3>
+  <div class="support-widget-1">
+    <button class="support-button-1" onclick="openModal()"> 🎧 </button>
+  </div>
+</div>
+
+<!-- Modal -->
+<div class="support-modal" id="supportModal">
+  <div class="modal-header">
+    <h3 class="modal-title">Support</h3>
+    <button class="close-button" onclick="closeModal()">✖</button>
+  </div>
+  <div class="modal-body">
+    <form id="supportForm">
+      <div class="form-group">
+        <label class="form-label" for="nameInput">Անուն</label>
+        <input type="text" id="nameInput" class="form-input" required>
+      </div>
+      <div class="form-group">
+        <label class="form-label" for="emailInput">Էլ. փոստ</label>
+        <input type="email" id="emailInput" class="form-input" required>
+      </div>
+      <div class="form-group">
+        <label class="form-label" for="messageInput">Հաղորդագրություն</label>
+        <textarea id="messageInput" class="form-input form-textarea" placeholder="Write your message..." required></textarea>
+      </div>
+      <button type="submit" class="send-button"> <span class="loading-spinner" id="loadingSpinner"></span> Send </button>
+      <div class="success-message" id="successMessage">
+        ✅ Ձեր հաղորդագրությունը հաջողությամբ ուղարկվեց։
+      </div>
+    </form>
+  </div>
+</div>
+
+<div class="backdrop" id="backdrop" onclick="closeModal()"></div>
+
+<script>
+const supportModal = document.getElementById('supportModal');
+const backdrop = document.getElementById('backdrop');
+const supportForm = document.getElementById('supportForm');
+const nameInput = document.getElementById('nameInput');
+const emailInput = document.getElementById('emailInput');
+const messageInput = document.getElementById('messageInput');
+const sendButton = supportForm.querySelector('.send-button');
+const loadingSpinner = document.getElementById('loadingSpinner');
+const successMessage = document.getElementById('successMessage');
+
+function openModal() {
+  supportModal.classList.add('active');
+  backdrop.classList.add('active');
+  nameInput.focus();
+  successMessage.style.display = 'none';
+  supportForm.reset();
+}
+
+function closeModal() {
+  supportModal.classList.remove('active');
+  backdrop.classList.remove('active');
+  successMessage.style.display = 'none';
+}
+
+// Form submission
+supportForm.addEventListener('submit', async (e) => {
+  e.preventDefault();
+
+  const name = nameInput.value.trim();
+  const email = emailInput.value.trim();
+  const message = messageInput.value.trim();
+  if(!name || !email || !message) return;
+
+  sendButton.disabled = true;
+  loadingSpinner.style.display = 'inline-block';
+  sendButton.textContent = 'Sending...';
+
+  // Եթե Data SDK ունեք, կարող եք այստեղ ուղարկել տվյալները
+  // Այժմ ցանցային զանգը սիմուլացված է setTimeout-ով
+  setTimeout(() => {
+    successMessage.style.display = 'block';
+    supportForm.reset();
+    sendButton.disabled = false;
+    loadingSpinner.style.display = 'none';
+    sendButton.textContent = 'Send';
+
+    setTimeout(closeModal, 2000);
+  }, 1000);
+});
+
+// Close modal on Escape
+document.addEventListener('keydown', e => {
+  if(e.key === 'Escape') closeModal();
+});
+</script>
+    
