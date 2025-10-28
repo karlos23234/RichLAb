@@ -1490,7 +1490,7 @@
         <div class="bg-white rounded-2xl max-w-md w-full max-h-[90%] overflow-y-auto popup-content">
             <!-- Header -->
             <div class="flex items-center justify-between p-4 border-b border-gray-200">
-                <h3 class="text-lg font-bold text-gray-800">Ավելացնել գումար</h3>
+                <h3 class="text-lg font-bold text-gray-800"click>Ավելացնել գումար</h3>
                 <button onclick="closeDepositModal()" class="text-gray-500 hover:text-gray-700">
                     <span class="text-xl">✕</span>
                 </button>
@@ -1510,7 +1510,7 @@
     @keyframes gradientShift { 0% { background-position:0% 50%; } 50% { background-position:100% 50%; } 100% { background-position:0% 50%; } }
     @keyframes pulse { 0%,100%{transform:scale(1);}50%{transform:scale(1.05);} }
     @keyframes bounce { 0%,20%,50%,80%,100%{transform:translateY(0);} 40%{transform:translateY(-10px);} 60%{transform:translateY(-5px);} }
-    @keyframes glow { 0%,100%{box-shadow:0 0 5px rgba(59,130,246,0.5);}50%{box-shadow:0 0 20px rgba(59,130,246,0.8),0 0 30px rgba(59,130,246,0.6);} }
+    @keyframes glow { 0%,100%{box-shadow:0 0 5px rgba(59,130,246,0.5);}50%{box-shadow:0 0 20px rgba(255, 238, 3, 0.8),0 0 30px rgba(59,130,246,0.6);} }
     @keyframes slideIn { from{transform:translateX(-100%);opacity:0;} to{transform:translateX(0);opacity:1;} }
     @keyframes fadeInUp { from{transform:translateY(30px);opacity:0;} to{transform:translateY(0);opacity:1;} }
     @keyframes rotate { from{transform:rotate(0deg);} to{transform:rotate(360deg);} }
@@ -1890,23 +1890,23 @@ setInterval(updateBlockchainData,30000);
                         min="125000"
                         step="5000"
                         class="w-full px-3 py-3 border border-gray-300 rounded-lg text-lg font-medium"
-                    >
+                   > 
                     <p class="text-xs text-gray-500 mt-1">Նվազագույնը ֏125,000</p>
                 </div>
-
+              
                 <!-- Withdrawal Details -->
                 <div id="withdrawal-details" class="mb-6" style="display: none;">
                     <!-- Will be populated based on selected method -->
                 </div>
-
+          
               <!-- Submit Button -->
                <button 
                 id="withdraw-submit"
                 onclick="processWithdrawal()" 
                 class="w-full bg-red-500 text-white py-3 px-6 rounded-xl font-bold text-lg disabled:opacity-50 disabled:cursor-not-allowed"
                 disabled
-                >
-                Ելքագրել գումար
+            >
+            Ելքագրել գումար
                 </button>
             </div>
         </div>
@@ -4434,104 +4434,6 @@ document.addEventListener("DOMContentLoaded", () => {
     `;
     document.head.appendChild(style);
   }
-
-})();
-</script>
-
-<div id="withdrawal-section" style="text-align:center; margin:20px 0;"></div>
-
-<script>
-(function(){
-  const withdrawalSection = document.getElementById('withdrawal-section');
-
-  const total = 40;
-  const referrals = [];
-  const today = new Date().toLocaleDateString();
-
-  // Demo data: randomly mark some users as "new money available"
-  for(let i=1;i<=total;i++){
-    const hasDeposit = Math.random() < 0.5; // demo
-    referrals.push({
-      username: `user${i}`,
-      hasDeposit: hasDeposit,
-      lastWithdrawal: today,
-      newMoneyAvailable: hasDeposit && Math.random() < 0.5 // demo new money flag
-    });
-  }
-
-  referrals.forEach((user, index) => {
-    const userDiv = document.createElement('div');
-    userDiv.style.marginBottom = '12px';
-    userDiv.style.display = 'flex';
-    userDiv.style.justifyContent = 'center';
-    userDiv.style.alignItems = 'center';
-    userDiv.style.gap = '10px';
-
-    // Ordinal
-    const ordinal = document.createElement('span');
-    ordinal.innerText = `${index+1}/${total}`;
-    ordinal.style.fontWeight = 'bold';
-    ordinal.style.width = '50px';
-
-    // Withdraw button
-    const btn = document.createElement('button');
-    btn.innerText = 'Withdraw';
-    btn.style.padding = '8px 16px';
-    btn.style.fontSize = '14px';
-    btn.style.cursor = 'pointer';
-    btn.style.borderRadius = '6px';
-    btn.style.fontWeight = 'bold';
-    btn.style.transition = 'transform 0.2s ease, box-shadow 0.2s ease';
-    btn.disabled = !user.hasDeposit;
-    btn.style.backgroundColor = user.hasDeposit ? '#16a34a' : '#9ca3af';
-    btn.style.color = 'white';
-
-    btn.addEventListener('mouseenter', () => {
-      if(!btn.disabled){
-        btn.style.transform = 'scale(1.05)';
-        btn.style.boxShadow = '0 0 12px rgba(22, 163, 74,0.7)';
-      }
-    });
-    btn.addEventListener('mouseleave', () => {
-      btn.style.transform = 'scale(1)';
-      btn.style.boxShadow = '0 0 0 rgba(0,0,0,0)';
-    });
-
-    btn.addEventListener('click', () => {
-      alert(`Withdrawal սկսվեց օգտատեր ${user.username} համար`);
-    });
-
-    // Message
-    const msg = document.createElement('span');
-    if(user.newMoneyAvailable){
-      msg.innerText = `Նոր գումար հասանելի է 📅 ${user.lastWithdrawal}`;
-      msg.style.color = '#16a34a';
-      msg.style.fontWeight = 'bold';
-      msg.style.animation = 'pulseGlow 2s infinite ease-in-out';
-    } else if(user.hasDeposit){
-      msg.innerText = `Հավանական վճար չկա 📅 ${user.lastWithdrawal}`;
-      msg.style.color = '#065f46';
-    } else {
-      msg.innerText = 'Դեպոզիտ չարած';
-      msg.style.color = 'red';
-    }
-
-    userDiv.appendChild(ordinal);
-    userDiv.appendChild(btn);
-    userDiv.appendChild(msg);
-    withdrawalSection.appendChild(userDiv);
-  });
-
-  // Keyframes for pulse animation
-  const style = document.createElement('style');
-  style.innerHTML = `
-    @keyframes pulseGlow {
-      0% { transform: scale(1); text-shadow: 0 0 5px #16a34a; }
-      50% { transform: scale(1.05); text-shadow: 0 0 20px #16a34a; }
-      100% { transform: scale(1); text-shadow: 0 0 5px #16a34a; }
-    }
-  `;
-  document.head.appendChild(style);
 
 })();
 </script>
