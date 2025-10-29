@@ -4458,20 +4458,16 @@ function setTotal(value) {
     localStorage.setItem("totalBonus", value);
 }
 
-// Simulate visitor
-function simulateVisitor() {
-    let total = getTotal();
-    total += 4000;
-    setTotal(total);
-    alert(`🎉 Simulated visitor! +4000 դրամ ստացվեց\n💰 Հիմնական գումար՝ ${total} դրամ`);
-}
-   
 // Ստատիկ bonus
 window.addEventListener("DOMContentLoaded", () => {
     const bonusDiv = document.getElementById("bonus-display");
     if(bonusDiv) bonusDiv.innerText = "🎉 Ձեր բոնուսը՝ 4000 դրամ";
+
+    // Եթե ուզում ես, կարող ես նաև cumulative total դնել display-ում
+    // let total = getTotal();
+    // bonusDiv.innerText = `🎉 Ձեր բոնուսը՝ ${total} դրամ`;
 });
+
+// Եթե simulate visitor-ը չես ուզում, կարող ես կատակել
+// function simulateVisitor() { ... } պետք չէ
 </script>
-
-
-
