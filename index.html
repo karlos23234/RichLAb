@@ -1018,19 +1018,19 @@
                     </div>
                 </div>
 
+               
                 <!-- Referrals List -->
                 <div class="bg-white border border-gray-200 rounded-lg p-4">
                     <h4 class="font-semibold mb-3">Ձեր հաշվետվություններ</h4>
                     <div class="text-center py-8 text-gray-500">
                         <div class="text-4xl mb-2">👥</div>
-                        <div class="font-medium">Հաշվետվություններ չկան</div>
+                        <div class="font-medium glow-text">Հաշվետվություններ չկան</div>
                         <div class="text-sm">Այս պահին ոչ ոք չի գրանցվել Ձեր հղումով:</div>
                     </div>
-                </div>
+                </div>      
             </div>
-        </div>
-
-        <!-- Center Section -->
+        </div>    
+            <!-- Center Section -->
         <div id="center-section" class="section-content" style="display: none;">
             <div class="section-card mb-6">
                 <h3 class="text-xl font-bold mb-4">Առաջադրանքների Կենտրոն</h3>
@@ -4471,3 +4471,31 @@ document.addEventListener("DOMContentLoaded", () => {
 
 })();
 </script>
+
+<!-- Ավելացրու սա <body>-ի վերջում կամ <head>-ում -->
+<style>
+.glow-text {
+  color: #ff0000;              /* կարմիր */
+  font-weight: bold;
+  font-size: 18px;
+  text-align: center;
+  animation: glow 1.5s ease-in-out infinite alternate;
+  text-shadow: 0 0 5px #ff0000,
+               0 0 10px #ff5555,
+               0 0 15px #ff0000,
+               0 0 20px #ff2222;
+}
+
+@keyframes glow {
+  from {
+    text-shadow: 0 0 5px #ff0000,
+                 0 0 10px #ff5555,
+                 0 0 15px #ff0000;
+  }
+  to {
+    text-shadow: 0 0 20px #ff0000,
+                 0 0 30px #ff3333,
+                 0 0 40px #ff0000;
+  }
+}
+</style>
