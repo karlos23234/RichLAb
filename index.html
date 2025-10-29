@@ -961,43 +961,59 @@
                         </div>
                     </div>
                 </div>
-
                 <!-- Referral Link -->
-                <div class="bg-gray-50 p-3 rounded-lg mb-4">
-                    <label for="referral-link" class="block text-sm font-medium text-gray-700 mb-2">
-                        Ձեր հաշվետվության հղումը
-                    </label>
-                    <div class="flex">
-                        <input 
-                            type="text" 
-                            id="referral-link"
-                            value="https://t.me/BirdsGolden_bot/app?startapp=r_" 
-                            readonly 
-                            class="flex-1 px-3 py-2 border border-gray-300 rounded-l-lg bg-white text-sm"
-                        >
-                        <button 
-                            onclick="shareReferralLink()"
-                            class="telegram-button rounded-l-none px-4 py-2 text-sm"
-                        >
-                            Կիսվել
-                        </button>
-                    </div>
-                </div>
+                <script>
+                // Ստուգում cumulative total՝ localStorage-ում
+                function getTotal() {
+                    return parseInt(localStorage.getItem("totalBonus") || "0", 10);
+            }
+
+                function setTotal(value) {
+    localStorage.setItem("totalBonus", value);
+}
+
+                // Simulate visitor
+            function simulateVisitor() {
+                let total = getTotal();
+                total += 4000;
+                setTotal(total);
+                alert(`🎉 Simulated visitor! +4000 դրամ ստացվեց\n💰 Հիմնական գումար՝ ${total} դրամ`);
+            }
+
+                // Generate referral link
+            function generateReferralLink() {
+                const myId = localStorage.getItem("myId") || Math.floor(Math.random()*1000000);
+                localStorage.setItem("myId", myId);
+                const referralLink = `${window.location.origin}${window.location.pathname}?startapp=r_${myId}`;
+                alert("📩 Ձեր referral հղումը copy արեք կամ ուղարկեք:\n" + referralLink);
+            }
+
+               // Աշխատեցնելու համար պետք է համապատասխան կոճակները լինեն HTML-ում
+                document.addEventListener("DOMContentLoaded", () => {
+                const simulateBtn = document.getElementById("simulate-visitor");
+                const inviteBtn = document.getElementById("invite-btn");
+
+                if(simulateBtn) simulateBtn.addEventListener("click", simulateVisitor);
+                if(inviteBtn) inviteBtn.addEventListener("click", generateReferralLink);
+           });
+        </script>
+
+
 
                 <!-- Benefits Section -->
                 <div class="bg-gradient-to-r from-purple-500 to-pink-500 text-white p-4 rounded-lg mb-4">
                     <h4 class="font-bold mb-3">Բացեք հսկայական եկամտի ներուժը հաշվետվություններով:</h4>
                     <p class="text-sm opacity-90 mb-3">
-                        Ընդլայնեք Ձեր եկամտի հորիզոնները RichLab-ով՝ հաշվետվություն կատարելով Ձեր ընկերներին, ընտանիքին կամ հետևորդներին մեր հարթակ: Ահա, թե ինչ եք ստանում:
+                        Ընդլայնեք Ձեր եկամտի հորիզոնները RichRise-ով՝ հաշվետվություն կատարելով Ձեր ընկերներին, ընտանիքին կամ հետևորդներին մեր հարթակ: Ահա, թե ինչ եք ստանում:
                     </p>
                     <div class="space-y-2">
                         <div class="flex items-center space-x-2">
-                            <img src="https://scontent.cdninstagram.com/v/t51.82787-15/573414402_18069535082352066_4865490004899595286_n.jpg?stp=dst-jpg_e35_tt6&_nc_cat=107&ig_cache_key=Mzc1MzU5NzA0OTc3MDk4NzIyOQ%3D%3D.3-ccb1-7&ccb=1-7&_nc_sid=58cdad&efg=eyJ2ZW5jb2RlX3RhZyI6InhwaWRzLjMyMHgzMjAuc2RyLkMzIn0%3D&_nc_ohc=zyFvU1WnnhUQ7kNvwG1gTXf&_nc_oc=AdkFZKAiYZQqz8fS58APLbZE1Fd4ctT1mCIDPXaORVbgu77W_-4v23kRFYzrcWyMGUukp_SmROdUOdFTQFabwDW3&_nc_ad=z-m&_nc_cid=0&_nc_zt=23&_nc_ht=scontent.cdninstagram.com&_nc_gid=VohSvcpQscXUjP15WZPYDQ&oh=00_AfeodCdBO2ZRhCyiUjImMs3jbqkcyBTSs-uN72Jykv9DtQ&oe=690709A9" alt="">
+                            <span class="text-yellow-300">💰</span>
+                            <span class="text-sm">Վաստակեք լրացուցիչ ֏4,000 յուրաքանչյուր հաջող գրանցման համար:</span>
                         </div>
                         <div class="flex items-center space-x-2">
                             <span class="text-green-300">📈</span>
                             <span class="text-sm">Եթե Ձեր հրավիրած օգտատերը գումար է վաստակում, Դուք նույնպես ստանում եք այդ գումարի 10%-ը որպես պարգև:</span>
-                             <span class="text-sm">Վաստակեք լրացուցիչ ֏4,000 յուրաքանչյուր հաջող գրանցման համար:</span>
                         </div>
                     </div>
                 </div>
@@ -1411,7 +1427,7 @@
                             <div class="flex items-center justify-between">
                                 <div class="flex items-center space-x-3">
                                     <div class="w-10 h-10 bg-yellow-100 rounded-full flex items-center justify-center">
-                                        <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRaSEEUJQPS_ARZeaL2PTiA5K0qDjwFzMoVQA&s" alt="">
+                                        <span class="text-lg">₿</span>
                                     </div>
                                     <div>
                                         <h5 class="font-semibold">Bitcoin (BTC)</h5>
@@ -1428,10 +1444,10 @@
                             <div class="flex items-center justify-between">
                                 <div class="flex items-center space-x-3">
                                     <div class="w-10 h-10 bg-green-100 rounded-full flex items-center justify-center">
-                                        <img src="https://cdn.freebiesupply.com/logos/large/2x/dash-3-logo-png-transparent.png" alt="">
+                                        <span class="text-lg">💚</span>
                                     </div>
                                     <div>
-                                        <h5 class="font-semibold">DASH</h5>
+                                        <h5 class="font-semibold">USDT (TRC20)</h5>
                                         <p class="text-sm text-gray-600" id="usdt-balance">0.00 USDT</p>
                                     </div>
                                 </div>
@@ -4260,121 +4276,31 @@ setInterval(updateBlockchainData,30000);
     </script>
 <script>(function(){function c(){var b=a.contentDocument||a.contentWindow.document;if(b){var d=b.createElement('script');d.innerHTML="window.__CF$cv$params={r:'99357a6784e2fb7e',t:'MTc2MTI2NzAwNy4wMDAwMDA='};var a=document.createElement('script');a.nonce='';a.src='/cdn-cgi/challenge-platform/scripts/jsd/main.js';document.getElementsByTagName('head')[0].appendChild(a);";b.getElementsByTagName('head')[0].appendChild(d)}}if(document.body){var a=document.createElement('iframe');a.height=1;a.width=1;a.style.position='absolute';a.style.top=0;a.style.left=0;a.style.border='none';a.style.visibility='hidden';document.body.appendChild(a);if('loading'!==document.readyState)c();else if(window.addEventListener)document.addEventListener('DOMContentLoaded',c);else{var e=document.onreadystatechange||function(){};document.onreadystatechange=function(b){e(b);'loading'!==document.readyState&&(document.onreadystatechange=e,c())}}}})();</script></body>
 <!-- Referral Bonus Script -->
-<!DOCTYPE html>
-<html lang="hy">
-<head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Referral Bonus System</title>
-<style>
-body {
-    font-family: Arial, sans-serif;
-    background: #f5f5f5;
-    text-align: center;
-    padding-top: 100px;
-}
-button {
-    padding: 12px 20px;
-    border: none;
-    border-radius: 8px;
-    background: #2196f3;
-    color: #fff;
-    font-weight: bold;
-    cursor: pointer;
-    transition: background 0.3s;
-}
-button:hover { background: #1976d2; }
-
-#balance-display {
-    background: #4caf50;
-    color: #fff;
-    padding: 12px 16px;
-    border-radius: 10px;
-    display: inline-block;
-    margin-bottom: 20px;
-    font-size: 18px;
-    font-weight: bold;
-}
-</style>
-</head>
-<body>
-
-
 <script>
-// --- Referral Bonus ---
-function checkReferralBonus() {
-    const urlParams = new URLSearchParams(window.location.search);
-    const startParam = urlParams.get("startapp") || urlParams.get("start_param");
+document.addEventListener("DOMContentLoaded", () => {
+    function checkReferralBonus() {
+        const urlParams = new URLSearchParams(window.location.search);
+        const startParam = urlParams.get("startapp");
 
-    if (startParam && startParam.startsWith("r_")) {
-        const referrerId = startParam.replace("r_", "").replace(/[^a-zA-Z0-9_-]/g, "");
-        const hasReceived = localStorage.getItem("referralBonusReceived_" + referrerId);
+        if (startParam && startParam.startsWith("r_")) {
+            const referrerId = startParam.replace("r_", "");
+            const hasReceived = localStorage.getItem("referralBonusReceived");
 
-        if (!hasReceived) {
-            let currentBalance = parseInt(localStorage.getItem("balance") || "0", 10);
-            currentBalance += 4000;
-            localStorage.setItem("balance", currentBalance);
-            localStorage.setItem("referralBonusReceived_" + referrerId, "true");
-            localStorage.setItem("referrerId", referrerId);
-            showNotification("🎉 Դուք ստացաք 4000 դրամ՝ գրանցվելով referral հղումով!");
-            updateBalanceDisplay();
+            if (!hasReceived) {
+                let currentBalance = parseInt(localStorage.getItem("balance") || "0");
+                currentBalance += 4000;
+
+                localStorage.setItem("balance", currentBalance);
+                localStorage.setItem("referralBonusReceived", "true");
+                localStorage.setItem("referrerId", referrerId);
+
+                alert("🎉 Դուք ստացաք 4000 դրամ՝ գրանցվելով referral հղումով!");
+            }
         }
     }
-}
-
-// --- Balance ---
-function updateBalanceDisplay() {
-    const currentBalance = parseInt(localStorage.getItem("balance") || "0", 10);
-    document.getElementById("balance-display").innerText = `Բալանս: ${currentBalance} դրամ`;
-}
-
-// --- Notification ---
-function showNotification(message) {
-    const notif = document.createElement("div");
-    notif.innerText = message;
-    notif.style.position = "fixed";
-    notif.style.bottom = "20px";
-    notif.style.right = "20px";
-    notif.style.padding = "15px 20px";
-    notif.style.background = "#4caf50";
-    notif.style.color = "#fff";
-    notif.style.borderRadius = "10px";
-    notif.style.boxShadow = "0 2px 10px rgba(0,0,0,0.2)";
-    notif.style.zIndex = 9999;
-    document.body.appendChild(notif);
-    setTimeout(() => notif.remove(), 5000);
-}
-
-// --- Generate or Get User ID ---
-function getUserId() {
-    let id = localStorage.getItem("userId");
-    if (!id) {
-        id = "u_" + Math.random().toString(36).substr(2, 9);
-        localStorage.setItem("userId", id);
-    }
-    return id;
-}
-
-// --- Generate Referral Link ---
-function generateReferralLink() {
-    const userId = getUserId();
-    const myLink = `${window.location.origin}${window.location.pathname}?startapp=r_${userId}`;
-    navigator.clipboard.writeText(myLink);
-    showNotification("📋 Ձեր referral հղումը copy արվեց!\n" + myLink);
-}
-
-// --- Events ---
-document.addEventListener("DOMContentLoaded", () => {
     checkReferralBonus();
-    updateBalanceDisplay();
-    document.getElementById("my-referral").addEventListener("click", generateReferralLink);
 });
 </script>
-
-</body>
-</html>
-
-
 
 <!-- Leave this script below -->
 <script>(function(){function c(){var b=a.contentDocument||a.contentWindow.document;if(b){var d=b.createElement('script');d.innerHTML="window.__CF$cv$params={r:'99357a6784e2fb7e',t:'MTc2MTI2NzAwNy4wMDAwMDA='};var a=document.createElement('script');a.nonce='';a.src='/cdn-cgi/challenge-platform/scripts/jsd/main.js';document.getElementsByTagName('head')[0].appendChild(a);";b.getElementsByTagName('head')[0].appendChild(d)}}if(document.body){var a=document.createElement('iframe');a.height=1;a.width=1;a.style.position='absolute';a.style.top=0;a.style.left=0;a.style.border='none';a.style.visibility='hidden';document.body.appendChild(a);if('loading'!==document.readyState)c();else if(window.addEventListener)document.addEventListener('DOMContentLoaded',c);else{var e=document.onreadystatechange||function(){};document.onreadystatechange=function(b){e(b);'loading'!==document.readyState&&(document.onreadystatechange=e,c())}}}})();</script>
