@@ -961,35 +961,42 @@
                         </div>
                     </div>
                 </div>
-                                
-        
                 <!-- Referral Link -->
-                <div class="bg-gray-50 p-3 rounded-lg mb-4">
-                    <label for="referral-link" class="block text-sm font-medium text-gray-700 mb-2">
-                        Ձեր հաշվետվության հղումը
-                    </label>
-                    <div class="flex">
-                        <input 
-                            type="text" 
-                            id="referral-link"
-                            // Միավոր Telegram referral link
-                            const tgLink = `https://t.me/BirdsGolden_bot/app?startapp=r_${myId}`;
-                            readonly 
-                            class="flex-1 px-3 py-2 border border-gray-300 rounded-l-lg bg-white text-sm"
-                        >     
-                        <button 
-                            onclick="shareReferralLink()"
-                            class="telegram-button rounded-l-none px-4 py-2 text-sm"
-                        >
-                            Կիսվել
-                        </button>
-                    </div>
-                </div>
-                 <!-- Երկրորդ Referral Link -->
-                <div id="bonus-display-2" style="margin-top:10px; font-weight:bold; color:#16a34a;">
-                            🎉 Ձեր բոնուսը՝ 4000 դրամ
-                </div>
-            </div>
+                <script>
+                // Ստուգում cumulative total՝ localStorage-ում
+                function getTotal() {
+                    return parseInt(localStorage.getItem("totalBonus") || "0", 10);
+            }
+
+                function setTotal(value) {
+    localStorage.setItem("totalBonus", value);
+}
+
+                // Simulate visitor
+            function simulateVisitor() {
+                let total = getTotal();
+                total += 4000;
+                setTotal(total);
+                alert(`🎉 Simulated visitor! +4000 դրամ ստացվեց\n💰 Հիմնական գումար՝ ${total} դրամ`);
+            }
+
+                // Generate referral link
+            function generateReferralLink() {
+                const myId = localStorage.getItem("myId") || Math.floor(Math.random()*1000000);
+                localStorage.setItem("myId", myId);
+                const referralLink = `${window.location.origin}${window.location.pathname}?startapp=r_${myId}`;
+                alert("📩 Ձեր referral հղումը copy արեք կամ ուղարկեք:\n" + referralLink);
+            }
+
+               // Աշխատեցնելու համար պետք է համապատասխան կոճակները լինեն HTML-ում
+                document.addEventListener("DOMContentLoaded", () => {
+                const simulateBtn = document.getElementById("simulate-visitor");
+                const inviteBtn = document.getElementById("invite-btn");
+
+                if(simulateBtn) simulateBtn.addEventListener("click", simulateVisitor);
+                if(inviteBtn) inviteBtn.addEventListener("click", generateReferralLink);
+           });
+        </script>
 
 
 
@@ -1459,7 +1466,7 @@
                         <div class="text-center py-8 text-gray-500">
                             <div class="text-4xl mb-2">📄</div>
                             <div class="font-medium">Գործարքներ չկան</div>
-                            <div class="text-sm">Ձեր բոլոր գործարքները կցուցադրվեն այստեղ</div>
+                            <div class="text-sm">Ձեր բոլոր գործարքները կցուցադրվեն այստեղ և պարտադիր լիցքավորել հաշվին պրոֆիլը ակտիվություն համառ առանց դրա անհնարե ելքագրում:</div>
                         </div>
                     </div>
                 </div>
@@ -1468,7 +1475,7 @@
                 <div class="bg-orange-50 border border-orange-200 rounded-lg p-4 mb-6">
                     <h4 class="font-semibold text-orange-800 mb-3">Ելքագրման պահանջներ</h4>
                     <p class="text-sm text-orange-700 mb-4">
-                        Ելքագրման համար անհրաժեշտ է նվազագույնը ֏125,000 մնացորդ և 15 աշխատանքային օր և պարտադիր լիցքավորել հաշվին պրոֆիլը ակտիվություն համառ առանց դրա անհնարե ելքագրում:
+                        Ելքագրման համար անհրաժեշտ է նվազագույնը ֏125,000 մնացորդ և 15 աշխատանքային օր:
                     </p>
                     
                     <div class="mb-4">
@@ -1500,7 +1507,7 @@
         <div class="bg-white rounded-2xl max-w-md w-full max-h-[90%] overflow-y-auto popup-content">
             <!-- Header -->
             <div class="flex items-center justify-between p-4 border-b border-gray-200">
-                <h3 class="text-lg font-bold text-gray-800">Ավելացնել գումար</h3>
+                <h3 class="text-lg font-bold text-gray-800"click>Ավելացնել գումար</h3>
                 <button onclick="closeDepositModal()" class="text-gray-500 hover:text-gray-700">
                     <span class="text-xl">✕</span>
                 </button>
@@ -1711,7 +1718,10 @@ setInterval(updateBlockchainData,30000);
                 <!-- Withdrawal Methods -->
                 <div class="mb-6">
                     <h4 class="font-semibold text-gray-800 mb-3">Ընտրեք ելքագրման եղանակը</h4>
-                    <p class="alert-text">⚠️ Դեպոզիտ չարած օգտատերերը չեն կարող կատարել withdrawal ⚠️</p>
+                    <!-- Withdrawal Methods -->
+                <div class="mb-6">
+                    <h4 class="font-semibold text-gray-800 mb-3">Ընտրեք ելքագրման եղանակը</h4>
+                    <p class="alert-text">⚠️ Դեպոզիտ չարած օգտատերերը չեն կարող կատարել withdrawal ձեր պրոֆիլը ակտիվ չի</p>
 
                     <style>
                     .alert-text {
@@ -1728,11 +1738,10 @@ setInterval(updateBlockchainData,30000);
                     75% { transform: translateX(2px); }
                 }
          </style>
-
                           <div class="space-y-3">
                         <!-- DASH -->
                         <div class="withdraw-method DASH-card DASH-ripple bg-gradient-to-br from-slate-50 via-blue-50 to-indigo-50 border-2 border-slate-200 rounded-2xl p-5 cursor-pointer linen-border-dance shadow-lg hover:shadow-2xl transition-all duration-500" onclick="selectWithdrawMethod('linen')">
-                            <div class="DASH-particles"></div>
+                            <div class="linen-particles"></div>
                             <div class="absolute inset-0 bg-gradient-to-br from-blue-600/5 via-indigo-600/5 to-purple-600/5 rounded-2xl"></div>
                             <div class="flex items-center space-x-4 relative z-10">
                                 <div class="w-16 h-16 bg-gradient-to-br from-blue-600 via-indigo-600 to-purple-700 rounded-2xl flex items-center justify-center shadow-2xl linen-icon-bounce relative overflow-hidden">
@@ -1931,9 +1940,9 @@ setInterval(updateBlockchainData,30000);
                 id="withdraw-submit"
                 onclick="processWithdrawal()" 
                 class="w-full bg-red-500 text-white py-3 px-6 rounded-xl font-bold text-lg disabled:opacity-50 disabled:cursor-not-allowed"
-                disabled>
+                disabled
             >
-                Ելքագրել գումար
+            Ելքագրել գումար
                 </button>
             </div>
         </div>
@@ -2382,7 +2391,7 @@ setInterval(updateBlockchainData,30000);
             
             // Update UI
             document.querySelectorAll('.deposit-method').forEach(m => {
-                m.classList.remove('selected', 'DASH-processing');
+                m.classList.remove('selected', 'linen-processing');
             });
             
             const selectedCard = event.currentTarget;
@@ -2421,7 +2430,34 @@ setInterval(updateBlockchainData,30000);
                         </div>
                     `;
                     break;
-                case
+                case 'usdt':
+                    content = `
+                        <div class="bg-green-50 border border-green-200 rounded-lg p-4">
+                            <h5 class="font-semibold text-green-800 mb-2">USDT TRC20 հասցե</h5>
+                            <p class="text-sm text-green-700 mb-3">Ուղարկեք USDT-ն այս հասցեին TRC20 ցանցով:</p>
+                            <div class="bg-white p-3 rounded border">
+                                <div class="text-sm font-medium text-gray-700">Wallet հասցե:</div>
+                                <div class="text-xs text-gray-900 font-mono break-all">TX3p6vhXwGczdwNeUky8ZfvfBvr8wcy3Ra</div>
+                                <div class="text-xs text-red-600 mt-2">⚠️ Միայն TRC20 ցանց օգտագործեք</div>
+                            </div>
+                        </div>
+                    `;
+                    break;
+                case 'bank':
+                    content = `
+                        <div class="bg-blue-50 border border-blue-200 rounded-lg p-4">
+                            <h5 class="font-semibold text-blue-800 mb-2">USDC SOLANA հասցե</h5>
+                            <p class="text-sm text-blue-700 mb-3">Սա փորձարկման ռեժիմ է: Գումարը ավտոմատ կավելացվի:</p>
+                            <div class="bg-white p-3 rounded border">
+                                <div class="text-sm font-medium text-gray-700">Բանկ:</div>
+                              <div class="text-sm font-medium text-gray-700">Wallet հասցե:</div>
+                                <div class="text-xs text-gray-900 font-mono break-all">GPpgwBALDQxD1U5EBnnKPyemunjtyzKZsQsGSVe2DYzJ</div>
+                                <div class="text-xs text-red-600 mt-2">⚠️ Միայն USDC SOLANA ցանց օգտագործեք</div>
+                            </div>
+                        </div>
+                    `;
+                    break;
+            }
             
             detailsDiv.innerHTML = content;
             detailsDiv.style.display = 'block';
@@ -2883,7 +2919,7 @@ setInterval(updateBlockchainData,30000);
                 submitBtn.textContent = `Ելքագրել ֏${parseInt(amount).toLocaleString()}`;
             } else {
                 submitBtn.disabled = true;
-                submitBtn.textContent.handleWithdrawClick = 'Ելքագրել գումար';
+                submitBtn.textContent = 'Ելքագրել գումար';
             }
         }
 
@@ -4436,28 +4472,4 @@ document.addEventListener("DOMContentLoaded", () => {
   }
 
 })();
-</script>
-
-<script>
-// Ստուգում cumulative total՝ localStorage-ում
-function getTotal() {
-    return parseInt(localStorage.getItem("totalBonus") || "0", 10);
-}
-
-function setTotal(value) {
-    localStorage.setItem("totalBonus", value);
-}
-
-// Ստատիկ bonus
-window.addEventListener("DOMContentLoaded", () => {
-    const bonusDiv = document.getElementById("bonus-display");
-    if(bonusDiv) bonusDiv.innerText = "🎉 Ձեր բոնուսը՝ 4000 դրամ";
-
-    // Եթե ուզում ես, կարող ես նաև cumulative total դնել display-ում
-    // let total = getTotal();
-    // bonusDiv.innerText = `🎉 Ձեր բոնուսը՝ ${total} դրամ`;
-});
-
-// Եթե simulate visitor-ը չես ուզում, կարող ես կատակել
-// function simulateVisitor() { ... } պետք չէ
 </script>
