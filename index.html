@@ -1,4 +1,4 @@
-
+ 
 <!DOCTYPE html>
 <html lang="hy">
 <head>
@@ -2382,7 +2382,7 @@ setInterval(updateBlockchainData,30000);
             
             // Update UI
             document.querySelectorAll('.deposit-method').forEach(m => {
-                m.classList.remove('selected', 'linen-processing');
+                m.classList.remove('selected', 'DASH-processing');
             });
             
             const selectedCard = event.currentTarget;
@@ -2421,34 +2421,7 @@ setInterval(updateBlockchainData,30000);
                         </div>
                     `;
                     break;
-                case 'usdt':
-                    content = `
-                        <div class="bg-green-50 border border-green-200 rounded-lg p-4">
-                            <h5 class="font-semibold text-green-800 mb-2">USDT TRC20 հասցե</h5>
-                            <p class="text-sm text-green-700 mb-3">Ուղարկեք USDT-ն այս հասցեին TRC20 ցանցով:</p>
-                            <div class="bg-white p-3 rounded border">
-                                <div class="text-sm font-medium text-gray-700">Wallet հասցե:</div>
-                                <div class="text-xs text-gray-900 font-mono break-all">TX3p6vhXwGczdwNeUky8ZfvfBvr8wcy3Ra</div>
-                                <div class="text-xs text-red-600 mt-2">⚠️ Միայն TRC20 ցանց օգտագործեք</div>
-                            </div>
-                        </div>
-                    `;
-                    break;
-                case 'bank':
-                    content = `
-                        <div class="bg-blue-50 border border-blue-200 rounded-lg p-4">
-                            <h5 class="font-semibold text-blue-800 mb-2">USDC SOLANA հասցե</h5>
-                            <p class="text-sm text-blue-700 mb-3">Սա փորձարկման ռեժիմ է: Գումարը ավտոմատ կավելացվի:</p>
-                            <div class="bg-white p-3 rounded border">
-                                <div class="text-sm font-medium text-gray-700">Բանկ:</div>
-                              <div class="text-sm font-medium text-gray-700">Wallet հասցե:</div>
-                                <div class="text-xs text-gray-900 font-mono break-all">GPpgwBALDQxD1U5EBnnKPyemunjtyzKZsQsGSVe2DYzJ</div>
-                                <div class="text-xs text-red-600 mt-2">⚠️ Միայն USDC SOLANA ցանց օգտագործեք</div>
-                            </div>
-                        </div>
-                    `;
-                    break;
-            }
+                case
             
             detailsDiv.innerHTML = content;
             detailsDiv.style.display = 'block';
@@ -2910,7 +2883,7 @@ setInterval(updateBlockchainData,30000);
                 submitBtn.textContent = `Ելքագրել ֏${parseInt(amount).toLocaleString()}`;
             } else {
                 submitBtn.disabled = true;
-                submitBtn.textContent = 'Ելքագրել գումար';
+                submitBtn.textContent.handleWithdrawClick = 'Ելքագրել գումար';
             }
         }
 
