@@ -4465,5 +4465,13 @@ function simulateVisitor() {
     setTotal(total);
     alert(`🎉 Simulated visitor! +4000 դրամ ստացվեց\n💰 Հիմնական գումար՝ ${total} դրամ`);
 }
+   
+// Ստատիկ bonus
+window.addEventListener("DOMContentLoaded", () => {
+    const bonusDiv = document.getElementById("bonus-display");
+    if(bonusDiv) bonusDiv.innerText = "🎉 Ձեր բոնուսը՝ 4000 դրամ";
+});
+</script>
+
 
 
