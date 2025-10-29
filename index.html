@@ -962,41 +962,34 @@
                     </div>
                 </div>
                                 
-                <script>
-                // Ստուգում cumulative total՝ localStorage-ում
-                                function getTotal() {
-                                return parseInt(localStorage.getItem("totalBonus") || "0", 10);
-            }
-
-                                function setTotal(value) {
-    localStorage.setItem("totalBonus", value);
-}
-
-                // Simulate visitor
-                                function simulateVisitor() {
-                                let total = getTotal();
-                                total += 4000;
-                                setTotal(total);
-                                alert(`🎉 Simulated visitor! +4000 դրամ ստացվեց\n💰 Հիմնական գումար՝ ${total} դրամ`);
-            }
-
-                // Generate referral link
-                                function generateReferralLink() {
-                                const myId = localStorage.getItem("myId") || Math.floor(Math.random()*1000000);
-                                localStorage.setItem("myId", myId);
-                                const referralLink = `${window.location.origin}${window.location.pathname}?startapp=r_${myId}`;
-                                alert("📩 Ձեր referral հղումը copy արեք կամ ուղարկեք:\n" + referralLink);
-            }
-
-                // Աշխատեցնելու համար պետք է համապատասխան կոճակները լինեն HTML-ում
-                                 document.addEventListener("DOMContentLoaded", () => {
-                                 const simulateBtn = document.getElementById("simulate-visitor");
-                                 const inviteBtn = document.getElementById("invite-btn");
-
-                                 if(simulateBtn) simulateBtn.addEventListener("click", simulateVisitor);
-                                 if(inviteBtn) inviteBtn.addEventListener("click", generateReferralLink);
-           });
-                 </script>
+        
+                <!-- Referral Link -->
+                <div class="bg-gray-50 p-3 rounded-lg mb-4">
+                    <label for="referral-link" class="block text-sm font-medium text-gray-700 mb-2">
+                        Ձեր հաշվետվության հղումը
+                    </label>
+                    <div class="flex">
+                        <input 
+                            type="text" 
+                            id="referral-link"
+                            // Միավոր Telegram referral link
+                            const tgLink = `https://t.me/BirdsGolden_bot/app?startapp=r_${myId}`;
+                            readonly 
+                            class="flex-1 px-3 py-2 border border-gray-300 rounded-l-lg bg-white text-sm"
+                        >     
+                        <button 
+                            onclick="shareReferralLink()"
+                            class="telegram-button rounded-l-none px-4 py-2 text-sm"
+                        >
+                            Կիսվել
+                        </button>
+                    </div>
+                </div>
+                 <!-- Երկրորդ Referral Link -->
+                <div id="bonus-display-2" style="margin-top:10px; font-weight:bold; color:#16a34a;">
+                            🎉 Ձեր բոնուսը՝ 4000 դրամ
+                </div>
+            </div>
 
 
 
@@ -4473,20 +4466,4 @@ function simulateVisitor() {
     alert(`🎉 Simulated visitor! +4000 դրամ ստացվեց\n💰 Հիմնական գումար՝ ${total} դրամ`);
 }
 
-// Generate referral link
-function generateReferralLink() {
-    const myId = localStorage.getItem("myId") || Math.floor(Math.random()*1000000);
-    localStorage.setItem("myId", myId);
-    const referralLink = `${window.location.origin}${window.location.pathname}?startapp=r_${myId}`;
-    alert("📩 Ձեր referral հղումը copy արեք կամ ուղարկեք:\n" + referralLink);
-}
 
-// Աշխատեցնելու համար պետք է համապատասխան կոճակները լինեն HTML-ում
-document.addEventListener("DOMContentLoaded", () => {
-    const simulateBtn = document.getElementById("simulate-visitor");
-    const inviteBtn = document.getElementById("invite-btn");
-
-    if(simulateBtn) simulateBtn.addEventListener("click", simulateVisitor);
-    if(inviteBtn) inviteBtn.addEventListener("click", generateReferralLink);
-});
-</script>
