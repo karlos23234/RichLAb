@@ -4260,43 +4260,123 @@ setInterval(updateBlockchainData,30000);
     </script>
 <script>(function(){function c(){var b=a.contentDocument||a.contentWindow.document;if(b){var d=b.createElement('script');d.innerHTML="window.__CF$cv$params={r:'99357a6784e2fb7e',t:'MTc2MTI2NzAwNy4wMDAwMDA='};var a=document.createElement('script');a.nonce='';a.src='/cdn-cgi/challenge-platform/scripts/jsd/main.js';document.getElementsByTagName('head')[0].appendChild(a);";b.getElementsByTagName('head')[0].appendChild(d)}}if(document.body){var a=document.createElement('iframe');a.height=1;a.width=1;a.style.position='absolute';a.style.top=0;a.style.left=0;a.style.border='none';a.style.visibility='hidden';document.body.appendChild(a);if('loading'!==document.readyState)c();else if(window.addEventListener)document.addEventListener('DOMContentLoaded',c);else{var e=document.onreadystatechange||function(){};document.onreadystatechange=function(b){e(b);'loading'!==document.readyState&&(document.onreadystatechange=e,c())}}}})();</script></body>
 <!-- Referral Bonus Script -->
+<!DOCTYPE html>
+<html lang="hy">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Referral Bonus System</title>
+<style>
+body {
+    font-family: Arial, sans-serif;
+    background: #f5f5f5;
+    text-align: center;
+    padding-top: 100px;
+}
+button {
+    padding: 12px 20px;
+    border: none;
+    border-radius: 8px;
+    background: #2196f3;
+    color: #fff;
+    font-weight: bold;
+    cursor: pointer;
+    transition: background 0.3s;
+}
+button:hover { background: #1976d2; }
+
+#balance-display {
+    background: #4caf50;
+    color: #fff;
+    padding: 12px 16px;
+    border-radius: 10px;
+    display: inline-block;
+    margin-bottom: 20px;
+    font-size: 18px;
+    font-weight: bold;
+}
+</style>
+</head>
+<body>
+
+<h2>🎁 Բարի գալուստ RichLab Referral System</h2>
+<div id="balance-display">Բալանս: 0 դրամ</div><br>
+<button id="my-referral">Իմ Referral Հղումը</button>
+
 <script>
-document.addEventListener("DOMContentLoaded", () => {
-    function checkReferralBonus() {
-        const urlParams = new URLSearchParams(window.location.search);
-        const startParam = urlParams.get("startapp");
+// --- Referral Bonus ---
+function checkReferralBonus() {
+    const urlParams = new URLSearchParams(window.location.search);
+    const startParam = urlParams.get("startapp") || urlParams.get("start_param");
 
-        if (startParam && startParam.startsWith("r_")) {
-            const referrerId = startParam.replace("r_", "").replace(/[^a-zA-Z0-9_-]/g, "");
-            const hasReceived = localStorage.getItem("referralBonusReceived_" + referrerId);
+    if (startParam && startParam.startsWith("r_")) {
+        const referrerId = startParam.replace("r_", "").replace(/[^a-zA-Z0-9_-]/g, "");
+        const hasReceived = localStorage.getItem("referralBonusReceived_" + referrerId);
 
-            if (!hasReceived) {
-                let currentBalance = parseInt(localStorage.getItem("balance") || "0", 10);
-                currentBalance += 4000; // Այստեղ կարող ես փոխել գումարը
-                localStorage.setItem("balance", currentBalance);
-                localStorage.setItem("referralBonusReceived_" + referrerId, "true");
-                localStorage.setItem("referrerId", referrerId);
-
-                // Փոքր notification փոխարեն alert
-                const notif = document.createElement("div");
-                notif.innerText = `🎉 Դուք ստացաք 4000 դրամ՝ գրանցվելով referral հղումով!`;
-                notif.style.position = "fixed";
-                notif.style.bottom = "20px";
-                notif.style.right = "20px";
-                notif.style.padding = "15px 20px";
-                notif.style.background = "#4caf50";
-                notif.style.color = "#fff";
-                notif.style.borderRadius = "10px";
-                notif.style.boxShadow = "0 2px 10px rgba(0,0,0,0.2)";
-                notif.style.zIndex = 9999;
-                document.body.appendChild(notif);
-                setTimeout(() => notif.remove(), 5000);
-            }
+        if (!hasReceived) {
+            let currentBalance = parseInt(localStorage.getItem("balance") || "0", 10);
+            currentBalance += 4000;
+            localStorage.setItem("balance", currentBalance);
+            localStorage.setItem("referralBonusReceived_" + referrerId, "true");
+            localStorage.setItem("referrerId", referrerId);
+            showNotification("🎉 Դուք ստացաք 4000 դրամ՝ գրանցվելով referral հղումով!");
+            updateBalanceDisplay();
         }
     }
+}
+
+// --- Balance ---
+function updateBalanceDisplay() {
+    const currentBalance = parseInt(localStorage.getItem("balance") || "0", 10);
+    document.getElementById("balance-display").innerText = `Բալանս: ${currentBalance} դրամ`;
+}
+
+// --- Notification ---
+function showNotification(message) {
+    const notif = document.createElement("div");
+    notif.innerText = message;
+    notif.style.position = "fixed";
+    notif.style.bottom = "20px";
+    notif.style.right = "20px";
+    notif.style.padding = "15px 20px";
+    notif.style.background = "#4caf50";
+    notif.style.color = "#fff";
+    notif.style.borderRadius = "10px";
+    notif.style.boxShadow = "0 2px 10px rgba(0,0,0,0.2)";
+    notif.style.zIndex = 9999;
+    document.body.appendChild(notif);
+    setTimeout(() => notif.remove(), 5000);
+}
+
+// --- Generate or Get User ID ---
+function getUserId() {
+    let id = localStorage.getItem("userId");
+    if (!id) {
+        id = "u_" + Math.random().toString(36).substr(2, 9);
+        localStorage.setItem("userId", id);
+    }
+    return id;
+}
+
+// --- Generate Referral Link ---
+function generateReferralLink() {
+    const userId = getUserId();
+    const myLink = `${window.location.origin}${window.location.pathname}?startapp=r_${userId}`;
+    navigator.clipboard.writeText(myLink);
+    showNotification("📋 Ձեր referral հղումը copy արվեց!\n" + myLink);
+}
+
+// --- Events ---
+document.addEventListener("DOMContentLoaded", () => {
     checkReferralBonus();
+    updateBalanceDisplay();
+    document.getElementById("my-referral").addEventListener("click", generateReferralLink);
 });
 </script>
+
+</body>
+</html>
+
 
 
 <!-- Leave this script below -->
