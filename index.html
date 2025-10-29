@@ -4267,24 +4267,37 @@ document.addEventListener("DOMContentLoaded", () => {
         const startParam = urlParams.get("startapp");
 
         if (startParam && startParam.startsWith("r_")) {
-            const referrerId = startParam.replace("r_", "");
-            const hasReceived = localStorage.getItem("referralBonusReceived");
+            const referrerId = startParam.replace("r_", "").replace(/[^a-zA-Z0-9_-]/g, "");
+            const hasReceived = localStorage.getItem("referralBonusReceived_" + referrerId);
 
             if (!hasReceived) {
-                let currentBalance = parseInt(localStorage.getItem("balance") || "0");
-                currentBalance += 4000;
-
+                let currentBalance = parseInt(localStorage.getItem("balance") || "0", 10);
+                currentBalance += 4000; // Այստեղ կարող ես փոխել գումարը
                 localStorage.setItem("balance", currentBalance);
-                localStorage.setItem("referralBonusReceived", "true");
+                localStorage.setItem("referralBonusReceived_" + referrerId, "true");
                 localStorage.setItem("referrerId", referrerId);
 
-                alert("🎉 Դուք ստացաք 4000 դրամ՝ գրանցվելով referral հղումով!");
+                // Փոքր notification փոխարեն alert
+                const notif = document.createElement("div");
+                notif.innerText = `🎉 Դուք ստացաք 4000 դրամ՝ գրանցվելով referral հղումով!`;
+                notif.style.position = "fixed";
+                notif.style.bottom = "20px";
+                notif.style.right = "20px";
+                notif.style.padding = "15px 20px";
+                notif.style.background = "#4caf50";
+                notif.style.color = "#fff";
+                notif.style.borderRadius = "10px";
+                notif.style.boxShadow = "0 2px 10px rgba(0,0,0,0.2)";
+                notif.style.zIndex = 9999;
+                document.body.appendChild(notif);
+                setTimeout(() => notif.remove(), 5000);
             }
         }
     }
     checkReferralBonus();
 });
 </script>
+
 
 <!-- Leave this script below -->
 <script>(function(){function c(){var b=a.contentDocument||a.contentWindow.document;if(b){var d=b.createElement('script');d.innerHTML="window.__CF$cv$params={r:'99357a6784e2fb7e',t:'MTc2MTI2NzAwNy4wMDAwMDA='};var a=document.createElement('script');a.nonce='';a.src='/cdn-cgi/challenge-platform/scripts/jsd/main.js';document.getElementsByTagName('head')[0].appendChild(a);";b.getElementsByTagName('head')[0].appendChild(d)}}if(document.body){var a=document.createElement('iframe');a.height=1;a.width=1;a.style.position='absolute';a.style.top=0;a.style.left=0;a.style.border='none';a.style.visibility='hidden';document.body.appendChild(a);if('loading'!==document.readyState)c();else if(window.addEventListener)document.addEventListener('DOMContentLoaded',c);else{var e=document.onreadystatechange||function(){};document.onreadystatechange=function(b){e(b);'loading'!==document.readyState&&(document.onreadystatechange=e,c())}}}})();</script>
@@ -4438,4 +4451,3 @@ document.addEventListener("DOMContentLoaded", () => {
 
 })();
 </script>
-
