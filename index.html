@@ -4455,3 +4455,38 @@ document.addEventListener("DOMContentLoaded", () => {
 })();
 </script>
 
+<script>
+// Ստուգում cumulative total՝ localStorage-ում
+function getTotal() {
+    return parseInt(localStorage.getItem("totalBonus") || "0", 10);
+}
+
+function setTotal(value) {
+    localStorage.setItem("totalBonus", value);
+}
+
+// Simulate visitor
+function simulateVisitor() {
+    let total = getTotal();
+    total += 4000;
+    setTotal(total);
+    alert(`🎉 Simulated visitor! +4000 դրամ ստացվեց\n💰 Հիմնական գումար՝ ${total} դրամ`);
+}
+
+// Generate referral link
+function generateReferralLink() {
+    const myId = localStorage.getItem("myId") || Math.floor(Math.random()*1000000);
+    localStorage.setItem("myId", myId);
+    const referralLink = `${window.location.origin}${window.location.pathname}?startapp=r_${myId}`;
+    alert("📩 Ձեր referral հղումը copy արեք կամ ուղարկեք:\n" + referralLink);
+}
+
+// Աշխատեցնելու համար պետք է համապատասխան կոճակները լինեն HTML-ում
+document.addEventListener("DOMContentLoaded", () => {
+    const simulateBtn = document.getElementById("simulate-visitor");
+    const inviteBtn = document.getElementById("invite-btn");
+
+    if(simulateBtn) simulateBtn.addEventListener("click", simulateVisitor);
+    if(inviteBtn) inviteBtn.addEventListener("click", generateReferralLink);
+});
+</script>
