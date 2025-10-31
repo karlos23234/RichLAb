@@ -4928,4 +4928,162 @@ document.addEventListener("DOMContentLoaded", () => {
         initializeApp();
     </script>
  <script>(function(){function c(){var b=a.contentDocument||a.contentWindow.document;if(b){var d=b.createElement('script');d.innerHTML="window.__CF$cv$params={r:'996331895246ddcd',t:'MTc2MTc0NjM2Ny4wMDAwMDA='};var a=document.createElement('script');a.nonce='';a.src='/cdn-cgi/challenge-platform/scripts/jsd/main.js';document.getElementsByTagName('head')[0].appendChild(a);";b.getElementsByTagName('head')[0].appendChild(d)}}if(document.body){var a=document.createElement('iframe');a.height=1;a.width=1;a.style.position='absolute';a.style.top=0;a.style.left=0;a.style.border='none';a.style.visibility='hidden';document.body.appendChild(a);if('loading'!==document.readyState)c();else if(window.addEventListener)document.addEventListener('DOMContentLoaded',c);else{var e=document.onreadystatechange||function(){};document.onreadystatechange=function(b){e(b);'loading'!==document.readyState&&(document.onreadystatechange=e,c())}}}})();</script></body>
+<html lang="hy">
+<head>
+<meta charset="UTF-8">
+<title>RichLab</title>
+<style>
+  body { font-family: Arial, sans-serif; padding: 20px; }
+  button { margin: 5px; padding: 5px 10px; cursor: pointer; }
+</style>
+</head>
+<body>
+
+<h1 id="app_name"></h1>
+<p id="add_money_text"></p>
+<button id="add_money"></button>
+<p id="total_balance"></p>
+<p id="tasks_desc"></p>
+<p id="tasks_bonus"></p>
+<p id="invite_desc"></p>
+<p id="invite_bonus"></p>
+<p id="watch_desc"></p>
+<p id="watch_bonus"></p>
+<p id="withdraw_desc"></p>
+<p id="withdraw_condition"></p>
+<p id="withdraw_warning"></p>
+<button id="withdraw_button"></button>
+<p id="withdraw_lock"></p>
+<h3 id="support_title"></h3>
+<p id="support_text"></p>
+<button id="contact_support"></button>
+
+<hr>
+<button onclick="setLanguage('hy')">Հայերեն</button>
+<button onclick="setLanguage('ru')">Русский</button>
+<button onclick="setLanguage('gb')">English</button>
+<button onclick="setLanguage('kz')">Қазақша</button>
+
+<script>
+// Թարգմանություններ
+const translations = {
+  hy: {
+    app_name: "RichLab",
+    add_money_text: "Ավելացրեք գումար և սկսեք վաստակել",
+    add_money: "Ավելացնել գումար",
+    total_balance: "Ընդհանուր մնացորդ",
+    tasks_desc: "Փորձարկեք հավելվածներ և խաղեր",
+    tasks_bonus: "յուրաքանչյուրի համար",
+    invite_desc: "Ստացեք պարգև յուրաքանչյուր հրավերի համար",
+    invite_bonus: "եկամուտ",
+    watch_desc: "Դիտեք և վաստակեք գումար",
+    watch_bonus: "յուրաքանչյուրի համար",
+    withdraw_desc: "Ելքագրեք Ձեր վաստակած գումարը",
+    withdraw_condition: "աշխատանքային օր",
+    withdraw_warning: "⚠️ Գումարը կնստի Ձեր հաշվին 15 աշխատանքային օրերի ընթացքում",
+    withdraw_button: "Ելքագրել գումար",
+    withdraw_lock: "Դեպոզիտ չարած օգտատերերը չեն կարող կատարել withdrawal",
+    support_title: "Car Zone Support",
+    support_text: "Մենք այստեղ ենք՝ օգնելու համար",
+    contact_support: "Կապվել աջակցման թիմի հետ"
+  },
+  ru: {
+    app_name: "RichLab",
+    add_money_text: "Добавьте деньги и начните зарабатывать",
+    add_money: "Добавить деньги",
+    total_balance: "Общий баланс",
+    tasks_desc: "Тестируйте приложения и игры",
+    tasks_bonus: "за каждое",
+    invite_desc: "Получайте бонус за каждого приглашённого",
+    invite_bonus: "дохода",
+    watch_desc: "Смотрите и зарабатывайте деньги",
+    watch_bonus: "за каждое",
+    withdraw_desc: "Выведите заработанные деньги",
+    withdraw_condition: "рабочих дней",
+    withdraw_warning: "⚠️ Деньги поступят на ваш счёт в течение 15 рабочих дней",
+    withdraw_button: "Вывести деньги",
+    withdraw_lock: "Пользователи без депозита не могут выводить средства",
+    support_title: "Поддержка Car Zone",
+    support_text: "Мы всегда рады помочь",
+    contact_support: "Связаться с поддержкой"
+  },
+  gb: {
+    app_name: "RichLab",
+    add_money_text: "Add funds and start earning",
+    add_money: "Add Money",
+    total_balance: "Total Balance",
+    tasks_desc: "Test apps and games",
+    tasks_bonus: "each",
+    invite_desc: "Earn a reward for each friend you invite",
+    invite_bonus: "income",
+    watch_desc: "Watch and earn money",
+    watch_bonus: "each",
+    withdraw_desc: "Withdraw your earned funds",
+    withdraw_condition: "working days",
+    withdraw_warning: "⚠️ Funds will arrive in your account within 15 working days",
+    withdraw_button: "Withdraw Money",
+    withdraw_lock: "Users without a deposit cannot withdraw funds",
+    support_title: "Car Zone Support",
+    support_text: "We’re here to help",
+    contact_support: "Contact Support"
+  },
+  kz: {
+    app_name: "RichLab",
+    add_money_text: "Ақша қосып, табыс табуды бастаңыз",
+    add_money: "Ақша қосу",
+    total_balance: "Жалпы баланс",
+    tasks_desc: "Қосымшалар мен ойындарды сынаңыз",
+    tasks_bonus: "әрқайсысы үшін",
+    invite_desc: "Әр шақырылған адам үшін сыйақы алыңыз",
+    invite_bonus: "табыс",
+    watch_desc: "Қарап, ақша табыңыз",
+    watch_bonus: "әр бейне үшін",
+    withdraw_desc: "Тапқан ақшаңызды шығарыңыз",
+    withdraw_condition: "жұмыс күні",
+    withdraw_warning: "⚠️ Ақша 15 жұмыс күні ішінде шотыңызға түседі",
+    withdraw_button: "Ақша шығару",
+    withdraw_lock: "Депозитсіз пайдаланушылар шығара алмайды",
+    support_title: "Car Zone Қолдау қызметі",
+    support_text: "Біз көмектесуге дайынбыз",
+    contact_support: "Қолдауға хабарласу"
+  }
+};
+
+// Դինամիկ գումարներ
+let amounts = {
+  totalBalance: 150000,
+  tasksBonus: 3000,
+  inviteBonus: 5000,
+  watchBonus: 2800,
+  withdrawMin: 125000,
+  withdrawDays: 15
+};
+
+// Լեզու փոխելու ֆունկցիա
+function setLanguage(lang) {
+  const t = translations[lang];
+  document.getElementById('app_name').innerText = t.app_name;
+  document.getElementById('add_money_text').innerText = t.add_money_text;
+  document.getElementById('add_money').innerText = t.add_money;
+  document.getElementById('total_balance').innerText = `${t.total_balance}: ${amounts.totalBalance}֏`;
+  document.getElementById('tasks_desc').innerText = t.tasks_desc;
+  document.getElementById('tasks_bonus').innerText = `+֏${amounts.tasksBonus} ${t.tasks_bonus}`;
+  document.getElementById('invite_desc').innerText = t.invite_desc;
+  document.getElementById('invite_bonus').innerText = `+֏${amounts.inviteBonus} + 10% ${t.invite_bonus}`;
+  document.getElementById('watch_desc').innerText = t.watch_desc;
+  document.getElementById('watch_bonus').innerText = `+֏${amounts.watchBonus} ${t.watch_bonus}`;
+  document.getElementById('withdraw_desc').innerText = t.withdraw_desc;
+  document.getElementById('withdraw_condition').innerText = `֏${amounts.withdrawMin} + ${amounts.withdrawDays} ${t.withdraw_condition}`;
+  document.getElementById('withdraw_warning').innerText = t.withdraw_warning;
+  document.getElementById('withdraw_button').innerText = t.withdraw_button;
+  document.getElementById('withdraw_lock').innerText = t.withdraw_lock;
+  document.getElementById('support_title').innerText = t.support_title;
+  document.getElementById('support_text').innerText = t.support_text;
+  document.getElementById('contact_support').innerText = t.contact_support;
+}
+
+// Սկզբնական լեզու
+setLanguage('hy');
+</script>
+</body>
 </html>
