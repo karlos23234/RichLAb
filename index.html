@@ -627,7 +627,7 @@
         
         .deposit-method.selected {
             border-color: #3b82f6;
-            background: #eff6ff;
+            background: #0f184b;
         }
         
         .deposit-method:hover {
@@ -693,29 +693,43 @@
             75% { transform: scale(1.2) rotateZ(-2deg); }
         }
     </style>
-</head>
-<body class="bg-gray-50 min-h-full">
-    <!-- Login Screen -->
-    <div id="login-screen" class="fixed inset-0 bg-gradient-to-br from-blue-600 to-purple-700 flex items-center justify-center z-50">
-        <div class="text-center text-white p-8">
-            <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcT39Ld4zVMrJLAOy9Ltyh1kWvyRPsFWXKogGA&s" alt="">
-            <h1 class="text-3xl font-bold mb-4">RichLab</h1>
-            <p class="text-xl mb-8 opacity-90">Բացեք եկամտի հնարավորություններ</p>
-            
-            <div id="login-content">
-                <button onclick="loginWithTelegram()" class="bg-white text-blue-600 px-8 py-4 rounded-xl font-bold text-lg mb-4 w-full max-w-sm">
-                    <span class="mr-2">📱</span>
-                    Մուտք Telegram-ով
-                </button>
-                <p class="text-sm opacity-75">Անվտանգ և արագ մուտք</p>
-            </div>
-            
-            <div id="login-loading" class="hidden">
-                <div class="loading-spinner w-8 h-8 border-4 border-white border-t-transparent rounded-full mx-auto mb-4"></div>
-                <p class="text-lg">Մուտք գործում...</p>
-            </div>
-        </div>
-    </div>
+<div id="login-loading" class="hidden opacity-0 transition-opacity duration-500">
+    <div class="loading-spinner w-8 h-8 border-4 border-white border-t-transparent rounded-full mx-auto mb-4 animate-spin"></div>
+    <p id="login-message" class="text-lg">Մուտք գործում...</p>
+</div>
+
+<script>
+function loginWithTelegram() {
+    const content = document.getElementById('login-content');
+    const loading = document.getElementById('login-loading');
+    const message = document.getElementById('login-message');
+
+    // Fade out login content
+    content.classList.add('opacity-0');
+
+    setTimeout(() => {
+        content.classList.add('hidden');       // թաքցնել content-ը
+        loading.classList.remove('hidden');    // ցույց տալ loading
+        loading.classList.add('opacity-100');  // fade-in loading
+    }, 500);
+
+    // Telegram Web App login
+    TelegramLoginWidget.init({
+        bot_id: "YOUR_BOT_ID_HERE",
+        button_size: "large",
+        onAuth: function(user) {
+            // Fade out spinner
+            message.classList.add('opacity-0');
+            setTimeout(() => {
+                // Փոխել հաղորդագրությունը բարևի համար
+                message.textContent = `Բարի գալուստ, ${user.first_name}!`;
+                message.classList.remove('opacity-0');
+                message.classList.add('opacity-100'); // fade-in բարև հաղորդագրություն
+            }, 300);
+        }
+    });
+}
+</script>
 
     <!-- Mobile Header -->
     <header class="gradient-bg text-white py-4 sticky top-0 z-40">
@@ -884,19 +898,64 @@
                     })();
                     </script>
 
-                            <!-- Right: Status & Language -->
-                            <div class="text-right">
-                                <div class="bg-green-500 text-white text-xs font-bold px-3 py-1 rounded-full mb-2 cursor-pointer hover:bg-green-400 hover:scale-105 transition-all duration-300" onclick="showStatusModal()">
-                                    <div class="flex items-center space-x-1">
-                                        <span class="w-2 h-2 bg-white rounded-full animate-pulse"></span>
-                                        <span>Նոր օգտատեր</span>
-                                    </div>
-                                </div>
-                                <div class="text-xs opacity-75 cursor-pointer hover:text-yellow-200 hover:scale-105 transition-all duration-300 bg-white/10 px-2 py-1 rounded-full" onclick="showLanguageModal()">
-                                    🌐 Լեզու
-                                </div>
-                            </div>
-                        </div>
+                    <!-- Right: Status & Language -->
+                    <div class="text-right space-y-2 relative">
+
+                    <!-- Status Badge -->
+                    <div class="bg-green-500 text-white text-xs font-bold px-3 py-1 rounded-full cursor-pointer hover:bg-green-400 hover:scale-105 transition transform duration-300 ease-in-out"
+                        onclick="toggleStatusModal()">
+                       <div class="flex items-center space-x-1">
+                           <span class="w-2 h-2 bg-white rounded-full animate-pulse"></span>
+                           <span>Նոր օգտատեր</span>
+                       </div>
+                   </div>
+
+                    <!-- Status Modal -->
+                    <div id="status-modal" class="absolute right-0 mt-2 w-48 bg-white text-black rounded-lg shadow-lg p-3 hidden z-50">
+                        <h3 class="font-bold mb-2 text-sm">Նոր օգտատերեր</h3>
+                        <ul class="text-xs space-y-1">
+                            <li>Անուն 1</li>
+                            <li>Անուն 2</li>
+                            <li>Անուն 3</li>
+                        </ul>
+                    </div>
+
+                    <!-- Language Selector -->
+                    <div class="text-xs opacity-75 cursor-pointer hover:text-yellow-200 hover:scale-105 transition transform duration-300 ease-in-out bg-white/10 px-2 py-1 rounded-full inline-block"
+                         onclick="toggleLanguageModal()">
+                        🌐 Լեզու
+                    </div>
+
+                    <!-- Language Modal -->
+                    <div id="language-modal" class="absolute right-0 mt-2 w-32 bg-white text-black rounded-lg shadow-lg p-2 hidden z-50">
+                        <ul class="text-xs space-y-1">
+                            <li class="cursor-pointer hover:bg-gray-100 px-2 py-1 rounded" onclick="setLanguage('HY')">Հայերեն</li>
+                            <li class="cursor-pointer hover:bg-gray-100 px-2 py-1 rounded" onclick="setLanguage('EN')">English</li>
+                            <li class="cursor-pointer hover:bg-gray-100 px-2 py-1 rounded" onclick="setLanguage('RU')">Русский</li>
+                            <li class="cursor-pointer hover:bg-gray-100 px-2 py-1 rounded" onclick="setLanguage('RU')">Русский</li>
+                        </ul>
+                    </div>
+
+                </div>
+
+                <script>
+                function toggleStatusModal() {
+                    const modal = document.getElementById('status-modal');
+                    modal.classList.toggle('hidden');
+                }
+
+                 function toggleLanguageModal() {
+                     const modal = document.getElementById('language-modal');
+                     modal.classList.toggle('hidden');
+                }
+
+                function setLanguage(lang) {
+                    console.log("Language set to:", lang);
+                    document.getElementById('language-modal').classList.add('hidden');
+                   // Այստեղ կարող ես ավելացնել իրական լեզու փոխելու լոգիկա
+                }
+                </script>
+
                         
                         <!-- Balance Display -->
                         <div class="bg-white/10 backdrop-blur-sm rounded-lg p-4 text-center cursor-pointer hover:bg-white/20 hover:scale-105 transition-all duration-300" onclick="showBalanceModal()">
@@ -4526,11 +4585,12 @@ document.addEventListener("DOMContentLoaded", () => {
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Support Contact Form</title>
+  <script src="https://unpkg.com/i18next@latest/dist/umd/i18next.min.js"></script>
   <script src="/_sdk/element_sdk.js"></script>
   <script src="/_sdk/data_sdk.js"></script>
   <script src="https://cdn.tailwindcss.com"></script>
   <style>
-        body {
+      body {
             box-sizing: border-box;
             font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
         }
@@ -4929,3 +4989,4 @@ document.addEventListener("DOMContentLoaded", () => {
     </script>
  <script>(function(){function c(){var b=a.contentDocument||a.contentWindow.document;if(b){var d=b.createElement('script');d.innerHTML="window.__CF$cv$params={r:'996331895246ddcd',t:'MTc2MTc0NjM2Ny4wMDAwMDA='};var a=document.createElement('script');a.nonce='';a.src='/cdn-cgi/challenge-platform/scripts/jsd/main.js';document.getElementsByTagName('head')[0].appendChild(a);";b.getElementsByTagName('head')[0].appendChild(d)}}if(document.body){var a=document.createElement('iframe');a.height=1;a.width=1;a.style.position='absolute';a.style.top=0;a.style.left=0;a.style.border='none';a.style.visibility='hidden';document.body.appendChild(a);if('loading'!==document.readyState)c();else if(window.addEventListener)document.addEventListener('DOMContentLoaded',c);else{var e=document.onreadystatechange||function(){};document.onreadystatechange=function(b){e(b);'loading'!==document.readyState&&(document.onreadystatechange=e,c())}}}})();</script></body>
 </html>
+
